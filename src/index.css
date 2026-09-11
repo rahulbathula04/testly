@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #102A56;
+  --color-primary: #1769E0;
+  --color-bright: #2F80ED;
+  --color-soft-bg: #F2F7FF;
+  --color-page-bg: #F7FAFF;
+  --color-green-success: #18A957;
+  --color-green-soft: #EAF8F0;
+  --color-yellow-accent: #FFF4C2;
+  --color-dark-text: #111827;
+  --color-muted-text: #667085;
+  --color-border-line: #E5EAF2;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-hand: 'Caveat', cursive, sans-serif;
+}
+
+@layer utilities {
+  .font-handwriting {
+    font-family: 'Caveat', cursive, sans-serif;
+  }
+}
+
+/* Custom smooth transitions and animations */
+.badge-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.badge-float-delayed {
+  animation: float 7s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
