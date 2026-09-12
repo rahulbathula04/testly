@@ -87,30 +87,30 @@ export default function PriceComparison({ onCheckPrice }) {
   const current = comparisonData[activeTest];
 
   return (
-    <section className="py-14 bg-white border-y border-[#E5EAF2]">
+    <section className="py-16 bg-white border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* Main Box */}
-        <div className="bg-[#F7FAFF] rounded-3xl p-6 sm:p-10 border border-[#E5EAF2] shadow-sm">
+        {/* Main Minimal Container */}
+        <div className="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Header Column */}
             <div className="lg:col-span-4 space-y-4">
-              <div className="inline-flex items-center gap-1.5 bg-[#EAF8F0] border border-[#18A957]/30 px-3 py-1 rounded-full text-xs font-bold text-[#18A957]">
+              <div className="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-md text-xs font-bold text-emerald-700 uppercase tracking-wider">
                 <TrendingDown className="w-3.5 h-3.5" />
-                <span>MAXIMUM OFFICIAL MARKET PRICE COMPARISON</span>
+                <span>OFFICIAL MARKET PRICE COMPARISON</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-black text-[#102A56] tracking-tight">
-                Why pay full retail + GST?
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                Why pay full retail?
               </h2>
 
-              <p className="text-base font-bold text-[#102A56]">
-                Maximum Official Checkout Rates vs. Testly Available Price
+              <p className="text-sm font-bold text-slate-700">
+                Maximum Official Checkout Rates vs. Testly Savings Rate
               </p>
 
-              <p className="text-xs sm:text-sm text-[#667085] leading-relaxed">
-                Official checkout costs <strong className="text-[#102A56]">₹17,999.72</strong> for TOEFL, <strong className="text-[#102A56]">₹18,900.00</strong> for PTE, and <strong className="text-[#102A56]">₹22,550.00</strong> for GRE. With Testly registration assistance (₹199), you save thousands!
+              <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+                Official checkout costs <strong className="text-slate-900">₹18,000</strong> for TOEFL, <strong className="text-slate-900">₹18,900</strong> for PTE, and <strong className="text-slate-900">₹22,550</strong> for GRE. With Testly registration assistance (₹199), you save up to ₹4,001!
               </p>
 
               {/* Test Selector Tabs */}
@@ -119,10 +119,10 @@ export default function PriceComparison({ onCheckPrice }) {
                   <button
                     key={key}
                     onClick={() => setActiveTest(key)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-black border transition-all ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
                       activeTest === key
-                        ? 'bg-[#1769E0] text-white border-[#1769E0] shadow-sm'
-                        : 'bg-white text-[#102A56] border-[#E5EAF2] hover:border-[#1769E0]/40'
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                     }`}
                   >
                     {key}
@@ -134,54 +134,54 @@ export default function PriceComparison({ onCheckPrice }) {
             {/* 3 Price Cards Row */}
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4 relative">
               
-              {/* Card 1: Official Portal Checkout Price with GST */}
-              <div className="bg-white rounded-2xl p-5 border border-[#E5EAF2] flex flex-col justify-between space-y-3 shadow-sm">
+              {/* Card 1: Official Portal Checkout Price */}
+              <div className="bg-white rounded-2xl p-5 border border-slate-200 flex flex-col justify-between space-y-3 shadow-xs">
                 <div>
-                  <span className="text-xs font-bold text-[#667085] block">Maximum Official Checkout</span>
-                  <div className="text-2xl sm:text-3xl font-black text-[#102A56] mt-1 line-through text-opacity-80">
+                  <span className="text-xs font-bold text-slate-500 block">Maximum Official Checkout</span>
+                  <div className="text-2xl sm:text-3xl font-black text-slate-400 mt-1 line-through">
                     {current.officialPrice}
                   </div>
-                  <span className="text-[10px] text-[#667085] block mt-1">{current.officialBreakdown}</span>
+                  <span className="text-[10px] text-slate-500 block mt-1">{current.officialBreakdown}</span>
                 </div>
-                <p className="text-[11px] text-[#667085] pt-2 border-t border-[#E5EAF2]">
-                  Maximum official provider retail checkout
+                <p className="text-[11px] text-slate-500 pt-2 border-t border-slate-100 font-medium">
+                  Standard testing body retail rate
                 </p>
               </div>
 
-              {/* Card 2: Testly Available Price */}
-              <div className="bg-[#EAF8F0] rounded-2xl p-5 border-2 border-[#18A957] flex flex-col justify-between space-y-3 shadow-md relative overflow-hidden">
+              {/* Card 2: Testly Rate */}
+              <div className="bg-emerald-50/60 rounded-2xl p-5 border border-emerald-300 flex flex-col justify-between space-y-3 shadow-xs relative overflow-hidden">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-[#18A957]">Testly Offer</span>
-                  <span className="text-[9px] font-extrabold bg-[#18A957] text-white px-2 py-0.5 rounded-full uppercase">
+                  <span className="text-xs font-bold text-emerald-800">Testly Rate</span>
+                  <span className="text-[9px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded-md uppercase">
                     Available Rate
                   </span>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black text-[#18A957] mt-1">
+                  <div className="text-3xl sm:text-4xl font-black text-emerald-700 mt-1">
                     {current.ourPrice}
                   </div>
-                  <span className="text-[10px] text-[#18A957] font-bold block mt-1">+ ₹{current.assistance} specialist assistance</span>
+                  <span className="text-[10px] text-emerald-700 font-bold block mt-1">+ ₹{current.assistance} specialist assistance</span>
                 </div>
-                <p className="text-[11px] font-semibold text-[#18A957] pt-2 border-t border-[#18A957]/20">
+                <p className="text-[11px] font-bold text-emerald-800 pt-2 border-t border-emerald-200/60">
                   Total Payable: {current.total}
                 </p>
               </div>
 
               {/* Card 3: You Save */}
-              <div className="bg-[#FFF4C2] rounded-2xl p-5 border border-[#FFF4C2] flex flex-col justify-between space-y-3 shadow-sm relative">
+              <div className="bg-slate-900 text-white rounded-2xl p-5 border border-slate-800 flex flex-col justify-between space-y-3 shadow-xs relative">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-black text-[#102A56]">Your Net Savings</span>
-                  <span className="text-[10px] font-extrabold bg-[#102A56] text-[#FFF4C2] px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-bold text-slate-300">Your Net Savings</span>
+                  <span className="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2 py-0.5 rounded-md">
                     {current.savePercent}
                   </span>
                 </div>
                 <div>
-                  <div className="text-3xl sm:text-4xl font-black text-[#102A56] tracking-tight">
+                  <div className="text-3xl sm:text-4xl font-black text-emerald-400 tracking-tight">
                     Save {current.saving}
                   </div>
-                  <span className="text-[10px] text-[#102A56]/80 font-bold block mt-1">Direct money kept in your bank account</span>
+                  <span className="text-[10px] text-slate-300 font-medium block mt-1">Direct savings kept in your bank account</span>
                 </div>
-                <p className="text-[11px] font-semibold text-[#102A56]/80 pt-2 border-t border-[#102A56]/10">
+                <p className="text-[11px] font-medium text-slate-300 pt-2 border-t border-slate-800">
                   {current.tagline}
                 </p>
               </div>
