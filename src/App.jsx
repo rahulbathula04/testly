@@ -99,23 +99,29 @@ export default function App() {
           onSelectTest={handleOpenBooking}
         />
 
-        {/* 3. PROFESSIONAL SERVICES */}
+        {/* 3. HOW IT WORKS - 3 SIMPLE STEPS EXPLAINER */}
+        <HowItWorks 
+          onBookService={handleOpenBooking}
+          onOpenFreeMock={handleOpenFreeMock}
+        />
+
+        {/* 4. PROFESSIONAL SERVICES */}
         <ProfessionalServices 
           onBookService={handleOpenBooking}
         />
 
-        {/* 3B. HYDERABAD LOCAL OFFLINE SUPPORT HUBS (MADHAPUR 5KM RADIUS) */}
+        {/* 4B. HYDERABAD LOCAL OFFLINE SUPPORT HUBS (MADHAPUR 5KM RADIUS) */}
         <HyderabadLocalSupport 
           onBookService={handleOpenBooking}
           onOpenFreeMock={handleOpenFreeMock}
         />
 
-        {/* 4. PRICE COMPARISON */}
+        {/* 5. PRICE COMPARISON & CALCULATOR */}
         <SavingsCalculator 
           onBookTest={handleOpenBooking}
         />
 
-        {/* 4B. COUPONS & SAVINGS CENTER */}
+        {/* 5B. COUPONS & SAVINGS CENTER */}
         <CouponSavingsCenter 
           onBookTest={handleOpenBooking}
           onOpenFreeMock={handleOpenFreeMock}
@@ -136,12 +142,7 @@ export default function App() {
           onSelectTest={handleOpenBooking}
         />
 
-        {/* 8. FROM REGISTRATION TO READINESS */}
-        <HowItWorks 
-          onBookService={handleOpenBooking}
-        />
-
-        {/* 9. FINAL CONVERSION CTA */}
+        {/* 8. FINAL CONVERSION CTA */}
         <FinalCTA 
           onBookTest={handleOpenBooking}
           onOpenFreeMock={handleOpenFreeMock}
