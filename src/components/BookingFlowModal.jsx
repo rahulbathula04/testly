@@ -44,6 +44,24 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
   };
 
   const handleFinish = () => {
+    try {
+      const order = {
+        id: `TST-${selectedTest}-${Math.floor(10000 + Math.random() * 90000)}`,
+        test: selectedTest,
+        plan: selectedPlan,
+        city: selectedCity,
+        candidateName: `${name || 'Candidate'} ${surname}`.trim(),
+        phone,
+        email,
+        paymentMethod,
+        date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+        status: 'CONFIRMED'
+      };
+      const existing = JSON.parse(localStorage.getItem('testly_user_orders') || '[]');
+      existing.unshift(order);
+      localStorage.setItem('testly_user_orders', JSON.stringify(existing));
+    } catch (e) {}
+
     if (onOpenDashboard) onOpenDashboard();
     handleReset();
   };

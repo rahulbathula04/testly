@@ -44,9 +44,14 @@ export default function CouponSavingsCenter({ onBookTest, onOpenFreeMock }) {
   ];
 
   const handleCopy = (code) => {
+    try {
+      if (navigator && navigator.clipboard) {
+        navigator.clipboard.writeText(code);
+      }
+    } catch (e) {}
     setCopiedCode(code);
     setAppliedCoupon(code);
-    setCouponMessage({ text: `Coupon ${code} applied successfully!`, type: 'success' });
+    setCouponMessage({ text: `Coupon ${code} copied to clipboard & applied!`, type: 'success' });
     setTimeout(() => setCopiedCode(null), 2500);
   };
 

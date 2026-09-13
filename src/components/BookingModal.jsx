@@ -33,6 +33,23 @@ export default function BookingModal({ isOpen, onClose, defaultTest = 'TOEFL' })
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      const order = {
+        id: `TST-${selectedTest}-${Math.floor(10000 + Math.random() * 90000)}`,
+        test: selectedTest,
+        plan: '199',
+        city: 'Hyderabad',
+        candidateName: formData.fullName || 'Candidate',
+        phone: formData.phone,
+        email: formData.email,
+        paymentMethod: 'UPI',
+        date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+        status: 'CONFIRMED'
+      };
+      const existing = JSON.parse(localStorage.getItem('testly_user_orders') || '[]');
+      existing.unshift(order);
+      localStorage.setItem('testly_user_orders', JSON.stringify(existing));
+    } catch (err) {}
     setStep('submitted');
   };
 
