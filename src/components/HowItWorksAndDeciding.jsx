@@ -54,7 +54,7 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
               <div className="hidden lg:block w-16 h-16 rounded-xl overflow-hidden">
                 <img
                   src="/assets/images/global-university-campus.jpg"
-                  alt="Better paths"
+                  alt="Choose between GRE, TOEFL, IELTS, and PTE exams for international university admissions"
                   className="w-full h-full object-cover opacity-70"
                 />
               </div>

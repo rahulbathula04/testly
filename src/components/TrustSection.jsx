@@ -18,7 +18,7 @@ export default function TrustSection() {
           <div className="relative rounded-2xl overflow-hidden h-72 lg:h-80 bg-slate-100">
             <img
               src="/assets/images/global-university-campus.jpg"
-              alt="Students guided by Testly"
+              alt="4,000+ Indian students successfully guided on GRE, TOEFL and IELTS exams with Testly"
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 via-slate-900/10 to-transparent" />
