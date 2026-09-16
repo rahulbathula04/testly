@@ -4,12 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar               from './components/Navbar';
 import Hero                 from './components/Hero';
 import PriceProof           from './components/PriceProof';
-import ServiceAndExams      from './components/ServiceAndExams';
-import TrustSection         from './components/TrustSection';
-import VerifiedBookingDossiers from './components/VerifiedBookingDossiers';
 import HowItWorksAndDeciding from './components/HowItWorksAndDeciding';
+import CampusBanner         from './components/CampusBanner';
+import StudentReviews       from './components/StudentReviews';
+import ExamResources        from './components/ExamResources';
 import FAQSection           from './components/FAQSection';
-import FinalCTA             from './components/FinalCTA';
 import Footer               from './components/Footer';
 
 // ── Practice engine ──────────────────────────────────────────────────────────
@@ -164,29 +163,29 @@ export default function App() {
               {/* 1. HERO — The Smarter Way to Book Your Exam */}
               <Hero onBookTest={handleOpenFunnel} />
 
-              {/* 2. PRICE PROOF — Authentic logos + data-driven savings */}
-              <PriceProof onBookTest={handleOpenFunnel} />
-
-              {/* 3. SERVICE + EXAM UNIVERSE */}
-              <ServiceAndExams
+              {/* 2. EXAMS WE SUPPORT + TODAY'S EXAM PRICES + ₹199 SERVICE + 4 PILLARS */}
+              <PriceProof
                 onBookTest={handleOpenFunnel}
-                onOpenSearch={() => setSearchOpen(true)}
+                onOpenAgreement={() => setAgreementOpen(true)}
               />
 
-              {/* 4. VERIFIED BOOKING DOSSIERS & SAVINGS PROOFS — 4,000+ Students Guided */}
-              <VerifiedBookingDossiers onBookTest={handleOpenFunnel} />
-
-              {/* 5. HOW IT WORKS + STILL DECIDING */}
+              {/* 3. HOW IT WORKS — Get Registered in 4 Simple Steps */}
               <HowItWorksAndDeciding onBookTest={handleOpenFunnel} />
 
-              {/* 6. FREE PRACTICE PLATFORM */}
-              <PracticeDashboard onLaunchEngine={openEngine} />
+              {/* 4. TESTLY CAMPUS — For Colleges, Universities & Study Abroad Cells */}
+              <CampusBanner
+                onOpenBooking={handleOpenFunnel}
+                onNavigate={navigate}
+              />
 
-              {/* 7. FAQ */}
-              <FAQSection />
+              {/* 5. WHY STUDENTS SAY — Trusted by Thousands Across India */}
+              <StudentReviews onBookTest={handleOpenFunnel} />
 
-              {/* 8. FINAL CTA — Why Pay More? Book Smarter. */}
-              <FinalCTA onBookTest={handleOpenFunnel} />
+              {/* 6. RESOURCES — Everything You Need to Plan Your Exam */}
+              <ExamResources onNavigate={navigate} />
+
+              {/* 7. FREQUENTLY ASKED QUESTIONS — Still Have Questions? */}
+              <FAQSection onBookTest={handleOpenFunnel} />
             </main>
 
             {/* Footer with subtle staff login */}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
-  const handleNav = (e, href) => {
+  const handleClick = (e, href) => {
     if (href.startsWith('/#')) {
       e.preventDefault();
       if (onNavigate) {
@@ -24,178 +24,145 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-400 border-t border-slate-800 pt-12 pb-8 text-xs font-[Inter,system-ui,sans-serif]">
+    <footer className="bg-[#0B1528] text-white pt-14 pb-8 border-t border-slate-800 font-[Inter,system-ui,sans-serif]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-
-          {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-3">
-            <div className="flex flex-col">
-              <span className="text-xl font-black text-white tracking-tight">Testly</span>
-              <span className="text-[11px] font-medium text-slate-400">Exams Made Easier</span>
-            </div>
+        
+        {/* 5-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+          
+          {/* Col 1: Brand & Bio (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
+            <a
+              href="/"
+              onClick={(e) => handleClick(e, '/')}
+              className="inline-block"
+            >
+              <span className="text-2xl font-black text-white tracking-tight block">
+                Testly
+              </span>
+              <span className="text-[11px] font-bold text-slate-400 block tracking-wide mt-0.5">
+                Book Smarter • Go Further
+              </span>
+            </a>
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              India's premier exam registration assistance company. We empower students and study-abroad aspirants to book official exams with institutional savings, zero foreign card markups, and human-verified passport checks under the Indian Contract Act, 1872.
+              India's trusted exam registration partner. We help students save on exam fees, get end-to-end guidance and avoid costly errors.
             </p>
-            <div className="pt-2 text-[11px] text-slate-500">
-              Telangana Support Desk: +91 93473 79041 • Madhapur & Begumpet
+          </div>
+
+          {/* Col 2: Exams (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-300">
+              Exams
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">GRE</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">TOEFL</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">PTE</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">IELTS</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">GMAT</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">SAT</a></li>
+            </ul>
+          </div>
+
+          {/* Col 3: Quick Links (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-300">
+              Quick Links
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">Exam Fees</a></li>
+              <li><a href="/#how-it-works" onClick={(e) => handleClick(e, '/#how-it-works')} className="hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="/campus" onClick={(e) => handleClick(e, '/campus')} className="hover:text-white transition-colors">Testly Campus</a></li>
+              <li><a href="/guides" onClick={(e) => handleClick(e, '/guides')} className="hover:text-white transition-colors">Resources</a></li>
+              <li><a href="/#faq" onClick={(e) => handleClick(e, '/#faq')} className="hover:text-white transition-colors">FAQ</a></li>
+            </ul>
+          </div>
+
+          {/* Col 4: Legal (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-300">
+              Legal
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Terms of Service</button></li>
+              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Privacy Policy</button></li>
+              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Refund Policy</button></li>
+              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Disclaimer</button></li>
+            </ul>
+          </div>
+
+          {/* Col 5: Follow Us (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-300">
+              Follow Us
+            </h4>
+            <div className="flex items-center gap-2.5">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-pink-600 flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                aria-label="Instagram"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                aria-label="LinkedIn"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.761-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                aria-label="YouTube"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                aria-label="Twitter"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
             </div>
-          </div>
 
-          {/* Locations */}
-          <div className="space-y-2.5">
-            <p className="text-xs font-bold text-white uppercase tracking-wider">Local Hubs</p>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="/locations/hyderabad"
-                  onClick={(e) => handleNav(e, '/locations/hyderabad')}
-                  className="hover:text-white transition-colors"
-                >
-                  Hyderabad Central Hub
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/locations/madhapur"
-                  onClick={(e) => handleNav(e, '/locations/madhapur')}
-                  className="hover:text-white transition-colors"
-                >
-                  Madhapur Prometric Desk
-                </a>
-              </li>
-              <li>
-                <span className="text-slate-500">Begumpet Pearson Desk</span>
-              </li>
-              <li>
-                <span className="text-slate-500">Somajiguda IDP Desk</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Pricing & Tools */}
-          <div className="space-y-2.5">
-            <p className="text-xs font-bold text-white uppercase tracking-wider">Fees & Savings</p>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="/exam-fees"
-                  onClick={(e) => handleNav(e, '/exam-fees')}
-                  className="hover:text-white transition-colors"
-                >
-                  Exam Fee & Savings Tracker
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/campus"
-                  onClick={(e) => handleNav(e, '/campus')}
-                  className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors flex items-center gap-1"
-                >
-                  <span>Testly Campus (B2B)</span>
-                  <span className="text-[9px] bg-emerald-500/20 px-1.5 py-0.2 rounded font-mono">NEW</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#savings"
-                  onClick={(e) => handleNav(e, '/#savings')}
-                  className="hover:text-white transition-colors"
-                >
-                  GRE Booking Rates
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#savings"
-                  onClick={(e) => handleNav(e, '/#savings')}
-                  className="hover:text-white transition-colors"
-                >
-                  TOEFL Booking Rates
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#savings"
-                  onClick={(e) => handleNav(e, '/#savings')}
-                  className="hover:text-white transition-colors"
-                >
-                  PTE & IELTS Rates
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* About & Trust */}
-          <div className="space-y-2.5">
-            <p className="text-xs font-bold text-white uppercase tracking-wider">About & Trust</p>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="/guides"
-                  onClick={(e) => handleNav(e, '/guides')}
-                  className="hover:text-white transition-colors"
-                >
-                  Guides & Research Library
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/professionals"
-                  onClick={(e) => handleNav(e, '/professionals')}
-                  className="hover:text-white transition-colors"
-                >
-                  Meet Our Professionals
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#how-it-works"
-                  onClick={(e) => handleNav(e, '/#how-it-works')}
-                  className="hover:text-white transition-colors"
-                >
-                  How Registration Works
-                </a>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={onOpenAgreement}
-                  className="text-slate-400 hover:text-emerald-400 transition-colors text-left"
-                >
-                  Candidate Agency Agreement (ICA 1872)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenAdmin}
-                  className="text-slate-500 hover:text-slate-300 transition-colors"
-                >
-                  Staff Portal
-                </button>
-              </li>
-            </ul>
+            {/* Subtle Staff Login Link */}
+            <div className="pt-4">
+              <button
+                onClick={onOpenAdmin}
+                className="text-[10px] text-slate-600 hover:text-slate-400 transition-colors uppercase tracking-widest font-mono"
+              >
+                STAFF SECURE LOGIN →
+              </button>
+            </div>
           </div>
 
         </div>
 
-        {/* Bottom Line & Legal Disclaimer */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-          <div className="space-y-1">
-            <p>© {new Date().getFullYear()} Testly Services India. All rights reserved.</p>
-            <button
-              onClick={onOpenAgreement}
-              className="text-slate-400 hover:text-white underline underline-offset-2"
-            >
-              Terms of Agency & Registration Mandate
-            </button>
-          </div>
-
-          <p className="text-center md:text-right max-w-xl leading-relaxed">
-            Testly is an independent exam registration assistance company operating under the Indian Contract Act, 1872 (Sections 182–238). ETS, GRE, TOEFL, Pearson, PTE, IDP, IELTS, GMAC, and Duolingo are registered trademarks of their respective owners. Testly is not affiliated with or endorsed by these testing entities.
-          </p>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
+          <p>© {new Date().getFullYear()} Testly Education Pvt Ltd. All rights reserved.</p>
+          <p>ETS®, GRE®, TOEFL®, Pearson®, PTE®, and IELTS™ are registered trademarks of their respective owners.</p>
         </div>
 
       </div>
