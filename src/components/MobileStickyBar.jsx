@@ -41,7 +41,7 @@ export default function MobileStickyBar({ onOpenBooking }) {
 
       <div className="flex items-center gap-1.5 shrink-0">
         <a
-          href={`https://wa.me/919876543210?text=${encodeURIComponent('Hi Testly! I want to check exam slot availability and save on my exam fee.')}`}
+          href={`https://wa.me/919347379041?text=${encodeURIComponent('Hi Testly! I want to check exam slot availability and save on my exam fee.')}`}
           target="_blank"
           rel="noopener noreferrer"
           className="p-2.5 rounded-xl bg-[#25D366]/15 text-[#128C7E] border border-[#25D366]/40 flex items-center justify-center"

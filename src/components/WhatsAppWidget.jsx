@@ -4,7 +4,7 @@ import { MessageCircle, X, CheckCircle2, ArrowRight } from 'lucide-react';
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const defaultPhone = '919876543210';
+  const defaultPhone = '919347379041';
   const defaultMessage = encodeURIComponent(
     'Hi Testly! I want to check exam registration, institutional rates, and book the ₹199 registration concierge.'
   );

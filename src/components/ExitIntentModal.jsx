@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, ShieldCheck, MessageCircle, ArrowRight, Zap, Check } from 'lucide-react';
 
 export default function ExitIntentModal({ onOpenBooking, isAnyModalOpen }) {
@@ -57,7 +57,7 @@ export default function ExitIntentModal({ onOpenBooking, isAnyModalOpen }) {
     }
   };
 
-  const waHoldUrl = `https://wa.me/919876543210?text=${encodeURIComponent(
+  const waHoldUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
     'Hi Testly! Please hold today’s institutional discount rate for me before daily quota resets.'
   )}`;
 

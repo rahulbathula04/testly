@@ -60,7 +60,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
     onClose();
   };
 
-  const directWaUrl = `https://wa.me/919876543210?text=${encodeURIComponent(
+  const directWaUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
     `Hi Testly! I want to check exam slot availability for ${exam} (${timing}) and lock in the ₹${currentPricing.testlyPrice.toLocaleString('en-IN')} rate with ₹199 Concierge.`
   )}`;
 
@@ -290,7 +290,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
               </div>
 
               <a
-                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi Testly! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
+                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Testly! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"

@@ -155,11 +155,11 @@ export default function App() {
       case 'home':
       default:
         return (
-          <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased">
+          <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased w-full max-w-full overflow-x-hidden">
             {/* Navigation */}
             <Navbar onOpenBooking={handleOpenFunnel} onNavigate={navigate} />
 
-            <main className="flex-grow">
+            <main className="flex-grow w-full max-w-full overflow-x-hidden">
               {/* 1. HERO — The Smarter Way to Book Your Exam */}
               <Hero onBookTest={handleOpenFunnel} />
 

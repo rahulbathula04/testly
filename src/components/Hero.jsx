@@ -18,7 +18,7 @@ const studentAvatars = [
 
 export default function Hero({ onBookTest }) {
   return (
-    <section className="relative bg-white border-b border-slate-200 overflow-hidden min-h-[520px]">
+    <section className="relative bg-white border-b border-slate-200 overflow-hidden min-h-[520px] w-full max-w-full">
 
       {/* ── Right-side photo panel ── */}
       <div className="absolute inset-y-0 right-0 w-[46%] hidden lg:block">

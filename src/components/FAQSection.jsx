@@ -27,7 +27,7 @@ export default function FAQSection({ onBookTest }) {
     setOpenIdx(openIdx === i ? null : i);
   };
 
-  const waUrl = `https://wa.me/919302333144?text=${encodeURIComponent(
+  const waUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
     'Hi Testly! I have a question about exam booking and registration assistance.'
   )}`;
 
@@ -123,7 +123,7 @@ export default function FAQSection({ onBookTest }) {
             </a>
 
             <div className="pt-2 border-t border-slate-100 text-[10.5px] text-slate-400 font-medium space-y-0.5">
-              <p>Direct: <span className="font-bold text-slate-700">+91 9302 333 144</span></p>
+              <p>Direct: <span className="font-bold text-slate-700">+91 93473 79041</span></p>
               <p>Mon – Sat, 9:00 AM – 9:00 PM IST</p>
             </div>
           </div>
