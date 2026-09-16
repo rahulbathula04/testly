@@ -1,63 +1,46 @@
 import React from 'react';
-import { ArrowRight, Play, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-export default function FinalCTA({ onBookTest, onOpenFreeMock }) {
+export default function FinalCTA({ onBookTest }) {
   return (
-    <section className="relative bg-[#102A56] text-white py-20 overflow-hidden">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          {/* Left Content */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#18A957] text-white text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">
-              <Zap className="w-4 h-4 fill-white" />
-              <span>TESTLY GUARANTEE</span>
-            </div>
+    <section className="bg-slate-900 text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
 
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              Save More. Test Smarter. <br />
-              <span className="text-[#60A5FA]">Practice Free. Register at ₹199.</span>
-            </h2>
-
-            <p className="text-base sm:text-xl text-slate-300 font-medium max-w-xl">
-              Join 14,200+ candidates preparing for GRE, TOEFL, IELTS & GMAT with zero paywalls. Get 1-on-1 registration support for just ₹199.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
-              <button
-                onClick={onOpenFreeMock}
-                className="w-full sm:w-auto bg-[#18A957] hover:bg-[#128342] text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 group"
-              >
-                <Play className="w-5 h-5 fill-white" />
-                <span>Start Free Practice Mock</span>
-              </button>
-
-              <button
-                onClick={() => onBookTest && onBookTest('GRE')}
-                className="w-full sm:w-auto bg-[#1769E0] hover:bg-white hover:text-[#102A56] text-white font-extrabold text-base px-8 py-4 rounded-2xl border border-white/20 transition-all text-center flex items-center justify-center gap-2"
-              >
-                <span>Book Registration Help (₹199)</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
+          {/* Left — italic brand line */}
+          <div className="shrink-0">
+            <p className="font-['Caveat'] text-2xl text-slate-400 italic">Why Pay More?</p>
+            <p className="font-['Caveat'] text-3xl font-bold text-white">Book Smarter.</p>
           </div>
 
-          {/* Right Script Visual */}
-          <div className="lg:col-span-5 relative text-center lg:text-right mt-6 lg:mt-0">
-            <div className="inline-block transform -rotate-2 bg-white/10 backdrop-blur-md px-6 py-4 rounded-3xl border border-white/20">
-              <span className="font-handwriting text-3xl font-bold text-[#FFF4C2] block">
-                Save More. Test Smarter.
-              </span>
-              <span className="text-xs text-slate-300 font-bold tracking-wider uppercase block mt-1">
-                Same Tests. Brighter Futures.
-              </span>
+          {/* Centre */}
+          <div className="flex-1 text-center space-y-4">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+                Your Exam. A Brighter Tomorrow.
+              </h2>
+              <p className="text-[15px] text-slate-400 mt-2 font-medium">
+                Check your exam. See your saving. Let Testly handle the registration.
+              </p>
             </div>
+            <button
+              onClick={() => onBookTest('GRE')}
+              className="bg-white hover:bg-slate-100 text-slate-900 font-bold text-sm px-8 py-3.5 rounded-lg transition-colors flex items-center gap-2 mx-auto">
+              Check My Exam Savings
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <p className="text-xs text-slate-500 font-medium">Testly Professional Service — ₹199</p>
+          </div>
+
+          {/* Right */}
+          <div className="shrink-0 text-right space-y-1">
+            <p className="text-sm font-bold text-slate-400 tracking-wider">SAME EXAM.</p>
+            <p className="text-sm font-bold text-slate-300 tracking-wider">LOWER PRICE.</p>
+            <p className="text-sm font-black text-white tracking-wider">BIGGER DREAMS.</p>
           </div>
 
         </div>
       </div>
-
     </section>
   );
 }
