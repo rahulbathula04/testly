@@ -134,14 +134,10 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 }`}
               >
                 <div className="space-y-4">
-                  {/* Card Header: Exam Name & POPULAR badge */}
-                  <div className="flex items-center justify-between min-h-[30px]">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl font-extrabold text-[#0F172A] tracking-tight">
-                        {ex.title}
-                      </span>
-                      <div className="opacity-80 scale-90 origin-left">{ex.logo}</div>
-                    </div>
+                  {/* Card Header: Exam Logo + POPULAR badge */}
+                  <div className="flex items-center justify-between min-h-[32px]">
+                    {/* Just the logo — it already contains the exam name (e.g. GRE®, TOEFL®) */}
+                    <div className="shrink-0">{ex.logo}</div>
                     {ex.popular && (
                       <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#0F172A] text-white tracking-wider uppercase shadow-xs">
                         POPULAR
