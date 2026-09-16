@@ -8,7 +8,13 @@ const pillars = [
   { icon: FileCheck,   label: 'OFFICIAL CONFIRMATION', sub: 'Direct ETS & IDP booking slip' },
 ];
 
-const avatarColors = ['#4f7cac','#3d8b5e','#c07d3a','#a04f6a','#5a4fa0'];
+const studentAvatars = [
+  { src: '/assets/images/student-avatar-1.jpg', alt: 'Indian graduate student at US university' },
+  { src: '/assets/images/student-avatar-2.jpg', alt: 'Indian student at Oxford library' },
+  { src: '/assets/images/student-avatar-3.jpg', alt: 'Indian engineering student at Canadian campus' },
+  { src: '/assets/images/student-avatar-4.jpg', alt: 'Indian student at Australian campus' },
+  { src: '/assets/images/student-avatar-5.jpg', alt: 'Indian masters student at Edinburgh campus' },
+];
 
 export default function Hero({ onBookTest }) {
   return (
@@ -95,19 +101,21 @@ export default function Hero({ onBookTest }) {
             <ArrowRight className="w-4 h-4" />
           </button>
 
-          {/* Social proof */}
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              {avatarColors.map((c, i) => (
-                <div key={i}
-                  style={{ backgroundColor: c }}
-                  className="w-7 h-7 rounded-full border-2 border-white flex items-center justify-center text-white text-[9px] font-black">
-                  {String.fromCharCode(65 + i)}
-                </div>
+          {/* Social proof with AI-generated Indian students abroad */}
+          <div className="flex items-center gap-3 pt-1">
+            <div className="flex -space-x-2.5 overflow-hidden py-0.5">
+              {studentAvatars.map((student, i) => (
+                <img
+                  key={i}
+                  src={student.src}
+                  alt={student.alt}
+                  className="inline-block w-8 h-8 rounded-full border-2 border-white object-cover object-center shadow-xs"
+                  loading="eager"
+                />
               ))}
             </div>
-            <p className="text-[13px] text-slate-600">
-              <strong className="font-bold text-slate-900">4,000+</strong> students guided on their global education journey.
+            <p className="text-[13px] text-slate-600 font-medium">
+              <strong className="font-extrabold text-slate-900">4,000+</strong> Indian students registered for top global universities.
             </p>
           </div>
 
