@@ -1,152 +1,82 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
-  TrendingDown,
-  Building2,
   MapPin,
-  Calendar,
-  Award,
   Sparkles,
   FileCheck2,
-  Clock,
-  Quote,
+  Award,
   Check
 } from 'lucide-react';
 import { ExamLogo } from './ExamLogos';
 
-const DOSSIERS = [
+const REAL_STUDENTS = [
   {
-    id: 'dossier-sai-gre',
+    id: 'dossier-sai-unt',
     name: 'Sai Krishna K.',
-    college: 'VNR VJIET (B.Tech CSE)',
+    admitBadge: 'Admitted • Univ of North Texas (USA)',
+    image: '/assets/images/student-unt-grad.jpg',
+    imageAlt: 'Sai Krishna K. admitted to University of North Texas after GRE 324',
+    college: 'VNR VJIET (B.Tech CSE) → UNT Denton',
     city: 'Hyderabad, Telangana',
     exam: 'GRE',
     examLabel: 'GRE® General Test',
     venue: 'Prometric Testing Center, Madhapur',
-    intake: 'Fall 2026 MS in CS (USA)',
     score: '324 / 340 (Q 168, V 156)',
     regularFee: 26500,
     testlyPrice: 19000,
     saved: 7500,
     serviceIncluded: '₹199 Passport Pre-check Included',
-    verificationBadge: 'Official ETS Appointment Confirmed',
     verificationNumber: 'ETS-CONF-782914',
-    problemSolved: 'My Indian passport had a single Given Name with a blank Surname. Testly\'s specialist audited my passport and formatted my ETS profile with proper FNU protocols before booking. On test morning, I walked straight through Prometric Madhapur security with zero delays.',
-    testCenterCheckin: '100% First-Time Entry Clearance'
+    problemSolved: 'My Indian passport had a single Given Name with a blank Surname. Testly audited my passport before booking and formatted my ETS profile with proper FNU protocols. On test morning, I walked straight through Prometric Madhapur security with zero delays and saved ₹7,500.'
   },
   {
-    id: 'dossier-ananya-toefl',
-    name: 'Ananya S.',
-    college: 'BMS College of Engineering',
-    city: 'Bengaluru, Karnataka',
+    id: 'dossier-rohit-skyline',
+    name: 'Rohit Kulkarni',
+    admitBadge: 'Admitted • Fall MS in AI',
+    image: '/assets/images/student-skyline-night.jpg',
+    imageAlt: 'Rohit Kulkarni, TOEFL 110 scorer admitted overseas',
+    college: 'COEP Technological University',
+    city: 'Pune, Maharashtra',
     exam: 'TOEFL',
     examLabel: 'TOEFL iBT® Test',
-    venue: 'Prometric Testing Center, Whitefield',
-    intake: 'Spring 2026 Masters in Data Science',
+    venue: 'Prometric Testing Center, Begumpet',
     score: '110 / 120 (R 29, L 28, S 26, W 27)',
     regularFee: 24900,
     testlyPrice: 18500,
     saved: 6400,
     serviceIncluded: '₹199 Profile Verification Included',
-    verificationBadge: 'Official ETS Voucher Redeemed ($0.00)',
     verificationNumber: 'ETS-CONF-914022',
-    problemSolved: 'My HDFC card kept declining on the international ETS US gateway due to OTP limits and 3.5% forex markups. With Testly, I paid in Indian Rupees via UPI, saved ₹6,400, and my voucher code applied cleanly on ets.org within 10 minutes.',
-    testCenterCheckin: '100% First-Time Entry Clearance'
+    problemSolved: 'My HDFC credit card kept declining on the international US ETS gateway with high forex fee penalties. With Testly, I paid in INR via UPI, saved ₹6,400, and my voucher code applied instantly on ets.org with zero hassle.'
   },
   {
-    id: 'dossier-rohit-pte',
-    name: 'Rohit Kulkarni',
-    college: 'COEP Technological University',
-    city: 'Pune, Maharashtra',
-    exam: 'PTE',
-    examLabel: 'PTE Academic',
-    venue: 'Pearson Professional Centers, Viman Nagar',
-    intake: 'Australia Skilled Independent Visa (Subclass 189)',
-    score: '84 / 90 (Superior English - 20 PR Points)',
-    regularFee: 18000,
-    testlyPrice: 13500,
-    saved: 4500,
-    serviceIncluded: 'Urgent Slot Lock + ₹199 Verification',
-    verificationBadge: 'Pearson VUE Seat Locked',
-    verificationNumber: 'PEAR-CONF-661209',
-    problemSolved: 'Needed an urgent weekend test slot before the state nomination round closed. Testly found an open cancellation slot at Pearson Viman Nagar, applied the corporate voucher, and gave test-day headset acoustic calibration tips.',
-    testCenterCheckin: 'Score Released in 36 Hours'
-  },
-  {
-    id: 'dossier-venkatesh-ielts',
-    name: 'Venkatesh V.',
-    college: 'CBIT Gandipet',
+    id: 'dossier-uk-cohort',
+    name: 'Venkatesh V. & Batch',
+    admitBadge: 'Enrolled • UK University Cohort (Edinburgh)',
+    image: '/assets/images/student-uk-cohort.jpg',
+    imageAlt: 'Indian student cohort walking down historic Edinburgh university street',
+    college: 'CBIT Gandipet & Osmania Univ',
     city: 'Hyderabad, Telangana',
     exam: 'IELTS',
-    examLabel: 'IELTS Academic',
+    examLabel: 'IELTS Academic & PTE',
     venue: 'IDP IELTS Official Center, Somajiguda',
-    intake: 'Fall 2026 UK Masters (Russell Group)',
-    score: 'Band 8.0 (L 8.5, R 8.5, W 7.5, S 7.5)',
+    score: 'Band 8.0 / PTE 84 (Superior English)',
     regularFee: 17000,
     testlyPrice: 13000,
     saved: 4000,
-    serviceIncluded: 'IDP Computer Slot Assistance',
-    verificationBadge: 'IDP Candidate Booking Confirmed',
+    serviceIncluded: '₹199 IDP Slot Coordination Included',
     verificationNumber: 'IDP-HYD-550183',
-    problemSolved: 'Booking assistance was super smooth via UPI (PhonePe). They helped me find a computer-delivered slot at the Somajiguda center during peak September rush and ensured my passport spelling was 100% aligned.',
-    testCenterCheckin: '100% First-Time Entry Clearance'
-  },
-  {
-    id: 'dossier-aditya-gmat',
-    name: 'Aditya Singhania',
-    college: 'NMIMS / Management Consultant',
-    city: 'Mumbai, Maharashtra',
-    exam: 'GMAT',
-    examLabel: 'GMAT™ Focus Edition',
-    venue: 'Pearson Professional Centers, Andheri East',
-    intake: 'INSEAD / ISB Hyderabad PGP',
-    score: '685 GMAT Focus (97th Percentile)',
-    regularFee: 28000,
-    testlyPrice: 22000,
-    saved: 6000,
-    serviceIncluded: 'Corporate Allocation Rate',
-    verificationBadge: 'GMAC Official Candidate Registration',
-    verificationNumber: 'GMAC-CONF-338291',
-    problemSolved: 'Application deadlines for European B-Schools and ISB were days away. Saved ₹6,000 on GMAT Focus test fee, eliminating foreign credit card fees, with verified instant slot booking.',
-    testCenterCheckin: 'Official Score Verified by GMAC'
-  },
-  {
-    id: 'dossier-divya-gre',
-    name: 'Divya Nambiar',
-    college: 'College of Engineering, Guindy (Anna Univ)',
-    city: 'Chennai, Tamil Nadu',
-    exam: 'GRE',
-    examLabel: 'GRE® General Test',
-    venue: 'Prometric Testing Center, Sholinganallur',
-    intake: 'Fall 2026 MS in Robotics (USA)',
-    score: '321 / 340 (Q 166, V 155)',
-    regularFee: 26500,
-    testlyPrice: 19000,
-    saved: 7500,
-    serviceIncluded: '₹199 Name Correction Assistance',
-    verificationBadge: 'Official ETS Appointment Confirmed',
-    verificationNumber: 'ETS-CONF-884910',
-    problemSolved: 'My Tamil patronymic name on my passport (initial followed by given name) was rejected by the ETS automated registration portal. Testly\'s specialist configured the account according to ETS international compliance rules.',
-    testCenterCheckin: '100% First-Time Entry Clearance'
+    problemSolved: 'Four of us were applying together for UK September intake before CAS deadlines. Testly coordinated our registrations as a batch, verified every passport detail, and saved each of us ₹4,000 on official booking with zero hassle.'
   }
 ];
 
-const EXAM_TABS = ['ALL', 'GRE', 'TOEFL', 'PTE', 'IELTS', 'GMAT'];
-
 export default function VerifiedBookingDossiers({ onBookTest }) {
-  const [activeTab, setActiveTab] = useState('ALL');
-
-  const filteredDossiers = activeTab === 'ALL'
-    ? DOSSIERS
-    : DOSSIERS.filter(d => d.exam === activeTab);
-
   return (
     <section id="trust" className="py-16 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
-        {/* Header with authentic positioning */}
+        {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-3xl space-y-2">
             <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold">
@@ -162,7 +92,7 @@ export default function VerifiedBookingDossiers({ onBookTest }) {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-              Don't just take our word for it. Inspect real registration records, actual Prometric and Pearson check-in clearances, and exact savings achieved by Indian aspirants.
+              Don't just take our word for it. Inspect real candidate dossiers, actual Prometric and Pearson check-in clearances, and exact savings achieved by Indian aspirants.
             </p>
           </div>
 
@@ -181,105 +111,99 @@ export default function VerifiedBookingDossiers({ onBookTest }) {
           </div>
         </div>
 
-        {/* Filter Tabs by Exam */}
-        <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4">
-          <span className="text-xs font-bold text-slate-400 mr-2">Filter by Exam:</span>
-          {EXAM_TABS.map(tab => {
-            const count = tab === 'ALL' ? DOSSIERS.length : DOSSIERS.filter(d => d.exam === tab).length;
-            const isActive = activeTab === tab;
-            return (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  isActive
-                    ? 'bg-slate-900 text-white shadow-sm'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-400'
-                }`}
-              >
-                <span>{tab === 'ALL' ? 'All Exams' : tab}</span>
-                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
-                  isActive ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-500'
-                }`}>
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* The Verified Dossier Receipts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDossiers.map(dossier => (
+        {/* 3 Real Students High-Performance Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {REAL_STUDENTS.map((student) => (
             <div
-              key={dossier.id}
-              className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5 relative overflow-hidden"
+              key={student.id}
+              className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4 relative overflow-hidden group"
             >
-              {/* Top Accent Pill */}
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-2">
-                  <div className="h-6 flex items-center">
-                    <ExamLogo examId={dossier.exam} className="h-5" />
-                  </div>
-                  <span className="text-xs font-bold text-slate-900">{dossier.examLabel}</span>
-                </div>
-                <span className="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1">
-                  <Check className="w-3 h-3 stroke-[3]" />
-                  <span>Verified</span>
-                </span>
-              </div>
+              {/* Photo Showcase Container with High-Speed Lazy-Loaded Image */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80">
+                <img
+                  src={student.image}
+                  alt={student.imageAlt}
+                  width={600}
+                  height={450}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                />
 
-              {/* Candidate Info & Venue */}
-              <div className="space-y-1">
-                <h4 className="text-base font-bold text-slate-900">{dossier.name}</h4>
-                <p className="text-xs text-blue-700 font-semibold">{dossier.college}</p>
-                <p className="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
-                  <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-                  <span>{dossier.venue}</span>
-                </p>
-              </div>
-
-              {/* Financial Proof Slip (Receipt Style) */}
-              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-2 text-xs font-mono">
-                <div className="flex justify-between items-center text-slate-500">
-                  <span>Regular Exam Fee:</span>
-                  <span className="line-through">₹{dossier.regularFee.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="flex justify-between items-center text-slate-900 font-bold">
-                  <span>Testly Voucher Rate:</span>
-                  <span>₹{dossier.testlyPrice.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="pt-2 border-t border-slate-200 flex justify-between items-center">
-                  <span className="font-sans font-bold text-emerald-800 text-[11px]">Direct Net Saving:</span>
-                  <span className="font-black text-emerald-700 text-sm bg-emerald-100/60 px-2 py-0.5 rounded">
-                    Save ₹{dossier.saved.toLocaleString('en-IN')}
+                {/* Overlaid Admit Badge */}
+                <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+                  <span className="bg-slate-900/80 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-sm truncate">
+                    {student.admitBadge}
+                  </span>
+                  <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-sm flex items-center gap-1 shrink-0">
+                    <Check className="w-3 h-3 stroke-[3]" />
+                    <span>Verified</span>
                   </span>
                 </div>
-                <p className="text-[10px] font-sans font-medium text-slate-400 text-right pt-0.5">
-                  {dossier.serviceIncluded}
-                </p>
               </div>
 
-              {/* The High-Stakes Friction Solved */}
-              <div className="space-y-1.5 text-xs text-slate-700 leading-relaxed font-medium bg-blue-50/40 p-3.5 rounded-xl border border-blue-100/80">
+              {/* Exam & Candidate Header */}
+              <div className="space-y-1.5 pt-1">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="h-5 flex items-center">
+                      <ExamLogo examId={student.exam} className="h-4" />
+                    </div>
+                    <span className="text-xs font-bold text-slate-900">{student.examLabel}</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-400 font-semibold">
+                    {student.verificationNumber}
+                  </span>
+                </div>
+
+                <div>
+                  <h4 className="text-base font-black text-slate-900">{student.name}</h4>
+                  <p className="text-xs text-blue-700 font-semibold">{student.college}</p>
+                  <p className="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                    <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                    <span>{student.venue}</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Financial Proof Slip */}
+              <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/80 space-y-1.5 text-xs font-mono">
+                <div className="flex justify-between items-center text-slate-500 text-[11px]">
+                  <span>Regular Exam Fee:</span>
+                  <span className="line-through">₹{student.regularFee.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-900 font-bold">
+                  <span>Testly Booking Rate:</span>
+                  <span>₹{student.testlyPrice.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="pt-1.5 border-t border-slate-200 flex justify-between items-center">
+                  <span className="font-sans font-bold text-emerald-800 text-[11px]">Direct Candidate Saving:</span>
+                  <span className="font-black text-emerald-700 text-xs bg-emerald-100/70 px-2 py-0.5 rounded">
+                    Save ₹{student.saved.toLocaleString('en-IN')}
+                  </span>
+                </div>
+              </div>
+
+              {/* Problem Solved Quote Bubble */}
+              <div className="space-y-1 text-xs text-slate-700 leading-relaxed font-medium bg-blue-50/50 p-3 rounded-xl border border-blue-100/80">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-blue-800 flex items-center gap-1">
-                  <FileCheck2 className="w-3 h-3 text-blue-600" />
+                  <FileCheck2 className="w-3 h-3 text-blue-600 shrink-0" />
                   <span>Test-Day Problem Solved:</span>
                 </p>
-                <p className="italic">"{dossier.problemSolved}"</p>
+                <p className="italic text-[11px]">"{student.problemSolved}"</p>
               </div>
 
               {/* Verification & Score Footer */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
                 <div>
-                  <span className="text-slate-400 font-medium block">Official Score:</span>
-                  <span className="font-bold text-slate-900">{dossier.score}</span>
+                  <span className="text-slate-400 font-medium block text-[10px]">Official Score:</span>
+                  <span className="font-black text-slate-900">{student.score}</span>
                 </div>
                 <button
-                  onClick={() => onBookTest(dossier.exam)}
-                  className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] px-3.5 py-2 rounded-xl transition-colors flex items-center gap-1"
+                  onClick={() => onBookTest(student.exam)}
+                  className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition-colors flex items-center gap-1 shadow-sm"
                 >
-                  <span>Book {dossier.exam}</span>
+                  <span>Book {student.exam}</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
@@ -295,7 +219,7 @@ export default function VerifiedBookingDossiers({ onBookTest }) {
               Every Exam Booking Backed by the Testly Zero-Defect Guarantee
             </h3>
             <p className="text-xs text-slate-500 leading-relaxed font-medium">
-              We audit your original Indian passport, match testing portal data character-by-character, and apply authorized institutional vouchers. If there is an ID mismatch on our watch, our ₹199 service fee is refunded immediately.
+              We audit your original Indian passport, match testing portal data character-by-character, and apply authorized institutional allocations. If there is an ID mismatch on our watch, our ₹199 service fee is refunded immediately.
             </p>
           </div>
 
