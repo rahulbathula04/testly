@@ -129,73 +129,61 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 key={ex.id}
                 className={`bg-white rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)] ${
                   ex.popular
-                    ? 'border-2 border-[#1E3A8A] ring-2 ring-[#3B82F6]/15'
+                    ? 'border-2 border-[#1E3A8A] ring-2 ring-[#3B82F6]/10'
                     : 'border border-[#E5E7EB] hover:border-[#BFDBFE]'
                 }`}
               >
                 <div className="space-y-4">
-                  {/* Card Header: Exam Logo + POPULAR badge */}
+                  {/* Card Header: Logo + POPULAR */}
                   <div className="flex items-center justify-between min-h-[32px]">
-                    {/* Just the logo — it already contains the exam name (e.g. GRE®, TOEFL®) */}
                     <div className="shrink-0">{ex.logo}</div>
                     {ex.popular && (
-                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#0F172A] text-white tracking-wider uppercase shadow-xs">
-                        POPULAR
+                      <span className="text-[9.5px] font-semibold px-2 py-0.5 rounded-full bg-[#EBF3FF] text-[#1E3A8A] border border-[#BFDBFE] tracking-wide uppercase">
+                        Most Popular
                       </span>
                     )}
                   </div>
 
-                  {/* Reference Price (Strikethrough) */}
+                  {/* Reference Price */}
                   <div>
-                    <span className="text-sm font-semibold text-[#64748B] line-through block">
+                    <span className="text-xs font-medium text-[#94A3B8] line-through">
                       ₹{ex.refPrice.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider block">
-                      Reference Price
-                    </span>
+                    <span className="text-[10px] text-[#94A3B8] font-medium ml-1.5">ref. price</span>
                   </div>
 
-                  {/* Testly Price & Amber 'You Save' Badge */}
-                  <div className="flex items-center justify-between gap-2 pt-0.5">
-                    <div>
-                      <div className="text-2xl font-black text-[#0F172A] tracking-tight">
+                  {/* Testly Price + small inline savings chip */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <span className="text-[26px] font-black text-[#0F172A] tracking-tight leading-none">
                         ₹{ex.testlyPrice.toLocaleString('en-IN')}
-                      </div>
-                      <span className="text-[10px] text-[#64748B] font-semibold uppercase tracking-wider block">
-                        Testly Price
+                      </span>
+                      {/* Subtle amber savings chip — NOT a big box */}
+                      <span className="text-[10px] font-semibold text-[#B45309] bg-amber-50 border border-amber-200/60 px-1.5 py-0.5 rounded-md">
+                        −₹{ex.saving.toLocaleString('en-IN')}
                       </span>
                     </div>
-
-                    {/* Amber Savings Badge (Brand Guide Exact) */}
-                    <div className="bg-[#FEF3C7] border border-[#FDE68A] text-[#B45309] rounded-lg px-2.5 py-1 text-right shrink-0 shadow-2xs">
-                      <div className="text-[9px] font-bold uppercase tracking-wider text-[#92400E]">
-                        You Save
-                      </div>
-                      <div className="text-xs font-black text-[#B45309]">
-                        ₹{ex.saving.toLocaleString('en-IN')}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Professional Service Strip (Brand Guide Exact) */}
-                  <div className="bg-[#EBF3FF] border border-[#BFDBFE] rounded-lg px-3 py-1.5 flex items-center justify-between text-[#1E3A8A]">
-                    <span className="text-[11px] font-bold flex items-center gap-1.5">
-                      <span>🌐</span>
-                      <span>Professional Service - ₹199</span>
-                    </span>
-                    <span className="text-[11px] text-[#3B82F6] font-bold cursor-help" title="Registration audit, passport verification, slot booking assistance">
-                      ⓘ
+                    <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider">
+                      Testly Price
                     </span>
                   </div>
 
-                  {/* Micro-verification timestamp */}
-                  <div className="text-[9.5px] text-[#64748B] font-medium">
-                    Price verified • 16 Sep 2026
+                  {/* Quiet single-line service note */}
+                  <div className="flex items-center gap-1.5 text-[10.5px] text-[#64748B]">
+                    <svg className="w-3 h-3 text-[#3B82F6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Incl. registration assistance · ₹199</span>
+                  </div>
+
+                  {/* Verification note */}
+                  <div className="text-[9px] text-[#94A3B8] font-medium">
+                    Price verified · 16 Sep 2026
                   </div>
                 </div>
 
-                {/* Primary Booking CTA (Brand Guide: Check My Savings →) */}
-                <div className="pt-3 mt-3 border-t border-[#E5E7EB]">
+                {/* CTA */}
+                <div className="pt-4 mt-2 border-t border-[#F1F5F9]">
                   <button
                     onClick={() => onBookTest(ex.id)}
                     className="w-full py-2.5 px-3 rounded-xl bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-xs hover:shadow group cursor-pointer active:scale-[0.98]"
