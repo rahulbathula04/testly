@@ -1,13 +1,20 @@
 import React from 'react';
-import { ArrowRight, BadgeCheck, Clock, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Clock, ShieldCheck, FileCheck } from 'lucide-react';
 
 const pillars = [
   { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional rates' },
   { icon: Clock,       label: '₹199 CONCIERGE',    sub: 'Full registration assistance' },
   { icon: ShieldCheck, label: 'ZERO ERRORS',       sub: 'Passport name & slot audit' },
+  { icon: FileCheck,   label: 'OFFICIAL CONFIRMATION', sub: 'Direct ETS & Pearson booking slip' },
 ];
 
-const avatarColors = ['#4f7cac', '#3d8b5e', '#c07d3a', '#a04f6a', '#5a4fa0'];
+const studentAvatars = [
+  { src: '/assets/images/student-avatar-1.jpg', alt: 'Indian graduate student at US university' },
+  { src: '/assets/images/student-avatar-2.jpg', alt: 'Indian student at Oxford library' },
+  { src: '/assets/images/student-avatar-3.jpg', alt: 'Indian engineering student at Canadian campus' },
+  { src: '/assets/images/student-avatar-4.jpg', alt: 'Indian student at Australian campus' },
+  { src: '/assets/images/student-avatar-5.jpg', alt: 'Indian masters student at Edinburgh campus' },
+];
 
 export default function Hero({ onBookTest }) {
   return (
@@ -73,8 +80,8 @@ export default function Hero({ onBookTest }) {
             Check your current exam price, see what you save, and get professional registration assistance from Testly for ₹199.
           </p>
 
-          {/* 3 Value Pillars */}
-          <div className="flex flex-wrap gap-5 py-1">
+          {/* 4 Value Pillars (Balanced 2x2 Grid) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 py-1">
             {pillars.map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex items-start gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
@@ -97,17 +104,17 @@ export default function Hero({ onBookTest }) {
             <ArrowRight className="w-4 h-4" />
           </button>
 
-          {/* Social proof */}
+          {/* Social proof with AI-generated Indian students abroad */}
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
-              {avatarColors.map((c, i) => (
-                <div
+              {studentAvatars.map((student, i) => (
+                <img
                   key={i}
-                  style={{ backgroundColor: c }}
-                  className="w-7 h-7 rounded-full border-2 border-white flex items-center justify-center text-white text-[9px] font-black"
-                >
-                  {String.fromCharCode(65 + i)}
-                </div>
+                  src={student.src}
+                  alt={student.alt}
+                  className="inline-block w-7 h-7 rounded-full border-2 border-white object-cover object-center shadow-xs"
+                  loading="eager"
+                />
               ))}
             </div>
             <p className="text-[13px] text-slate-600">

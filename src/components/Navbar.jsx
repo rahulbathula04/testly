@@ -45,10 +45,14 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
         <a
           href="/"
           onClick={(e) => handleClick(e, '/')}
-          className="flex flex-col shrink-0 leading-none cursor-pointer"
+          className="flex flex-col shrink-0 justify-center cursor-pointer select-none"
         >
-          <span className="text-[17px] font-black text-slate-900 tracking-tight">Testly</span>
-          <span className="text-[9px] font-medium text-slate-400 mt-[-1px]">Exams Made Easier</span>
+          <span className="text-[18px] font-black text-slate-900 tracking-tight leading-none mb-1">
+            Testly
+          </span>
+          <span className="text-[9px] font-bold text-slate-400 tracking-widest uppercase leading-none">
+            Exams Made Easier
+          </span>
         </a>
 
         {/* Desktop nav */}
