@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X, ShieldCheck, ChevronDown, Sparkles } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { label: 'Exam Fees & Savings', href: '/exam-fees' },
+  { label: 'Exam Fees & Savings', href: '/exam-fees', badge: 'Save ₹6,043' },
   { label: 'Testly Campus', href: '/campus' },
   { label: 'Guides & Research', href: '/guides' },
   { label: 'Hyderabad Hub', href: '/locations/hyderabad' },
@@ -38,67 +38,90 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.03)] transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-15 flex items-center justify-between gap-3 xl:gap-6">
 
-        {/* Brand */}
+        {/* ── Brand Logo ── */}
         <a
           href="/"
           onClick={(e) => handleClick(e, '/')}
-          className="flex flex-col shrink-0 justify-center cursor-pointer select-none"
+          className="flex items-center gap-2.5 shrink-0 select-none group cursor-pointer"
         >
-          <span className="text-[18px] font-black text-slate-900 tracking-tight leading-none mb-1">
-            Testly
-          </span>
-          <span className="text-[9px] font-bold text-slate-400 tracking-widest uppercase leading-none">
-            Exams Made Easier
-          </span>
+          <div className="w-8 h-8 rounded-xl bg-slate-950 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+            <span style={{ fontFamily: "'DM Serif Display', serif" }} className="text-lg font-black leading-none">
+              T
+            </span>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <div className="flex items-center gap-1.5 leading-tight">
+              <span className="text-[17px] font-black text-slate-950 tracking-tight">
+                Testly
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            </div>
+            <span className="text-[8.5px] font-bold text-slate-400 uppercase tracking-[0.24em] leading-tight">
+              Exams Made Easier
+            </span>
+          </div>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6">
-          {NAV_ITEMS.map((l) => (
+        {/* ── Desktop Nav Items (Polished, Premium Spacing) ── */}
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
+          {NAV_ITEMS.map((item) => (
             <a
-              key={l.label}
-              href={l.href}
-              onClick={(e) => handleClick(e, l.href)}
-              className="text-[13px] font-semibold text-slate-600 hover:text-slate-900 transition-colors whitespace-nowrap"
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleClick(e, item.href)}
+              className="text-[12.5px] xl:text-[13px] font-semibold text-slate-600 hover:text-slate-950 hover:bg-slate-100/70 px-2.5 py-1.5 rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 group"
             >
-              {l.label}
+              <span>{item.label}</span>
+              {item.badge && (
+                <span className="text-[9.5px] font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-1.5 py-0.2 rounded group-hover:bg-emerald-100 transition-colors">
+                  {item.badge}
+                </span>
+              )}
             </a>
           ))}
         </nav>
 
-        {/* CTA */}
-        <button
-          onClick={() => onOpenBooking('GRE')}
-          className="hidden md:flex items-center gap-1.5 bg-slate-900 hover:bg-slate-700 text-white text-[13px] font-semibold px-4 py-2 rounded-md transition-colors whitespace-nowrap shrink-0"
-        >
-          Check Your Exam & Savings
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
-
-        {/* Mobile menu toggle */}
-        <div className="md:hidden flex items-center gap-2">
+        {/* ── Right-Side Premium CTA ── */}
+        <div className="hidden md:flex items-center gap-3 shrink-0">
           <button
             onClick={() => onOpenBooking('GRE')}
-            className="bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-md whitespace-nowrap"
+            className="group relative inline-flex items-center gap-2 bg-slate-950 hover:bg-slate-900 text-white text-[12.5px] font-bold px-4.5 py-2 rounded-xl shadow-xs hover:shadow-md transition-all duration-150 active:scale-[0.98] cursor-pointer border border-slate-800"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Check Your Exam & Savings</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+          </button>
+        </div>
+
+        {/* ── Mobile Hamburger ── */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={() => onOpenBooking('GRE')}
+            className="bg-slate-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xs cursor-pointer"
           >
             Check Savings
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="p-1.5 text-slate-700 hover:text-slate-900"
+            className="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
+
       </div>
 
-      {/* Mobile Drawer */}
+      {/* ── Mobile Drawer (Glassmorphic) ── */}
       {open && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-1 pb-4 shadow-lg">
+        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-4 pt-2 pb-6 shadow-xl space-y-1 animate-in slide-in-from-top-2 duration-150">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 py-1">
+            Navigation Menu
+          </div>
           {NAV_ITEMS.map((l) => (
             <a
               key={l.label}
@@ -107,20 +130,29 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
                 setOpen(false);
                 handleClick(e, l.href);
               }}
-              className="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900 border-b border-slate-100 last:border-0"
+              className="flex items-center justify-between py-2.5 px-2.5 text-sm font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-50 rounded-lg transition-colors"
             >
-              {l.label}
+              <span>{l.label}</span>
+              {l.badge && (
+                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  {l.badge}
+                </span>
+              )}
             </a>
           ))}
-          <button
-            onClick={() => {
-              setOpen(false);
-              onOpenBooking('GRE');
-            }}
-            className="mt-3 w-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold py-2.5 rounded-md flex items-center justify-center gap-2"
-          >
-            Check Your Exam & Savings <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="pt-3">
+            <button
+              onClick={() => {
+                setOpen(false);
+                onOpenBooking('GRE');
+              }}
+              className="w-full bg-slate-950 hover:bg-slate-900 text-white text-sm font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Check Your Exam & Savings</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       )}
     </header>
