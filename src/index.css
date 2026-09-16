@@ -61,3 +61,31 @@ body {
     transform: translateY(-8px);
   }
 }
+
+/* Review marquee that automatically scrolls and pauses on cursor hover */
+@keyframes reviewMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-review-marquee {
+  display: flex;
+  width: max-content;
+  animation: reviewMarquee 38s linear infinite;
+}
+
+.animate-review-marquee:hover {
+  animation-play-state: paused !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

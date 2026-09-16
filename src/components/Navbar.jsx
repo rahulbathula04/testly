@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { ArrowRight, Menu, X, ShieldCheck, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 const NAV_ITEMS = [
-  { label: 'Exam Fees & Savings', href: '/exam-fees' },
-  { label: 'Testly Campus', href: '/campus' },
-  { label: 'Guides & Research', href: '/guides' },
-  { label: 'Hyderabad Hub', href: '/locations/hyderabad' },
-  { label: 'Madhapur Desk', href: '/locations/madhapur' },
-  { label: 'Professionals', href: '/professionals' },
+  { label: 'Exams', href: '/#pricing' },
+  { label: 'Exam Fees', href: '/exam-fees' },
   { label: 'How It Works', href: '/#how-it-works' },
-  { label: 'FAQ', href: '/#faq' },
+  { label: 'Professionals', href: '/professionals' },
+  { label: 'Testly Campus', href: '/campus' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'About', href: '/#about' },
 ];
 
 export default function Navbar({ onOpenBooking, onNavigate }) {
@@ -38,48 +38,51 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.03)] transition-all w-full overflow-x-clip">
-      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 h-15 flex items-center justify-between gap-1.5 xl:gap-4 w-full">
+    <header className="sticky top-0 z-50 bg-[#FAF9F6]/95 backdrop-blur-xl border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(15,23,42,0.03)] transition-all w-full overflow-x-clip">
+      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 h-16 flex items-center justify-between gap-2 xl:gap-4 w-full">
 
-        {/* ── Brand Logo ── */}
+        {/* ── Official Brand Logo from Brand Guide ── */}
         <a
           href="/"
           onClick={(e) => handleClick(e, '/')}
           className="flex items-center gap-2 shrink-0 select-none group cursor-pointer"
         >
-          <div className="flex flex-col justify-center">
-            <span className="text-[20px] font-black text-[#0B1528] tracking-tight leading-none">
-              Testly
-            </span>
-            <span className="text-[8.5px] font-bold text-slate-400 uppercase tracking-[0.2em] leading-tight mt-0.5">
-              Exams Made Easier
-            </span>
-          </div>
+          <BrandLogo variant="horizontal" size="md" />
         </a>
 
-        {/* ── Desktop Nav Items (Fits comfortably on xl+ 1280px+) ── */}
-        <nav className="hidden xl:flex items-center gap-1 xl:gap-2 shrink min-w-0">
+        {/* ── Desktop Nav Items (Exact items from Brand Guide) ── */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink min-w-0">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleClick(e, item.href)}
-              className="text-[12px] xl:text-[13px] font-semibold text-slate-600 hover:text-slate-950 hover:bg-slate-100/70 px-2 xl:px-2.5 py-1.5 rounded-lg transition-all whitespace-nowrap"
+              className="text-[13px] xl:text-[14px] font-medium text-[#0F172A]/80 hover:text-[#0F172A] hover:bg-[#EBF3FF] px-2.5 xl:px-3 py-1.5 rounded-lg transition-all whitespace-nowrap"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* ── Right-Side Premium CTA ── */}
-        <div className="hidden sm:flex items-center shrink-0">
+        {/* ── Right-Side Brand CTA & Search ── */}
+        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
           <button
             onClick={() => onOpenBooking('GRE')}
-            className="group relative inline-flex items-center gap-2 bg-[#0B1528] hover:bg-slate-900 text-white text-[11.5px] xl:text-[12.5px] font-bold px-3.5 xl:px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all duration-150 active:scale-[0.98] cursor-pointer whitespace-nowrap"
+            className="p-2 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
+            aria-label="Search exams"
+            title="Search exams"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <span>Check Your Exam & Savings</span>
-            <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
+          <button
+            onClick={() => onOpenBooking('GRE')}
+            className="group relative inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-[12.5px] font-bold px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all duration-150 active:scale-[0.98] cursor-pointer whitespace-nowrap"
+          >
+            <span>Check My Savings</span>
+            <ArrowRight className="w-3.5 h-3.5 text-blue-400 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
           </button>
         </div>
 

@@ -5,6 +5,7 @@ import Navbar               from './components/Navbar';
 import Hero                 from './components/Hero';
 import PriceProof           from './components/PriceProof';
 import HowItWorksAndDeciding from './components/HowItWorksAndDeciding';
+import BrandValues          from './components/BrandValues';
 import CampusBanner         from './components/CampusBanner';
 import StudentReviews       from './components/StudentReviews';
 import ExamResources        from './components/ExamResources';
@@ -172,16 +173,19 @@ export default function App() {
               {/* 3. HOW IT WORKS — Get Registered in 4 Simple Steps */}
               <HowItWorksAndDeciding onBookTest={handleOpenFunnel} />
 
-              {/* 4. TESTLY CAMPUS — For Colleges, Universities & Study Abroad Cells */}
+              {/* 4. BRAND VALUES — 5 Core Pillars from Brand Guidelines */}
+              <BrandValues />
+
+              {/* 5. WHY STUDENTS SAY — Trusted by Thousands Across India */}
+              <StudentReviews onBookTest={handleOpenFunnel} />
+
+              {/* 6. TESTLY CAMPUS — Institutional Exam Vouchers & Campus Programs */}
               <CampusBanner
                 onOpenBooking={handleOpenFunnel}
                 onNavigate={navigate}
               />
 
-              {/* 5. WHY STUDENTS SAY — Trusted by Thousands Across India */}
-              <StudentReviews onBookTest={handleOpenFunnel} />
-
-              {/* 6. RESOURCES — Everything You Need to Plan Your Exam */}
+              {/* 7. RESOURCES — Everything You Need to Plan Your Exam */}
               <ExamResources onNavigate={navigate} />
 
               {/* 7. FREQUENTLY ASKED QUESTIONS — Still Have Questions? */}
@@ -256,8 +260,8 @@ export default function App() {
       {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
       <WhatsAppWidget />
 
-      {/* ── Live Activity Social Proof Toast ──────────────────────── */}
-      <LiveActivityToast />
+      {/* ── Live Activity Toast REMOVED (per brand guidelines — no fake popups) */}
+      {/* <LiveActivityToast /> */}
 
       {/* ── Exit-Intent Quota Hold Modal ──────────────────────────── */}
       <ExitIntentModal

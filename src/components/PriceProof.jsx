@@ -122,67 +122,90 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
             </button>
           </div>
 
-          {/* Right 4 Cards (9 cols: 4 across on desktop) */}
+          {/* Right 4 Cards (9 cols: 4 across on desktop) - Exact Signature Price Card from Brand Guide */}
           <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             {popularExams.map((ex) => (
               <div
                 key={ex.id}
                 className={`bg-white rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)] ${
                   ex.popular
-                    ? 'border-2 border-blue-500/80 ring-2 ring-blue-500/10'
-                    : 'border border-slate-200/90 hover:border-blue-200'
+                    ? 'border-2 border-[#1E3A8A] ring-2 ring-[#3B82F6]/15'
+                    : 'border border-[#E5E7EB] hover:border-[#BFDBFE]'
                 }`}
               >
-                <div className="space-y-3.5">
-                  {/* Card Header: Logo & Badge */}
-                  <div className="flex items-center justify-between min-h-[32px]">
-                    <div className="shrink-0">{ex.logo}</div>
+                <div className="space-y-4">
+                  {/* Card Header: Exam Name & POPULAR badge */}
+                  <div className="flex items-center justify-between min-h-[30px]">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-extrabold text-[#0F172A] tracking-tight">
+                        {ex.title}
+                      </span>
+                      <div className="opacity-80 scale-90 origin-left">{ex.logo}</div>
+                    </div>
                     {ex.popular && (
-                      <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-blue-600 text-white shadow-2xs">
-                        ★ Most Popular
+                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#0F172A] text-white tracking-wider uppercase shadow-xs">
+                        POPULAR
                       </span>
                     )}
                   </div>
 
-                  {/* Original Strike Price */}
+                  {/* Reference Price (Strikethrough) */}
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">
-                      Original Price
-                    </span>
-                    <span className="text-xs font-semibold text-slate-400 line-through">
+                    <span className="text-sm font-semibold text-[#64748B] line-through block">
                       ₹{ex.refPrice.toLocaleString('en-IN')}
+                    </span>
+                    <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider block">
+                      Reference Price
                     </span>
                   </div>
 
-                  {/* Testly Price & Saving Badge */}
-                  <div className="space-y-1.5">
-                    <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider block">
-                      Testly Price
-                    </span>
-                    <div className="flex items-baseline justify-between gap-1 flex-wrap">
-                      <span className="text-2xl font-black text-slate-950 tracking-tight">
+                  {/* Testly Price & Amber 'You Save' Badge */}
+                  <div className="flex items-center justify-between gap-2 pt-0.5">
+                    <div>
+                      <div className="text-2xl font-black text-[#0F172A] tracking-tight">
                         ₹{ex.testlyPrice.toLocaleString('en-IN')}
+                      </div>
+                      <span className="text-[10px] text-[#64748B] font-semibold uppercase tracking-wider block">
+                        Testly Price
                       </span>
-                      <span className="text-[10.5px] font-black text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md shadow-2xs">
-                        Save ₹{ex.saving.toLocaleString('en-IN')}
-                      </span>
+                    </div>
+
+                    {/* Amber Savings Badge (Brand Guide Exact) */}
+                    <div className="bg-[#FEF3C7] border border-[#FDE68A] text-[#B45309] rounded-lg px-2.5 py-1 text-right shrink-0 shadow-2xs">
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-[#92400E]">
+                        You Save
+                      </div>
+                      <div className="text-xs font-black text-[#B45309]">
+                        ₹{ex.saving.toLocaleString('en-IN')}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Micro reassurance */}
-                  <div className="pt-2 border-t border-slate-100 text-[10px] text-slate-500 font-medium">
-                    ✓ Official voucher included
+                  {/* Professional Service Strip (Brand Guide Exact) */}
+                  <div className="bg-[#EBF3FF] border border-[#BFDBFE] rounded-lg px-3 py-1.5 flex items-center justify-between text-[#1E3A8A]">
+                    <span className="text-[11px] font-bold flex items-center gap-1.5">
+                      <span>🌐</span>
+                      <span>Professional Service - ₹199</span>
+                    </span>
+                    <span className="text-[11px] text-[#3B82F6] font-bold cursor-help" title="Registration audit, passport verification, slot booking assistance">
+                      ⓘ
+                    </span>
+                  </div>
+
+                  {/* Micro-verification timestamp */}
+                  <div className="text-[9.5px] text-[#64748B] font-medium">
+                    Price verified • 16 Sep 2026
                   </div>
                 </div>
 
-                {/* Primary Booking Button */}
-                <div className="pt-3 mt-3 border-t border-slate-100">
+                {/* Primary Booking CTA (Brand Guide: Check My Savings →) */}
+                <div className="pt-3 mt-3 border-t border-[#E5E7EB]">
                   <button
                     onClick={() => onBookTest(ex.id)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-[#0F1D38] hover:bg-blue-900 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-xs hover:shadow group cursor-pointer active:scale-[0.98]"
+                    className="w-full py-2.5 px-3 rounded-xl bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-xs hover:shadow group cursor-pointer active:scale-[0.98]"
                   >
-                    <span>{ex.btnText}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-slate-300 group-hover:text-white" />
+                    <span>Check My Savings</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#93C5FD] group-hover:text-white" />
                   </button>
                 </div>
               </div>
