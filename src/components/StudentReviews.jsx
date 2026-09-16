@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Star, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Star, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const REVIEWS = [
   {
@@ -68,47 +68,67 @@ const REVIEWS = [
   }
 ];
 
+function ReviewCard({ review }) {
+  return (
+    <div className="w-[300px] sm:w-[360px] shrink-0 bg-white border border-[#E5E7EB] rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] hover:shadow-xl hover:border-[#BFDBFE] hover:-translate-y-1 transition-all duration-300 mx-3">
+      <div className="space-y-3.5">
+        {/* Stars & Score */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-0.5">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
+            ))}
+          </div>
+          <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+            Score: {review.score}
+          </span>
+        </div>
+
+        {/* Quote */}
+        <p className="text-[13px] text-[#0F172A] font-normal leading-relaxed italic">
+          "{review.quote}"
+        </p>
+      </div>
+
+      {/* Footer */}
+      <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-3">
+          <div className="relative shrink-0">
+            <img
+              src={review.avatar}
+              alt={review.name}
+              className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-xs ring-1 ring-slate-200"
+            />
+            <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white">
+              <CheckCircle2 className="w-2.5 h-2.5" />
+            </div>
+          </div>
+          <div>
+            <h4 className="text-xs font-bold text-[#0F172A] leading-tight">{review.name}</h4>
+            <p className="text-[10px] text-[#64748B] font-medium mt-0.5">{review.examCity}</p>
+          </div>
+        </div>
+        <div className="text-right shrink-0">
+          <span className="text-[10px] font-semibold text-[#1E3A8A] bg-[#EBF3FF] px-2.5 py-1 rounded-md inline-block border border-[#BFDBFE]/60">
+            {review.admit}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function StudentReviews({ onBookTest }) {
-  const scrollContainerRef = useRef(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const [paused, setPaused] = useState(false);
 
-  // Auto-scroll loop that pauses whenever cursor is over the carousel
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    let animationFrameId;
-    const scrollStep = () => {
-      if (!isPaused && container) {
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 5) {
-          // Wrap around seamlessly
-          container.scrollLeft = 0;
-        } else {
-          container.scrollLeft += 0.8;
-        }
-      }
-      animationFrameId = requestAnimationFrame(scrollStep);
-    };
-
-    animationFrameId = requestAnimationFrame(scrollStep);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
-
-  const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 390;
-      scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
+  // Double the reviews so the marquee loops seamlessly
+  const doubled = [...REVIEWS, ...REVIEWS];
 
   return (
     <section id="reviews" className="py-14 sm:py-20 bg-[#FAF9F6] border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        {/* Header matching exact reference media_1789575884431.png */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-2.5">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[11px] font-bold tracking-wide">
@@ -123,109 +143,44 @@ export default function StudentReviews({ onBookTest }) {
             </p>
           </div>
 
-          {/* Right Action & Controls */}
-          <div className="flex items-center gap-3 self-start sm:self-auto">
-            <button
-              onClick={() => onBookTest('GRE')}
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer mr-2"
-            >
-              <span>View All Student Stories</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+          <button
+            onClick={() => onBookTest('GRE')}
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto"
+          >
+            <span>View All Student Stories</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
 
-            {/* Manual Carousel Navigation Buttons */}
-            <div className="flex items-center gap-1.5">
-              <button
-                onClick={() => scroll('left')}
-                className="w-8 h-8 rounded-full border border-[#E5E7EB] bg-white text-[#0F172A] hover:bg-[#EBF3FF] hover:border-[#3B82F6] hover:text-[#1E3A8A] flex items-center justify-center transition-all cursor-pointer shadow-xs"
-                aria-label="Previous review"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-8 h-8 rounded-full border border-[#E5E7EB] bg-white text-[#0F172A] hover:bg-[#EBF3FF] hover:border-[#3B82F6] hover:text-[#1E3A8A] flex items-center justify-center transition-all cursor-pointer shadow-xs"
-                aria-label="Next review"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+        {/* ── Infinite CSS Marquee — pauses perfectly on hover ── */}
+        {/* Outer mask: fades edges on both sides */}
+        <div
+          className="relative"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
+          }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {/* Inner scrolling track — doubled list creates seamless loop */}
+          <div
+            className="flex"
+            style={{
+              animation: 'reviewMarquee 42s linear infinite',
+              animationPlayState: paused ? 'paused' : 'running',
+              width: 'max-content'
+            }}
+          >
+            {doubled.map((review, idx) => (
+              <ReviewCard key={`${review.name}-${idx}`} review={review} />
+            ))}
           </div>
         </div>
 
-        {/* Scrollable Testimonials Carousel with Cursor Stop Hover */}
-        <div
-          ref={scrollContainerRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => setIsPaused(false)}
-          className="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth py-3 px-1 cursor-grab active:cursor-grabbing"
-          style={{ scrollSnapType: 'x mandatory' }}
-        >
-          {REVIEWS.map((review, idx) => (
-            <div
-              key={`${review.name}-${idx}`}
-              className="w-[310px] sm:w-[370px] shrink-0 bg-white border border-[#E5E7EB] rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:shadow-xl hover:border-[#BFDBFE] transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_12px_rgba(15,23,42,0.03)]"
-              style={{ scrollSnapAlign: 'start' }}
-            >
-              <div className="space-y-3.5">
-                {/* Stars & Score pill matching reference */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-0.5 text-[#F59E0B]">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
-                    ))}
-                  </div>
-
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200/80">
-                    Score: {review.score}
-                  </span>
-                </div>
-
-                {/* Quote */}
-                <p className="text-xs sm:text-[13px] text-[#0F172A] font-normal leading-relaxed italic">
-                  "{review.quote}"
-                </p>
-              </div>
-
-              {/* Student Footer */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  <div className="relative shrink-0">
-                    <img
-                      src={review.avatar}
-                      alt={review.name}
-                      className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-xs ring-1 ring-slate-200"
-                    />
-                    <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white">
-                      <CheckCircle2 className="w-2.5 h-2.5" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xs font-bold text-[#0F172A] leading-tight">
-                      {review.name}
-                    </h4>
-                    <p className="text-[10px] text-[#64748B] font-medium mt-0.5">
-                      {review.examCity}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="text-right shrink-0">
-                  <span className="text-[10px] font-semibold text-[#1E3A8A] bg-[#EBF3FF] px-2.5 py-1 rounded-md inline-block border border-[#BFDBFE]/60">
-                    {review.admit}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Subtle helper note */}
-        <div className="flex items-center justify-between text-xs text-[#64748B] pt-1 px-1">
-          <span>Hover cursor to pause scroll • Click & drag or use arrows to navigate</span>
+        {/* Footer hint */}
+        <div className="flex items-center justify-between text-xs text-[#64748B] px-1">
+          <span>Hover to pause • Scrolls automatically</span>
           <span className="font-semibold text-[#0F172A]">100% Verified Indian Test-Takers</span>
         </div>
 
@@ -233,4 +188,5 @@ export default function StudentReviews({ onBookTest }) {
     </section>
   );
 }
+
 
