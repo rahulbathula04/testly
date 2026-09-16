@@ -73,9 +73,37 @@ export function getNextAgent() {
 }
 
 // Create new lead from the landing page form or manual entry
-export function createNewLead({ name, phone, exam, timing, needs = [], pricing = null, source = 'Landing Page Form', campaign = 'Direct' }) {
+export function createNewLead({
+  name,
+  phone,
+  exam,
+  timing,
+  needs = [],
+  pricing = null,
+  source = 'Landing Page Form',
+  campaign = 'Direct',
+  landing_page = null,
+  city = null,
+  keyword = null
+}) {
   const leads = getStoredLeads();
   const assignedAgent = getNextAgent();
+
+  // Determine current page & location if not explicitly provided
+  let detectedPage = landing_page;
+  let detectedCity = city;
+  if (typeof window !== 'undefined') {
+    if (!detectedPage) detectedPage = window.location.pathname || '/';
+    if (!detectedCity) {
+      if (detectedPage.includes('hyderabad') || detectedPage.includes('madhapur')) detectedCity = 'Hyderabad';
+      else if (detectedPage.includes('bengaluru')) detectedCity = 'Bengaluru';
+      else if (detectedPage.includes('mumbai')) detectedCity = 'Mumbai';
+      else if (detectedPage.includes('pune')) detectedCity = 'Pune';
+      else if (detectedPage.includes('delhi')) detectedCity = 'Delhi NCR';
+      else if (detectedPage.includes('chennai')) detectedCity = 'Chennai';
+      else detectedCity = 'India (Online)';
+    }
+  }
 
   // Priority scoring based on exam timeline
   let priority = 'WARM';
@@ -109,6 +137,9 @@ export function createNewLead({ name, phone, exam, timing, needs = [], pricing =
     },
     source,
     campaign,
+    landing_page: detectedPage || '/',
+    city: detectedCity || 'India',
+    keyword: keyword || 'Organic Search',
     status: 'New',
     priority,
     assignedTo: assignedAgent,

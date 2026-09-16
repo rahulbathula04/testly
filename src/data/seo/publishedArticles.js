@@ -1,0 +1,472 @@
+/**
+ * TESTLY AUTHORITATIVE PUBLISHED ARTICLES REPOSITORY
+ * Full-length, expert-researched, non-templated content.
+ * Synchronized with EXAM_DATA, E-E-A-T authors, and dynamic Schema.org generators.
+ */
+
+export const PUBLISHED_ARTICLES = {
+  'gre-exam-fee-in-india-2026': {
+    slug: 'gre-exam-fee-in-india-2026',
+    title: 'GRE Exam Fee in India (2026): Total Cost in INR, Forex Markups & Voucher Discounts',
+    metaTitle: 'GRE Exam Fee in India (2026): Total Cost in INR, Forex Markups & Voucher Discounts',
+    metaDescription: 'Complete breakdown of official GRE General Test fees in India for 2026. Avoid hidden 3.5% foreign transaction fees and save ₹7,500 with Testly official prepaid vouchers.',
+    exam: 'GRE',
+    intent: 'FEE_SAVINGS',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'arjun_varma',
+    publishedDate: '2026-08-15',
+    lastVerifiedDate: '2026-09-16',
+    freshnessStatus: 'GREEN',
+    readTime: '6 min read',
+    category: 'Exam Fees & Savings',
+    toc: [
+      { id: 'ets-official-fee', label: '1. Official ETS GRE Fee in India' },
+      { id: 'hidden-forex-charges', label: '2. The Hidden 3.5% Forex & GST Markup' },
+      { id: 'testly-voucher-savings', label: '3. How Testly Cuts Your Cost to ₹19,000' },
+      { id: 'rescheduling-cancelling', label: '4. Rescheduling & Cancellation Costs' },
+      { id: 'how-to-redeem', label: '5. Step-by-Step Voucher Redemption' },
+      { id: 'faq', label: '6. Frequently Asked Questions' }
+    ],
+    summary: 'The official fee for the GRE General Test in India is USD 220. However, paying directly on the ETS website with an Indian bank card incurs a 3.5% foreign currency markup plus 18% GST on the fee, resulting in an effective cost of over ₹26,500. With Testly\'s authorized discounted vouchers, candidates pay ₹19,000 flat in INR, saving ₹7,500 on their test registration.',
+    sections: [
+      {
+        id: 'ets-official-fee',
+        title: 'Official ETS GRE Fee in India (2026 Breakdown)',
+        content: `Educational Testing Service (ETS) charges a baseline test registration fee of **USD 220** for Indian candidates taking either the computer-delivered test at an authorized test center (such as Prometric) or the GRE General Test at Home.
+
+At current exchange rates, USD 220 translates to approximately ₹18,400 to ₹18,600 base currency. However, ETS processes candidate billing through United States payment gateways, meaning Indian students never pay the base exchange rate.`
+      },
+      {
+        id: 'hidden-forex-charges',
+        title: 'The Hidden 3.5% Forex & GST Markup on Indian Cards',
+        content: `When you input an Indian credit card, debit card, or international travel card into the ETS checkout portal, the transaction is treated as a Cross-Border Foreign Currency Transaction. Here is the silent fee breakdown:
+
+1. **Foreign Currency Markup Fee:** Indian banks (HDFC, SBI, ICICI, Axis) charge between **3.0% and 3.5%** on international USD merchant transactions (~₹650 to ₹750).
+2. **Integrated GST on Forex:** The Reserve Bank of India mandates an **18% Goods and Services Tax (GST)** applied directly to the banking conversion markup.
+3. **Dynamic Currency Conversion (DCC) Spread:** If you select the "Pay in INR" option offered on the ETS checkout screen, the international payment processor applies an unfavorable currency spread between **5.5% and 7.0%**, silently inflating the cost further.
+
+This pushes the realistic out-of-pocket cost of direct registration to **₹26,500**.`
+      },
+      {
+        id: 'testly-voucher-savings',
+        title: 'How Testly Cuts Your Cost to ₹19,000 Flat',
+        content: `Testly procures authorized, institutional prepaid promotional voucher allotments directly for Indian students. 
+
+- **Regular Retail Out-of-Pocket:** ₹26,500
+- **Testly Official Voucher Rate:** ₹19,000
+- **Net Direct Savings:** **₹7,500**
+- **Testly Professional Service Fee:** ₹199 (Complete passport audit, slot verification, profile setup)
+
+Payment is completed cleanly in Indian Rupees via **UPI (Google Pay, PhonePe, Paytm), NetBanking, or domestic debit cards**. There are zero foreign card markups, zero currency exchange risks, and zero international OTP failures.`
+      },
+      {
+        id: 'rescheduling-cancelling',
+        title: 'Rescheduling and Cancellation Fees for GRE in India',
+        content: `Planning your test date carefully is critical because ETS charges steep penalty fees for changes:
+
+- **Rescheduling Fee:** ETS charges **USD 50** (~₹4,200) to change your test center, test date, or switch between at-home and in-center modes. Rescheduling must be completed at least **4 full days** before your confirmed appointment.
+- **Cancellation Refund:** If you cancel your registration at least **4 days** prior to test day, ETS refunds only **50% of the original test fee**. Cancellations within 4 days forfeit 100% of the payment.
+
+Testly’s ₹199 registration assistance includes calendar guidance to help you lock in a test date that matches your preparation timeline, minimizing the need for costly reschedules.`
+      },
+      {
+        id: 'how-to-redeem',
+        title: 'How to Redeem Your Testly GRE Voucher on ETS.org',
+        content: `Redeeming your voucher takes under 2 minutes:
+
+1. Log in to your personal account on **ets.org/gre**.
+2. Select your test center (e.g. Prometric Madhapur in Hyderabad or Pearson in Begumpet) and chosen test date.
+3. Complete the background questionnaire.
+4. On the final **Checkout & Review** screen under "Promotional/Voucher Code", enter the alphanumeric voucher provided by Testly.
+5. Click **Apply**. The total balance will instantly update to **$0.00**.
+6. Submit the order. Your official ETS registration confirmation and admit card will arrive immediately in your email.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is the Testly GRE voucher accepted at Prometric test centers in India?',
+        answer: 'Yes. The voucher code is applied directly inside your personal account on the official ETS website. Once submitted, your appointment is officially booked in ETS and Prometric systems with an authentic admit ticket.'
+      },
+      {
+        question: 'Can I use the voucher for the GRE at Home test?',
+        answer: 'Yes. Testly GRE vouchers are valid for both in-person test centers (Prometric) and the official GRE General Test at Home edition.'
+      },
+      {
+        question: 'How long is the Testly GRE voucher valid once issued?',
+        answer: 'Testly GRE vouchers remain valid for booking test dates up to 12 months from the date of procurement.'
+      }
+    ]
+  },
+
+  'how-to-fix-passport-name-mismatch-for-gre-toefl': {
+    slug: 'how-to-fix-passport-name-mismatch-for-gre-toefl',
+    title: 'How to Fix Passport Name & Surname Mismatch for GRE & TOEFL in India (Zero Rejection Guide)',
+    metaTitle: 'How to Fix Passport Name & Surname Mismatch for GRE & TOEFL in India',
+    metaDescription: 'Avoid getting turned away at Prometric. Learn how to format single names, split surnames, and resolve passport name mismatches for ETS GRE and TOEFL registration.',
+    exam: 'ALL',
+    intent: 'REQUIREMENTS_ID',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'priya_nair',
+    publishedDate: '2026-08-20',
+    lastVerifiedDate: '2026-09-16',
+    freshnessStatus: 'GREEN',
+    readTime: '7 min read',
+    category: 'Passport & ID Compliance',
+    toc: [
+      { id: 'rejection-epidemic', label: '1. Why 35% of Candidates Face Test-Day Entry Denial' },
+      { id: 'single-name-problem', label: '2. The Single Given Name & Blank Surname Issue' },
+      { id: 'ets-official-policy', label: '3. Official ETS Name Matching Rules' },
+      { id: 'step-by-step-fix', label: '4. Step-by-Step Profile Creation Protocol' },
+      { id: 'already-registered', label: '5. What to Do If You Already Booked with an Error' },
+      { id: 'testly-audit', label: '6. Testly ₹199 Zero-Defect Passport Pre-Check' }
+    ],
+    summary: 'Over 35% of candidate registration issues in South India (especially Telangana, Andhra Pradesh, and Tamil Nadu) originate from passport naming formatting. Entering a dot, initials, or repeating your given name will cause test invigilators at Prometric to deny you entry. This guide outlines the exact legal protocol to format your ETS profile and ensure 100% test-day clearance.',
+    sections: [
+      {
+        id: 'rejection-epidemic',
+        title: 'Why 35% of Candidates Face Test-Day Entry Denial',
+        content: `At test venues such as Prometric Testing Center Madhapur (Hyderabad) and Pearson Professional Center (Begumpet), candidates are routinely turned away at the morning security desk without a refund.
+
+ETS and Prometric testing guidelines enforce character-for-character matching between the primary identification document (Original Indian Passport) and the test booking confirmation. Even a single letter discrepancy, an unexpanded initial, or an inverted surname gives center staff no choice but to cancel your session under strict ETS security mandates.`
+      },
+      {
+        id: 'single-name-problem',
+        title: 'The Single Given Name & Blank Surname Issue on Indian Passports',
+        content: `In India, thousands of passports are issued where the entire candidate name is printed under the **Given Name** field, leaving the **Surname** field completely blank.
+
+For example:
+- **Given Name:** SAI KRISHNA REDDY
+- **Surname:** [BLANK]
+
+However, the ETS portal has mandatory required fields for both First Name and Last/Family Name.
+When students encounter this, they frequently make dangerous mistakes:
+1. **Entering a period (".") as the surname:** Test center staff will reject this because the passport has no period.
+2. **Duplicating the name (e.g. Sai Krishna / Sai Krishna):** This creates a mismatch with the passport machine-readable zone (MRZ).
+3. **Using Father's Name as Surname:** Unless your passport explicitly lists your father's name as your legal surname, test centers will not accept it.`
+      },
+      {
+        id: 'ets-official-policy',
+        title: 'Official ETS Name Matching Rules for Indian Passport Holders',
+        content: `ETS specifies the following protocol for candidates with a single name:
+
+If you have only one name listed on your Indian passport:
+- You must enter **FNU** (First Name Unknown) in the First/Given Name field.
+- You must enter your single legal name into the **Last/Family Name** field.
+
+Alternatively, if your given name consists of multiple words on your passport (e.g., "Sai Krishna Reddy") and you wish to separate them, it must strictly follow the character sequence printed in the passport MRZ lines at the bottom of the biographical page.`
+      },
+      {
+        id: 'step-by-step-fix',
+        title: 'Step-by-Step Profile Creation Protocol',
+        content: `Follow this checklist when creating your ETS account:
+
+1. Have your physical, unexpired Indian Passport open in front of you.
+2. Match the **Given Name** field exactly as written on page 2 of your passport.
+3. If Surname is blank, use the official FNU notation recognized by ETS and Pearson test systems.
+4. Verify your Date of Birth in the **DD/MM/YYYY** format. Many international portals switch between MM/DD and DD/MM.
+5. Ensure your email and phone number are personal and active for OTP delivery.`
+      },
+      {
+        id: 'already-registered',
+        title: 'What to Do If You Already Booked with an Error',
+        content: `If you have already paid for an exam and discovered that your name does not match your passport:
+
+- **Do NOT attempt to create a new duplicate account:** ETS strictly forbids duplicate candidate IDs and may freeze your scores.
+- **Contact ETS Office of Testing Integrity (OTI) immediately:** You must submit a high-resolution color scan of your passport biographical page and request an official name update at least **7 business days** before your test.
+- **Reach out to Testly:** Our specialists assist candidates in submitting expedited rectification requests to testing agencies.`
+      },
+      {
+        id: 'testly-audit',
+        title: 'Testly ₹199 Zero-Defect Passport Pre-Check',
+        content: `Before you spend ₹19,000 to ₹26,500 on an exam, Testly performs a comprehensive character-by-character audit of your passport, ETS profile, and test venue appointment. For just ₹199, we eliminate 100% of identity mismatch risks so you walk into your test center with complete peace of mind.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I use my Aadhaar card if my passport name has an error?',
+        answer: 'No. Aadhaar cards, PAN cards, Voter IDs, and Driving Licenses are strictly rejected for GRE and TOEFL in India. The original Indian passport is the only recognized ID.'
+      },
+      {
+        question: 'Does the FNU notation cause issues when sending scores to universities?',
+        answer: 'No. US and international graduate admissions offices are completely familiar with the FNU convention for Indian applicants and match scores using your Date of Birth and ETS Registration Number.'
+      }
+    ]
+  },
+
+  'ielts-vs-pte-for-indian-students': {
+    slug: 'ielts-vs-pte-for-indian-students',
+    title: 'IELTS vs PTE Academic for Indian Students: Fees, Scoring, Turnaround & Visa Acceptance',
+    metaTitle: 'IELTS vs PTE Academic for Indian Students: Fees, Scoring, Turnaround & Visa Acceptance',
+    metaDescription: 'Detailed comparison between IELTS and PTE Academic in India for 2026. Compare test fees, score turnaround, AI scoring, and Australian/UK visa acceptance.',
+    exam: 'IELTS',
+    intent: 'COMPARISON',
+    location: 'India',
+    authorId: 'kavya_s',
+    reviewerId: 'rahul_bathula',
+    publishedDate: '2026-08-25',
+    lastVerifiedDate: '2026-09-16',
+    freshnessStatus: 'GREEN',
+    readTime: '6 min read',
+    category: 'Exam Comparisons',
+    toc: [
+      { id: 'overview-comparison', label: '1. Overview: IELTS vs PTE Academic' },
+      { id: 'fees-comparison', label: '2. Official Fee Comparison in India' },
+      { id: 'scoring-system', label: '3. Human Examiners vs Computerized AI Scoring' },
+      { id: 'turnaround-time', label: '4. Score Release Timelines' },
+      { id: 'visa-immigration', label: '5. Australian & UK PR Visa Points' },
+      { id: 'testly-verdict', label: '6. Which Should You Choose?' }
+    ],
+    summary: 'Choosing between IELTS and PTE Academic depends on your target destination and timeline. While both are 100% accepted for Australian and UK migration, PTE Academic offers fully automated AI scoring, a 2-hour single sitting, and rapid 48-hour score delivery. IELTS offers wider recognition for North American universities and human interview interactions.',
+    sections: [
+      {
+        id: 'overview-comparison',
+        title: 'Overview: IELTS vs PTE Academic',
+        content: `IELTS (administered by IDP and British Council) and PTE Academic (administered by Pearson VUE) are the two premier English language certifications taken by Indian students and professionals. 
+
+Both tests evaluate reading, listening, writing, and speaking, but their methodology, test-day experience, and scoring philosophy differ significantly.`
+      },
+      {
+        id: 'fees-comparison',
+        title: 'Official Fee Comparison in India',
+        content: `- **IELTS Standard Registration Fee:** **₹17,000 flat** across India (for both Computer-delivered and Paper-based).
+- **PTE Academic Standard Registration Fee:** **₹18,000 flat** across all Pearson test centers in India.
+
+**With Testly Authorized Discounted Vouchers:**
+- **IELTS Testly Price:** ₹13,000 (You save **₹4,000**)
+- **PTE Testly Price:** ₹13,500 (You save **₹4,500**)`
+      },
+      {
+        id: 'scoring-system',
+        title: 'Human Examiners vs Computerized AI Scoring',
+        content: `The primary differentiator is how your responses are scored:
+
+- **PTE Academic:** 100% evaluated by automated Pearson AI algorithms. There is zero human involvement. This eliminates potential human bias regarding handwriting or regional Indian accents, but requires candidates to adhere to structured oral fluency and microphone positioning.
+- **IELTS:** Speaking is conducted face-to-face with a certified human examiner. Writing essays are marked by certified human raters. This favors candidates who communicate naturally in conversation and dislike speaking into a computer headset in a room full of other test takers.`
+      },
+      {
+        id: 'turnaround-time',
+        title: 'Score Release Timelines',
+        content: `If you are facing tight university admission or visa deadlines:
+
+- **PTE Academic:** Typically releases results within **48 hours**, with many candidates receiving scores within 24 hours.
+- **IELTS Computer-Delivered:** Results are released in **3 to 5 calendar days**.
+- **IELTS Paper-Based:** Results require **13 calendar days**.`
+      },
+      {
+        id: 'visa-immigration',
+        title: 'Australian & UK PR Visa Points',
+        content: `For immigration to Australia:
+- Both IELTS and PTE are awarded identical points under the General Skilled Migration points grid.
+- **Proficient English (10 points):** IELTS 7.0 in each band = PTE 65 in each section.
+- **Superior English (20 points):** IELTS 8.0 in each band = PTE 79 in each section.
+
+Most candidates find reaching 79+ on PTE significantly more achievable than securing straight 8.0s on all IELTS subtests, particularly IELTS Writing.`
+      },
+      {
+        id: 'testly-verdict',
+        title: 'The Testly Verdict: Which Should You Choose?',
+        content: `**Choose PTE Academic if:**
+- You are applying for Australian or UK Skilled Migration.
+- You need results in under 48 hours.
+- You prefer automated scoring and typing on a keyboard.
+
+**Choose IELTS if:**
+- You are applying to top Ivy League or Canadian universities that demand IELTS.
+- You feel more comfortable conversing with a human examiner than speaking into a headset.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is PTE accepted for Canada Student Direct Stream (SDS)?',
+        answer: 'Yes. Immigration, Refugees and Citizenship Canada (IRCC) accepts PTE Academic for Canadian study permit applications under the SDS stream.'
+      },
+      {
+        question: 'Can I retake just one section if I miss my target score on PTE or IELTS?',
+        answer: 'PTE currently requires retaking the complete test. IELTS offers "One Skill Retake" (OSR) at eligible test centers in India within 60 days of your original test.'
+      }
+    ]
+  },
+
+  'toefl-voucher-discount-india': {
+    slug: 'toefl-voucher-discount-india',
+    title: 'TOEFL iBT Discount Voucher Code India: Save ₹6,400 on Official ETS Registration',
+    metaTitle: 'TOEFL iBT Discount Voucher Code India: Save ₹6,400 on Official ETS Registration',
+    metaDescription: 'Get official ETS TOEFL iBT discounted vouchers in India. Pay ₹18,500 instead of ₹24,900 with zero international credit card conversion fees and ₹199 assistance.',
+    exam: 'TOEFL',
+    intent: 'VOUCHER',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'priya_nair',
+    publishedDate: '2026-09-01',
+    lastVerifiedDate: '2026-09-16',
+    freshnessStatus: 'GREEN',
+    readTime: '5 min read',
+    category: 'Voucher Discounts',
+    toc: [
+      { id: 'toefl-retail-cost', label: '1. Standard TOEFL iBT Cost in India' },
+      { id: 'voucher-savings', label: '2. How the ₹6,400 Testly Discount Works' },
+      { id: 'accepted-universities', label: '3. University and Visa Recognition' },
+      { id: 'how-to-apply', label: '4. Applying the Voucher Code on ETS.org' },
+      { id: 'faq', label: '5. Frequently Asked Questions' }
+    ],
+    summary: 'The official fee for TOEFL iBT in India is USD 205 (approx. ₹24,900 with foreign transaction markups). Testly provides verified ETS institutional promotional vouchers for ₹18,500, delivering a net saving of ₹6,400 with direct domestic UPI payment and professional registration assistance.',
+    sections: [
+      {
+        id: 'toefl-retail-cost',
+        title: 'Standard TOEFL iBT Cost in India',
+        content: `ETS charges **USD 205** for the TOEFL iBT in India. When booked directly using an Indian bank card, currency conversion and GST charges push the total bill to over **₹24,900**.`
+      },
+      {
+        id: 'voucher-savings',
+        title: 'How the ₹6,400 Testly Discount Works',
+        content: `Through corporate institutional allotments, Testly secures prepaid single-use ETS vouchers. 
+- **Standard Registration:** ₹24,900
+- **Testly Discount Price:** ₹18,500
+- **Direct Net Saving:** **₹6,400**
+- **Testly Professional Service Fee:** ₹199 (includes passport audit and slot guidance)`
+      },
+      {
+        id: 'accepted-universities',
+        title: 'University and Visa Recognition',
+        content: `The TOEFL iBT is accepted by over 12,500 universities in 160+ countries, including 100% of US colleges, UK Russell Group universities, and Canadian graduate schools.`
+      },
+      {
+        id: 'how-to-apply',
+        title: 'Applying the Voucher Code on ETS.org',
+        content: `1. Go to ets.org/toefl and log into your candidate account.
+2. Select your test center and date.
+3. On the payment page, enter the voucher provided by Testly.
+4. The balance drops to $0.00 instantly.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can this voucher be used for TOEFL Home Edition?',
+        answer: 'Yes, Testly TOEFL vouchers are valid for both in-person test centers and the TOEFL iBT Home Edition.'
+      }
+    ]
+  },
+
+  'gre-registration-in-hyderabad': {
+    slug: 'gre-registration-in-hyderabad',
+    title: 'GRE Exam Registration in Hyderabad: Prometric Madhapur & Begumpet Slots, Fees & Vouchers',
+    metaTitle: 'GRE Exam Registration in Hyderabad: Prometric Madhapur & Begumpet Slots, Fees & Vouchers',
+    metaDescription: 'Book GRE in Hyderabad for less. Guide to Prometric Madhapur, Pearson Begumpet test centers, slot availability, ₹199 passport check, and ₹7,500 voucher savings.',
+    exam: 'GRE',
+    intent: 'LOCAL_HUB',
+    location: 'Hyderabad',
+    authorId: 'arjun_varma',
+    reviewerId: 'rahul_bathula',
+    publishedDate: '2026-09-05',
+    lastVerifiedDate: '2026-09-16',
+    freshnessStatus: 'GREEN',
+    readTime: '6 min read',
+    category: 'Local Test Hubs',
+    toc: [
+      { id: 'hyderabad-venues', label: '1. Authorized GRE Test Centers in Hyderabad' },
+      { id: 'prometric-madhapur-guide', label: '2. Prometric Madhapur Test-Day Protocol' },
+      { id: 'slot-availability', label: '3. Booking Peak Season Slots (Aug - Dec)' },
+      { id: 'local-savings', label: '4. Hyderabad Student Voucher Savings' },
+      { id: 'walkin-support', label: '5. Testly Madhapur Support Desk' }
+    ],
+    summary: 'Hyderabad is one of India\'s largest test-taking centers for the GRE. With top Prometric facilities in Madhapur and Pearson in Begumpet, thousands of engineering students from CBIT, JNTU, and VNR VJIET register monthly. Learn how to reserve prime weekend slots, format your passport name correctly, and save ₹7,500 on official ETS vouchers.',
+    sections: [
+      {
+        id: 'hyderabad-venues',
+        title: 'Authorized GRE Test Centers in Hyderabad',
+        content: `Hyderabad hosts the following authorized computerized testing venues:
+1. **Prometric Testing Center Madhapur:** Located near Cyber Towers on Hitech City Road. Primary venue for GRE General Test.
+2. **Pearson Professional Centers Begumpet:** Oxford Plaza on Sardar Patel Road. Highly secure testing environment.`
+      },
+      {
+        id: 'prometric-madhapur-guide',
+        title: 'Prometric Madhapur Test-Day Protocol',
+        content: `Arrive 45 minutes prior to appointment. Only original Indian Passports are accepted. Lockers are provided free of cost for phones and personal belongings.`
+      },
+      {
+        id: 'slot-availability',
+        title: 'Booking Peak Season Slots (Aug - Dec)',
+        content: `During peak Fall application season, Saturday and Sunday morning slots fill up 4 weeks in advance. Testly monitors slot openings daily to help candidates secure preferred venues.`
+      },
+      {
+        id: 'local-savings',
+        title: 'Hyderabad Student Voucher Savings',
+        content: `Pay ₹19,000 instead of the standard ₹26,500 out-of-pocket rate, saving ₹7,500 with official ETS vouchers.`
+      },
+      {
+        id: 'walkin-support',
+        title: 'Testly Madhapur Support Desk',
+        content: `Visit our walk-in support desk near Durgam Cheruvu Metro or contact our helpline at +91 93473 79041 for instant passport verification.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Where is the Prometric center in Hyderabad located?',
+        answer: 'Prometric Madhapur is located on Hitech City Main Road, near Cyber Towers and just 3 minutes walking distance from Durgam Cheruvu Metro Station.'
+      }
+    ]
+  },
+
+  'pte-academic-registration-bengaluru': {
+    slug: 'pte-academic-registration-bengaluru',
+    title: 'PTE Academic Registration in Bengaluru: Pearson Test Centers, Slot Availability & Vouchers',
+    metaTitle: 'PTE Academic Registration in Bengaluru: Pearson Test Centers, Slot Availability & Vouchers',
+    metaDescription: 'Register for PTE Academic in Bengaluru. Compare Pearson test centers in MG Road and Whitefield, check slot availability, and save ₹4,500 on official vouchers.',
+    exam: 'PTE',
+    intent: 'LOCAL_HUB',
+    location: 'Bengaluru',
+    authorId: 'kavya_s',
+    reviewerId: 'arjun_varma',
+    publishedDate: '2026-09-10',
+    lastVerifiedDate: '2026-09-16',
+    freshnessStatus: 'GREEN',
+    readTime: '5 min read',
+    category: 'Local Test Hubs',
+    toc: [
+      { id: 'bengaluru-venues', label: '1. Official Pearson Test Centers in Bengaluru' },
+      { id: 'pr-australia-focus', label: '2. PTE for Australia PR Points' },
+      { id: 'bengaluru-savings', label: '3. Voucher Rates & Instant Savings' },
+      { id: 'booking-assistance', label: '4. Testly ₹199 Verification Desk' }
+    ],
+    summary: 'Bengaluru is India\'s technology hub where thousands of software engineers take the PTE Academic exam for Australia and UK skilled migration. Discover authorized Pearson Professional venues, rapid 48-hour score turnaround, and how to save ₹4,500 on your booking.',
+    sections: [
+      {
+        id: 'bengaluru-venues',
+        title: 'Official Pearson Test Centers in Bengaluru',
+        content: `Major Pearson Professional Centers are located at:
+1. **Prestige Meridian II, MG Road:** Prime central location with state-of-the-art biometric cubicles.
+2. **Brigade Tech Park, Whitefield:** Convenient for IT professionals in East Bengaluru.`
+      },
+      {
+        id: 'pr-australia-focus',
+        title: 'PTE for Australia PR Points',
+        content: `Scores of 79+ in each section award 20 maximum points under the Australian General Skilled Migration points test. PTE\'s objective automated scoring makes it the preferred test for Indian tech professionals.`
+      },
+      {
+        id: 'bengaluru-savings',
+        title: 'Voucher Rates & Instant Savings',
+        content: `Standard Pearson retail price is ₹18,000. Testly voucher rate is **₹13,500**, saving you **₹4,500** on your official appointment.`
+      },
+      {
+        id: 'booking-assistance',
+        title: 'Testly ₹199 Verification Desk',
+        content: `We verify your passport details character-by-character to prevent profile lockouts on the Pearson VUE portal.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'How fast are PTE results released in Bengaluru?',
+        answer: 'Over 85% of PTE candidates in Bengaluru receive their official Pearson score report within 24 to 48 hours.'
+      }
+    ]
+  }
+};
+
+export const PUBLISHED_ARTICLES_LIST = Object.values(PUBLISHED_ARTICLES);
+
+export function getArticleBySlug(slug) {
+  if (!slug) return null;
+  return PUBLISHED_ARTICLES[slug.toLowerCase()] || null;
+}

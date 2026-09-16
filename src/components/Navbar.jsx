@@ -3,10 +3,11 @@ import { ArrowRight, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Exam Fees & Savings', href: '/exam-fees' },
+  { label: 'Guides & Research', href: '/guides' },
   { label: 'Hyderabad Hub', href: '/locations/hyderabad' },
   { label: 'Madhapur Desk', href: '/locations/madhapur' },
-  { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Professionals', href: '/professionals' },
+  { label: 'How It Works', href: '/#how-it-works' },
   { label: 'FAQ', href: '/#faq' },
 ];
 

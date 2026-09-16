@@ -12,7 +12,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Dynamic Exam Fees & Discount Voucher Tracker (High-Intent Transactional) -->
+  <!-- Dynamic Exam Fees & Discount Voucher Tracker -->
   <url>
     <loc>https://testly.in/exam-fees</loc>
     <lastmod>2026-09-16</lastmod>
@@ -20,7 +20,58 @@
     <priority>0.95</priority>
   </url>
 
-  <!-- Hyderabad Central Registration & Test Center Authority Hub (Local SEO) -->
+  <!-- Central Guides & Research Intelligence Library -->
+  <url>
+    <loc>https://testly.in/guides</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Published High-Authority Articles -->
+  <url>
+    <loc>https://testly.in/guides/gre-exam-fee-in-india-2026</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://testly.in/guides/how-to-fix-passport-name-mismatch-for-gre-toefl</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://testly.in/guides/ielts-vs-pte-for-indian-students</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://testly.in/guides/toefl-voucher-discount-india</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://testly.in/guides/gre-registration-in-hyderabad</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://testly.in/guides/pte-academic-registration-bengaluru</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Local Authority Hubs -->
   <url>
     <loc>https://testly.in/locations/hyderabad</loc>
     <lastmod>2026-09-16</lastmod>
@@ -28,7 +79,6 @@
     <priority>0.95</priority>
   </url>
 
-  <!-- Madhapur & Prometric Test Center Corridor Hub (Local SEO) -->
   <url>
     <loc>https://testly.in/locations/madhapur</loc>
     <lastmod>2026-09-16</lastmod>
@@ -36,7 +86,7 @@
     <priority>0.90</priority>
   </url>
 
-  <!-- Testly Registration Specialists & E-E-A-T Advisory Board -->
+  <!-- Testly Registration Specialists & E-E-A-T Team -->
   <url>
     <loc>https://testly.in/professionals</loc>
     <lastmod>2026-09-16</lastmod>
@@ -44,7 +94,7 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- Exam Savings & Price Proof Section -->
+  <!-- Landing Page Sections -->
   <url>
     <loc>https://testly.in/#savings</loc>
     <lastmod>2026-09-16</lastmod>
@@ -52,7 +102,6 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- All Supported Exams Universe -->
   <url>
     <loc>https://testly.in/#exams</loc>
     <lastmod>2026-09-16</lastmod>
@@ -60,7 +109,6 @@
     <priority>0.80</priority>
   </url>
 
-  <!-- Step-by-Step Registration Process -->
   <url>
     <loc>https://testly.in/#how-it-works</loc>
     <lastmod>2026-09-16</lastmod>
@@ -68,7 +116,6 @@
     <priority>0.75</priority>
   </url>
 
-  <!-- FAQ Knowledge Graph (Google Rich Snippets) -->
   <url>
     <loc>https://testly.in/#faq</loc>
     <lastmod>2026-09-16</lastmod>

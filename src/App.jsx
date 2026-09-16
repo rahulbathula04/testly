@@ -20,6 +20,8 @@ import HyderabadHubPage     from './pages/HyderabadHubPage';
 import MadhapurHubPage      from './pages/MadhapurHubPage';
 import ExamPriceTrackerPage from './pages/ExamPriceTrackerPage';
 import ProfessionalsPage    from './pages/ProfessionalsPage';
+import BlogDirectoryPage    from './pages/BlogDirectoryPage';
+import ArticlePage          from './pages/ArticlePage';
 
 // ── Funnel & Modals ──────────────────────────────────────────────────────────
 import LeadCaptureModal     from './components/LeadCaptureModal';
@@ -33,27 +35,37 @@ import WhatsAppWidget       from './components/WhatsAppWidget';
 import AdminLoginGate       from './components/admin/AdminLoginGate';
 
 function getActiveRoute() {
-  if (typeof window === 'undefined') return 'home';
+  if (typeof window === 'undefined') return { type: 'home' };
   const path = window.location.pathname.toLowerCase();
   const hash = window.location.hash.toLowerCase();
   const search = window.location.search.toLowerCase();
 
   if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
-    return 'admin';
+    return { type: 'admin' };
   }
   if (path.includes('/locations/madhapur') || hash.includes('/locations/madhapur') || hash.includes('madhapur')) {
-    return 'madhapur';
+    return { type: 'madhapur' };
   }
   if (path.includes('/locations/hyderabad') || hash.includes('/locations/hyderabad') || hash.includes('hyderabad')) {
-    return 'hyderabad';
+    return { type: 'hyderabad' };
   }
   if (path.includes('/exam-fees') || hash.includes('/exam-fees') || hash.includes('exam-fees')) {
-    return 'exam-fees';
+    return { type: 'exam-fees' };
   }
   if (path.includes('/professionals') || hash.includes('/professionals') || hash.includes('professionals')) {
-    return 'professionals';
+    return { type: 'professionals' };
   }
-  return 'home';
+
+  // Articles: /guides/:slug or /blog/:slug
+  const guideMatch = path.match(/^\/(?:guides|blog)\/([a-z0-9-]+)/) || hash.match(/#(?:guides|blog)\/([a-z0-9-]+)/);
+  if (guideMatch && guideMatch[1]) {
+    return { type: 'article', slug: guideMatch[1] };
+  }
+  if (path === '/guides' || path === '/blog' || hash.includes('guides') || hash.includes('blog')) {
+    return { type: 'guides' };
+  }
+
+  return { type: 'home' };
 }
 
 export default function App() {
@@ -103,13 +115,13 @@ export default function App() {
   };
 
   // ── 1. Secure Admin Portal Route ───────────────────────────────────────────
-  if (currentRoute === 'admin') {
+  if (currentRoute.type === 'admin') {
     return <AdminLoginGate onNavigateHome={() => navigate('/')} />;
   }
 
   // ── 2. Render Page Content According to Active Route ────────────────────────
   const renderContent = () => {
-    switch (currentRoute) {
+    switch (currentRoute.type) {
       case 'hyderabad':
         return <HyderabadHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
@@ -121,6 +133,12 @@ export default function App() {
 
       case 'professionals':
         return <ProfessionalsPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'guides':
+        return <BlogDirectoryPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'article':
+        return <ArticlePage slug={currentRoute.slug} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
       case 'home':
       default:

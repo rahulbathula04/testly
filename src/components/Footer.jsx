@@ -124,6 +124,15 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
             <ul className="space-y-2">
               <li>
                 <a
+                  href="/guides"
+                  onClick={(e) => handleNav(e, '/guides')}
+                  className="hover:text-white transition-colors"
+                >
+                  Guides & Research Library
+                </a>
+              </li>
+              <li>
+                <a
                   href="/professionals"
                   onClick={(e) => handleNav(e, '/professionals')}
                   className="hover:text-white transition-colors"
