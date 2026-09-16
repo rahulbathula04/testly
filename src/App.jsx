@@ -6,6 +6,7 @@ import Hero                 from './components/Hero';
 import PriceProof           from './components/PriceProof';
 import ServiceAndExams      from './components/ServiceAndExams';
 import TrustSection         from './components/TrustSection';
+import VerifiedBookingDossiers from './components/VerifiedBookingDossiers';
 import HowItWorksAndDeciding from './components/HowItWorksAndDeciding';
 import FAQSection           from './components/FAQSection';
 import FinalCTA             from './components/FinalCTA';
@@ -160,8 +161,8 @@ export default function App() {
                 onOpenSearch={() => setSearchOpen(true)}
               />
 
-              {/* 4. TRUST — 4,000+ Students Guided */}
-              <TrustSection />
+              {/* 4. VERIFIED BOOKING DOSSIERS & SAVINGS PROOFS — 4,000+ Students Guided */}
+              <VerifiedBookingDossiers onBookTest={handleOpenFunnel} />
 
               {/* 5. HOW IT WORKS + STILL DECIDING */}
               <HowItWorksAndDeciding onBookTest={handleOpenFunnel} />
