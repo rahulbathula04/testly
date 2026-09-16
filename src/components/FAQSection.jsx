@@ -38,22 +38,23 @@ export default function FAQSection({ onBookTest }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Heading & Subtitle (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-extrabold uppercase tracking-wider">
-              FREQUENTLY ASKED QUESTIONS
+          <div className="lg:col-span-3 space-y-3.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200/80 text-blue-700 text-[10px] font-extrabold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+              <span>FREQUENTLY ASKED QUESTIONS</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-tight">
               Still Have<br className="hidden sm:block" /> Questions?
             </h2>
             <p className="text-xs text-slate-500 font-medium leading-relaxed">
-              Find answers to the most common questions.
+              Transparent answers regarding vouchers, fees, slot audits, and rescheduling rules.
             </p>
             <button
               onClick={() => onBookTest('GRE')}
-              className="inline-flex items-center gap-1 text-xs font-bold text-blue-700 hover:text-blue-900 transition-colors pt-2 group"
+              className="inline-flex items-center gap-1.5 text-xs font-black text-blue-700 hover:text-blue-900 transition-colors pt-2 group cursor-pointer"
             >
-              <span>View All FAQs</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <span>View All 18+ FAQs</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
@@ -64,21 +65,25 @@ export default function FAQSection({ onBookTest }) {
               return (
                 <div
                   key={faq.q}
-                  className="border border-slate-200/80 rounded-2xl overflow-hidden transition-all bg-slate-50/50"
+                  className={`border rounded-2xl overflow-hidden transition-all duration-200 ${
+                    isOpen
+                      ? 'border-blue-500/80 shadow-md bg-blue-50/10'
+                      : 'border-slate-200/80 bg-slate-50/40 hover:border-slate-300 hover:bg-white'
+                  }`}
                 >
                   <button
                     onClick={() => toggle(i)}
-                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 hover:text-blue-700 transition-colors"
+                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 hover:text-blue-700 transition-colors cursor-pointer"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-blue-700' : ''
+                      className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 text-blue-700' : 'text-slate-400'
                       }`}
                     />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3 bg-white">
+                    <div className="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100/80 pt-3 bg-white">
                       {faq.a}
                     </div>
                   )}
@@ -88,17 +93,21 @@ export default function FAQSection({ onBookTest }) {
           </div>
 
           {/* Right Column: Support Card (3 cols) */}
-          <div className="lg:col-span-3 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-6 text-center space-y-4 shadow-2xs">
-            <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mx-auto shadow-xs">
+          <div className="lg:col-span-3 bg-white border border-slate-200/90 rounded-2xl p-6 text-center space-y-4 shadow-[0_2px_8px_rgba(15,23,42,0.04)]">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center mx-auto border border-blue-100 shadow-2xs">
               <Headphones className="w-6 h-6" />
             </div>
 
             <div className="space-y-1">
-              <h4 className="text-sm font-black text-slate-900">
-                Need More Help?
+              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-black text-emerald-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>OFFICERS ONLINE NOW</span>
+              </div>
+              <h4 className="text-sm font-black text-slate-900 pt-1">
+                Need Fast Help?
               </h4>
               <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                Chat with our team on WhatsApp or drop us a message.
+                Connect directly with a certified exam officer on WhatsApp.
               </p>
             </div>
 
@@ -106,16 +115,17 @@ export default function FAQSection({ onBookTest }) {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors flex items-center justify-center gap-2 shadow-xs"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-black text-xs transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow group active:scale-[0.98]"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Chat on WhatsApp</span>
-              <ArrowRight className="w-3 h-3" />
+              <span>WhatsApp Officer Desk</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
 
-            <p className="text-[11px] text-slate-400 font-medium">
-              Or call us: <span className="font-bold text-slate-700">+91 9302 333 144</span>
-            </p>
+            <div className="pt-2 border-t border-slate-100 text-[10.5px] text-slate-400 font-medium space-y-0.5">
+              <p>Direct: <span className="font-bold text-slate-700">+91 9302 333 144</span></p>
+              <p>Mon – Sat, 9:00 AM – 9:00 PM IST</p>
+            </div>
           </div>
 
         </div>

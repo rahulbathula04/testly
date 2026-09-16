@@ -156,11 +156,26 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
               </button>
             </div>
           </div>
+        </div>
 
+        {/* Trust Badges Bar */}
+        <div className="pt-6 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-slate-400 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+            <span className="font-semibold text-slate-300">100% Official Institutional Vouchers</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
+            <span className="font-semibold text-slate-300">Govt. of India MCA Registered</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-purple-400 shrink-0" />
+            <span className="font-semibold text-slate-300">Zero Error Registration Guarantee</span>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
+        <div className="pt-6 border-t border-slate-800/50 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
           <p>© {new Date().getFullYear()} Testly Education Pvt Ltd. All rights reserved.</p>
           <p>ETS®, GRE®, TOEFL®, Pearson®, PTE®, and IELTS™ are registered trademarks of their respective owners.</p>
         </div>

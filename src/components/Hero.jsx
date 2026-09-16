@@ -60,66 +60,89 @@ export default function Hero({ onBookTest }) {
 
       {/* ── Left content ── */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
-        <div className="max-w-xl space-y-7">
+        <div className="max-w-xl space-y-6">
 
-          {/* Pre-headline */}
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500">
-            The Smarter Way To
-          </p>
+          {/* Live Badge & Pre-headline */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-[10.5px] font-extrabold tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>LIVE RATES TODAY • MARCH 2026</span>
+            </div>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500">
+              The Smarter Way To
+            </p>
+          </div>
 
           {/* Main Headline */}
           <h1
             style={{ fontFamily: "'DM Serif Display', serif" }}
-            className="text-5xl sm:text-6xl lg:text-[68px] text-slate-900 leading-[1.02] tracking-[-0.01em]"
+            className="text-5xl sm:text-6xl lg:text-[70px] text-slate-900 leading-[1.02] tracking-[-0.015em]"
           >
             Book Your Exam.
           </h1>
 
           {/* Subheading */}
-          <p className="text-[17px] text-slate-600 font-medium leading-relaxed">
+          <p className="text-[16px] sm:text-[17px] text-slate-600 font-medium leading-relaxed">
             Check your current exam price, see what you save, and get professional registration assistance from Testly for ₹199.
           </p>
 
-          {/* 4 Value Pillars (Balanced 2x2 Grid) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 py-1">
+          {/* 4 Value Pillars (Refined Interactive 2x2 Grid) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-1">
             {pillars.map(({ icon: Icon, label, sub }) => (
-              <div key={label} className="flex items-start gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-slate-700" />
+              <div
+                key={label}
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50/80 border border-slate-200/60 hover:border-slate-300 hover:bg-white transition-all shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+              >
+                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100/80 shadow-2xs">
+                  <Icon className="w-4 h-4" />
                 </div>
-                <div>
-                  <p className="text-[10px] font-extrabold uppercase tracking-wide text-slate-900">{label}</p>
-                  <p className="text-[11px] text-slate-500 font-medium">{sub}</p>
+                <div className="min-w-0">
+                  <p className="text-[10.5px] font-black uppercase tracking-wide text-slate-900 truncate">{label}</p>
+                  <p className="text-[11px] text-slate-500 font-medium truncate">{sub}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Primary CTA */}
-          <button
-            onClick={() => onBookTest('GRE')}
-            className="flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3.5 rounded-lg transition-colors shadow-sm"
-          >
-            Check Your Exam & Savings
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          {/* Primary CTA & Assurance */}
+          <div className="space-y-2 pt-1">
+            <button
+              onClick={() => onBookTest('GRE')}
+              className="group inline-flex items-center gap-2.5 bg-slate-950 hover:bg-slate-900 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer border border-slate-800"
+            >
+              <span>Check Your Exam & Savings</span>
+              <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+            </button>
+            <p className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              100% Official ETS & Pearson slots • Instant WhatsApp assistance available
+            </p>
+          </div>
 
-          {/* Social proof with AI-generated Indian students abroad */}
-          <div className="flex items-center gap-3">
+          {/* Social proof with student avatars + Rating Stars */}
+          <div className="flex flex-wrap items-center gap-3.5 pt-2 border-t border-slate-100">
             <div className="flex -space-x-2">
               {studentAvatars.map((student, i) => (
                 <img
                   key={i}
                   src={student.src}
                   alt={student.alt}
-                  className="inline-block w-7 h-7 rounded-full border-2 border-white object-cover object-center shadow-xs"
+                  className="inline-block w-8 h-8 rounded-full border-2 border-white object-cover object-center shadow-xs ring-1 ring-slate-200/50"
                   loading="eager"
                 />
               ))}
             </div>
-            <p className="text-[13px] text-slate-600">
-              <strong className="font-bold text-slate-900">4,000+</strong> students guided on their global education journey.
-            </p>
+
+            <div className="space-y-0.5">
+              <div className="flex items-center gap-1 text-amber-500 text-xs">
+                <span>★★★★★</span>
+                <span className="text-[11px] font-black text-slate-800 ml-1">4.9/5</span>
+              </div>
+              <p className="text-[12.5px] text-slate-600">
+                <strong className="font-bold text-slate-900">4,000+</strong> students guided on their global education journey.
+              </p>
+            </div>
           </div>
 
         </div>
