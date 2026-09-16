@@ -32,7 +32,8 @@ import {
   SALES_AGENTS,
   LEAD_STATUSES,
   OBJECTIONS,
-  createNewLead
+  createNewLead,
+  clearAllLeads
 } from '../../utils/crmStore';
 import { EXAM_DATA } from '../PriceProof';
 
@@ -258,6 +259,22 @@ export default function RealAdminPortal({
             <Download className="w-3.5 h-3.5" /> Export CSV
           </button>
 
+          {leads.length > 0 && (
+            <button
+              onClick={() => {
+                if (window.confirm(`Permanently wipe all ${leads.length} leads and reset database to clean production (0 leads)?`)) {
+                  clearAllLeads();
+                  setLeads([]);
+                  setSelectedLead(null);
+                }
+              }}
+              className="bg-slate-800 hover:bg-rose-950/60 border border-slate-700 hover:border-rose-800 text-slate-400 hover:text-rose-300 text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
+              title="Reset database to 0 leads"
+            >
+              <Trash2 className="w-3.5 h-3.5" /> Clear All Data
+            </button>
+          )}
+
           <button
             onClick={onNavigateHome}
             className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-bold px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
@@ -432,9 +449,30 @@ export default function RealAdminPortal({
                 {/* Table Rows */}
                 <div className="flex-1 overflow-y-auto divide-y divide-slate-800/60">
                   {filteredLeads.length === 0 ? (
-                    <div className="p-12 text-center text-slate-500 space-y-2">
-                      <Users className="w-10 h-10 opacity-30 mx-auto" />
-                      <p className="text-sm font-semibold">No leads match the selected filters.</p>
+                    <div className="p-12 text-center text-slate-500 space-y-3 my-auto">
+                      <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto text-slate-500">
+                        <Users className="w-6 h-6" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-sm font-bold text-white">0 Candidate Leads</p>
+                        <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+                          Your database is clean. Leads will appear here live when a student fills out the savings form on the landing page, or when you click <strong className="text-emerald-400">+ Add Lead</strong> above.
+                        </p>
+                      </div>
+                      <div className="pt-2 flex justify-center gap-3">
+                        <button
+                          onClick={() => setShowAddLeadModal(true)}
+                          className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
+                        >
+                          <Plus className="w-3.5 h-3.5" /> Add Lead Manually
+                        </button>
+                        <button
+                          onClick={onNavigateHome}
+                          className="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
+                        >
+                          <Globe className="w-3.5 h-3.5" /> View Public Site
+                        </button>
+                      </div>
                     </div>
                   ) : (
                     filteredLeads.map((lead) => {
