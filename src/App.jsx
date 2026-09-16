@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // ── Landing page sections ───────────────────────────────────────────────────
 import Navbar               from './components/Navbar';
@@ -22,29 +22,59 @@ import PracticeDashboardModal from './components/PracticeDashboardModal';
 import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
-import SalesAdminDashboard  from './components/admin/SalesAdminDashboard';
+
+// ── Secure Standalone Admin Portal ───────────────────────────────────────────
+import AdminLoginGate       from './components/admin/AdminLoginGate';
 
 export default function App() {
-  // ── Lead Capture Funnel (High-Intent 2-4 Question Modal) ───────────────────
+  // ── URL Route Detection (/admin or #/admin or ?admin=true) ────────────────
+  const checkIsAdmin = () => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.location.pathname.startsWith('/admin') ||
+      window.location.hash.includes('admin') ||
+      new URLSearchParams(window.location.search).has('admin')
+    );
+  };
+
+  const [isAdminRoute, setIsAdminRoute] = useState(checkIsAdmin());
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setIsAdminRoute(checkIsAdmin());
+    };
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, []);
+
+  const navigateToHome = () => {
+    window.history.pushState({}, '', '/');
+    setIsAdminRoute(false);
+  };
+
+  const navigateToAdmin = () => {
+    window.history.pushState({}, '', '/admin');
+    setIsAdminRoute(true);
+  };
+
+  // ── Modals & Funnel State ──────────────────────────────────────────────────
   const [leadModalOpen,    setLeadModalOpen]    = useState(false);
   const [selectedExam,     setSelectedExam]     = useState('GRE');
 
-  // ── Self-Service Full Booking Flow (Optional Secondary) ────────────────────
   const [bookingOpen,      setBookingOpen]      = useState(false);
 
-  // ── Practice engine ────────────────────────────────────────────────────────
   const [engineOpen,       setEngineOpen]       = useState(false);
   const [engineMode,       setEngineMode]       = useState('MOCK');
   const [engineExam,       setEngineExam]       = useState('GRE');
 
-  // ── Other modals ───────────────────────────────────────────────────────────
   const [dashboardOpen,    setDashboardOpen]    = useState(false);
   const [authOpen,         setAuthOpen]         = useState(false);
   const [searchOpen,       setSearchOpen]       = useState(false);
-  const [adminOpen,        setAdminOpen]        = useState(false);
 
-  // ── Handlers ───────────────────────────────────────────────────────────────
-  // Primary CTA opens the high-converting lead capture form
   const handleOpenFunnel = (exam = 'GRE') => {
     setSelectedExam(exam);
     setLeadModalOpen(true);
@@ -56,82 +86,60 @@ export default function App() {
     setEngineOpen(true);
   };
 
+  // ── If Admin Route, render Real Secure Admin Portal ────────────────────────
+  if (isAdminRoute) {
+    return <AdminLoginGate onNavigateHome={navigateToHome} />;
+  }
+
+  // ── Public Student-Facing Landing Page (100% Clean, No Admin Clutter) ──────
   return (
     <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased">
 
-      {/* ── NAVIGATION ───────────────────────────────────────── */}
+      {/* Navigation */}
       <Navbar onOpenBooking={handleOpenFunnel} />
 
       <main className="flex-grow">
 
-        {/* 1. HERO ─────────────────────────────────────────────
-            "The Smarter Way to Book Your Exam."
-            Save money · Registration handled · 4,000+ students */}
+        {/* 1. HERO — The Smarter Way to Book Your Exam */}
         <Hero onBookTest={handleOpenFunnel} />
 
-        {/* 2. PRICE PROOF ──────────────────────────────────────
-            "Why Pay More for Your Exam?"
-            Authentic exam logos: GRE, TOEFL, IELTS, PTE, Duolingo, GMAT */}
+        {/* 2. PRICE PROOF — Authentic logos + data-driven savings */}
         <PriceProof onBookTest={handleOpenFunnel} />
 
-        {/* 3. SERVICE + EXAM UNIVERSE ──────────────────────────
-            Left: ₹199 service checklist
-            Right: Clean exam universe grid with real logos */}
+        {/* 3. SERVICE + EXAM UNIVERSE */}
         <ServiceAndExams
           onBookTest={handleOpenFunnel}
           onOpenSearch={() => setSearchOpen(true)}
         />
 
-        {/* 4. TRUST ────────────────────────────────────────────
-            "You're in Good Company"
-            Photo left · 4 stat cards right */}
+        {/* 4. TRUST — 4,000+ Students Guided */}
         <TrustSection />
 
-        {/* 5. HOW IT WORKS + STILL DECIDING ───────────────────
-            6-step cards left · "Still Deciding?" card right */}
+        {/* 5. HOW IT WORKS + STILL DECIDING */}
         <HowItWorksAndDeciding onBookTest={handleOpenFunnel} />
 
-        {/* 6. FREE PRACTICE PLATFORM ───────────────────────────
-            Free unlimited adaptive mock tests */}
+        {/* 6. FREE PRACTICE PLATFORM */}
         <PracticeDashboard onLaunchEngine={openEngine} />
 
-        {/* 7. FAQ ──────────────────────────────────────────────
-            8 accordion questions */}
+        {/* 7. FAQ */}
         <FAQSection />
 
-        {/* 8. FINAL CTA ────────────────────────────────────────
-            "Why Pay More? Book Smarter." dark section */}
+        {/* 8. FINAL CTA — Why Pay More? Book Smarter. */}
         <FinalCTA onBookTest={handleOpenFunnel} />
 
       </main>
 
-      {/* ── FOOTER ───────────────────────────────────────────── */}
-      <Footer />
+      {/* Footer with subtle staff login */}
+      <Footer onOpenAdmin={navigateToAdmin} />
 
-      {/* ── SALES CRM OPERATING SYSTEM (Floating button) ───────── */}
-      <button
-        onClick={() => setAdminOpen(true)}
-        className="fixed bottom-4 left-4 z-40 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white text-xs font-black px-3.5 py-2 rounded-full border border-slate-700 shadow-xl flex items-center gap-2 transition-all group"
-        title="Open Testly Sales CRM Operating System"
-      >
-        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span>Testly Sales CRM</span>
-        <span className="bg-slate-800 text-emerald-400 border border-slate-700 text-[10px] px-1.5 py-0.2 rounded font-mono">
-          LIVE
-        </span>
-      </button>
-
-      {/* ── SALES ADMIN CRM DASHBOARD ─────────────────────────── */}
-      {adminOpen && <SalesAdminDashboard onClose={() => setAdminOpen(false)} />}
-
-      {/* ── HIGH-CONVERTING 2-4 QUESTION LEAD CAPTURE MODAL ───── */}
+      {/* ── High-Converting Lead Capture Modal ────────────────────── */}
       <LeadCaptureModal
         isOpen={leadModalOpen}
         onClose={() => setLeadModalOpen(false)}
         defaultTest={selectedExam}
       />
 
-      {/* ── SECONDARY / BACKUP FULL BOOKING FLOW ─────────────── */}
+      {/* ── Full Booking Flow (Secondary) ─────────────────────────── */}
       <BookingFlowModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}
@@ -139,7 +147,7 @@ export default function App() {
         onOpenDashboard={() => setDashboardOpen(true)}
       />
 
-      {/* ── PRACTICE & SEARCH MODALS ─────────────────────────── */}
+      {/* ── Practice & Search Modals ──────────────────────────────── */}
       <TestEngineModal
         isOpen={engineOpen}
         onClose={() => setEngineOpen(false)}
@@ -164,7 +172,7 @@ export default function App() {
         onCheckPrice={handleOpenFunnel}
       />
 
-      {/* ── WHATSAPP WIDGET ──────────────────────────────────── */}
+      {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
       <WhatsAppWidget />
 
     </div>
