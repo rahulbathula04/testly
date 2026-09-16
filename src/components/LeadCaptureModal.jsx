@@ -70,8 +70,9 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE' 
       exam,
       timing,
       needs,
-      source: 'Landing Page Modal',
-      campaign: `${exam} High-Intent Voucher`
+      pricing: currentPricing,
+      source: 'Landing Page Form',
+      campaign: `${exam} Voucher Savings Lead`
     });
 
     setAssignedLead(created);

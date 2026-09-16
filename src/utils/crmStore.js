@@ -73,7 +73,7 @@ export function getNextAgent() {
 }
 
 // Create new lead from the landing page form or manual entry
-export function createNewLead({ name, phone, exam, timing, needs = [], source = 'Landing Page', campaign = 'Direct' }) {
+export function createNewLead({ name, phone, exam, timing, needs = [], pricing = null, source = 'Landing Page Form', campaign = 'Direct' }) {
   const leads = getStoredLeads();
   const assignedAgent = getNextAgent();
 
@@ -85,6 +85,16 @@ export function createNewLead({ name, phone, exam, timing, needs = [], source = 
     priority = 'COLD';
   }
 
+  const now = new Date();
+  const formattedDate = now.toLocaleString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+
   const newLead = {
     id: `LEAD-${1001 + leads.length}`,
     name: name.trim() || 'Candidate',
@@ -92,6 +102,11 @@ export function createNewLead({ name, phone, exam, timing, needs = [], source = 
     exam: exam || 'GRE',
     timing: timing || 'Within 1 month',
     needs: needs.length ? needs : ['Get a discounted exam voucher', 'Complete my registration'],
+    pricing: pricing || {
+      refPrice: 26500,
+      testlyPrice: 19000,
+      saving: 7500
+    },
     source,
     campaign,
     status: 'New',
@@ -99,7 +114,8 @@ export function createNewLead({ name, phone, exam, timing, needs = [], source = 
     assignedTo: assignedAgent,
     nextAction: 'First call pending (Call within 15 min)',
     lastContact: 'Just now',
-    createdAt: new Date().toISOString(),
+    createdAt: now.toISOString(),
+    submittedAtFormatted: formattedDate,
     qualification: {
       hasPassport: false,
       hasAccount: false,
@@ -111,8 +127,8 @@ export function createNewLead({ name, phone, exam, timing, needs = [], source = 
     notes: [
       {
         author: 'System',
-        text: `Lead captured from ${source} for ${exam}. Assigned to ${assignedAgent}.`,
-        time: 'Just now'
+        text: `Form submitted on landing page for ${exam} (${timing}). Looking for: ${needs.join(', ') || 'Voucher & Registration'}.`,
+        time: formattedDate
       }
     ]
   };

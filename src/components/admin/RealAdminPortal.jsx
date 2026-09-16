@@ -128,23 +128,63 @@ export default function RealAdminPortal({
   };
 
   const exportCSV = () => {
-    const headers = ['ID', 'Name', 'Phone', 'Exam', 'Timing', 'Status', 'Priority', 'Assigned', 'Next Action'];
-    const rows = leads.map((l) => [
-      l.id,
-      `"${l.name}"`,
-      `"${l.phone}"`,
-      l.exam,
-      `"${l.timing}"`,
-      l.status,
-      l.priority,
-      l.assignedTo,
-      `"${l.nextAction || ''}"`
-    ]);
+    const headers = [
+      'Lead ID',
+      'Name',
+      'Phone',
+      'Exam',
+      'Target Timing',
+      'Help Options Selected',
+      'Official Reference Price',
+      'Testly Voucher Price',
+      'Calculated Saving',
+      'Registration Fee',
+      'Total Order Value',
+      'Submission Date',
+      'Source',
+      'Status',
+      'Priority',
+      'Assigned Agent',
+      'Has Passport',
+      'Has Exam Account',
+      'Ready to Register',
+      'Logged Objection',
+      'Next Action',
+      'Latest Note'
+    ];
+    const rows = leads.map((l) => {
+      const p = l.pricing || EXAM_DATA[l.exam] || { refPrice: 26500, testlyPrice: 19000, saving: 7500 };
+      const latestNote = l.notes?.[0]?.text || '';
+      return [
+        l.id,
+        `"${l.name}"`,
+        `"${l.phone}"`,
+        l.exam,
+        `"${l.timing}"`,
+        `"${(l.needs || []).join('; ')}"`,
+        p.refPrice,
+        p.testlyPrice,
+        p.saving,
+        199,
+        p.testlyPrice + 199,
+        `"${l.submittedAtFormatted || l.createdAt}"`,
+        `"${l.source}"`,
+        l.status,
+        l.priority,
+        l.assignedTo,
+        l.qualification?.hasPassport ? 'YES' : 'NO',
+        l.qualification?.hasAccount ? 'YES' : 'NO',
+        `"${l.qualification?.readyToRegister || ''}"`,
+        `"${l.qualification?.objection || ''}"`,
+        `"${l.nextAction || ''}"`,
+        `"${latestNote.replace(/"/g, '""')}"`
+      ];
+    });
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `testly_leads_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute('download', `testly_leads_complete_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -640,6 +680,91 @@ export default function RealAdminPortal({
                         </select>
                       </div>
                     </div>
+
+                    {/* 📋 SECTION 1: WHAT THE STUDENT SUBMITTED ON THE FORM */}
+                    <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                      <div className="flex items-center justify-between border-b border-slate-850 pb-2">
+                        <h4 className="text-xs font-black uppercase tracking-wider text-white flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                          Student Form Submission Data
+                        </h4>
+                        <span className="text-[10px] text-slate-400 font-mono">
+                          {selectedLead.submittedAtFormatted || 'Recent'}
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3 text-xs">
+                        <div>
+                          <span className="text-[10px] font-bold uppercase text-slate-500 block">Exam Looking For</span>
+                          <span className="font-black text-white text-sm">{selectedLead.exam}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-bold uppercase text-slate-500 block">Target Exam Timeline</span>
+                          <span className="font-bold text-amber-300">{selectedLead.timing}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-bold uppercase text-slate-500 block">WhatsApp Phone</span>
+                          <span className="font-mono text-slate-200 font-semibold">{selectedLead.phone}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-bold uppercase text-slate-500 block">Acquisition Source</span>
+                          <span className="text-slate-300">{selectedLead.source || 'Landing Page Form'}</span>
+                        </div>
+                      </div>
+
+                      {/* Selected Help Requirements */}
+                      <div className="pt-2 border-t border-slate-850 space-y-1.5">
+                        <span className="text-[10px] font-bold uppercase text-slate-400 block">
+                          Student Checked Help Options:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(selectedLead.needs || ['Get a discounted exam voucher', 'Complete my registration']).map((need) => (
+                            <span
+                              key={need}
+                              className="text-[10px] font-semibold bg-emerald-950/60 border border-emerald-800/80 text-emerald-300 px-2.5 py-1 rounded-md flex items-center gap-1"
+                            >
+                              <Check className="w-3 h-3 text-emerald-400 stroke-[3]" />
+                              {need}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 💰 SECTION 2: VOUCHER SAVINGS & TRANSACTION ECONOMICS */}
+                    {(() => {
+                      const p = selectedLead.pricing || EXAM_DATA[selectedLead.exam] || { refPrice: 26500, testlyPrice: 19000, saving: 7500 };
+                      return (
+                        <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                          <h4 className="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                            <IndianRupee className="w-3.5 h-3.5 text-amber-400" />
+                            Voucher Economics & Collectible
+                          </h4>
+
+                          <div className="grid grid-cols-3 gap-2 text-center">
+                            <div className="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                              <span className="text-[9px] uppercase font-bold text-slate-500 block">Official Price</span>
+                              <span className="text-xs font-bold text-slate-400 line-through">₹{p.refPrice?.toLocaleString('en-IN')}</span>
+                            </div>
+                            <div className="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                              <span className="text-[9px] uppercase font-bold text-slate-500 block">Testly Voucher</span>
+                              <span className="text-xs font-bold text-white">₹{p.testlyPrice?.toLocaleString('en-IN')}</span>
+                            </div>
+                            <div className="bg-amber-950/40 p-2 rounded-lg border border-amber-800/60">
+                              <span className="text-[9px] uppercase font-bold text-amber-400 block">Student Saves</span>
+                              <span className="text-xs font-black text-amber-300">₹{p.saving?.toLocaleString('en-IN')}</span>
+                            </div>
+                          </div>
+
+                          <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-2.5 flex items-center justify-between text-xs">
+                            <span className="text-slate-300">Voucher + ₹199 Service Fee:</span>
+                            <span className="text-sm font-black text-emerald-400">
+                              ₹{(p.testlyPrice + 199).toLocaleString('en-IN')} Total
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })()}
 
                     {/* Mandatory Next Action */}
                     <div className="space-y-1.5 bg-slate-950 border border-slate-800 rounded-xl p-3">
