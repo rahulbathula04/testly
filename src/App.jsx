@@ -23,6 +23,7 @@ import ExamPriceTrackerPage from './pages/ExamPriceTrackerPage';
 import ProfessionalsPage    from './pages/ProfessionalsPage';
 import BlogDirectoryPage    from './pages/BlogDirectoryPage';
 import ArticlePage          from './pages/ArticlePage';
+import CampusPage           from './pages/CampusPage';
 
 // ── Funnel & Modals ──────────────────────────────────────────────────────────
 import LeadCaptureModal     from './components/LeadCaptureModal';
@@ -31,6 +32,7 @@ import PracticeDashboardModal from './components/PracticeDashboardModal';
 import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
+import CandidateAgencyAgreementModal from './components/CandidateAgencyAgreementModal';
 
 // ── Secure Standalone Admin Portal ───────────────────────────────────────────
 import AdminLoginGate       from './components/admin/AdminLoginGate';
@@ -43,6 +45,9 @@ function getActiveRoute() {
 
   if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
     return { type: 'admin' };
+  }
+  if (path.includes('/campus') || hash.includes('/campus') || hash.includes('campus')) {
+    return { type: 'campus' };
   }
   if (path.includes('/locations/madhapur') || hash.includes('/locations/madhapur') || hash.includes('madhapur')) {
     return { type: 'madhapur' };
@@ -95,6 +100,7 @@ export default function App() {
   const [selectedExam,     setSelectedExam]     = useState('GRE');
 
   const [bookingOpen,      setBookingOpen]      = useState(false);
+  const [agreementOpen,    setAgreementOpen]    = useState(false);
 
   const [engineOpen,       setEngineOpen]       = useState(false);
   const [engineMode,       setEngineMode]       = useState('MOCK');
@@ -123,6 +129,9 @@ export default function App() {
   // ── 2. Render Page Content According to Active Route ────────────────────────
   const renderContent = () => {
     switch (currentRoute.type) {
+      case 'campus':
+        return <CampusPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
       case 'hyderabad':
         return <HyderabadHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
@@ -178,7 +187,11 @@ export default function App() {
             </main>
 
             {/* Footer with subtle staff login */}
-            <Footer onOpenAdmin={() => navigate('/admin')} onNavigate={navigate} />
+            <Footer
+              onOpenAdmin={() => navigate('/admin')}
+              onNavigate={navigate}
+              onOpenAgreement={() => setAgreementOpen(true)}
+            />
           </div>
         );
     }
@@ -193,6 +206,13 @@ export default function App() {
         isOpen={leadModalOpen}
         onClose={() => setLeadModalOpen(false)}
         defaultTest={selectedExam}
+        onOpenAgreement={() => setAgreementOpen(true)}
+      />
+
+      {/* ── Candidate Agency Agreement Modal (Indian Contract Act 1872) ─ */}
+      <CandidateAgencyAgreementModal
+        isOpen={agreementOpen}
+        onClose={() => setAgreementOpen(false)}
       />
 
       {/* ── Full Booking Flow (Secondary) ─────────────────────────── */}

@@ -1,15 +1,16 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { ExamLogo } from './ExamLogos';
+import { EXAM_OFFERINGS } from '../data/examOfferings';
 
-// ─── Single source of truth for exam pricing ───────────────────────────────
+// ─── Single source of truth derived strictly from exam_offerings ───────────
 export const EXAM_DATA = {
-  GRE:     { id:'GRE',     label:'GRE',     refPrice:26500, testlyPrice:19000, saving:7500 },
-  TOEFL:   { id:'TOEFL',   label:'TOEFL',   refPrice:24900, testlyPrice:18500, saving:6400 },
-  IELTS:   { id:'IELTS',   label:'IELTS',   refPrice:17000, testlyPrice:13000, saving:4000 },
-  PTE:     { id:'PTE',     label:'PTE',     refPrice:18000, testlyPrice:13500, saving:4500 },
-  Duolingo:{ id:'Duolingo', label:'Duolingo', refPrice:6300,  testlyPrice:4500,  saving:1800 },
-  GMAT:    { id:'GMAT',    label:'GMAT',    refPrice:28000, testlyPrice:22000, saving:6000 },
+  GRE:     { id:'GRE',     label:'GRE',     refPrice: EXAM_OFFERINGS.GRE.reference_price,     testlyPrice: EXAM_OFFERINGS.GRE.testly_price,     saving: EXAM_OFFERINGS.GRE.saving },
+  TOEFL:   { id:'TOEFL',   label:'TOEFL',   refPrice: EXAM_OFFERINGS.TOEFL.reference_price,   testlyPrice: EXAM_OFFERINGS.TOEFL.testly_price,   saving: EXAM_OFFERINGS.TOEFL.saving },
+  IELTS:   { id:'IELTS',   label:'IELTS',   refPrice: EXAM_OFFERINGS.IELTS.reference_price,   testlyPrice: EXAM_OFFERINGS.IELTS.testly_price,   saving: EXAM_OFFERINGS.IELTS.saving },
+  PTE:     { id:'PTE',     label:'PTE',     refPrice: EXAM_OFFERINGS.PTE.reference_price,     testlyPrice: EXAM_OFFERINGS.PTE.testly_price,     saving: EXAM_OFFERINGS.PTE.saving },
+  Duolingo:{ id:'Duolingo', label:'Duolingo', refPrice: EXAM_OFFERINGS.Duolingo.reference_price, testlyPrice: EXAM_OFFERINGS.Duolingo.testly_price, saving: EXAM_OFFERINGS.Duolingo.saving },
+  GMAT:    { id:'GMAT',    label:'GMAT',    refPrice: EXAM_OFFERINGS.GMAT.reference_price,    testlyPrice: EXAM_OFFERINGS.GMAT.testly_price,    saving: EXAM_OFFERINGS.GMAT.saving },
 };
 
 const VERIFIED_DATE = '16 Sep 2026';
@@ -26,15 +27,19 @@ export default function PriceProof({ onBookTest }) {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
           <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-2">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              Verified Institutional Booking Pricing
+            </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Why Pay More for Your Exam?
             </h2>
-            <p className="text-[15px] text-slate-500 font-medium mt-1">
-              See exactly what you can save before you book.
+            <p className="text-[15px] text-slate-600 font-medium mt-1">
+              Check your current exam price, see what you save, and get professional registration assistance for ₹199.
             </p>
           </div>
-          <p className="text-sm text-slate-400 italic text-right whitespace-nowrap">
-            Same official exam.<br className="hidden sm:block" /> Lower price with Testly.
+          <p className="text-sm text-slate-500 italic text-right whitespace-nowrap">
+            Same official test slot.<br className="hidden sm:block" /> Lower out-of-pocket price.
           </p>
         </div>
 

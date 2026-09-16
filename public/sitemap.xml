@@ -20,6 +20,14 @@
     <priority>0.95</priority>
   </url>
 
+  <!-- Testly Campus Institutional B2B System -->
+  <url>
+    <loc>https://testly.in/campus</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
   <!-- Central Guides & Research Intelligence Library -->
   <url>
     <loc>https://testly.in/guides</loc>

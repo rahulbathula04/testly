@@ -2,9 +2,9 @@ import React from 'react';
 import { ArrowRight, BadgeCheck, Clock, ShieldCheck } from 'lucide-react';
 
 const pillars = [
-  { icon: BadgeCheck, label: 'SAVE MONEY', sub: 'Discounted exam vouchers' },
-  { icon: Clock,       label: 'SAVE TIME',  sub: 'We handle registration' },
-  { icon: ShieldCheck, label: 'AVOID ERRORS', sub: 'Passport & detail verification' },
+  { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional rates' },
+  { icon: Clock,       label: '₹199 CONCIERGE',    sub: 'Full registration assistance' },
+  { icon: ShieldCheck, label: 'ZERO ERRORS',       sub: 'Passport name & slot audit' },
 ];
 
 const avatarColors = ['#4f7cac','#3d8b5e','#c07d3a','#a04f6a','#5a4fa0'];
@@ -68,7 +68,7 @@ export default function Hero({ onBookTest }) {
 
           {/* Subheading */}
           <p className="text-[17px] text-slate-600 font-medium leading-relaxed">
-            Save on your official exam fee. Get your registration handled by Testly.
+            Check your current exam price, see what you save, and get professional registration assistance from Testly for ₹199.
           </p>
 
           {/* 3 Value Pillars */}

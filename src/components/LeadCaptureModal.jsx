@@ -31,7 +31,7 @@ const HELP_OPTIONS = [
   'Not sure yet'
 ];
 
-export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE' }) {
+export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE', onOpenAgreement }) {
   const [exam, setExam] = useState(defaultTest);
   const [timing, setTiming] = useState('Within 1 month');
   const [name, setName] = useState('');
@@ -253,8 +253,20 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE' 
                 </p>
               )}
 
-              {/* CTA Submit Button */}
-              <div className="pt-2 space-y-2">
+              {/* Agency Disclaimer & CTA Submit Button */}
+              <div className="pt-2 space-y-2.5">
+                <p className="text-[10px] text-slate-500 leading-relaxed text-center">
+                  By submitting, you appoint Testly as your administrative agent under the{' '}
+                  <button
+                    type="button"
+                    onClick={onOpenAgreement}
+                    className="text-emerald-600 hover:text-emerald-700 underline font-semibold"
+                  >
+                    Candidate Agency Agreement (ICA 1872)
+                  </button>
+                  . ₹199 assistance fee applies upon booking.
+                </p>
+
                 <button
                   type="submit"
                   className="w-full bg-slate-900 hover:bg-slate-700 text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group"

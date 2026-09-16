@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Footer({ onOpenAdmin, onNavigate }) {
+export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
   const handleNav = (e, href) => {
     if (href.startsWith('/#')) {
       e.preventDefault();
@@ -37,7 +37,7 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
               <span className="text-[11px] font-medium text-slate-400">Exams Made Easier</span>
             </div>
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              India's premier exam registration assistance service. We empower students and study-abroad aspirants to book official exams with corporate voucher savings, zero foreign card markups, and human-verified passport checks.
+              India's premier exam registration assistance company. We empower students and study-abroad aspirants to book official exams with institutional savings, zero foreign card markups, and human-verified passport checks under the Indian Contract Act, 1872.
             </p>
             <div className="pt-2 text-[11px] text-slate-500">
               Telangana Support Desk: +91 93473 79041 • Madhapur & Begumpet
@@ -90,11 +90,12 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
               </li>
               <li>
                 <a
-                  href="/#savings"
-                  onClick={(e) => handleNav(e, '/#savings')}
-                  className="hover:text-white transition-colors"
+                  href="/campus"
+                  onClick={(e) => handleNav(e, '/campus')}
+                  className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors flex items-center gap-1"
                 >
-                  GRE Voucher Rates
+                  <span>Testly Campus (B2B)</span>
+                  <span className="text-[9px] bg-emerald-500/20 px-1.5 py-0.2 rounded font-mono">NEW</span>
                 </a>
               </li>
               <li>
@@ -103,7 +104,7 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
                   onClick={(e) => handleNav(e, '/#savings')}
                   className="hover:text-white transition-colors"
                 >
-                  TOEFL Voucher Rates
+                  GRE Booking Rates
                 </a>
               </li>
               <li>
@@ -112,7 +113,16 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
                   onClick={(e) => handleNav(e, '/#savings')}
                   className="hover:text-white transition-colors"
                 >
-                  PTE & IELTS Vouchers
+                  TOEFL Booking Rates
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#savings"
+                  onClick={(e) => handleNav(e, '/#savings')}
+                  className="hover:text-white transition-colors"
+                >
+                  PTE & IELTS Rates
                 </a>
               </li>
             </ul>
@@ -150,13 +160,13 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
                 </a>
               </li>
               <li>
-                <a
-                  href="/#faq"
-                  onClick={(e) => handleNav(e, '/#faq')}
-                  className="hover:text-white transition-colors"
+                <button
+                  type="button"
+                  onClick={onOpenAgreement}
+                  className="text-slate-400 hover:text-emerald-400 transition-colors text-left"
                 >
-                  Frequently Asked Questions
-                </a>
+                  Candidate Agency Agreement (ICA 1872)
+                </button>
               </li>
               <li>
                 <button
@@ -173,10 +183,18 @@ export default function Footer({ onOpenAdmin, onNavigate }) {
 
         {/* Bottom Line & Legal Disclaimer */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-          <p>© {new Date().getFullYear()} Testly Services India. All rights reserved.</p>
+          <div className="space-y-1">
+            <p>© {new Date().getFullYear()} Testly Services India. All rights reserved.</p>
+            <button
+              onClick={onOpenAgreement}
+              className="text-slate-400 hover:text-white underline underline-offset-2"
+            >
+              Terms of Agency & Registration Mandate
+            </button>
+          </div>
 
           <p className="text-center md:text-right max-w-xl leading-relaxed">
-            Testly is an independent exam registration assistance service. ETS, GRE, TOEFL, Pearson, PTE, IDP, IELTS, GMAC, and Duolingo are registered trademarks of their respective owners. Testly is not affiliated with or endorsed by these testing entities.
+            Testly is an independent exam registration assistance company operating under the Indian Contract Act, 1872 (Sections 182–238). ETS, GRE, TOEFL, Pearson, PTE, IDP, IELTS, GMAC, and Duolingo are registered trademarks of their respective owners. Testly is not affiliated with or endorsed by these testing entities.
           </p>
         </div>
 

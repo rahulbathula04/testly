@@ -3,6 +3,7 @@ import { ArrowRight, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Exam Fees & Savings', href: '/exam-fees' },
+  { label: 'Testly Campus', href: '/campus' },
   { label: 'Guides & Research', href: '/guides' },
   { label: 'Hyderabad Hub', href: '/locations/hyderabad' },
   { label: 'Madhapur Desk', href: '/locations/madhapur' },
