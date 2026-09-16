@@ -21,7 +21,10 @@ import {
   LogOut,
   ChevronRight,
   Shield,
-  Layers
+  Layers,
+  Trash2,
+  IndianRupee,
+  Check
 } from 'lucide-react';
 import {
   getStoredLeads,
@@ -31,6 +34,7 @@ import {
   OBJECTIONS,
   createNewLead
 } from '../../utils/crmStore';
+import { EXAM_DATA } from '../PriceProof';
 
 export default function RealAdminPortal({
   onNavigateHome,
@@ -44,7 +48,6 @@ export default function RealAdminPortal({
   const [filterStatus, setFilterStatus] = useState('ALL');
   const [filterPriority, setFilterPriority] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentAgent, setCurrentAgent] = useState('Arjun (Sales Lead)');
   const [newNoteText, setNewNoteText] = useState('');
   const [showAddLeadModal, setShowAddLeadModal] = useState(false);
 
@@ -56,7 +59,12 @@ export default function RealAdminPortal({
 
   useEffect(() => {
     const handleUpdate = () => {
-      setLeads(getStoredLeads());
+      const current = getStoredLeads();
+      setLeads(current);
+      if (selectedLead) {
+        const refreshed = current.find((l) => l.id === selectedLead.id);
+        if (refreshed) setSelectedLead(refreshed);
+      }
     };
     window.addEventListener('testly_leads_updated', handleUpdate);
     window.addEventListener('testly_new_lead_alert', handleUpdate);
@@ -64,8 +72,9 @@ export default function RealAdminPortal({
       window.removeEventListener('testly_leads_updated', handleUpdate);
       window.removeEventListener('testly_new_lead_alert', handleUpdate);
     };
-  }, []);
+  }, [selectedLead]);
 
+  // Update lead in state and persistence
   const updateLead = (updatedLead) => {
     const updated = leads.map((l) => (l.id === updatedLead.id ? updatedLead : l));
     setLeads(updated);
@@ -73,12 +82,21 @@ export default function RealAdminPortal({
     setSelectedLead(updatedLead);
   };
 
+  const handleDeleteLead = (id) => {
+    if (window.confirm('Delete this candidate lead permanently?')) {
+      const updated = leads.filter((l) => l.id !== id);
+      setLeads(updated);
+      saveStoredLeads(updated);
+      setSelectedLead(null);
+    }
+  };
+
   const handleAddNote = (e) => {
     e.preventDefault();
     if (!newNoteText.trim() || !selectedLead) return;
 
     const newNote = {
-      author: currentAgent.split(' ')[0],
+      author: adminUser?.name || 'Rahul (Admin)',
       text: newNoteText.trim(),
       time: 'Just now'
     };
@@ -99,8 +117,8 @@ export default function RealAdminPortal({
       phone: manualPhone.startsWith('+91') ? manualPhone : `+91 ${manualPhone}`,
       exam: manualExam,
       timing: manualTiming,
-      source: 'Admin Manual Entry',
-      campaign: 'Direct Inbound'
+      source: 'Admin Direct Inbound',
+      campaign: 'Direct Walk-in / Call'
     });
     setShowAddLeadModal(false);
     setManualName('');
@@ -131,16 +149,62 @@ export default function RealAdminPortal({
     document.body.removeChild(link);
   };
 
-  // Metrics
-  const totalLeadsCount = 248 + leads.length - 7;
-  const newCount = leads.filter((l) => l.status === 'New').length + 172;
-  const contactedCount = leads.filter((l) => ['Contacted', 'Connected', 'Qualified', 'Interested', 'Price Shared', 'Payment Pending', 'Paid', 'Registration Completed'].includes(l.status)).length + 96;
-  const interestedCount = leads.filter((l) => ['Interested', 'Price Shared', 'Payment Pending', 'Paid', 'Registration Completed'].includes(l.status)).length + 54;
-  const paymentPendingCount = leads.filter((l) => l.status === 'Payment Pending').length + 21;
-  const convertedCount = leads.filter((l) => ['Paid', 'Registration Completed'].includes(l.status)).length + 17;
-  const followUpCount = leads.filter((l) => l.status === 'Follow-up').length + 76;
+  // ── 100% REAL DYNAMIC METRICS (Zero Hardcoded Offsets) ───────────────────
+  const totalLeadsCount = leads.length;
+  const newCount = leads.filter((l) => l.status === 'New').length;
+  const contactedCount = leads.filter((l) =>
+    ['Contacted', 'Connected', 'Qualified', 'Interested', 'Price Shared', 'Payment Pending', 'Paid', 'Registration Completed'].includes(l.status)
+  ).length;
+  const qualifiedCount = leads.filter((l) =>
+    ['Qualified', 'Interested', 'Price Shared', 'Payment Pending', 'Paid', 'Registration Completed'].includes(l.status)
+  ).length;
+  const interestedCount = leads.filter((l) =>
+    ['Interested', 'Price Shared', 'Payment Pending', 'Paid', 'Registration Completed'].includes(l.status)
+  ).length;
+  const paymentPendingCount = leads.filter((l) => l.status === 'Payment Pending').length;
+  const convertedCount = leads.filter((l) => ['Paid', 'Registration Completed'].includes(l.status)).length;
+  const followUpCount = leads.filter((l) => l.status === 'Follow-up').length;
 
-  // Filtered
+  // Real funnel percentages
+  const safeTotal = totalLeadsCount > 0 ? totalLeadsCount : 1;
+  const contactedPct = Math.round((contactedCount / safeTotal) * 100);
+  const qualifiedPct = Math.round((qualifiedCount / safeTotal) * 100);
+  const interestedPct = Math.round((interestedCount / safeTotal) * 100);
+  const pendingPct = Math.round((paymentPendingCount / safeTotal) * 100);
+  const convertedPct = Math.round((convertedCount / safeTotal) * 100);
+
+  // Real Realized Revenue from Converted Leads
+  const convertedLeads = leads.filter((l) => ['Paid', 'Registration Completed'].includes(l.status));
+  const totalRevenue = convertedLeads.reduce((acc, l) => {
+    const voucherPrice = EXAM_DATA[l.exam]?.testlyPrice || 19000;
+    return acc + voucherPrice + 199;
+  }, 0);
+  const avgTicket = convertedCount > 0 ? Math.round(totalRevenue / convertedCount) : 0;
+
+  // Real Exam Demand Counts
+  const examCounts = {};
+  leads.forEach((l) => {
+    examCounts[l.exam] = (examCounts[l.exam] || 0) + 1;
+  });
+
+  // Real Channel Breakdown
+  const sourceCounts = {};
+  leads.forEach((l) => {
+    const src = l.source || 'Direct';
+    sourceCounts[src] = (sourceCounts[src] || 0) + 1;
+  });
+
+  // Real Objections Breakdown
+  const objectionCounts = {};
+  leads.forEach((l) => {
+    const obj = l.qualification?.objection;
+    if (obj) {
+      objectionCounts[obj] = (objectionCounts[obj] || 0) + 1;
+    }
+  });
+  const totalObjectionsLogged = Object.values(objectionCounts).reduce((a, b) => a + b, 0);
+
+  // Filtered Leads
   const filteredLeads = leads.filter((l) => {
     const matchExam = filterExam === 'ALL' || l.exam === filterExam;
     const matchStatus = filterStatus === 'ALL' || l.status === filterStatus;
@@ -160,7 +224,7 @@ export default function RealAdminPortal({
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
 
-      {/* ── Top Enterprise Header ── */}
+      {/* ── Top Header ── */}
       <header className="h-16 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between shrink-0 sticky top-0 z-30">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
@@ -194,7 +258,6 @@ export default function RealAdminPortal({
             <Download className="w-3.5 h-3.5" /> Export CSV
           </button>
 
-          {/* Switch to public website */}
           <button
             onClick={onNavigateHome}
             className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-bold px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
@@ -238,7 +301,7 @@ export default function RealAdminPortal({
               { id: 'leads', label: 'All Leads', icon: Users, badge: leads.length },
               { id: 'followups', label: "Today's Follow-ups", icon: Clock, badge: followUpsQueue.length, badgeColor: 'bg-amber-500/20 text-amber-300' },
               { id: 'funnel', label: 'Pipeline Funnel', icon: TrendingUp },
-              { id: 'objections', label: 'Objection Intelligence', icon: AlertTriangle },
+              { id: 'objections', label: 'Objection Intelligence', icon: AlertTriangle, badge: totalObjectionsLogged, badgeColor: 'bg-rose-500/20 text-rose-300' },
               { id: 'overview', label: 'Executive Analytics', icon: BarChart3 }
             ].map((item) => {
               const Icon = item.icon;
@@ -267,14 +330,17 @@ export default function RealAdminPortal({
             })}
           </div>
 
-          {/* Quick Support & Server Info */}
-          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-3 space-y-2">
+          {/* Database Sync Status */}
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-3 space-y-1.5">
             <div className="flex items-center justify-between text-[11px] font-bold text-slate-400">
-              <span>Database Sync</span>
-              <span className="text-emerald-400 font-mono">100% OK</span>
+              <span>Live Database</span>
+              <span className="text-emerald-400 font-mono flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                {leads.length} Records
+              </span>
             </div>
             <p className="text-[10px] text-slate-500">
-              Voucher Procurement API v2.4 • Connected to Hyderabad Madhapur Gateway
+              100% computed from active candidates in local database. Zero mock offsets.
             </p>
           </div>
         </aside>
@@ -282,10 +348,10 @@ export default function RealAdminPortal({
         {/* ── Main Panel Content ── */}
         <main className="flex-1 flex flex-col overflow-hidden bg-slate-950">
 
-          {/* Top Live KPI Counters */}
+          {/* ── Real Dynamic Metrics Bar (100% accurate, no hardcoding) ── */}
           <div className="px-6 py-3 bg-slate-900/60 border-b border-slate-800 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 shrink-0">
             {[
-              { label: "Today's Enquiries", val: totalLeadsCount, color: 'text-white' },
+              { label: "Total Leads", val: totalLeadsCount, color: 'text-white' },
               { label: 'New Leads', val: newCount, color: 'text-blue-400' },
               { label: 'Contacted', val: contactedCount, color: 'text-indigo-400' },
               { label: 'Interested', val: interestedCount, color: 'text-amber-400' },
@@ -302,7 +368,7 @@ export default function RealAdminPortal({
             ))}
           </div>
 
-          {/* VIEW: ALL LEADS TABLE & PROFILE DRAWER */}
+          {/* VIEW 1: ALL LEADS TABLE & PROFILE DRAWER */}
           {activeNav === 'leads' && (
             <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
 
@@ -365,89 +431,96 @@ export default function RealAdminPortal({
 
                 {/* Table Rows */}
                 <div className="flex-1 overflow-y-auto divide-y divide-slate-800/60">
-                  {filteredLeads.map((lead) => {
-                    const isSelected = selectedLead?.id === lead.id;
-                    const cleanPhone = lead.phone.replace(/\D/g, '');
+                  {filteredLeads.length === 0 ? (
+                    <div className="p-12 text-center text-slate-500 space-y-2">
+                      <Users className="w-10 h-10 opacity-30 mx-auto" />
+                      <p className="text-sm font-semibold">No leads match the selected filters.</p>
+                    </div>
+                  ) : (
+                    filteredLeads.map((lead) => {
+                      const isSelected = selectedLead?.id === lead.id;
+                      const cleanPhone = lead.phone.replace(/\D/g, '');
 
-                    return (
-                      <div
-                        key={lead.id}
-                        onClick={() => setSelectedLead(lead)}
-                        className={`p-4 hover:bg-slate-900/80 cursor-pointer transition-colors flex items-center justify-between gap-4 ${
-                          isSelected ? 'bg-slate-900 border-l-4 border-l-emerald-500' : ''
-                        }`}
-                      >
-                        <div className="space-y-1 min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-black text-white">{lead.name}</span>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">
-                              {lead.exam}
-                            </span>
-                            {lead.priority === 'HOT' && (
-                              <span className="text-[9px] font-black px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center gap-0.5">
-                                <Flame className="w-2.5 h-2.5" /> HOT
+                      return (
+                        <div
+                          key={lead.id}
+                          onClick={() => setSelectedLead(lead)}
+                          className={`p-4 hover:bg-slate-900/80 cursor-pointer transition-colors flex items-center justify-between gap-4 ${
+                            isSelected ? 'bg-slate-900 border-l-4 border-l-emerald-500' : ''
+                          }`}
+                        >
+                          <div className="space-y-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-black text-white">{lead.name}</span>
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">
+                                {lead.exam}
                               </span>
-                            )}
+                              {lead.priority === 'HOT' && (
+                                <span className="text-[9px] font-black px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center gap-0.5">
+                                  <Flame className="w-2.5 h-2.5" /> HOT
+                                </span>
+                              )}
+                            </div>
+
+                            <div className="flex items-center gap-3 text-xs text-slate-400">
+                              <span className="font-mono text-slate-300">{lead.phone}</span>
+                              <span>•</span>
+                              <span>Target: <strong className="text-slate-200">{lead.timing}</strong></span>
+                              <span>•</span>
+                              <span className="text-slate-500">Rep: {lead.assignedTo}</span>
+                            </div>
+
+                            <p className="text-[11px] text-slate-400">
+                              Next Action: <strong className="text-amber-300">{lead.nextAction}</strong>
+                            </p>
                           </div>
 
-                          <div className="flex items-center gap-3 text-xs text-slate-400">
-                            <span className="font-mono text-slate-300">{lead.phone}</span>
-                            <span>•</span>
-                            <span>Target: <strong className="text-slate-200">{lead.timing}</strong></span>
-                            <span>•</span>
-                            <span className="text-slate-500">Rep: {lead.assignedTo}</span>
+                          {/* Status + 1-Click Call & WA Buttons */}
+                          <div className="flex items-center gap-2 shrink-0">
+                            <span
+                              className={`text-[10px] font-bold px-2.5 py-1 rounded-md border ${
+                                lead.status === 'New'
+                                  ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
+                                  : lead.status === 'Interested'
+                                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                                  : lead.status === 'Paid' || lead.status === 'Registration Completed'
+                                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                                  : lead.status === 'Payment Pending'
+                                  ? 'bg-orange-500/20 text-orange-300 border-orange-500/40'
+                                  : 'bg-slate-800 text-slate-400 border-slate-700'
+                              }`}
+                            >
+                              {lead.status}
+                            </span>
+
+                            <a
+                              href={`tel:${lead.phone}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="w-8 h-8 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-colors shadow-sm"
+                              title="Call candidate directly"
+                            >
+                              <Phone className="w-3.5 h-3.5" />
+                            </a>
+
+                            <a
+                              href={`https://wa.me/${cleanPhone}?text=Hi%20${encodeURIComponent(lead.name)},%20this%20is%20${lead.assignedTo}%20from%20Testly.`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="w-8 h-8 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white flex items-center justify-center transition-colors shadow-sm"
+                              title="Open WhatsApp chat"
+                            >
+                              <MessageCircle className="w-3.5 h-3.5" />
+                            </a>
                           </div>
-
-                          <p className="text-[11px] text-slate-400">
-                            Next Action: <strong className="text-amber-300">{lead.nextAction}</strong>
-                          </p>
                         </div>
-
-                        {/* Status + 1-Click Call & WA Buttons */}
-                        <div className="flex items-center gap-2 shrink-0">
-                          <span
-                            className={`text-[10px] font-bold px-2.5 py-1 rounded-md border ${
-                              lead.status === 'New'
-                                ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
-                                : lead.status === 'Interested'
-                                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                                : lead.status === 'Paid' || lead.status === 'Registration Completed'
-                                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                                : lead.status === 'Payment Pending'
-                                ? 'bg-orange-500/20 text-orange-300 border-orange-500/40'
-                                : 'bg-slate-800 text-slate-400 border-slate-700'
-                            }`}
-                          >
-                            {lead.status}
-                          </span>
-
-                          <a
-                            href={`tel:${lead.phone}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="w-8 h-8 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-colors shadow-sm"
-                            title="Call candidate directly"
-                          >
-                            <Phone className="w-3.5 h-3.5" />
-                          </a>
-
-                          <a
-                            href={`https://wa.me/${cleanPhone}?text=Hi%20${encodeURIComponent(lead.name)},%20calling%20from%20Testly%20regarding%20your%20${lead.exam}%20booking.`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="w-8 h-8 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white flex items-center justify-center transition-colors shadow-sm"
-                            title="Open WhatsApp chat"
-                          >
-                            <MessageCircle className="w-3.5 h-3.5" />
-                          </a>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  )}
                 </div>
               </div>
 
-              {/* Lead Profile Drawer / Call Screen */}
+              {/* Lead Profile Drawer / In-Call Qualification */}
               <div className="w-full lg:w-[460px] bg-slate-900 border-l border-slate-800 flex flex-col overflow-y-auto p-5 space-y-5">
                 {selectedLead ? (
                   <div className="space-y-5 animate-in fade-in duration-100">
@@ -463,9 +536,19 @@ export default function RealAdminPortal({
                           </div>
                           <p className="text-xs text-slate-400 font-mono mt-0.5">{selectedLead.id} • {selectedLead.source}</p>
                         </div>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-amber-500/30">
-                          {selectedLead.priority}
-                        </span>
+
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-amber-500/30">
+                            {selectedLead.priority}
+                          </span>
+                          <button
+                            onClick={() => handleDeleteLead(selectedLead.id)}
+                            className="text-slate-500 hover:text-rose-400 p-1 rounded hover:bg-rose-500/10 transition-colors"
+                            title="Delete Lead"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
 
                       {/* 1-Click Calling & WhatsApp Bar */}
@@ -709,7 +792,7 @@ export default function RealAdminPortal({
             </div>
           )}
 
-          {/* VIEW: TODAY'S FOLLOW-UPS */}
+          {/* VIEW 2: TODAY'S FOLLOW-UPS */}
           {activeNav === 'followups' && (
             <div className="flex-1 p-6 overflow-y-auto space-y-4">
               <div className="flex items-center justify-between">
@@ -722,64 +805,73 @@ export default function RealAdminPortal({
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {followUpsQueue.map((lead) => (
-                  <div key={lead.id} className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-base font-black text-white">{lead.name}</h4>
-                        <p className="text-xs text-slate-400 font-semibold">{lead.exam} • {lead.timing}</p>
+              {followUpsQueue.length === 0 ? (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center text-slate-400 space-y-2">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                  <p className="text-sm font-bold text-white">All caught up!</p>
+                  <p className="text-xs">No pending follow-ups scheduled for today.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {followUpsQueue.map((lead) => (
+                    <div key={lead.id} className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h4 className="text-base font-black text-white">{lead.name}</h4>
+                          <p className="text-xs text-slate-400 font-semibold">{lead.exam} • {lead.timing}</p>
+                        </div>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-950 text-amber-400 border border-amber-500/30">
+                          {lead.status}
+                        </span>
                       </div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-950 text-amber-400 border border-amber-500/30">
-                        {lead.status}
-                      </span>
-                    </div>
 
-                    <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-xs">
-                      <span className="text-[10px] font-bold uppercase text-slate-500 block">Scheduled Action</span>
-                      <p className="font-semibold text-amber-300 mt-0.5">{lead.nextAction}</p>
-                    </div>
+                      <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-xs">
+                        <span className="text-[10px] font-bold uppercase text-slate-500 block">Scheduled Action</span>
+                        <p className="font-semibold text-amber-300 mt-0.5">{lead.nextAction}</p>
+                      </div>
 
-                    <div className="grid grid-cols-2 gap-2 pt-1">
-                      <a
-                        href={`tel:${lead.phone}`}
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
-                      >
-                        <Phone className="w-3.5 h-3.5" /> Call Rep
-                      </a>
-                      <button
-                        onClick={() => {
-                          setSelectedLead(lead);
-                          setActiveNav('leads');
-                        }}
-                        className="border border-slate-700 hover:bg-slate-800 text-slate-200 text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
-                      >
-                        Profile <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="grid grid-cols-2 gap-2 pt-1">
+                        <a
+                          href={`tel:${lead.phone}`}
+                          className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+                        >
+                          <Phone className="w-3.5 h-3.5" /> Call Rep
+                        </a>
+                        <button
+                          onClick={() => {
+                            setSelectedLead(lead);
+                            setActiveNav('leads');
+                          }}
+                          className="border border-slate-700 hover:bg-slate-800 text-slate-200 text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+                        >
+                          Profile <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
-          {/* VIEW: FUNNEL */}
+          {/* VIEW 3: REAL PIPELINE FUNNEL */}
           {activeNav === 'funnel' && (
             <div className="flex-1 p-6 overflow-y-auto space-y-6">
               <div>
                 <h3 className="text-lg font-black text-white">End-to-End Acquisition Funnel</h3>
-                <p className="text-xs text-slate-400">Conversion velocity from initial ad / search impression to paid voucher registration.</p>
+                <p className="text-xs text-slate-400">
+                  Real conversion progression computed directly from {leads.length} leads in your active database.
+                </p>
               </div>
 
               <div className="space-y-3 max-w-2xl">
                 {[
-                  { step: '1,000 Total Leads', pct: 100, sub: 'Google Ads, Meta, Instagram, Organic' },
-                  { step: '700 Contacted', pct: 70, sub: 'First call initiated within 15 minutes' },
-                  { step: '450 Qualified', pct: 45, sub: 'Passport & target test date confirmed' },
-                  { step: '220 Interested', pct: 22, sub: 'Voucher savings breakdown shared' },
-                  { step: '120 Payment Pending', pct: 12, sub: 'UPI QR code sent for voucher + ₹199' },
-                  { step: '95 Paid & Converted', pct: 9.5, sub: 'Official voucher issued' },
-                  { step: '95 Registered', pct: 9.5, sub: 'Zero-defect slot registration completed' }
+                  { step: `${totalLeadsCount} Total Leads`, pct: 100, count: totalLeadsCount, sub: 'Inbound web enquiries & direct calls' },
+                  { step: `${contactedCount} Contacted`, pct: contactedPct, count: contactedCount, sub: 'Phone touchpoint initiated' },
+                  { step: `${qualifiedCount} Qualified`, pct: qualifiedPct, count: qualifiedCount, sub: 'Passport & target test date confirmed' },
+                  { step: `${interestedCount} Interested`, pct: interestedPct, count: interestedCount, sub: 'Discounted voucher savings shared' },
+                  { step: `${paymentPendingCount} Payment Pending`, pct: pendingPct, count: paymentPendingCount, sub: 'UPI QR code sent for voucher + ₹199' },
+                  { step: `${convertedCount} Paid & Converted`, pct: convertedPct, count: convertedCount, sub: 'Official voucher issued & slot booked' }
                 ].map((f) => (
                   <div key={f.step} className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-1.5">
                     <div className="flex items-center justify-between text-xs">
@@ -799,68 +891,98 @@ export default function RealAdminPortal({
             </div>
           )}
 
-          {/* VIEW: OBJECTIONS */}
+          {/* VIEW 4: REAL OBJECTION INTELLIGENCE */}
           {activeNav === 'objections' && (
             <div className="flex-1 p-6 overflow-y-auto space-y-6">
               <div>
-                <h3 className="text-lg font-black text-white">Sales Objection Intelligence Engine</h3>
-                <p className="text-xs text-slate-400">Customer feedback collected across inbound calls to guide marketing and copywriting.</p>
+                <h3 className="text-lg font-black text-white">Sales Objection Intelligence</h3>
+                <p className="text-xs text-slate-400">
+                  Real customer objections logged during phone calls ({totalObjectionsLogged} total objections recorded).
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { obj: 'Is the voucher genuine?', pct: 34, action: 'Highlight ETS/Pearson procurement disclaimers & candidate testimonials' },
-                  { obj: 'Wants to compare with official website', pct: 28, action: 'Add explicit reference price table right on landing page' },
-                  { obj: 'Needs parent / family approval', pct: 18, action: 'Send 1-page WhatsApp PDF breakdown for parents' },
-                  { obj: 'Not ready / Needs more prep time', pct: 12, action: 'Voucher valid for 90 days — emphasize flexibility' },
-                  { obj: "Doesn't trust online payment", pct: 8, action: 'Invite to Hyderabad Madhapur / Begumpet local centers' }
-                ].map((item) => (
-                  <div key={item.obj} className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-white">{item.obj}</span>
-                      <span className="text-xs font-black text-rose-400">{item.pct}%</span>
-                    </div>
-                    <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
-                      <div className="h-full bg-rose-500" style={{ width: `${item.pct * 2}%` }} />
-                    </div>
-                    <div className="bg-slate-950 p-2 rounded-lg border border-slate-850 text-[11px] text-slate-400">
-                      <strong className="text-slate-300">Playbook:</strong> {item.action}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {totalObjectionsLogged === 0 ? (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center text-slate-400 space-y-2 max-w-xl">
+                  <AlertTriangle className="w-8 h-8 text-amber-400 mx-auto" />
+                  <p className="text-sm font-bold text-white">No objections logged yet</p>
+                  <p className="text-xs">
+                    When you speak with candidates, select an objection from the Lead Profile dropdown to track roadblocks.
+                  </p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {Object.entries(objectionCounts).map(([obj, count]) => {
+                    const pct = Math.round((count / totalObjectionsLogged) * 100);
+                    return (
+                      <div key={obj} className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-bold text-white">{obj}</span>
+                          <span className="text-xs font-black text-rose-400">{count} leads ({pct}%)</span>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                          <div className="h-full bg-rose-500" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
 
-          {/* VIEW: EXECUTIVE ANALYTICS */}
+          {/* VIEW 5: REAL EXECUTIVE ANALYTICS */}
           {activeNav === 'overview' && (
             <div className="flex-1 p-6 overflow-y-auto space-y-6">
-              <h3 className="text-lg font-black text-white">Executive Sales Analytics</h3>
+              <div>
+                <h3 className="text-lg font-black text-white">Executive Sales Analytics</h3>
+                <p className="text-xs text-slate-400">100% computed from your current candidate database.</p>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                {/* Real Exam Demand */}
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
-                  <span className="text-xs font-bold text-slate-400 uppercase">Top Exam Demand</span>
-                  <div className="space-y-1 pt-2">
-                    <div className="flex justify-between text-xs font-bold"><span>GRE</span><span className="text-emerald-400">44%</span></div>
-                    <div className="flex justify-between text-xs font-bold"><span>TOEFL</span><span className="text-emerald-400">26%</span></div>
-                    <div className="flex justify-between text-xs font-bold"><span>PTE</span><span className="text-emerald-400">18%</span></div>
-                    <div className="flex justify-between text-xs font-bold"><span>Others</span><span className="text-emerald-400">12%</span></div>
+                  <span className="text-xs font-bold text-slate-400 uppercase">Exam Demand Breakdown</span>
+                  <div className="space-y-1.5 pt-2">
+                    {Object.entries(examCounts).map(([ex, count]) => {
+                      const pct = Math.round((count / safeTotal) * 100);
+                      return (
+                        <div key={ex} className="flex justify-between text-xs font-bold">
+                          <span className="text-slate-200">{ex}</span>
+                          <span className="text-emerald-400 font-mono">{count} leads ({pct}%)</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
+                {/* Real Channel Sources */}
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
-                  <span className="text-xs font-bold text-slate-400 uppercase">Top Channels</span>
-                  <div className="space-y-1 pt-2">
-                    <div className="flex justify-between text-xs font-bold"><span>Meta (Instagram)</span><span className="text-blue-400">48%</span></div>
-                    <div className="flex justify-between text-xs font-bold"><span>Google Search</span><span className="text-blue-400">32%</span></div>
-                    <div className="flex justify-between text-xs font-bold"><span>Direct & WhatsApp</span><span className="text-blue-400">20%</span></div>
+                  <span className="text-xs font-bold text-slate-400 uppercase">Inbound Lead Channels</span>
+                  <div className="space-y-1.5 pt-2">
+                    {Object.entries(sourceCounts).map(([src, count]) => {
+                      const pct = Math.round((count / safeTotal) * 100);
+                      return (
+                        <div key={src} className="flex justify-between text-xs font-bold">
+                          <span className="text-slate-200">{src}</span>
+                          <span className="text-blue-400 font-mono">{count} leads ({pct}%)</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
+                {/* Real Revenue Realized */}
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
-                  <span className="text-xs font-bold text-slate-400 uppercase">Average Ticket Size</span>
-                  <p className="text-2xl font-black text-white pt-2">₹19,199</p>
-                  <p className="text-[11px] text-slate-400">Exam Voucher (avg ₹19,000) + ₹199 Service</p>
+                  <span className="text-xs font-bold text-slate-400 uppercase">Realized Sales Revenue</span>
+                  <p className="text-3xl font-black text-white pt-2">
+                    ₹{totalRevenue.toLocaleString('en-IN')}
+                  </p>
+                  <p className="text-[11px] text-slate-400">
+                    From <strong className="text-emerald-400">{convertedCount}</strong> converted candidates (Avg ticket: ₹{avgTicket.toLocaleString('en-IN')})
+                  </p>
                 </div>
+
               </div>
             </div>
           )}
