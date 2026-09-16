@@ -3,122 +3,131 @@ import { Users, FileText, CreditCard, CheckCircle2, ArrowRight } from 'lucide-re
 
 const STEPS = [
   {
-    num: '1',
-    badge: 'Takes 60 secs',
+    num: '01',
+    tag: '60 seconds',
     icon: Users,
     title: 'Tell Us Your Plan',
-    desc: 'Select your exam and share your preferred test date and city.'
+    desc: 'Choose your exam, preferred test date and city. Takes under a minute.',
+    color: '#3B82F6'
   },
   {
-    num: '2',
-    badge: 'Within 15 mins',
+    num: '02',
+    tag: 'Within 15 mins',
     icon: FileText,
     title: 'We Verify & Guide',
-    desc: 'Our experts audit your passport name and verify seat availability.'
+    desc: 'Our officers audit your passport name and confirm real-time seat availability.',
+    color: '#1E3A8A'
   },
   {
-    num: '3',
-    badge: '100% Encrypted',
+    num: '03',
+    tag: '100% Encrypted',
     icon: CreditCard,
     title: 'Complete Payment',
-    desc: 'Pay the verified discounted exam fee plus the ₹199 concierge fee.'
+    desc: 'Pay the verified discounted exam fee + ₹199 concierge fee securely.',
+    color: '#3B82F6'
   },
   {
-    num: '4',
-    badge: 'Official Hall Ticket',
+    num: '04',
+    tag: 'Official Confirmation',
     icon: CheckCircle2,
     title: 'Get Registered',
-    desc: 'Receive your official ETS / Pearson confirmation slip directly on WhatsApp & Email.'
+    desc: 'Receive your official ETS / Pearson hall ticket on WhatsApp & Email.',
+    color: '#1E3A8A'
   }
 ];
 
 export default function HowItWorksAndDeciding({ onBookTest }) {
   return (
-    <section id="how-it-works" className="py-12 sm:py-16 bg-slate-50/50 border-b border-slate-200/80 font-[Inter,system-ui,sans-serif]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-9">
+    <section id="how-it-works" className="py-16 sm:py-20 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200/80 text-blue-700 text-[10px] font-extrabold uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-2.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[11px] font-bold tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
               <span>HOW IT WORKS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Get Registered in 4 Simple Steps
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
+              Registered in 4 Simple Steps
             </h2>
+            <p className="text-sm text-[#64748B] max-w-md">
+              From first message to official hall ticket — we manage the entire process for you.
+            </p>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-500 font-medium sm:text-right">
-            From enquiry to exam confirmation — we handle the complexity for you.
-          </p>
+          <button
+            onClick={() => onBookTest('GRE')}
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto whitespace-nowrap"
+          >
+            <span>Start Now</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
 
-        {/* 4 Connected Step Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {/* Connecting line (desktop only) */}
+          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#BFDBFE] via-[#3B82F6]/40 to-[#BFDBFE] z-0" />
+
           {STEPS.map((step, idx) => {
             const Icon = step.icon;
-            const isLast = idx === STEPS.length - 1;
-
             return (
               <div
                 key={step.num}
-                onClick={() => onBookTest('GRE')}
-                className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-4 relative group hover:shadow-xl hover:border-blue-300 transition-all duration-200 hover:-translate-y-1 cursor-pointer shadow-[0_2px_8px_rgba(15,23,42,0.03)]"
+                className="relative flex flex-col gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-6 hover:bg-white hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-200 group z-10"
               >
-                {/* Step Circle & Badge */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-full bg-slate-900 group-hover:bg-blue-600 text-white font-black text-xs flex items-center justify-center shadow-xs transition-colors">
-                      {step.num}
-                    </span>
-                    <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100 shadow-2xs group-hover:scale-105 transition-transform">
-                      <Icon className="w-4 h-4" />
-                    </div>
+                {/* Step Number + Icon Row */}
+                <div className="flex items-center gap-3">
+                  {/* Step circle */}
+                  <div className="w-9 h-9 rounded-full bg-[#0F172A] group-hover:bg-[#1E3A8A] text-white text-[13px] font-bold flex items-center justify-center shrink-0 transition-colors shadow-sm z-10">
+                    {step.num}
                   </div>
-
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-700 transition-colors">
-                    {step.badge}
-                  </span>
+                  {/* Icon */}
+                  <div className="w-9 h-9 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white flex items-center justify-center border border-[#BFDBFE] transition-all">
+                    <Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+                  </div>
                 </div>
 
-                {/* Step Copy */}
-                <div className="space-y-1.5">
-                  <h3 className="text-sm font-black text-slate-950 leading-tight group-hover:text-blue-700 transition-colors">
+                {/* Content */}
+                <div className="space-y-2 flex-1">
+                  <h3 className="text-sm font-bold text-[#0F172A] leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                  <p className="text-xs text-[#64748B] leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
 
-                {/* Bottom micro indicator */}
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10.5px] text-slate-400 group-hover:text-blue-600 transition-colors">
-                  <span>Step 0{step.num}</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                {/* Tag badge at bottom */}
+                <div className="pt-3 border-t border-[#E5E7EB]">
+                  <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#1E3A8A] bg-[#EBF3FF] border border-[#BFDBFE]/70 px-2.5 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
+                    {step.tag}
+                  </span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Reassurance Strip */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-medium pt-2">
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>Official Candidate Booking Protocol</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>Zero Disqualification Guarantee</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>Human Officer Support via WhatsApp</span>
-          </div>
+        {/* Reassurance strip */}
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-[#64748B] font-medium border-t border-[#E5E7EB] pt-6">
+          {[
+            'Official Candidate Booking Protocol',
+            'Zero Disqualification Guarantee',
+            'Human Officer Support via WhatsApp'
+          ].map((item) => (
+            <div key={item} className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
 
       </div>
     </section>
   );
 }
+
+
