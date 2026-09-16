@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowRight, ShieldCheck, CheckCircle2, Sparkles, HelpCircle, Copy, Check } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { ExamLogo } from './ExamLogos';
 import { EXAM_OFFERINGS, EXAM_DATA } from '../data/examOfferings';
 
@@ -9,229 +9,187 @@ export { EXAM_DATA };
 const VERIFIED_DATE = '16 Sep 2026';
 const fmt = (n) => '₹' + n.toLocaleString('en-IN');
 
+// Vibrant exam theme configurations
+const EXAM_THEMES = {
+  GRE: {
+    border: 'border-blue-200/90 hover:border-blue-400',
+    cardBg: 'bg-gradient-to-b from-blue-50/80 via-white to-blue-50/30',
+    accentBar: 'bg-blue-600',
+    badgeBg: 'bg-gradient-to-r from-blue-600 to-indigo-600',
+    btnBg: 'bg-blue-600 hover:bg-blue-700',
+    badgeLabel: 'YOU SAVE',
+    badgeValue: '₹6,043',
+    subText: 'Verified rate'
+  },
+  TOEFL: {
+    border: 'border-indigo-200/90 hover:border-indigo-400',
+    cardBg: 'bg-gradient-to-b from-indigo-50/80 via-white to-violet-50/30',
+    accentBar: 'bg-indigo-600',
+    badgeBg: 'bg-gradient-to-r from-indigo-600 to-violet-600',
+    btnBg: 'bg-indigo-600 hover:bg-indigo-700',
+    badgeLabel: 'YOU SAVE',
+    badgeValue: '₹4,000',
+    subText: 'Verified rate'
+  },
+  PTE: {
+    border: 'border-cyan-200/90 hover:border-cyan-400',
+    cardBg: 'bg-gradient-to-b from-cyan-50/80 via-white to-sky-50/30',
+    accentBar: 'bg-cyan-600',
+    badgeBg: 'bg-gradient-to-r from-cyan-600 to-blue-600',
+    btnBg: 'bg-cyan-600 hover:bg-cyan-700',
+    badgeLabel: 'YOU SAVE',
+    badgeValue: '₹3,901',
+    subText: 'Pearson auth'
+  },
+  Duolingo: {
+    border: 'border-emerald-200/90 hover:border-emerald-400',
+    cardBg: 'bg-gradient-to-b from-emerald-50/80 via-white to-lime-50/30',
+    accentBar: 'bg-emerald-500',
+    badgeBg: 'bg-gradient-to-r from-emerald-600 to-teal-600',
+    btnBg: 'bg-emerald-600 hover:bg-emerald-700',
+    badgeLabel: 'CONCIERGE DESK',
+    badgeValue: 'Tech Audit Included',
+    subText: 'Home setup'
+  },
+  IELTS: {
+    border: 'border-rose-200/90 hover:border-rose-400',
+    cardBg: 'bg-gradient-to-b from-rose-50/80 via-white to-red-50/30',
+    accentBar: 'bg-rose-600',
+    badgeBg: 'bg-gradient-to-r from-rose-600 to-red-600',
+    btnBg: 'bg-rose-600 hover:bg-rose-700',
+    badgeLabel: 'OFFICIAL DESK',
+    badgeValue: 'Zero-Error Booking',
+    subText: 'IDP Center'
+  },
+  GMAT: {
+    border: 'border-amber-200/90 hover:border-amber-400',
+    cardBg: 'bg-gradient-to-b from-amber-50/80 via-white to-orange-50/30',
+    accentBar: 'bg-amber-500',
+    badgeBg: 'bg-gradient-to-r from-amber-600 to-orange-600',
+    btnBg: 'bg-amber-600 hover:bg-amber-700',
+    badgeLabel: 'EXECUTIVE DESK',
+    badgeValue: 'B-School Slot Match',
+    subText: 'Focus Edition'
+  }
+};
+
 export default function PriceProof({ onBookTest }) {
-  const [filter, setFilter] = useState('ALL'); // 'ALL' | 'SAVINGS' | 'SERVICE'
-  const [copiedScriptId, setCopiedScriptId] = useState(null);
-
-  const allExams = Object.values(EXAM_DATA);
-
-  const filteredExams = allExams.filter((exam) => {
-    if (filter === 'SAVINGS') return exam.category === 'SAVINGS_HERO';
-    if (filter === 'SERVICE') return exam.category === 'SERVICE_HERO' || exam.category === 'INFORMATION_FIRST';
-    return true;
-  });
-
-  const handleCopyScript = (e, exam) => {
-    e.stopPropagation();
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(exam.salesScript);
-      setCopiedScriptId(exam.id);
-      setTimeout(() => setCopiedScriptId(null), 2000);
-    }
-  };
+  const exams = Object.values(EXAM_DATA);
 
   return (
-    <section id="savings" className="py-16 bg-slate-50/60 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <section id="savings" className="py-10 bg-slate-50/50 border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/70 border border-emerald-300/80 text-emerald-800 text-xs font-bold">
+        {/* Compact Colorful Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-extrabold border border-emerald-300 mb-1.5 shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              Verified Institutional Booking & Concierge Desk
+              Verified Institutional Rates & Concierge Desk
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               Why Pay More for Your Exam?
             </h2>
-            <p className="text-[16px] text-slate-600 font-medium leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
               Check your current exam price, see what you save, and get professional registration assistance from Testly for ₹199.
             </p>
           </div>
 
-          {/* Segmented Category Filter Tabs */}
-          <div className="flex items-center gap-1.5 bg-slate-200/80 p-1 rounded-xl shrink-0 self-start md:self-end">
-            <button
-              onClick={() => setFilter('ALL')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                filter === 'ALL'
-                  ? 'bg-white text-slate-900 shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              All Exams (6)
-            </button>
-            <button
-              onClick={() => setFilter('SAVINGS')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                filter === 'SAVINGS'
-                  ? 'bg-white text-emerald-700 shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Savings Heroes (3)
-            </button>
-            <button
-              onClick={() => setFilter('SERVICE')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                filter === 'SERVICE'
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Concierge & Desks (3)
-            </button>
+          <div className="text-right hidden sm:block">
+            <span className="text-xs font-bold text-slate-500 italic block">
+              Same official test slot. Lower out-of-pocket price.
+            </span>
           </div>
         </div>
 
-        {/* 3-Column Balanced Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredExams.map((exam) => {
-            const isSavingsHero = exam.category === 'SAVINGS_HERO';
-            const isServiceHero = exam.category === 'SERVICE_HERO';
-            const isCopied = copiedScriptId === exam.id;
+        {/* 6-Across Small & Colorful Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {exams.map((exam) => {
+            const theme = EXAM_THEMES[exam.id] || EXAM_THEMES.GRE;
+            const isSavings = exam.category === 'SAVINGS_HERO';
 
             return (
               <div
                 key={exam.id}
                 onClick={() => onBookTest(exam.id)}
-                className="group relative bg-white border border-slate-200/90 hover:border-slate-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between cursor-pointer"
+                className={`group relative ${theme.cardBg} ${theme.border} border rounded-2xl p-3.5 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer overflow-hidden`}
               >
-                {/* Top Row: Logo + Category Badge */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="h-9 flex items-center">
-                      <ExamLogo examId={exam.id} className="h-8 max-w-[130px]" />
-                    </div>
+                {/* Top Colorful Accent Strip */}
+                <div className={`absolute top-0 inset-x-0 h-1 ${theme.accentBar}`} />
 
-                    {/* Category Badges */}
-                    {isSavingsHero && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-2xs">
-                        <Sparkles className="w-3 h-3 text-emerald-600" />
-                        {exam.categoryBadge}
-                      </span>
-                    )}
-                    {isServiceHero && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
-                        {exam.categoryBadge}
-                      </span>
-                    )}
-                    {!isSavingsHero && !isServiceHero && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                        {exam.categoryBadge}
-                      </span>
-                    )}
+                {/* Card Top: Logo & Provider Tag */}
+                <div className="space-y-2 pt-1">
+                  <div className="h-7 flex items-center justify-between">
+                    <ExamLogo examId={exam.id} className="h-6 max-w-[90px]" />
+                    <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">
+                      {theme.subText}
+                    </span>
                   </div>
 
-                  {/* Exam Title & Provider */}
+                  {/* Regular Price */}
                   <div>
-                    <h3 className="text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors">
-                      {exam.fullName}
-                    </h3>
-                    <p className="text-xs font-medium text-slate-500 mt-0.5">
-                      {exam.provider}
+                    <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                      {isSavings ? 'Regular Price*' : 'Official Fee'}
+                    </p>
+                    <p className={`text-xs font-semibold ${isSavings ? 'line-through text-slate-400' : 'text-slate-500'}`}>
+                      {fmt(exam.refPrice)}
                     </p>
                   </div>
 
-                  {/* Pricing Box */}
-                  <div className="bg-slate-50/80 border border-slate-200/70 rounded-xl p-4 space-y-2.5">
-                    <div className="flex items-baseline justify-between gap-2">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                        {isSavingsHero ? 'Official Fee*' : 'Regular Fee'}
+                  {/* Testly Price */}
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <p className="text-[9px] font-black uppercase tracking-wider text-slate-600">
+                        Testly Price
+                      </p>
+                      <span className="text-[8px] font-black text-slate-500 bg-white/90 border border-slate-200 px-1 rounded shadow-2xs">
+                        +₹199
                       </span>
-                      <span className={`text-sm font-semibold ${isSavingsHero ? 'text-slate-400 line-through' : 'text-slate-500'}`}>
-                        {fmt(exam.refPrice)}
-                      </span>
                     </div>
-
-                    <div className="flex items-baseline justify-between gap-2 pt-1 border-t border-slate-200/60">
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-wider text-slate-500">
-                          Testly Exam Price
-                        </p>
-                        <p className="text-3xl font-black text-slate-900 tracking-tight">
-                          {fmt(exam.testlyPrice)}
-                        </p>
-                      </div>
-
-                      <div className="text-right">
-                        <span className="inline-block px-2 py-0.5 rounded-md bg-white border border-slate-200 text-[11px] font-bold text-slate-700 shadow-2xs">
-                          + ₹{exam.serviceFee} Concierge
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Value Prop Banner */}
-                    <div className={`mt-2 py-1.5 px-2.5 rounded-lg text-xs font-bold flex items-center justify-between ${
-                      isSavingsHero
-                        ? 'bg-emerald-100/70 text-emerald-900 border border-emerald-200/80'
-                        : isServiceHero
-                        ? 'bg-blue-100/70 text-blue-900 border border-blue-200/80'
-                        : 'bg-slate-200/70 text-slate-800 border border-slate-300/80'
-                    }`}>
-                      <span>{exam.propHighlight}</span>
-                      {isSavingsHero && <span className="font-black text-emerald-800">Direct Saving</span>}
-                    </div>
-                  </div>
-
-                  {/* Operational Guarantees Checklist */}
-                  <div className="space-y-1.5 pt-1">
-                    {exam.features.map((feat, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-600 font-medium">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="truncate">{feat}</span>
-                      </div>
-                    ))}
+                    <p className="text-[18px] sm:text-[20px] font-black text-slate-900 tracking-tight leading-tight mt-0.5">
+                      {fmt(exam.testlyPrice)}
+                    </p>
                   </div>
                 </div>
 
-                {/* Bottom Action Row */}
-                <div className="pt-6 space-y-3 border-t border-slate-100 mt-5">
+                {/* Card Bottom: Colorful Badge & CTA */}
+                <div className="space-y-2 pt-3">
+                  {/* Vibrant Pill */}
+                  <div className={`${theme.badgeBg} text-white rounded-xl px-2 py-1.5 text-center shadow-xs`}>
+                    <p className="text-[8px] font-extrabold uppercase tracking-wider opacity-90 leading-none">
+                      {theme.badgeLabel}
+                    </p>
+                    <p className="text-[13px] font-black tracking-tight leading-tight mt-0.5">
+                      {theme.badgeValue}
+                    </p>
+                  </div>
+
+                  {/* Compact Button */}
                   <button
-                    onClick={() => onBookTest(exam.id)}
-                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-3 px-4 rounded-xl transition-colors shadow-sm group-hover:bg-blue-600"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onBookTest(exam.id);
+                    }}
+                    className={`w-full py-1.5 px-2 rounded-lg text-white text-[11px] font-bold ${theme.btnBg} transition-all flex items-center justify-center gap-1 shadow-2xs group-hover:brightness-110`}
                   >
-                    <span>{isSavingsHero ? `Book ${exam.label} & Save` : `Book ${exam.label} with Concierge`}</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    <span>Book {exam.label}</span>
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
                   </button>
-
-                  {/* 10-Second Spoken Pitch Bar (Copyable) */}
-                  <div
-                    onClick={(e) => handleCopyScript(e, exam)}
-                    title="Click to copy sales script"
-                    className="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[11px] text-slate-500 hover:text-slate-800 transition-colors"
-                  >
-                    <span className="truncate italic">
-                      {isCopied ? '✓ Copied 10-second script to clipboard!' : exam.salesScript}
-                    </span>
-                    <span className="shrink-0 font-bold text-[10px] uppercase text-slate-400 flex items-center gap-1">
-                      {isCopied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-                      {isCopied ? 'Copied' : 'Script'}
-                    </span>
-                  </div>
                 </div>
+
               </div>
             );
           })}
         </div>
 
-        {/* Legal & Reference Footnote */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-slate-200/80">
-          <div className="space-y-1">
-            <p className="text-[12px] text-slate-500 font-medium">
-              * Reference prices reflect current published test-provider rates in India. Registration is facilitated directly via authorized institutional quotas or assisted direct booking.
-            </p>
-            <p className="text-[11px] text-slate-400 font-mono">
-              Pricing verified: {VERIFIED_DATE} • Candidate Agency Mode Active (Indian Contract Act 1872)
-            </p>
-          </div>
-
-          <button
-            onClick={() => onBookTest('GRE')}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-slate-950 bg-white border border-slate-300 hover:border-slate-500 px-4 py-2 rounded-lg transition-colors whitespace-nowrap shadow-2xs"
-          >
-            Find My Exam & Check Slot Availability <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+        {/* Compact Footer Line */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[11px] text-slate-400 pt-1">
+          <p>
+            * Reference prices based on official provider rates in India. Registration performed by verified Testly professionals.
+          </p>
+          <p className="font-mono text-slate-400 shrink-0">
+            Price verified: {VERIFIED_DATE}
+          </p>
         </div>
 
       </div>
