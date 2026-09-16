@@ -33,7 +33,7 @@ import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
 import MobileStickyBar      from './components/MobileStickyBar';
-import LiveActivityToast    from './components/LiveActivityToast';
+// LiveActivityToast removed — fake popup disabled per brand guidelines
 import ExitIntentModal     from './components/ExitIntentModal';
 import CandidateAgencyAgreementModal from './components/CandidateAgencyAgreementModal';
 
