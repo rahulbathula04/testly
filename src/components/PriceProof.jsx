@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Check } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Check, MessageCircle, Lock } from 'lucide-react';
 import { ExamLogo } from './ExamLogos';
 import { EXAM_OFFERINGS, EXAM_DATA } from '../data/examOfferings';
 
@@ -158,22 +158,80 @@ export default function PriceProof({ onBookTest }) {
                     </p>
                   </div>
 
-                  {/* Executive Action Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onBookTest(exam.id);
-                    }}
-                    className="w-full py-2 px-2.5 rounded-lg text-white text-[11px] font-bold bg-slate-900 hover:bg-slate-800 transition-colors flex items-center justify-center gap-1 shadow-2xs group-hover:bg-slate-800"
-                  >
-                    <span>Book {exam.label}</span>
-                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
-                  </button>
+                  {/* Dual Action: Modal + 1-Tap WhatsApp */}
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onBookTest(exam.id);
+                      }}
+                      className="flex-1 py-2 px-2.5 rounded-lg text-white text-[11px] font-bold bg-slate-900 hover:bg-slate-800 transition-colors flex items-center justify-center gap-1 shadow-2xs group-hover:bg-slate-800"
+                    >
+                      <span>Book {exam.label}</span>
+                      <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                    </button>
+
+                    <a
+                      href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi Testly! I want to check exam slots and book ${exam.label} at ₹${exam.testlyPrice.toLocaleString('en-IN')} with ₹199 Concierge.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2 rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/30 border border-[#25D366]/40 text-[#128C7E] transition-all flex items-center justify-center shrink-0"
+                      title={`Chat on WhatsApp about ${exam.label}`}
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 text-[#128C7E]" />
+                    </a>
+                  </div>
                 </div>
 
               </div>
             );
           })}
+        </div>
+
+        {/* Institutional Rail Trust Seal (Addresses #1 Candidate Skepticism) */}
+        <div className="bg-slate-50/90 border border-slate-200/90 rounded-2xl p-5 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-5 shadow-2xs">
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 text-blue-700" />
+            </div>
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-wide text-slate-900">
+                100% Direct Test Board Credited
+              </h4>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Allocations are redeemed directly in your personal ETS, Pearson VUE, or IDP candidate profile. Official admit slips issued to your email.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+              <Check className="w-5 h-5 text-emerald-700" />
+            </div>
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-wide text-slate-900">
+                Zero-Defect Passport Pre-Audit
+              </h4>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Our desk verifies candidate passport spelling, birth date, and slot availability before payment to prevent test-day gate rejections.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center shrink-0">
+              <Lock className="w-5 h-5 text-indigo-700" />
+            </div>
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-wide text-slate-900">
+                Domestic Invoicing & UPI
+              </h4>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Billed cleanly in Indian Rupees via UPI and domestic cards with GST invoice. Zero foreign forex markups and zero card decline errors.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Executive Footnote */}

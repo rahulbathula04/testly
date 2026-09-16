@@ -32,6 +32,7 @@ import PracticeDashboardModal from './components/PracticeDashboardModal';
 import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
+import MobileStickyBar      from './components/MobileStickyBar';
 import CandidateAgencyAgreementModal from './components/CandidateAgencyAgreementModal';
 
 // ── Secure Standalone Admin Portal ───────────────────────────────────────────
@@ -247,6 +248,9 @@ export default function App() {
         onBookTest={handleOpenFunnel}
         onCheckPrice={handleOpenFunnel}
       />
+
+      {/* ── Mobile Sticky Conversion Bar ─────────────────────────── */}
+      <MobileStickyBar onOpenBooking={handleOpenFunnel} />
 
       {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
       <WhatsAppWidget />

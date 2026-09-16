@@ -1,5 +1,6 @@
-import React from 'react';
-import { ArrowRight, BadgeCheck, Clock, ShieldCheck, FileCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, BadgeCheck, Clock, ShieldCheck, FileCheck, MessageCircle } from 'lucide-react';
+import { EXAM_OFFERINGS } from '../data/examOfferings';
 
 const pillars = [
   { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional rates' },
@@ -17,6 +18,8 @@ const studentAvatars = [
 ];
 
 export default function Hero({ onBookTest }) {
+  const [selectedExam, setSelectedExam] = useState('GRE');
+  const activeOffering = EXAM_OFFERINGS[selectedExam] || EXAM_OFFERINGS.GRE;
   return (
     <section className="relative bg-white border-b border-slate-200 overflow-hidden min-h-[520px]">
 
@@ -93,13 +96,86 @@ export default function Hero({ onBookTest }) {
             ))}
           </div>
 
-          {/* Primary CTA */}
-          <button
-            onClick={() => onBookTest('GRE')}
-            className="flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3.5 rounded-lg transition-colors shadow-sm">
-            Check Your Exam & Savings
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          {/* Interactive 1-Click Instant Exam Selector & Live Rate Calculator */}
+          <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 space-y-3 shadow-2xs">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-black uppercase tracking-wider text-slate-500">
+                Select Your Exam:
+              </span>
+              <span className="text-[10px] font-extrabold text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full border border-emerald-300 shadow-2xs">
+                ⚡ Live Pre-Cleared Rate
+              </span>
+            </div>
+
+            {/* Exam selector pills */}
+            <div className="flex flex-wrap gap-1.5">
+              {['GRE', 'TOEFL', 'PTE', 'Duolingo', 'IELTS'].map((ex) => (
+                <button
+                  key={ex}
+                  type="button"
+                  onClick={() => setSelectedExam(ex)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    selectedExam === ex
+                      ? 'bg-slate-900 text-white shadow-sm'
+                      : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-400'
+                  }`}
+                >
+                  {ex}
+                </button>
+              ))}
+            </div>
+
+            {/* Live Rate Card */}
+            <div className="bg-white border border-slate-200/80 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+              <div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-black text-slate-900 tracking-tight">
+                    ₹{activeOffering.testly_price.toLocaleString('en-IN')}
+                  </span>
+                  {activeOffering.saving > 0 && (
+                    <span className="text-xs text-slate-400 line-through">
+                      ₹{activeOffering.reference_price.toLocaleString('en-IN')}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="text-[11px] font-bold text-slate-500">
+                    + ₹199 Concierge
+                  </span>
+                  {activeOffering.saving > 0 ? (
+                    <span className="text-[10px] font-black text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
+                      Save ₹{activeOffering.saving.toLocaleString('en-IN')}
+                    </span>
+                  ) : (
+                    <span className="text-[10px] font-bold text-blue-800 bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded">
+                      Zero-Defect Audit
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Dual Action CTAs */}
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi Testly! I want to check exam slots and book ${selectedExam} at ₹${activeOffering.testly_price.toLocaleString('en-IN')} with ₹199 Concierge.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#128C7E] rounded-xl transition-all flex items-center justify-center shrink-0"
+                  title="Ask Booking Officer on WhatsApp"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#128C7E]" />
+                </a>
+
+                <button
+                  onClick={() => onBookTest(selectedExam)}
+                  className="flex-1 sm:flex-initial bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-1.5"
+                >
+                  <span>Book {selectedExam}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
 
           {/* Social proof with AI-generated Indian students abroad */}
           <div className="flex items-center gap-3 pt-1">
