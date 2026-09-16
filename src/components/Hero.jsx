@@ -1,10 +1,11 @@
 import React from 'react';
-import { ArrowRight, BadgeCheck, Clock, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Clock, ShieldCheck, FileCheck } from 'lucide-react';
 
 const pillars = [
   { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional rates' },
   { icon: Clock,       label: '₹199 CONCIERGE',    sub: 'Full registration assistance' },
   { icon: ShieldCheck, label: 'ZERO ERRORS',       sub: 'Passport name & slot audit' },
+  { icon: FileCheck,   label: 'OFFICIAL CONFIRMATION', sub: 'Direct ETS & IDP booking slip' },
 ];
 
 const avatarColors = ['#4f7cac','#3d8b5e','#c07d3a','#a04f6a','#5a4fa0'];
@@ -71,8 +72,8 @@ export default function Hero({ onBookTest }) {
             Check your current exam price, see what you save, and get professional registration assistance from Testly for ₹199.
           </p>
 
-          {/* 3 Value Pillars */}
-          <div className="flex flex-wrap gap-5 py-1">
+          {/* 4 Value Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 py-1">
             {pillars.map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex items-start gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">

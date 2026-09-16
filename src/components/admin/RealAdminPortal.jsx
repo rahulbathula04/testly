@@ -1675,52 +1675,69 @@ export default function RealAdminPortal({
                   <table className="w-full text-left text-xs">
                     <thead className="bg-slate-950 text-slate-400 font-bold border-b border-slate-800 uppercase tracking-wider text-[10px]">
                       <tr>
-                        <th className="p-3.5">Exam & Provider</th>
-                        <th className="p-3.5">Retail Price</th>
+                        <th className="p-3.5">Exam & Category</th>
+                        <th className="p-3.5">Supplier Cost</th>
+                        <th className="p-3.5">Floor Price (Cost+₹1.1k)</th>
                         <th className="p-3.5">Testly Price</th>
-                        <th className="p-3.5">Candidate Saves</th>
+                        <th className="p-3.5">Exam Margin</th>
                         <th className="p-3.5">Fee (₹199)</th>
-                        <th className="p-3.5">Total Collectible</th>
-                        <th className="p-3.5">Booking Method</th>
-                        <th className="p-3.5">Contract ID</th>
-                        <th className="p-3.5">Status</th>
+                        <th className="p-3.5">Margin Health</th>
+                        <th className="p-3.5">10-Sec Sales Script</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/60 text-slate-300 font-medium">
-                      {EXAM_OFFERINGS_LIST.map((item) => (
-                        <tr key={item.id} className="hover:bg-slate-800/40 transition-colors">
-                          <td className="p-3.5">
-                            <p className="font-bold text-white text-xs">{item.exam}</p>
-                            <p className="text-[10px] text-slate-400 mt-0.5">{item.provider}</p>
-                          </td>
-                          <td className="p-3.5 text-slate-400 line-through font-mono">
-                            {formatINR(item.reference_price)}
-                          </td>
-                          <td className="p-3.5 font-bold text-white font-mono">
-                            {formatINR(item.testly_price)}
-                          </td>
-                          <td className="p-3.5 font-black text-amber-300 font-mono">
-                            {formatINR(item.saving)}
-                          </td>
-                          <td className="p-3.5 text-emerald-400 font-mono font-bold">
-                            ₹199
-                          </td>
-                          <td className="p-3.5 font-black text-emerald-400 font-mono bg-emerald-950/20">
-                            {formatINR(item.total_with_service)}
-                          </td>
-                          <td className="p-3.5 text-slate-300 text-[11px]">
-                            {item.booking_method}
-                          </td>
-                          <td className="p-3.5 font-mono text-[10px] text-slate-400">
-                            {item.supplier_contract_id}
-                          </td>
-                          <td className="p-3.5">
-                            <span className="px-2 py-0.5 rounded font-black text-[9px] uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                              {item.authorization_status.replace('_', ' ')}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
+                      {EXAM_OFFERINGS_LIST.map((item) => {
+                        const isSafe = item.isSafe !== false;
+                        const categoryColor =
+                          item.category === 'SAVINGS_HERO'
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                            : item.category === 'SERVICE_HERO'
+                            ? 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+                            : 'bg-slate-700/40 text-slate-300 border-slate-600/50';
+
+                        return (
+                          <tr key={item.id} className="hover:bg-slate-800/40 transition-colors">
+                            <td className="p-3.5">
+                              <p className="font-bold text-white text-xs">{item.exam}</p>
+                              <div className="flex items-center gap-1.5 mt-1">
+                                <span className={`px-2 py-0.5 rounded font-black text-[9px] uppercase border ${categoryColor}`}>
+                                  {item.category ? item.category.replace('_', ' ') : 'CORE EXAM'}
+                                </span>
+                                <span className="text-[10px] text-slate-500">{item.providerAbbr}</span>
+                              </div>
+                            </td>
+                            <td className="p-3.5 font-mono text-slate-400">
+                              {formatINR(item.supplier_cost || item.testly_price)}
+                            </td>
+                            <td className="p-3.5 font-mono text-slate-400">
+                              {formatINR(item.floor_price || item.testly_price)}
+                            </td>
+                            <td className="p-3.5 font-bold text-white font-mono">
+                              {formatINR(item.testly_price)}
+                            </td>
+                            <td className="p-3.5 font-bold text-emerald-400 font-mono">
+                              {formatINR(item.margin || 0)}
+                            </td>
+                            <td className="p-3.5 text-blue-400 font-mono font-bold">
+                              ₹199
+                            </td>
+                            <td className="p-3.5">
+                              {isSafe ? (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                  🟢 SAFE
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-black uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                                  🔴 PRICE ALERT
+                                </span>
+                              )}
+                            </td>
+                            <td className="p-3.5 text-slate-400 text-[11px] max-w-xs truncate italic" title={item.sales_script}>
+                              {item.sales_script || 'Standard booking assistance script.'}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>

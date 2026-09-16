@@ -85,9 +85,9 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
     onClose();
   };
 
-  const currentPricing = EXAM_DATA[exam] || { refPrice: 26500, testlyPrice: 19000, saving: 7500 };
+  const currentPricing = EXAM_DATA[exam] || { refPrice: 26542, testlyPrice: 20499, saving: 6043 };
   const waMessage = encodeURIComponent(
-    `Hi Testly! I just submitted my enquiry for ${exam} (${timing}). I want to see my available voucher saving and book the ₹199 registration assistance.`
+    `Hi Testly! I just submitted my enquiry for ${exam} (${timing}). I want to see my available saving and book the ₹199 registration assistance.`
   );
 
   return (
@@ -99,12 +99,12 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
           <div>
             <h3 className="text-base font-black text-slate-900 flex items-center gap-2">
               <span>Check Your Exam & Savings</span>
-              <span className="text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 px-2 py-0.5 rounded-full">
+              <span className="text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 px-2 py-0.5 rounded-full">
                 ₹199 Service
               </span>
             </h3>
             <p className="text-xs text-slate-500 font-medium mt-0.5">
-              Discounted official vouchers • Done-for-you registration
+              Verified institutional rates • Done-for-you registration
             </p>
           </div>
           <button
@@ -122,18 +122,37 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
 
               {/* Dynamic Saving Preview Pill */}
               {EXAM_DATA[exam] && (
-                <div className="bg-amber-50/80 border border-amber-200 rounded-xl p-3 flex items-center justify-between">
+                <div className={`border rounded-xl p-3 flex items-center justify-between ${
+                  currentPricing.saving > 1000
+                    ? 'bg-emerald-50/90 border-emerald-200'
+                    : 'bg-blue-50/90 border-blue-200'
+                }`}>
                   <div className="space-y-0.5">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-800">
-                      {exam} Official Saving
+                    <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
+                      currentPricing.saving > 1000 ? 'text-emerald-800' : 'text-blue-800'
+                    }`}>
+                      {exam} {currentPricing.saving > 1000 ? 'Official Institutional Saving' : 'Registration Concierge'}
                     </span>
                     <p className="text-xs text-slate-700">
-                      Regular <span className="line-through text-slate-400">₹{currentPricing.refPrice.toLocaleString('en-IN')}</span> → Testly <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong>
+                      {currentPricing.saving > 1000 ? (
+                        <>Regular <span className="line-through text-slate-400">₹{currentPricing.refPrice.toLocaleString('en-IN')}</span> → Testly <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong></>
+                      ) : (
+                        <>Testly Price: <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong> + ₹199 Concierge</>
+                      )}
                     </p>
                   </div>
                   <div className="text-right">
-                    <span className="text-xs font-bold text-amber-700 block">YOU SAVE</span>
-                    <span className="text-lg font-black text-slate-900">₹{currentPricing.saving.toLocaleString('en-IN')}</span>
+                    {currentPricing.saving > 1000 ? (
+                      <>
+                        <span className="text-[10px] font-bold text-emerald-700 block uppercase">YOU SAVE</span>
+                        <span className="text-lg font-black text-emerald-950">₹{currentPricing.saving.toLocaleString('en-IN')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-[10px] font-bold text-blue-700 block uppercase">CONCIERGE</span>
+                        <span className="text-base font-black text-blue-950">Zero Error</span>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
