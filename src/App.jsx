@@ -33,6 +33,8 @@ import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
 import MobileStickyBar      from './components/MobileStickyBar';
+import LiveActivityToast    from './components/LiveActivityToast';
+import ExitIntentModal     from './components/ExitIntentModal';
 import CandidateAgencyAgreementModal from './components/CandidateAgencyAgreementModal';
 
 // ── Secure Standalone Admin Portal ───────────────────────────────────────────
@@ -254,6 +256,15 @@ export default function App() {
 
       {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
       <WhatsAppWidget />
+
+      {/* ── Live Activity Social Proof Toast ──────────────────────── */}
+      <LiveActivityToast />
+
+      {/* ── Exit-Intent Quota Hold Modal ──────────────────────────── */}
+      <ExitIntentModal
+        onOpenBooking={handleOpenFunnel}
+        isAnyModalOpen={leadModalOpen || bookingOpen || agreementOpen || engineOpen || dashboardOpen || authOpen || searchOpen}
+      />
     </>
   );
 }

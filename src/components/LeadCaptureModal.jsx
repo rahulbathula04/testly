@@ -1,78 +1,53 @@
-import React, { useState } from 'react';
-import { X, ArrowRight, CheckCircle2, ShieldCheck, PhoneCall, Sparkles, MessageCircle, Clock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ArrowRight, CheckCircle2, ShieldCheck, MessageCircle, Lock, Sparkles } from 'lucide-react';
 import { createNewLead } from '../utils/crmStore';
 import { EXAM_DATA } from './PriceProof';
 
-const EXAM_OPTIONS = [
-  'GRE',
-  'TOEFL',
-  'IELTS',
-  'PTE',
-  'Duolingo',
-  'GMAT',
-  'SAT',
-  'LSAT',
-  'Other / Not sure'
-];
-
-const TIMING_OPTIONS = [
-  'Within 15 days',
-  'Within 1 month',
-  '1–3 months',
-  '3–6 months',
-  'Not decided'
-];
-
-const HELP_OPTIONS = [
-  'Get a discounted exam voucher',
-  'Complete my registration',
-  'Check passport/name details',
-  'Understand the exam',
-  'Not sure yet'
-];
+const EXAM_OPTIONS = ['GRE', 'TOEFL', 'PTE', 'Duolingo', 'IELTS', 'GMAT'];
+const TIMING_OPTIONS = ['Within 15 days', 'This Month', '1–3 Months'];
 
 export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE', onOpenAgreement }) {
   const [exam, setExam] = useState(defaultTest);
-  const [timing, setTiming] = useState('Within 1 month');
+  const [timing, setTiming] = useState('This Month');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [needs, setNeeds] = useState(['Get a discounted exam voucher', 'Complete my registration']);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [assignedLead, setAssignedLead] = useState(null);
   const [error, setError] = useState('');
 
+  // Auto-sync exam when opened from a specific exam button
+  useEffect(() => {
+    if (defaultTest) {
+      setExam(defaultTest);
+    }
+  }, [defaultTest, isOpen]);
+
   if (!isOpen) return null;
 
-  const toggleNeed = (item) => {
-    if (needs.includes(item)) {
-      setNeeds(needs.filter((n) => n !== item));
-    } else {
-      setNeeds([...needs, item]);
-    }
-  };
+  const currentPricing = EXAM_DATA[exam] || { refPrice: 26542, testlyPrice: 20499, saving: 6043 };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.trim()) {
-      setError('Please enter your name');
+      setError('Please enter your full name');
       return;
     }
     const cleanPhone = phone.replace(/\D/g, '');
     if (cleanPhone.length < 10) {
-      setError('Please enter a valid 10-digit WhatsApp phone number');
+      setError('Please enter a valid 10-digit WhatsApp number');
       return;
     }
 
     setError('');
     const created = createNewLead({
-      name,
+      name: name.trim(),
       phone: `+91 ${cleanPhone.slice(-10)}`,
       exam,
       timing,
-      needs,
+      needs: ['Institutional Discount Rate', 'Registration Concierge'],
       pricing: currentPricing,
       source: 'Landing Page Form',
-      campaign: `${exam} Voucher Savings Lead`
+      campaign: `${exam} High-CRO Booking Flow`
     });
 
     setAssignedLead(created);
@@ -85,92 +60,94 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
     onClose();
   };
 
-  const currentPricing = EXAM_DATA[exam] || { refPrice: 26542, testlyPrice: 20499, saving: 6043 };
-  const waMessage = encodeURIComponent(
-    `Hi Testly! I just submitted my enquiry for ${exam} (${timing}). I want to see my available saving and book the ₹199 registration assistance.`
-  );
+  const directWaUrl = `https://wa.me/919876543210?text=${encodeURIComponent(
+    `Hi Testly! I want to check exam slot availability for ${exam} (${timing}) and lock in the ₹${currentPricing.testlyPrice.toLocaleString('en-IN')} rate with ₹199 Concierge.`
+  )}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/80 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-150">
+      <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
 
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
-          <div>
-            <h3 className="text-base font-black text-slate-900 flex items-center gap-2">
-              <span>Check Your Exam & Savings</span>
-              <span className="text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 px-2 py-0.5 rounded-full">
-                ₹199 Service
-              </span>
-            </h3>
-            <p className="text-xs text-slate-500 font-medium mt-0.5">
-              Verified institutional rates • Done-for-you registration
-            </p>
+        <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm font-black text-slate-900 leading-tight">
+                Check Exam Slots & Verified Savings
+              </h3>
+              <p className="text-[11px] text-slate-500 font-medium">
+                Direct institutional quota • ₹199 done-for-you concierge
+              </p>
+            </div>
           </div>
           <button
             onClick={handleResetAndClose}
-            className="w-8 h-8 rounded-full bg-white border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 transition-colors"
+            className="w-7 h-7 rounded-full hover:bg-slate-200/80 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-5">
+        <div className="p-5 overflow-y-auto space-y-4">
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
 
-              {/* Dynamic Saving Preview Pill */}
-              {EXAM_DATA[exam] && (
-                <div className={`border rounded-xl p-3 flex items-center justify-between ${
-                  currentPricing.saving > 1000
-                    ? 'bg-emerald-50/90 border-emerald-200'
-                    : 'bg-blue-50/90 border-blue-200'
-                }`}>
-                  <div className="space-y-0.5">
-                    <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
-                      currentPricing.saving > 1000 ? 'text-emerald-800' : 'text-blue-800'
-                    }`}>
-                      {exam} {currentPricing.saving > 1000 ? 'Official Institutional Saving' : 'Registration Concierge'}
-                    </span>
-                    <p className="text-xs text-slate-700">
-                      {currentPricing.saving > 1000 ? (
-                        <>Regular <span className="line-through text-slate-400">₹{currentPricing.refPrice.toLocaleString('en-IN')}</span> → Testly <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong></>
-                      ) : (
-                        <>Testly Price: <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong> + ₹199 Concierge</>
-                      )}
-                    </p>
-                  </div>
-                  <div className="text-right">
+              {/* Dynamic Live Rate Banner */}
+              <div className={`border rounded-xl p-3 flex items-center justify-between shadow-2xs ${
+                currentPricing.saving > 1000
+                  ? 'bg-emerald-50/90 border-emerald-200'
+                  : 'bg-blue-50/90 border-blue-200'
+              }`}>
+                <div>
+                  <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
+                    currentPricing.saving > 1000 ? 'text-emerald-800' : 'text-blue-800'
+                  }`}>
+                    {exam} {currentPricing.saving > 1000 ? 'Verified Institutional Rate' : 'Registration Concierge'}
+                  </span>
+                  <p className="text-xs text-slate-700 font-semibold mt-0.5">
                     {currentPricing.saving > 1000 ? (
-                      <>
-                        <span className="text-[10px] font-bold text-emerald-700 block uppercase">YOU SAVE</span>
-                        <span className="text-lg font-black text-emerald-950">₹{currentPricing.saving.toLocaleString('en-IN')}</span>
-                      </>
+                      <>Regular <span className="line-through text-slate-400">₹{currentPricing.refPrice.toLocaleString('en-IN')}</span> → Testly <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong></>
                     ) : (
-                      <>
-                        <span className="text-[10px] font-bold text-blue-700 block uppercase">CONCIERGE</span>
-                        <span className="text-base font-black text-blue-950">Zero Error</span>
-                      </>
+                      <>Testly Price: <strong className="text-slate-900">₹{currentPricing.testlyPrice.toLocaleString('en-IN')}</strong></>
                     )}
-                  </div>
+                  </p>
                 </div>
-              )}
+                <div className="text-right shrink-0">
+                  {currentPricing.saving > 1000 ? (
+                    <>
+                      <span className="text-[9px] font-extrabold text-emerald-700 uppercase block">YOU SAVE</span>
+                      <span className="text-lg font-black text-emerald-950">₹{currentPricing.saving.toLocaleString('en-IN')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-[9px] font-extrabold text-blue-700 uppercase block">CONCIERGE</span>
+                      <span className="text-sm font-black text-blue-950">Zero Error</span>
+                    </>
+                  )}
+                </div>
+              </div>
 
-              {/* Question 1: Which exam? */}
-              <div className="space-y-2">
-                <label className="block text-xs font-black uppercase tracking-wider text-slate-700">
-                  1. Which exam are you looking for?
-                </label>
+              {/* Step 1: Select Exam (Compact 6 pills) */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700">
+                    1. Target Exam
+                  </label>
+                  <span className="text-[10px] text-emerald-700 font-bold">✓ Pre-cleared rate</span>
+                </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   {EXAM_OPTIONS.map((opt) => (
                     <button
                       key={opt}
                       type="button"
                       onClick={() => setExam(opt)}
-                      className={`text-xs font-bold py-2 px-2.5 rounded-lg border text-center transition-all ${
+                      className={`text-xs font-bold py-2 rounded-lg border text-center transition-all ${
                         exam === opt
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
+                          ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
                           : 'bg-white text-slate-700 border-slate-200 hover:border-slate-400 hover:bg-slate-50'
                       }`}
                     >
@@ -180,21 +157,21 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                 </div>
               </div>
 
-              {/* Question 2: When planning to take it? */}
-              <div className="space-y-2">
-                <label className="block text-xs font-black uppercase tracking-wider text-slate-700">
-                  2. When are you planning to take the exam?
+              {/* Step 2: Target Date Timing */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 block">
+                  2. Planned Exam Timing
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                <div className="grid grid-cols-3 gap-1.5">
                   {TIMING_OPTIONS.map((t) => (
                     <button
                       key={t}
                       type="button"
                       onClick={() => setTiming(t)}
-                      className={`text-xs font-bold py-2 px-2 rounded-lg border text-center transition-all ${
+                      className={`text-[11px] font-bold py-1.5 px-2 rounded-lg border text-center transition-all ${
                         timing === t
-                          ? 'bg-emerald-700 text-white border-emerald-700 shadow-sm'
-                          : 'bg-white text-slate-700 border-slate-200 hover:border-slate-400 hover:bg-slate-50'
+                          ? 'bg-emerald-700 text-white border-emerald-700 shadow-xs'
+                          : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                       }`}
                     >
                       {t}
@@ -203,11 +180,11 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                 </div>
               </div>
 
-              {/* Question 3 & 4: Name & WhatsApp Number */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-black uppercase tracking-wider text-slate-700">
-                    3. Your Name
+              {/* Step 3: Contact Inputs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="space-y-1">
+                  <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 block">
+                    Your Name
                   </label>
                   <input
                     type="text"
@@ -215,155 +192,112 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                     placeholder="e.g. Rahul Sharma"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full text-sm font-semibold px-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 outline-none transition-all"
+                    className="w-full text-xs font-semibold px-3 py-2.5 rounded-lg border border-slate-300 focus:border-slate-900 outline-none transition-all"
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-black uppercase tracking-wider text-slate-700">
-                    4. WhatsApp Number
+                <div className="space-y-1">
+                  <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 block">
+                    WhatsApp Number
                   </label>
                   <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">+91</span>
+                    <span className="absolute left-2.5 top-2.5 text-xs font-bold text-slate-400">+91</span>
                     <input
                       type="tel"
                       required
                       placeholder="98765 43210"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full text-sm font-semibold pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 outline-none transition-all"
+                      className="w-full text-xs font-semibold pl-9 pr-3 py-2.5 rounded-lg border border-slate-300 focus:border-slate-900 outline-none transition-all"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Optional: What do you need help with? */}
-              <div className="space-y-2 pt-1 border-t border-slate-100">
-                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                  What do you need help with? <span className="text-slate-400 font-normal">(Optional)</span>
-                </label>
-                <div className="flex flex-wrap gap-1.5">
-                  {HELP_OPTIONS.map((item) => {
-                    const active = needs.includes(item);
-                    return (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => toggleNeed(item)}
-                        className={`text-[11px] font-semibold px-2.5 py-1.5 rounded-md border transition-all flex items-center gap-1.5 ${
-                          active
-                            ? 'bg-slate-100 border-slate-400 text-slate-900'
-                            : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300'
-                        }`}
-                      >
-                        <span className={`w-3.5 h-3.5 rounded flex items-center justify-center text-[10px] ${active ? 'bg-slate-900 text-white' : 'border border-slate-300'}`}>
-                          {active ? '✓' : ''}
-                        </span>
-                        <span>{item}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
               {error && (
-                <p className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 p-2.5 rounded-lg">
+                <p className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 p-2 rounded-lg">
                   {error}
                 </p>
               )}
 
-              {/* Agency Disclaimer & CTA Submit Button */}
-              <div className="pt-2 space-y-2.5">
-                <p className="text-[10px] text-slate-500 leading-relaxed text-center">
-                  By submitting, you appoint Testly as your administrative agent under the{' '}
-                  <button
-                    type="button"
-                    onClick={onOpenAgreement}
-                    className="text-emerald-600 hover:text-emerald-700 underline font-semibold"
-                  >
-                    Candidate Agency Agreement (ICA 1872)
-                  </button>
-                  . ₹199 assistance fee applies upon booking.
-                </p>
-
-                <button
-                  type="submit"
-                  className="w-full bg-slate-900 hover:bg-slate-700 text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group"
-                >
-                  <span>Check My Savings</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </button>
-                <p className="text-[11px] text-center text-slate-400 font-medium">
-                  We verify your saving and call you directly. Zero spam.
-                </p>
+              {/* Reassurance Guarantee */}
+              <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 text-[11px] text-slate-600 flex items-center gap-2">
+                <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Zero payment required now. Official rate & slot availability dispatched to your WhatsApp.</span>
               </div>
+
+              {/* Primary Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 group"
+              >
+                <span>Check My Savings & Available Slots</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+
+              {/* 1-Tap Direct WhatsApp Alternative */}
+              <div className="text-center pt-1 border-t border-slate-100">
+                <a
+                  href={directWaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#128C7E] hover:text-[#075E54] transition-colors"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>Prefer WhatsApp? Chat directly with Booking Officer →</span>
+                </a>
+              </div>
+
+              <p className="text-[10px] text-center text-slate-400">
+                By clicking, you appoint Testly under the{' '}
+                <button
+                  type="button"
+                  onClick={onOpenAgreement}
+                  className="underline hover:text-slate-600"
+                >
+                  Candidate Agency Agreement (ICA 1872)
+                </button>
+                . ₹199 assistance fee applies upon confirmed booking.
+              </p>
 
             </form>
           ) : (
-            /* Post-Submission Screen matching spec */
-            <div className="py-2 space-y-6 text-center animate-in zoom-in-95 duration-150">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
-                <CheckCircle2 className="w-8 h-8" />
+            /* Post-Submission Screen */
+            <div className="py-3 space-y-4 text-center animate-in zoom-in-95 duration-150">
+              <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
 
-              <div className="space-y-1.5">
-                <h4 className="text-2xl font-black text-slate-900 tracking-tight">
-                  You're on the list!
+              <div className="space-y-1">
+                <h4 className="text-xl font-black text-slate-900 tracking-tight">
+                  Booking Request Confirmed!
                 </h4>
-                <p className="text-sm font-semibold text-slate-600">
-                  A Testly advisor will call you shortly on your WhatsApp number.
+                <p className="text-xs text-slate-600 font-medium">
+                  A certified Testly booking specialist is reviewing slot availability for <strong>{exam}</strong>.
                 </p>
               </div>
 
-              {/* Benefit Checklist */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left space-y-2.5">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                  On the call, we'll help you:
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-left text-xs space-y-2">
+                <p className="font-bold text-slate-900 uppercase text-[10px] tracking-wider">Next 5 Minutes:</p>
+                <p className="text-slate-600 flex items-center gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  Official voucher saving verification: <strong>Save ₹{currentPricing.saving.toLocaleString('en-IN')}</strong>
                 </p>
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                  <span className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-black shrink-0">✓</span>
-                  <span>Check your exact <strong>{exam}</strong> official voucher price</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                  <span className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-black shrink-0">✓</span>
-                  <span>See your exact available saving upfront</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                  <span className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-black shrink-0">✓</span>
-                  <span>Understand the registration and passport verification rules</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                  <span className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-black shrink-0">✓</span>
-                  <span>Complete your registration with the ₹199 service</span>
-                </div>
+                <p className="text-slate-600 flex items-center gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  Passport spelling & test center appointment check
+                </p>
               </div>
 
-              {/* Keep phone nearby alert */}
-              <div className="flex items-center justify-center gap-2 text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 py-2 px-3 rounded-lg">
-                <Clock className="w-4 h-4 shrink-0 text-amber-600" />
-                <span>Keep your phone nearby — advisor calling within 15 minutes</span>
-              </div>
-
-              {/* Actions */}
-              <div className="space-y-2 pt-1">
-                <a
-                  href={`https://wa.me/919876543210?text=${waMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>WhatsApp Testly Directly →</span>
-                </a>
-
-                <button
-                  onClick={handleResetAndClose}
-                  className="w-full border border-slate-200 hover:bg-slate-100 text-slate-600 font-semibold text-xs py-2.5 rounded-xl transition-colors"
-                >
-                  Done, back to website
-                </button>
-              </div>
-
+              <a
+                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi Testly! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Open WhatsApp for Instant Slot Confirmation</span>
+              </a>
             </div>
           )}
         </div>
