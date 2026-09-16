@@ -63,9 +63,9 @@ export default function ServiceAndExams({ onBookTest, onOpenSearch }) {
                 Book Professional Service <ArrowRight className="w-3.5 h-3.5" />
               </button>
               {/* "One simple service ₹199" card */}
-              <div className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-center shadow-sm">
-                <p className="font-['Caveat'] text-sm text-slate-500">One simple service.</p>
-                <p className="font-['Caveat'] text-2xl font-bold text-slate-900 leading-none mt-0.5">₹199.</p>
+              <div className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-center shadow-xs">
+                <p className="font-mono text-[10px] font-bold text-slate-400 uppercase tracking-widest">Fixed Concierge</p>
+                <p className="font-mono text-2xl font-black text-slate-900 leading-none mt-0.5">₹199</p>
               </div>
             </div>
 
@@ -109,7 +109,7 @@ export default function ServiceAndExams({ onBookTest, onOpenSearch }) {
               >
                 <span className="text-xs font-bold text-slate-400">···</span>
                 <span className="text-xs font-medium text-slate-500">More Exams</span>
-                <span className="font-['Caveat'] text-xs text-slate-400 ml-2 italic">More Possibilities Ahead.</span>
+                <span className="font-mono text-[10px] font-semibold text-slate-400 uppercase tracking-wide ml-2">All Testing Boards Supported</span>
               </button>
             </div>
 

@@ -23,9 +23,9 @@ const REAL_STUDENTS = [
     exam: 'GRE',
     examLabel: 'GRE® General Test',
     score: '324 / 340',
-    regularFee: 26500,
-    testlyPrice: 19000,
-    saved: 7500,
+    regularFee: 26542,
+    testlyPrice: 20499,
+    saved: 6043,
     bookingRef: 'ETS-CONF-782914',
     clearanceStatus: '100% Test-Day Entry Clearance',
     problemSolved: 'My Indian passport had a single Given Name with a blank Surname. Testly audited my passport and configured my ETS profile with proper FNU protocols. I walked straight through test center security with zero delays.'
@@ -40,12 +40,12 @@ const REAL_STUDENTS = [
     exam: 'TOEFL',
     examLabel: 'TOEFL iBT® Test',
     score: '110 / 120',
-    regularFee: 24900,
-    testlyPrice: 18500,
-    saved: 6400,
+    regularFee: 17999,
+    testlyPrice: 13999,
+    saved: 4000,
     bookingRef: 'ETS-CONF-914022',
     clearanceStatus: 'Domestic UPI Booking • Zero Forex',
-    problemSolved: 'My Indian credit card kept declining on the international US ETS gateway with forex fee penalties. With Testly, I paid cleanly in INR via UPI, saved ₹6,400, and my voucher code applied instantly on ets.org.'
+    problemSolved: 'My Indian credit card kept declining on the international US ETS gateway with forex fee penalties. With Testly, I paid cleanly in INR via UPI, saved ₹4,000, and my voucher code applied instantly on ets.org.'
   },
   {
     id: 'venkatesh-uk',
@@ -54,15 +54,15 @@ const REAL_STUDENTS = [
     flag: '🇬🇧',
     avatar: '/assets/images/student-uk-cohort.jpg',
     avatarAlt: 'Indian student cohort currently in the United Kingdom',
-    exam: 'IELTS',
-    examLabel: 'IELTS Academic & PTE',
-    score: 'Band 8.0',
-    regularFee: 17000,
-    testlyPrice: 13000,
-    saved: 4000,
-    bookingRef: 'IDP-CONF-882104',
+    exam: 'PTE',
+    examLabel: 'PTE Academic Voucher',
+    score: 'Score 79 / 90',
+    regularFee: 18900,
+    testlyPrice: 14999,
+    saved: 3901,
+    bookingRef: 'PRSN-CONF-882104',
     clearanceStatus: 'Batch Passport Verified',
-    problemSolved: 'Four of us were applying for UK intake before CAS deadlines. Testly coordinated our registrations as a batch, verified every passport character-by-character, and saved each of us ₹4,000 on official fees.'
+    problemSolved: 'Four of us were applying for UK intake before CAS deadlines. Testly coordinated our registrations as a batch, verified every passport character-by-character, and saved each of us ₹3,901 on official fees.'
   }
 ];
 
@@ -81,7 +81,7 @@ export default function VerifiedBookingDossiers({ onBookTest }) {
 
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Real Bookings. Real Savings. <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">
+              <span className="text-slate-900">
                 Zero Test-Day Rejections.
               </span>
             </h2>
