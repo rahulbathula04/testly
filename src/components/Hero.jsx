@@ -21,37 +21,37 @@ export default function Hero({ onBookTest }) {
     <section className="relative bg-white border-b border-slate-200 overflow-hidden min-h-[520px] w-full max-w-full">
 
       {/* ── Right-side photo panel ── */}
-      <div className="absolute inset-y-0 right-0 w-[46%] hidden lg:block">
+      <div className="absolute inset-y-0 right-0 w-[42%] xl:w-[46%] hidden lg:block overflow-hidden pointer-events-none">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('/assets/images/global-university-campus.jpg')` }}
         />
-        {/* fade left edge */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/10 to-transparent" />
+        {/* fade left edge - softer gradient to protect text on laptop widths */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent z-10 w-full" />
 
         {/* Top-right airplane */}
-        <div className="absolute top-6 right-8 text-slate-400 opacity-60">
+        <div className="absolute top-6 right-8 text-slate-400 opacity-60 z-20">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 19-7z" />
           </svg>
         </div>
 
         {/* Handwritten overlay — "Same Exam. Lower Price. Brighter Future." */}
-        <div className="absolute top-10 right-10 text-right">
+        <div className="absolute top-10 right-10 text-right z-20">
           <p className="font-['Caveat'] text-xl text-slate-700 leading-tight">
             Same Exam.<br />Lower Price.<br />Brighter Future.
           </p>
         </div>
 
         {/* Bottom-left on photo — "Global Opportunities Start Here" */}
-        <div className="absolute bottom-10 right-10 text-right">
+        <div className="absolute bottom-10 right-10 text-right z-20">
           <p className="font-['Caveat'] text-base text-slate-600 leading-snug">
             Global Opportunities<br />Start Here.
           </p>
         </div>
 
         {/* Quote bubble */}
-        <div className="absolute top-32 right-6 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-2 max-w-[160px] shadow-sm">
+        <div className="absolute top-32 right-6 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-2 max-w-[160px] shadow-sm z-20">
           <p className="text-[11px] text-slate-600 font-medium italic leading-snug">
             "A small saving today, a bigger tomorrow."
           </p>
@@ -59,8 +59,8 @@ export default function Hero({ onBookTest }) {
       </div>
 
       {/* ── Left content ── */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
-        <div className="max-w-xl space-y-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="max-w-lg xl:max-w-xl space-y-6 relative z-20">
 
           {/* Live Badge & Pre-headline */}
           <div className="flex flex-wrap items-center gap-2.5">

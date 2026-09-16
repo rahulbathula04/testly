@@ -57,14 +57,14 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
           </div>
         </a>
 
-        {/* ── Desktop Nav Items (Exact Reference Match: Compact, Fits 1024px+) ── */}
-        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink min-w-0">
+        {/* ── Desktop Nav Items (Fits comfortably on xl+ 1280px+) ── */}
+        <nav className="hidden xl:flex items-center gap-1 xl:gap-2 shrink min-w-0">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleClick(e, item.href)}
-              className="text-[11.5px] xl:text-[13px] font-semibold text-slate-600 hover:text-slate-950 hover:bg-slate-100/70 px-1.5 xl:px-2.5 py-1.5 rounded-lg transition-all whitespace-nowrap"
+              className="text-[12px] xl:text-[13px] font-semibold text-slate-600 hover:text-slate-950 hover:bg-slate-100/70 px-2 xl:px-2.5 py-1.5 rounded-lg transition-all whitespace-nowrap"
             >
               {item.label}
             </a>
@@ -72,7 +72,7 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
         </nav>
 
         {/* ── Right-Side Premium CTA ── */}
-        <div className="hidden lg:flex items-center shrink-0">
+        <div className="hidden sm:flex items-center shrink-0">
           <button
             onClick={() => onOpenBooking('GRE')}
             className="group relative inline-flex items-center gap-2 bg-[#0B1528] hover:bg-slate-900 text-white text-[11.5px] xl:text-[12.5px] font-bold px-3.5 xl:px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all duration-150 active:scale-[0.98] cursor-pointer whitespace-nowrap"
@@ -83,17 +83,17 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
           </button>
         </div>
 
-        {/* ── Mobile Hamburger ── */}
-        <div className="lg:hidden flex items-center gap-2">
+        {/* ── Mobile & Tablet Hamburger (for <1280px) ── */}
+        <div className="xl:hidden flex items-center gap-2">
           <button
             onClick={() => onOpenBooking('GRE')}
-            className="bg-slate-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xs cursor-pointer"
+            className="sm:hidden bg-slate-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xs cursor-pointer"
           >
             Check Savings
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
             aria-label="Toggle Navigation Menu"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -102,9 +102,9 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
 
       </div>
 
-      {/* ── Mobile Drawer (Glassmorphic) ── */}
+      {/* ── Mobile & Tablet Drawer (Glassmorphic) ── */}
       {open && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-4 pt-2 pb-6 shadow-xl space-y-1 animate-in slide-in-from-top-2 duration-150">
+        <div className="xl:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-4 pt-2 pb-6 shadow-xl space-y-1 animate-in slide-in-from-top-2 duration-150">
           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 py-1">
             Navigation Menu
           </div>
