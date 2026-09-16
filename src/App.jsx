@@ -15,6 +15,12 @@ import Footer               from './components/Footer';
 import PracticeDashboard    from './components/practice/PracticeDashboard';
 import TestEngineModal      from './components/practice/TestEngineModal';
 
+// ── Authority Pages & Hubs ───────────────────────────────────────────────────
+import HyderabadHubPage     from './pages/HyderabadHubPage';
+import MadhapurHubPage      from './pages/MadhapurHubPage';
+import ExamPriceTrackerPage from './pages/ExamPriceTrackerPage';
+import ProfessionalsPage    from './pages/ProfessionalsPage';
+
 // ── Funnel & Modals ──────────────────────────────────────────────────────────
 import LeadCaptureModal     from './components/LeadCaptureModal';
 import BookingFlowModal     from './components/BookingFlowModal';
@@ -26,22 +32,36 @@ import WhatsAppWidget       from './components/WhatsAppWidget';
 // ── Secure Standalone Admin Portal ───────────────────────────────────────────
 import AdminLoginGate       from './components/admin/AdminLoginGate';
 
-export default function App() {
-  // ── URL Route Detection (/admin or #/admin or ?admin=true) ────────────────
-  const checkIsAdmin = () => {
-    if (typeof window === 'undefined') return false;
-    return (
-      window.location.pathname.startsWith('/admin') ||
-      window.location.hash.includes('admin') ||
-      new URLSearchParams(window.location.search).has('admin')
-    );
-  };
+function getActiveRoute() {
+  if (typeof window === 'undefined') return 'home';
+  const path = window.location.pathname.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  const search = window.location.search.toLowerCase();
 
-  const [isAdminRoute, setIsAdminRoute] = useState(checkIsAdmin());
+  if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
+    return 'admin';
+  }
+  if (path.includes('/locations/madhapur') || hash.includes('/locations/madhapur') || hash.includes('madhapur')) {
+    return 'madhapur';
+  }
+  if (path.includes('/locations/hyderabad') || hash.includes('/locations/hyderabad') || hash.includes('hyderabad')) {
+    return 'hyderabad';
+  }
+  if (path.includes('/exam-fees') || hash.includes('/exam-fees') || hash.includes('exam-fees')) {
+    return 'exam-fees';
+  }
+  if (path.includes('/professionals') || hash.includes('/professionals') || hash.includes('professionals')) {
+    return 'professionals';
+  }
+  return 'home';
+}
+
+export default function App() {
+  const [currentRoute, setCurrentRoute] = useState(getActiveRoute());
 
   useEffect(() => {
     const handleLocationChange = () => {
-      setIsAdminRoute(checkIsAdmin());
+      setCurrentRoute(getActiveRoute());
     };
     window.addEventListener('popstate', handleLocationChange);
     window.addEventListener('hashchange', handleLocationChange);
@@ -51,14 +71,10 @@ export default function App() {
     };
   }, []);
 
-  const navigateToHome = () => {
-    window.history.pushState({}, '', '/');
-    setIsAdminRoute(false);
-  };
-
-  const navigateToAdmin = () => {
-    window.history.pushState({}, '', '/admin');
-    setIsAdminRoute(true);
+  const navigate = (path) => {
+    window.history.pushState({}, '', path);
+    setCurrentRoute(getActiveRoute());
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // ── Modals & Funnel State ──────────────────────────────────────────────────
@@ -86,51 +102,72 @@ export default function App() {
     setEngineOpen(true);
   };
 
-  // ── If Admin Route, render Real Secure Admin Portal ────────────────────────
-  if (isAdminRoute) {
-    return <AdminLoginGate onNavigateHome={navigateToHome} />;
+  // ── 1. Secure Admin Portal Route ───────────────────────────────────────────
+  if (currentRoute === 'admin') {
+    return <AdminLoginGate onNavigateHome={() => navigate('/')} />;
   }
 
-  // ── Public Student-Facing Landing Page (100% Clean, No Admin Clutter) ──────
+  // ── 2. Render Page Content According to Active Route ────────────────────────
+  const renderContent = () => {
+    switch (currentRoute) {
+      case 'hyderabad':
+        return <HyderabadHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'madhapur':
+        return <MadhapurHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'exam-fees':
+        return <ExamPriceTrackerPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'professionals':
+        return <ProfessionalsPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'home':
+      default:
+        return (
+          <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased">
+            {/* Navigation */}
+            <Navbar onOpenBooking={handleOpenFunnel} onNavigate={navigate} />
+
+            <main className="flex-grow">
+              {/* 1. HERO — The Smarter Way to Book Your Exam */}
+              <Hero onBookTest={handleOpenFunnel} />
+
+              {/* 2. PRICE PROOF — Authentic logos + data-driven savings */}
+              <PriceProof onBookTest={handleOpenFunnel} />
+
+              {/* 3. SERVICE + EXAM UNIVERSE */}
+              <ServiceAndExams
+                onBookTest={handleOpenFunnel}
+                onOpenSearch={() => setSearchOpen(true)}
+              />
+
+              {/* 4. TRUST — 4,000+ Students Guided */}
+              <TrustSection />
+
+              {/* 5. HOW IT WORKS + STILL DECIDING */}
+              <HowItWorksAndDeciding onBookTest={handleOpenFunnel} />
+
+              {/* 6. FREE PRACTICE PLATFORM */}
+              <PracticeDashboard onLaunchEngine={openEngine} />
+
+              {/* 7. FAQ */}
+              <FAQSection />
+
+              {/* 8. FINAL CTA — Why Pay More? Book Smarter. */}
+              <FinalCTA onBookTest={handleOpenFunnel} />
+            </main>
+
+            {/* Footer with subtle staff login */}
+            <Footer onOpenAdmin={() => navigate('/admin')} onNavigate={navigate} />
+          </div>
+        );
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased">
-
-      {/* Navigation */}
-      <Navbar onOpenBooking={handleOpenFunnel} />
-
-      <main className="flex-grow">
-
-        {/* 1. HERO — The Smarter Way to Book Your Exam */}
-        <Hero onBookTest={handleOpenFunnel} />
-
-        {/* 2. PRICE PROOF — Authentic logos + data-driven savings */}
-        <PriceProof onBookTest={handleOpenFunnel} />
-
-        {/* 3. SERVICE + EXAM UNIVERSE */}
-        <ServiceAndExams
-          onBookTest={handleOpenFunnel}
-          onOpenSearch={() => setSearchOpen(true)}
-        />
-
-        {/* 4. TRUST — 4,000+ Students Guided */}
-        <TrustSection />
-
-        {/* 5. HOW IT WORKS + STILL DECIDING */}
-        <HowItWorksAndDeciding onBookTest={handleOpenFunnel} />
-
-        {/* 6. FREE PRACTICE PLATFORM */}
-        <PracticeDashboard onLaunchEngine={openEngine} />
-
-        {/* 7. FAQ */}
-        <FAQSection />
-
-        {/* 8. FINAL CTA — Why Pay More? Book Smarter. */}
-        <FinalCTA onBookTest={handleOpenFunnel} />
-
-      </main>
-
-      {/* Footer with subtle staff login */}
-      <Footer onOpenAdmin={navigateToAdmin} />
+    <>
+      {renderContent()}
 
       {/* ── High-Converting Lead Capture Modal ────────────────────── */}
       <LeadCaptureModal
@@ -174,7 +211,6 @@ export default function App() {
 
       {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
       <WhatsAppWidget />
-
-    </div>
+    </>
   );
 }
