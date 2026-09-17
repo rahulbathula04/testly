@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: 'Professionals', href: '/professionals' },
   { label: 'Testly Campus', href: '/campus' },
   { label: 'Guides', href: '/guides' },
-  { label: 'About', href: '/#about' },
+  { label: 'About', href: '/about' },
 ];
 
 export default function Navbar({ onOpenBooking, onNavigate }) {

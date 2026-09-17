@@ -69,6 +69,7 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
               Quick Links
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
+              <li><a href="/about" onClick={(e) => handleClick(e, '/about')} className="hover:text-white transition-colors">Why I Built Testly</a></li>
               <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">Exam Fees</a></li>
               <li><a href="/#how-it-works" onClick={(e) => handleClick(e, '/#how-it-works')} className="hover:text-white transition-colors">How It Works</a></li>
               <li><a href="/campus" onClick={(e) => handleClick(e, '/campus')} className="hover:text-white transition-colors">Testly Campus</a></li>

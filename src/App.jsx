@@ -30,6 +30,7 @@ const ProfessionalsPage    = lazy(() => import('./pages/ProfessionalsPage'));
 const BlogDirectoryPage    = lazy(() => import('./pages/BlogDirectoryPage'));
 const ArticlePage          = lazy(() => import('./pages/ArticlePage'));
 const CampusPage           = lazy(() => import('./pages/CampusPage'));
+const FounderPage          = lazy(() => import('./pages/FounderPage'));
 
 // ── Code-Split Heavy Modals (Lazy loaded on demand) ───────────────────────────
 const BookingFlowModal     = lazy(() => import('./components/BookingFlowModal'));
@@ -71,6 +72,9 @@ function getActiveRoute() {
   }
   if (path.includes('/professionals') || hash.includes('/professionals') || hash.includes('professionals')) {
     return { type: 'professionals' };
+  }
+  if (path.includes('/about') || hash.includes('about') || path.includes('/founder') || hash.includes('founder')) {
+    return { type: 'about' };
   }
 
   // Articles: /guides/:slug or /blog/:slug
@@ -166,6 +170,9 @@ export default function App() {
 
       case 'article':
         return <ArticlePage slug={currentRoute.slug} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'about':
+        return <FounderPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
       case 'home':
       default:
