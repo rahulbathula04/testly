@@ -48,15 +48,17 @@ const PROMETRIC_MADHAPUR_GUIDE = [
 const LOCAL_TEST_TAKER_TESTIMONIALS = [
   {
     name: 'Sai Krishna K.',
+    avatar: '/assets/images/student-avatar-1.jpg',
     college: 'VNR VJIET (B.Tech CSE)',
     exam: 'GRE General Test',
     score: '324 / 340',
     venue: 'Prometric Madhapur',
     saved: '₹7,500',
-    quote: 'I had an issue where my passport had only a Given Name and blank Surname. Testly corrected my ETS profile formatting before booking, saving me from being denied entry at Prometric Madhapur.'
+    quote: 'I had an issue where my passport had only a Given Name and blank Surname. Rahul & Deepak corrected my ETS profile formatting before booking, saving me from being denied entry at Prometric Madhapur.'
   },
   {
     name: 'Ananya Reddy',
+    avatar: '/assets/images/student-avatar-sneha.jpg',
     college: 'CBIT Gandipet',
     exam: 'TOEFL iBT',
     score: '109 / 120',
@@ -66,12 +68,13 @@ const LOCAL_TEST_TAKER_TESTIMONIALS = [
   },
   {
     name: 'Vivek Sharma',
+    avatar: '/assets/images/student-avatar-3.jpg',
     college: 'Tech Professional @ Mindspace',
     exam: 'PTE Academic',
     score: '84 / 90',
     venue: 'Pearson Hitech City',
     saved: '₹4,500',
-    quote: 'Needed a weekend slot near Cyber Towers for Australia PR. Testly found an open seat, applied the voucher, and gave me clear test-day instructions.'
+    quote: 'Needed a weekend slot near Cyber Towers for Australia PR. Rahul & Deepak found an open seat, applied the voucher, and gave me clear test-day instructions.'
   }
 ];
 
@@ -399,10 +402,17 @@ export default function MadhapurHubPage({ onOpenBooking, onNavigate }) {
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-200">
-                    <p className="text-xs font-bold text-slate-900">{t.name}</p>
-                    <p className="text-[11px] text-slate-500">{t.college}</p>
-                    <p className="text-[10px] text-slate-400 mt-0.5">Scored: <strong className="text-slate-700">{t.score}</strong> • Venue: {t.venue}</p>
+                  <div className="pt-3 border-t border-slate-200 flex items-center gap-3">
+                    <img
+                      src={t.avatar}
+                      alt={t.name}
+                      className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-xs ring-1 ring-slate-200 shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold text-slate-900">{t.name}</p>
+                      <p className="text-[11px] text-slate-500 truncate">{t.college}</p>
+                      <p className="text-[10px] text-slate-400 mt-0.5">Scored: <strong className="text-slate-700">{t.score}</strong> • Venue: {t.venue}</p>
+                    </div>
                   </div>
                 </div>
               ))}

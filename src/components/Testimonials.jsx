@@ -5,13 +5,15 @@ export default function Testimonials() {
   const reviews = [
     {
       name: 'Srikanth Reddy K.',
+      avatar: '/assets/images/student-avatar-1.jpg',
       test: 'GRE® 328 Score (JNTU Hyderabad)',
       location: 'Madhapur, Hyderabad',
-      review: 'The ₹199 assisted registration saved me from a major mistake! I had a Given Name vs Surname mismatch on my Indian Passport for ETS. The specialist guided me line-by-line via WhatsApp.',
+      review: 'The ₹199 assisted registration saved me from a major mistake! I had a Given Name vs Surname mismatch on my Indian Passport for ETS. Rahul & Deepak guided me line-by-line via WhatsApp.',
       tag: 'Verified Hyderabad Student'
     },
     {
       name: 'Ananya Rao',
+      avatar: '/assets/images/student-avatar-sneha.jpg',
       test: 'TOEFL iBT® 112 Score (Osmania Uni)',
       location: 'Begumpet, Hyderabad',
       review: 'The free adaptive GRE & TOEFL mock tests were 100% realistic. The IRT score estimation matched my actual ETS result within 2 points. Zero paywalls, zero daily limits!',
@@ -19,9 +21,10 @@ export default function Testimonials() {
     },
     {
       name: 'Venkatesh V.',
+      avatar: '/assets/images/student-avatar-3.jpg',
       test: 'IELTS Academic Band 8.0 (CBIT)',
       location: 'Kukatpally, Hyderabad',
-      review: 'Booking assistance was super smooth via UPI (PhonePe). They helped me find a slot at the IDP Hyderabad center during peak rush. Best service for study abroad aspirants!',
+      review: 'Booking assistance was super smooth via UPI (PhonePe). Rahul and Deepak helped me find a slot at the IDP Hyderabad center during peak rush. Best service for study abroad aspirants!',
       tag: 'Verified Student'
     }
   ];
@@ -68,15 +71,22 @@ export default function Testimonials() {
               </div>
 
               <div className="pt-4 border-t border-[#E5EAF2] flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-extrabold text-[#102A56]">{item.name}</h4>
-                  <p className="text-xs font-bold text-[#1769E0]">{item.test}</p>
-                  <p className="text-[10px] text-[#667085] font-medium flex items-center gap-1 mt-0.5">
-                    <MapPin className="w-3 h-3 text-slate-400" />
-                    <span>{item.location}</span>
-                  </p>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={item.avatar}
+                    alt={item.name}
+                    className="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs ring-1 ring-slate-200 shrink-0"
+                  />
+                  <div>
+                    <h4 className="text-sm font-extrabold text-[#102A56]">{item.name}</h4>
+                    <p className="text-xs font-bold text-[#1769E0]">{item.test}</p>
+                    <p className="text-[10px] text-[#667085] font-medium flex items-center gap-1 mt-0.5">
+                      <MapPin className="w-3 h-3 text-slate-400" />
+                      <span>{item.location}</span>
+                    </p>
+                  </div>
                 </div>
-                <CheckCircle2 className="w-5 h-5 text-[#18A957]" />
+                <CheckCircle2 className="w-5 h-5 text-[#18A957] shrink-0" />
               </div>
             </div>
           ))}

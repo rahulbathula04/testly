@@ -3,12 +3,12 @@ import { Star, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const REVIEWS = [
   {
-    name: 'Riya Sharma',
+    name: 'Anya Sharma',
     examCity: 'GRE • Hyderabad Desk',
     avatar: '/assets/images/student-avatar-2.jpg',
     score: '328 / 340',
-    admit: 'Carnegie Mellon Univ',
-    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, their officer spotted that my middle name was missing before submitting to ETS. Zero stress!'
+    admit: 'Univ of Oxford',
+    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, founders Rahul and Deepak spotted that my middle name was missing before submitting to ETS. Zero stress!'
   },
   {
     name: 'Arjun Mehta',
@@ -16,12 +16,12 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-1.jpg',
     score: '114 / 120',
     admit: 'NYU Stern MS',
-    quote: 'Super responsive WhatsApp team. They booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
+    quote: 'Super responsive WhatsApp team. Rahul and Deepak booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
   },
   {
     name: 'Sneha Reddy',
-    examCity: 'PTE Academic • Chennai Desk',
-    avatar: '/assets/images/student-avatar-5.jpg',
+    examCity: 'PTE Academic • Hyderabad Desk',
+    avatar: '/assets/images/student-avatar-sneha.jpg',
     score: '84 / 90',
     admit: 'Univ of Melbourne',
     quote: 'Best decision! Smooth verification process, official Pearson confirmation within hours, and I saved almost ₹4,000 compared to paying on the portal directly.'
@@ -29,9 +29,9 @@ const REVIEWS = [
   {
     name: 'Karthik Varma',
     examCity: 'GRE • Hyderabad Desk',
-    avatar: '/assets/images/student-unt-grad.jpg',
+    avatar: '/assets/images/student-avatar-5.jpg',
     score: '324 / 340',
-    admit: 'Univ of North Texas',
+    admit: 'Univ of Edinburgh',
     quote: 'Was skeptical about institutional discounts initially, but Testly booked the slot live while sharing screens. Got my ETS confirmation email within 6 minutes flat!'
   },
   {
@@ -40,7 +40,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-4.jpg',
     score: '8.5 / 9.0',
     admit: 'Imperial College London',
-    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist they shared saved me from a costly date-rescheduling penalty at IDP.'
+    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist Rahul & Deepak shared saved me from a costly date-rescheduling penalty at IDP.'
   },
   {
     name: 'Rohan Deshmukh',
@@ -53,15 +53,15 @@ const REVIEWS = [
   {
     name: 'Pooja Patel',
     examCity: 'TOEFL • Ahmedabad Desk',
-    avatar: '/assets/images/student-uk-cohort.jpg',
+    avatar: '/assets/images/student-avatar-pooja.jpg',
     score: '111 / 120',
     admit: 'Univ of Toronto',
-    quote: 'The ₹199 done-for-you service is worth 10x the money. They handled the slot monitor and booked the exact Saturday morning test center slot in Navrangpura.'
+    quote: 'The ₹199 done-for-you service is worth 10x the money. Rahul and Deepak monitored slot openings and booked the exact Saturday morning test center slot in Navrangpura.'
   },
   {
     name: 'Vikram Malhotra',
     examCity: 'GMAT Focus • Delhi NCR Desk',
-    avatar: '/assets/images/student-skyline-night.jpg',
+    avatar: '/assets/images/student-avatar-vikram.jpg',
     score: '685 / 805',
     admit: 'London Business School',
     quote: 'Exceptional professionalism. Authorized GMAC voucher applied seamlessly with immediate confirmation on mba.com. Saved ₹5,200 without any ambiguity.'
