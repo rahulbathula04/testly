@@ -19,6 +19,14 @@ const REVIEWS = [
     quote: 'Super responsive WhatsApp team. Rahul and Deepak booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
   },
   {
+    name: 'Rohit K.',
+    examCity: 'TOEFL • Hyderabad Desk',
+    avatar: '/assets/images/student-avatar-rohit.jpg',
+    score: '110 / 120',
+    admit: 'Univ of Waterloo',
+    quote: 'My Indian credit card kept declining on the international ETS gateway with forex penalties. With Rahul & Deepak, I paid cleanly via UPI, saved ₹4,000, and got instant confirmation.'
+  },
+  {
     name: 'Sneha Reddy',
     examCity: 'PTE Academic • Hyderabad Desk',
     avatar: '/assets/images/student-avatar-sneha.jpg',

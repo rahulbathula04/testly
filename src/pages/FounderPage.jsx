@@ -235,9 +235,15 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                       e.target.src = 'https://ui-avatars.com/api/?name=Rahul+Bathula&background=1E3A8A&color=fff&size=128';
                     }}
                   />
-                  <div className="inline-flex w-12 h-12 rounded-full bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] text-white text-xs font-black items-center justify-center ring-2 ring-white shadow-xs">
-                    DR
-                  </div>
+                  <img
+                    src="/assets/images/deepak-royal-founder.jpg"
+                    alt="Deepak Royal, Co-Founder of Testly"
+                    className="inline-block w-12 h-12 rounded-full object-cover ring-2 ring-white shadow-xs"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://ui-avatars.com/api/?name=Deepak+Royal&background=1E3A8A&color=fff&size=128';
+                    }}
+                  />
                 </div>
                 <div>
                   <div className="text-sm font-bold text-[#0F172A]">Rahul Bathula & Deepak Royal</div>
@@ -905,9 +911,15 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
               <div className="bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] text-white font-black text-2xl flex items-center justify-center shrink-0 border-2 border-blue-200/80 shadow-md">
-                      DR
-                    </div>
+                    <img
+                      src="/assets/images/deepak-royal-founder.jpg"
+                      alt="Deepak Royal - Co-Founder of Testly"
+                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-blue-200/80 shadow-md shrink-0"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://ui-avatars.com/api/?name=Deepak+Royal&background=1E3A8A&color=fff&size=128';
+                      }}
+                    />
                     <div>
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#EBF3FF] text-[#1E3A8A] text-[10px] font-bold">
                         <Award className="w-3 h-3" />

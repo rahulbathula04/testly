@@ -32,7 +32,8 @@ export const PROFESSIONALS = {
     bio: 'Co-Founder of Testly. Leads live candidate booking operations, slot recovery, test venue audits, and Pearson / Prometric / IDP center coordination. Personally executes and audits candidate registrations to ensure 100% zero-defect test morning check-ins.',
     specialties: ['Pearson VUE Logistics', 'Prometric Venue Coordination', 'PTE & IELTS Slot Booking', 'Candidate Verification Ops'],
     examsHandled: 2800,
-    verificationBadge: 'Verified Co-Founder & Operations Lead'
+    verificationBadge: 'Verified Co-Founder & Operations Lead',
+    image: '/assets/images/deepak-royal-founder.jpg'
   }
 };
 

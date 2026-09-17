@@ -44,7 +44,7 @@ const PROFESSIONALS = [
     ],
     avatarInitial: 'DR',
     badge: 'Co-Founder',
-    image: null
+    image: '/assets/images/deepak-royal-founder.jpg'
   }
 ];
 
