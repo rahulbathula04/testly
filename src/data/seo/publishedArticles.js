@@ -14,7 +14,7 @@ export const PUBLISHED_ARTICLES = {
     intent: 'FEE_SAVINGS',
     location: 'India',
     authorId: 'rahul_bathula',
-    reviewerId: 'arjun_varma',
+    reviewerId: 'deep_royal',
     publishedDate: '2026-08-15',
     lastVerifiedDate: '2026-09-16',
     freshnessStatus: 'GREEN',
@@ -108,7 +108,7 @@ Testly’s ₹199 registration assistance includes calendar guidance to help you
     intent: 'REQUIREMENTS_ID',
     location: 'India',
     authorId: 'rahul_bathula',
-    reviewerId: 'priya_nair',
+    reviewerId: 'deep_royal',
     publishedDate: '2026-08-20',
     lastVerifiedDate: '2026-09-16',
     freshnessStatus: 'GREEN',
@@ -203,7 +203,7 @@ Alternatively, if your given name consists of multiple words on your passport (e
     exam: 'IELTS',
     intent: 'COMPARISON',
     location: 'India',
-    authorId: 'kavya_s',
+    authorId: 'deep_royal',
     reviewerId: 'rahul_bathula',
     publishedDate: '2026-08-25',
     lastVerifiedDate: '2026-09-16',
@@ -298,7 +298,7 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
     intent: 'VOUCHER',
     location: 'India',
     authorId: 'rahul_bathula',
-    reviewerId: 'priya_nair',
+    reviewerId: 'deep_royal',
     publishedDate: '2026-09-01',
     lastVerifiedDate: '2026-09-16',
     freshnessStatus: 'GREEN',
@@ -357,7 +357,7 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
     exam: 'GRE',
     intent: 'LOCAL_HUB',
     location: 'Hyderabad',
-    authorId: 'arjun_varma',
+    authorId: 'deep_royal',
     reviewerId: 'rahul_bathula',
     publishedDate: '2026-09-05',
     lastVerifiedDate: '2026-09-16',
@@ -368,57 +368,60 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
       { id: 'hyderabad-venues', label: '1. Authorized GRE Test Centers in Hyderabad' },
       { id: 'prometric-madhapur-guide', label: '2. Prometric Madhapur Test-Day Protocol' },
       { id: 'slot-availability', label: '3. Booking Peak Season Slots (Aug - Dec)' },
-      { id: 'local-savings', label: '4. Hyderabad Student Voucher Savings' },
-      { id: 'walkin-support', label: '5. Testly Madhapur Support Desk' }
+      { id: 'voucher-rates', label: '4. Hyderabad Student Voucher Discounts' },
+      { id: 'how-to-book', label: '5. Booking via Testly Madhapur Desk' },
+      { id: 'faq', label: '6. Frequently Asked Questions' }
     ],
-    summary: 'Hyderabad is one of India\'s largest test-taking centers for the GRE. With top Prometric facilities in Madhapur and Pearson in Begumpet, thousands of engineering students from CBIT, JNTU, and VNR VJIET register monthly. Learn how to reserve prime weekend slots, format your passport name correctly, and save ₹7,500 on official ETS vouchers.',
+    summary: 'Comprehensive guide to GRE test venues in Hyderabad, including Prometric Madhapur and Pearson Begumpet. Learn how to secure prime morning slots during the busy August to December intake rush and save ₹7,500 using official Testly vouchers.',
     sections: [
       {
         id: 'hyderabad-venues',
         title: 'Authorized GRE Test Centers in Hyderabad',
-        content: `Hyderabad hosts the following authorized computerized testing venues:
-1. **Prometric Testing Center Madhapur:** Located near Cyber Towers on Hitech City Road. Primary venue for GRE General Test.
-2. **Pearson Professional Centers Begumpet:** Oxford Plaza on Sardar Patel Road. Highly secure testing environment.`
+        content: `Hyderabad hosts thousands of GRE test-takers annually across two primary high-throughput testing hubs:
+1. **Prometric Testing Center, Madhapur:** Located near Cyber Towers. The primary ETS computerized test venue in West Hyderabad.
+2. **Pearson Professional Centers, Begumpet:** Located on Sardar Patel Road, ideal for central and Secunderabad candidates.`
       },
       {
         id: 'prometric-madhapur-guide',
         title: 'Prometric Madhapur Test-Day Protocol',
-        content: `Arrive 45 minutes prior to appointment. Only original Indian Passports are accepted. Lockers are provided free of cost for phones and personal belongings.`
+        content: `Candidates must reach the center at least **45 minutes before** scheduled appointment time.
+- **Mandatory ID:** Original valid Indian Passport. No Aadhaar, PAN card, or college ID is accepted by ETS test proctors.
+- **Biometric Check:** Fingerprint scanning and digital photograph capture are conducted before workstation allotment.`
       },
       {
         id: 'slot-availability',
         title: 'Booking Peak Season Slots (Aug - Dec)',
-        content: `During peak Fall application season, Saturday and Sunday morning slots fill up 4 weeks in advance. Testly monitors slot openings daily to help candidates secure preferred venues.`
+        content: `Between August and December, GRE morning slots (8:00 AM & 9:00 AM) in Hyderabad sell out 4 to 6 weeks in advance. If you cannot find slots, the Testly Hyderabad desk monitors slot churn in real-time.`
       },
       {
-        id: 'local-savings',
-        title: 'Hyderabad Student Voucher Savings',
-        content: `Pay ₹19,000 instead of the standard ₹26,500 out-of-pocket rate, saving ₹7,500 with official ETS vouchers.`
+        id: 'voucher-rates',
+        title: 'Hyderabad Student Voucher Discounts',
+        content: `Through corporate partnerships with Hyderabad tech institutions, Testly provides GRE vouchers for **₹19,000 net** (retail ETS cost is ₹26,500 with forex). Direct savings of **₹7,500** per registration.`
       },
       {
-        id: 'walkin-support',
-        title: 'Testly Madhapur Support Desk',
-        content: `Visit our walk-in support desk near Durgam Cheruvu Metro or contact our helpline at +91 93473 79041 for instant passport verification.`
+        id: 'how-to-book',
+        title: 'Booking via Testly Madhapur Desk',
+        content: `Students can visit the Testly online portal, choose their preferred date and venue, and receive completed booking confirmation dockets with ₹199 done-for-you concierge service.`
       }
     ],
     faqs: [
       {
-        question: 'Where is the Prometric center in Hyderabad located?',
-        answer: 'Prometric Madhapur is located on Hitech City Main Road, near Cyber Towers and just 3 minutes walking distance from Durgam Cheruvu Metro Station.'
+        question: 'Does Prometric Madhapur have parking facility?',
+        answer: 'Limited two-wheeler parking is available inside the complex. For cars, paid parking is available at nearby Durgam Cheruvu Metro station parking grounds.'
       }
     ]
   },
 
-  'pte-academic-registration-bengaluru': {
-    slug: 'pte-academic-registration-bengaluru',
-    title: 'PTE Academic Registration in Bengaluru: Pearson Test Centers, Slot Availability & Vouchers',
+  'pte-exam-centers-in-bengaluru': {
+    slug: 'pte-exam-centers-in-bengaluru',
+    title: 'PTE Exam Centers in Bengaluru: Pearson VUE Venues, Slot Booking & Vouchers (2026)',
     metaTitle: 'PTE Academic Registration in Bengaluru: Pearson Test Centers, Slot Availability & Vouchers',
     metaDescription: 'Register for PTE Academic in Bengaluru. Compare Pearson test centers in MG Road and Whitefield, check slot availability, and save ₹4,500 on official vouchers.',
     exam: 'PTE',
     intent: 'LOCAL_HUB',
     location: 'Bengaluru',
-    authorId: 'kavya_s',
-    reviewerId: 'arjun_varma',
+    authorId: 'deep_royal',
+    reviewerId: 'rahul_bathula',
     publishedDate: '2026-09-10',
     lastVerifiedDate: '2026-09-16',
     freshnessStatus: 'GREEN',

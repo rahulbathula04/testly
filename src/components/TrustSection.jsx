@@ -2,8 +2,8 @@ import React from 'react';
 import { Users, Briefcase, Globe, BookOpen } from 'lucide-react';
 
 const STATS = [
-  { icon: Users,    value: '4,000+', label: 'Students Guided' },
-  { icon: Briefcase,value: '12–15',  label: 'Education Professionals' },
+  { icon: Users,    value: '5,000+', label: 'Students Guided' },
+  { icon: Briefcase,value: '2',      label: 'Dedicated Founders' },
   { icon: Globe,    value: '4,000+', label: 'Overseas Connections' },
   { icon: BookOpen, value: 'Major',  label: 'Exam Categories' },
 ];
