@@ -20,19 +20,20 @@ export default function AuthModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#102A56]/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-[#E5EAF2] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#102A56]/80 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-[#E5EAF2] overflow-hidden flex flex-col max-h-[92dvh]">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full text-[#667085] hover:bg-[#F2F7FF] hover:text-[#102A56] transition-colors z-10"
+          className="absolute top-4 right-4 p-2 rounded-full text-white/80 hover:bg-white/20 hover:text-white transition-colors z-10"
+          aria-label="Close auth modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Top Decorative Header */}
-        <div className="bg-gradient-to-r from-[#102A56] to-[#1769E0] p-6 text-white text-center">
+        <div className="bg-gradient-to-r from-[#102A56] to-[#1769E0] p-6 text-white text-center shrink-0">
           <div className="w-12 h-12 rounded-2xl bg-white/10 mx-auto flex items-center justify-center mb-3 backdrop-blur-md">
             <GraduationCap className="w-6 h-6 text-white" />
           </div>
@@ -43,7 +44,7 @@ export default function AuthModal({ isOpen, onClose }) {
         </div>
 
         {/* Modal Form Content */}
-        <div className="p-6 sm:p-8">
+        <div className="p-5 sm:p-8 overflow-y-auto touch-scroll">
           {submitted ? (
             <div className="text-center py-8 space-y-4">
               <div className="w-14 h-14 bg-[#18A957]/10 rounded-full flex items-center justify-center text-[#18A957] mx-auto">
@@ -106,7 +107,7 @@ export default function AuthModal({ isOpen, onClose }) {
 
               <button
                 type="submit"
-                className="w-full bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mt-2"
+                className="w-full bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mt-2 min-h-[44px] cursor-pointer active:scale-[0.98]"
               >
                 <span>{isSignUp ? 'Create Account' : 'Log In'}</span>
                 <ArrowRight className="w-4 h-4" />

@@ -172,6 +172,8 @@ test('App routing handles all public URLs predictably', () => {
     { path: '/locations/madhapur', expected: 'madhapur' },
     { path: '/exam-fees', expected: 'exam-fees' },
     { path: '/professionals', expected: 'professionals' },
+    { path: '/about', expected: 'about' },
+    { path: '/founder', expected: 'about' },
     { path: '/guides', expected: 'guides' },
     { path: '/blog', expected: 'guides' },
     { path: '/guides/gre-exam-fee-in-india', expected: 'article', slug: 'gre-exam-fee-in-india' }
@@ -186,6 +188,7 @@ test('App routing handles all public URLs predictably', () => {
     if (path.includes('/locations/hyderabad')) return { type: 'hyderabad' };
     if (path.includes('/exam-fees')) return { type: 'exam-fees' };
     if (path.includes('/professionals')) return { type: 'professionals' };
+    if (path.includes('/about') || path.includes('/founder')) return { type: 'about' };
     const guideMatch = path.match(/^\/(?:guides|blog)\/([a-z0-9-]+)/);
     if (guideMatch && guideMatch[1]) return { type: 'article', slug: guideMatch[1] };
     if (path === '/guides' || path === '/blog') return { type: 'guides' };

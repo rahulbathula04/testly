@@ -17,11 +17,11 @@ export default function WhatsAppWidget() {
   ];
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end print:hidden">
+    <div className="fixed bottom-4 right-3.5 sm:bottom-5 sm:right-5 z-50 flex flex-col items-end print:hidden pointer-events-none">
       
       {/* Expanded Quick Chat Box */}
       {isOpen && (
-        <div className="mb-3 bg-white rounded-2xl p-4 shadow-2xl border border-slate-200 max-w-xs w-full animate-in slide-in-from-bottom-5 duration-200 space-y-3">
+        <div className="mb-3 bg-white rounded-2xl p-4 shadow-2xl border border-slate-200 max-w-[calc(100vw-1.75rem)] w-80 animate-in slide-in-from-bottom-5 duration-200 space-y-3 pointer-events-auto">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center font-bold text-xs shadow-xs">
@@ -77,7 +77,7 @@ export default function WhatsAppWidget() {
       {/* Discrete Trigger Button — compact circle on mobile, comfortable pill on desktop */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:py-2.5 sm:px-4 rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 border-2 border-white cursor-pointer"
+        className="bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:py-2.5 sm:px-4 rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 border-2 border-white cursor-pointer pointer-events-auto"
         aria-label="Chat with Testly on WhatsApp"
       >
         <span className="relative flex h-2 w-2">

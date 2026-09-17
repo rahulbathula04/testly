@@ -66,12 +66,12 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92dvh]">
 
         {/* Modal Header */}
-        <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+        <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 shrink-0">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">
+            <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
@@ -85,14 +85,15 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
           </div>
           <button
             onClick={handleResetAndClose}
-            className="w-7 h-7 rounded-full hover:bg-slate-200/80 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors"
+            className="w-8 h-8 rounded-full hover:bg-slate-200/80 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors shrink-0"
+            aria-label="Close dialog"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 overflow-y-auto space-y-4">
+        <div className="p-4 sm:p-5 overflow-y-auto space-y-4 touch-scroll">
           {!isSubmitted ? (
             <form onSubmit={handleSubmit} className="space-y-4">
 
@@ -145,7 +146,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                       key={opt}
                       type="button"
                       onClick={() => setExam(opt)}
-                      className={`text-xs font-bold py-2 rounded-lg border text-center transition-all ${
+                      className={`text-xs font-bold py-2.5 px-1 rounded-lg border text-center transition-all min-h-[42px] flex items-center justify-center active:scale-[0.97] ${
                         exam === opt
                           ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
                           : 'bg-white text-slate-700 border-slate-200 hover:border-slate-400 hover:bg-slate-50'
@@ -168,7 +169,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                       key={t}
                       type="button"
                       onClick={() => setTiming(t)}
-                      className={`text-[11px] font-bold py-1.5 px-2 rounded-lg border text-center transition-all ${
+                      className={`text-[11px] font-bold py-2 px-1.5 rounded-lg border text-center transition-all min-h-[38px] flex items-center justify-center active:scale-[0.97] ${
                         timing === t
                           ? 'bg-emerald-700 text-white border-emerald-700 shadow-xs'
                           : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
@@ -230,7 +231,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
               {/* Primary Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 group cursor-pointer active:scale-[0.98]"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 group cursor-pointer active:scale-[0.98] min-h-[44px]"
               >
                 <span>Check My Savings & Available Slots</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

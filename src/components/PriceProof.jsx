@@ -260,16 +260,16 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
             </div>
 
             {/* Mobile Filter Pills (Shows on small screens to reduce vertical scroll) */}
-            <div className="flex sm:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
-              <span className="text-[10.5px] font-bold text-[#64748B] uppercase shrink-0">Filter:</span>
+            <div className="flex sm:hidden items-center gap-2 overflow-x-auto no-scrollbar py-1 touch-scroll -mx-4 px-4">
+              <span className="text-[11px] font-bold text-[#64748B] uppercase shrink-0">Filter:</span>
               {['ALL', 'GRE', 'TOEFL', 'PTE', 'Duolingo'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setMobileFilter(tab)}
-                  className={`text-[11px] font-bold px-3 py-1 rounded-full border transition-all shrink-0 ${
+                  className={`text-xs font-bold px-3.5 py-1.5 min-h-[38px] rounded-full border transition-all shrink-0 active:scale-95 cursor-pointer flex items-center justify-center ${
                     mobileFilter === tab
-                      ? 'bg-[#0F172A] text-white border-[#0F172A]'
-                      : 'bg-[#FAF9F6] text-[#64748B] border-[#E5E7EB]'
+                      ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-xs'
+                      : 'bg-[#FAF9F6] text-[#64748B] border-[#E5E7EB] hover:bg-white'
                   }`}
                 >
                   {tab}

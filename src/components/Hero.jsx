@@ -77,14 +77,14 @@ export default function Hero({ onBookTest }) {
           {/* Main Headline */}
           <h1
             style={{ fontFamily: "'DM Serif Display', serif" }}
-            className="text-[34px] xs:text-4xl sm:text-5xl lg:text-[62px] text-[#0F172A] leading-[1.08] sm:leading-[1.03] tracking-[-0.015em]"
+            className="text-[28px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[62px] text-[#0F172A] leading-[1.12] sm:leading-[1.03] tracking-[-0.015em] break-words"
           >
             Book Your Exam.<br />
             <span className="text-[#1E3A8A]">Save Up to ₹6,043</span> on Official Fees.
           </h1>
 
           {/* Subheading */}
-          <p className="text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed">
+          <p className="text-[13.5px] xs:text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed">
             Eliminate unfair bank forex card markups. Get verified institutional rates and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deep Royal.
           </p>
 
@@ -93,14 +93,14 @@ export default function Hero({ onBookTest }) {
             {pillars.map(({ icon: Icon, label, sub }) => (
               <div
                 key={label}
-                className="flex items-center gap-2.5 p-2 sm:p-2.5 rounded-xl bg-[#FAF9F6] border border-[#E5E7EB] hover:border-[#BFDBFE] hover:bg-white transition-all shadow-2xs"
+                className="flex items-center gap-2 sm:gap-2.5 p-2 sm:p-2.5 rounded-xl bg-[#FAF9F6] border border-[#E5E7EB] hover:border-[#BFDBFE] hover:bg-white transition-all shadow-2xs"
               >
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/60 shadow-2xs">
                   <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[9.5px] sm:text-[10.5px] font-bold uppercase tracking-wide text-[#0F172A] truncate">{label}</p>
-                  <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal truncate">{sub}</p>
+                  <p className="text-[9px] xs:text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wide text-[#0F172A] leading-tight line-clamp-1">{label}</p>
+                  <p className="text-[9.5px] xs:text-[10px] sm:text-[11px] text-[#64748B] font-normal leading-tight line-clamp-1">{sub}</p>
                 </div>
               </div>
             ))}

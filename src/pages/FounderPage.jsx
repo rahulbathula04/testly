@@ -223,9 +223,9 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
             </p>
 
             {/* Quick Author Signature Strip */}
-            <div className="mt-8 pt-6 border-t border-[#E5E7EB] flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-8 pt-6 border-t border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="flex -space-x-2 overflow-hidden">
+                <div className="flex -space-x-2 overflow-hidden shrink-0">
                   <img
                     src={FOUNDER_IMAGE}
                     alt="Rahul Bathula, Founder of Testly"
@@ -245,10 +245,10 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
                 <button
                   onClick={() => onOpenBooking ? onOpenBooking('GRE') : null}
-                  className="inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-[0.98] cursor-pointer min-h-[44px]"
                 >
                   <span>Explore Supported Exams</span>
                   <ArrowRight className="w-3.5 h-3.5 text-blue-400" />
@@ -257,7 +257,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deep,%20I%20read%20your%20story%20on%20Testly%20and%20wanted%20to%20connect."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] font-bold text-xs sm:text-sm transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] font-bold text-xs sm:text-sm transition-colors min-h-[44px]"
                 >
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
                   <span>WhatsApp Rahul & Deep</span>
@@ -962,23 +962,23 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
               Don’t pay unnecessary bank forex markups or risk a passport name rejection. Check today's verified rates and let our Hyderabad team handle your registration with zero errors.
             </p>
-            <div className="pt-4 flex flex-wrap items-center justify-center gap-3.5">
+            <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full max-w-lg mx-auto sm:max-w-none">
               <button
                 onClick={() => onOpenBooking ? onOpenBooking('GRE') : null}
-                className="bg-[#3B82F6] hover:bg-blue-600 text-white font-bold text-sm px-7 py-3.5 rounded-xl transition-all shadow-lg flex items-center gap-2 cursor-pointer"
+                className="bg-[#3B82F6] hover:bg-blue-600 text-white font-bold text-sm px-7 py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
               >
                 <span>Check My Exam Savings</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onNavigate ? onNavigate('/exam-fees') : null}
-                className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm px-6 py-3.5 rounded-xl transition-colors cursor-pointer"
+                className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm px-6 py-3.5 rounded-xl transition-colors cursor-pointer min-h-[44px]"
               >
                 View Live Fee Tracker
               </button>
               <button
                 onClick={() => onNavigate ? onNavigate('/campus') : null}
-                className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm px-6 py-3.5 rounded-xl transition-colors cursor-pointer"
+                className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm px-6 py-3.5 rounded-xl transition-colors cursor-pointer min-h-[44px]"
               >
                 For Colleges (Campus MoU)
               </button>

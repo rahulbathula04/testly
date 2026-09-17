@@ -65,8 +65,8 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
           </button>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 relative">
+        {/* Steps Grid — Clean 2x2 on mobile, 4-col on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6 relative">
           {/* Connecting line (desktop only) */}
           <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#BFDBFE] via-[#3B82F6]/40 to-[#BFDBFE] z-0" />
 
@@ -75,35 +75,37 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
             return (
               <div
                 key={step.num}
-                className="relative flex flex-col gap-4 sm:gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-4.5 sm:p-6 hover:bg-white hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-200 group z-10"
+                className="relative flex flex-col justify-between gap-3 sm:gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-3.5 sm:p-6 hover:bg-white hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-200 group z-10 shadow-2xs"
               >
-                {/* Step Number + Icon Row */}
-                <div className="flex items-center gap-2.5 sm:gap-3">
-                  {/* Step circle */}
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0F172A] group-hover:bg-[#1E3A8A] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center shrink-0 transition-colors shadow-2xs z-10">
-                    {step.num}
+                <div className="space-y-2.5 sm:space-y-4">
+                  {/* Step Number + Icon Row */}
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    {/* Step circle */}
+                    <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#0F172A] group-hover:bg-[#1E3A8A] text-white text-[11px] sm:text-[13px] font-bold flex items-center justify-center shrink-0 transition-colors shadow-2xs z-10">
+                      {step.num}
+                    </div>
+                    {/* Icon */}
+                    <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white flex items-center justify-center border border-[#BFDBFE] transition-all shrink-0">
+                      <Icon className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
+                    </div>
                   </div>
-                  {/* Icon */}
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white flex items-center justify-center border border-[#BFDBFE] transition-all">
-                    <Icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-                  </div>
-                </div>
 
-                {/* Content */}
-                <div className="space-y-2 flex-1">
-                  <h3 className="text-sm font-bold text-[#0F172A] leading-snug">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-[#64748B] leading-relaxed">
-                    {step.desc}
-                  </p>
+                  {/* Content */}
+                  <div className="space-y-1 sm:space-y-2">
+                    <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] leading-snug">
+                      {step.title}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-[#64748B] leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Tag badge at bottom */}
-                <div className="pt-3 border-t border-[#E5E7EB]">
-                  <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#1E3A8A] bg-[#EBF3FF] border border-[#BFDBFE]/70 px-2.5 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
-                    {step.tag}
+                <div className="pt-2 sm:pt-3 border-t border-[#E5E7EB]">
+                  <span className="inline-flex items-center gap-1 text-[9.5px] sm:text-[10.5px] font-semibold text-[#1E3A8A] bg-[#EBF3FF] border border-[#BFDBFE]/70 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full truncate max-w-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] shrink-0" />
+                    <span className="truncate">{step.tag}</span>
                   </span>
                 </div>
               </div>

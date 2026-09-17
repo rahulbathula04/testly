@@ -68,55 +68,56 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#102A56]/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-[#E5EAF2] overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#102A56]/80 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-[#E5EAF2] overflow-hidden flex flex-col max-h-[92dvh]">
         
         {/* Top Modal Header */}
-        <div className="bg-white px-6 py-4 border-b border-[#E5EAF2] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-xl font-black text-[#102A56]">Testly India</span>
+        <div className="bg-white px-4 sm:px-6 py-4 border-b border-[#E5EAF2] flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="text-lg sm:text-xl font-black text-[#102A56]">Testly India</span>
             <span className="text-slate-300">|</span>
-            <span className="text-xs font-bold text-[#667085]">Assisted Registration (₹199)</span>
+            <span className="text-[11px] sm:text-xs font-bold text-[#667085]">Assisted Registration (₹199)</span>
           </div>
 
           <button 
             onClick={handleReset}
-            className="p-1.5 rounded-full hover:bg-[#F2F7FF] text-[#667085] hover:text-[#102A56] transition-colors"
+            className="p-2 rounded-full hover:bg-[#F2F7FF] text-[#667085] hover:text-[#102A56] transition-colors"
+            aria-label="Close booking modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Stepper Bar */}
-        <div className="bg-[#F7FAFF] px-6 py-3 border-b border-[#E5EAF2] flex items-center justify-between text-xs font-extrabold text-[#667085] overflow-x-auto whitespace-nowrap gap-2">
-          <div className={`flex items-center gap-2 ${step >= 1 ? 'text-[#1769E0]' : ''}`}>
+        <div className="bg-[#F7FAFF] px-4 sm:px-6 py-3 border-b border-[#E5EAF2] flex items-center justify-between text-xs font-extrabold text-[#667085] overflow-x-auto whitespace-nowrap gap-2 touch-scroll shrink-0">
+          <div className={`flex items-center gap-2 shrink-0 ${step >= 1 ? 'text-[#1769E0]' : ''}`}>
             <span className={`w-5 h-5 rounded-full text-[11px] flex items-center justify-center font-black ${step >= 1 ? 'bg-[#1769E0] text-white' : 'bg-slate-200 text-slate-600'}`}>1</span>
             <span>Test & City</span>
           </div>
-          <span>➔</span>
-          <div className={`flex items-center gap-2 ${step >= 2 ? 'text-[#1769E0]' : ''}`}>
+          <span className="shrink-0 text-slate-300">➔</span>
+          <div className={`flex items-center gap-2 shrink-0 ${step >= 2 ? 'text-[#1769E0]' : ''}`}>
             <span className={`w-5 h-5 rounded-full text-[11px] flex items-center justify-center font-black ${step >= 2 ? 'bg-[#1769E0] text-white' : 'bg-slate-200 text-slate-600'}`}>2</span>
             <span>Plan</span>
           </div>
-          <span>➔</span>
-          <div className={`flex items-center gap-2 ${step >= 3 ? 'text-[#1769E0]' : ''}`}>
+          <span className="shrink-0 text-slate-300">➔</span>
+          <div className={`flex items-center gap-2 shrink-0 ${step >= 3 ? 'text-[#1769E0]' : ''}`}>
             <span className={`w-5 h-5 rounded-full text-[11px] flex items-center justify-center font-black ${step >= 3 ? 'bg-[#1769E0] text-white' : 'bg-slate-200 text-slate-600'}`}>3</span>
             <span>Date</span>
           </div>
-          <span>➔</span>
-          <div className={`flex items-center gap-2 ${step >= 4 ? 'text-[#1769E0]' : ''}`}>
+          <span className="shrink-0 text-slate-300">➔</span>
+          <div className={`flex items-center gap-2 shrink-0 ${step >= 4 ? 'text-[#1769E0]' : ''}`}>
             <span className={`w-5 h-5 rounded-full text-[11px] flex items-center justify-center font-black ${step >= 4 ? 'bg-[#1769E0] text-white' : 'bg-slate-200 text-slate-600'}`}>4</span>
             <span>Passport Audit</span>
           </div>
-          <span>➔</span>
-          <div className={`flex items-center gap-2 ${step >= 5 ? 'text-[#1769E0]' : ''}`}>
+          <span className="shrink-0 text-slate-300">➔</span>
+          <div className={`flex items-center gap-2 shrink-0 ${step >= 5 ? 'text-[#1769E0]' : ''}`}>
             <span className={`w-5 h-5 rounded-full text-[11px] flex items-center justify-center font-black ${step >= 5 ? 'bg-[#1769E0] text-white' : 'bg-slate-200 text-slate-600'}`}>5</span>
             <span>Confirm UPI</span>
           </div>
         </div>
 
         {/* Modal Main Content Container */}
-        <div className="p-6 sm:p-8 overflow-y-auto flex-grow space-y-6">
+        <div className="p-4 sm:p-8 overflow-y-auto flex-grow space-y-6 touch-scroll">
           
           {/* STEP 1: CHOOSE TEST & CITY */}
           {step === 1 && (
@@ -172,7 +173,7 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
               <div className="pt-4 flex justify-end">
                 <button
                   onClick={() => setStep(2)}
-                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2"
+                  className="w-full sm:w-auto bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 min-h-[44px] cursor-pointer active:scale-[0.98]"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -253,17 +254,17 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
 
               </div>
 
-              <div className="pt-4 flex items-center justify-between">
+              <div className="pt-4 flex items-center justify-between gap-3">
                 <button
                   onClick={() => setStep(1)}
-                  className="text-xs font-bold text-[#667085] hover:text-[#102A56] flex items-center gap-1"
+                  className="text-xs font-bold text-[#667085] hover:text-[#102A56] flex items-center gap-1 min-h-[44px] px-2"
                 >
                   ← Back
                 </button>
 
                 <button
                   onClick={() => setStep(3)}
-                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2"
+                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2 min-h-[44px] cursor-pointer active:scale-[0.98]"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -322,17 +323,17 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
 
               </div>
 
-              <div className="pt-4 flex items-center justify-between">
+              <div className="pt-4 flex items-center justify-between gap-3">
                 <button
                   onClick={() => setStep(2)}
-                  className="text-xs font-bold text-[#667085] hover:text-[#102A56]"
+                  className="text-xs font-bold text-[#667085] hover:text-[#102A56] min-h-[44px] px-2"
                 >
                   ← Back
                 </button>
 
                 <button
                   onClick={() => setStep(4)}
-                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2"
+                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2 min-h-[44px] cursor-pointer active:scale-[0.98]"
                 >
                   <span>Continue</span>
                   <ArrowRight className="w-4 h-4" />
@@ -411,13 +412,13 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
                 </div>
               )}
 
-              <div className="pt-4 flex items-center justify-between">
+              <div className="pt-4 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <button
                   onClick={() => {
                     setStepError('');
                     setStep(3);
                   }}
-                  className="text-xs font-bold text-[#667085] hover:text-[#102A56]"
+                  className="text-xs font-bold text-[#667085] hover:text-[#102A56] text-center min-h-[44px] py-2"
                 >
                   ← Back
                 </button>
@@ -440,7 +441,7 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
                     setStepError('');
                     setStep(5);
                   }}
-                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] min-h-[44px]"
                 >
                   <span>Proceed to Payment</span>
                   <ArrowRight className="w-4 h-4" />
@@ -472,7 +473,7 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
                     <button
                       key={m}
                       onClick={() => setPaymentMethod(m)}
-                      className={`p-3 rounded-xl text-xs font-black border transition-all text-center ${
+                      className={`p-3 rounded-xl text-xs font-black border transition-all text-center min-h-[44px] ${
                         paymentMethod === m 
                           ? 'bg-[#1769E0] text-white border-[#1769E0] shadow-sm'
                           : 'bg-white text-[#102A56] border-[#E5EAF2]'
@@ -497,7 +498,7 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
 
               <button
                 onClick={handleFinish}
-                className="w-full bg-[#18A957] hover:bg-[#128342] text-white font-extrabold text-base py-4 rounded-2xl shadow-lg transition-all"
+                className="w-full bg-[#18A957] hover:bg-[#128342] text-white font-extrabold text-base py-4 rounded-2xl shadow-lg transition-all min-h-[48px] cursor-pointer active:scale-[0.98]"
               >
                 Pay ₹{selectedPlan} via {paymentMethod} & Launch Guidance →
               </button>

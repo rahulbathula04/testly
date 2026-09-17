@@ -152,16 +152,17 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
               href="https://wa.me/919347379041?text=Hi%20Testly%20Campus%20Team!%20We%20would%20like%20to%20discuss%20an%20institutional%20exam%20registration%20drive%20for%20our%20college."
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 sm:px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm shrink-0 whitespace-nowrap min-h-[38px]"
             >
-              <MessageCircle className="w-3.5 h-3.5" /> Speak with Institutional Lead
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span><span className="hidden sm:inline">Speak with </span>Lead</span>
             </a>
           </div>
         </div>
       </header>
 
       {/* ── Hero Section ── */}
-      <section className="relative overflow-hidden py-16 sm:py-24 border-b border-slate-800 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+      <section className="relative overflow-hidden py-12 sm:py-24 border-b border-slate-800 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -172,7 +173,7 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
                 University & Engineering College Partnership Program
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08]">
                 Handle Your Students' International Exam-Registration Needs.
               </h1>
 
@@ -186,32 +187,32 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
               </p>
 
               {/* Key Metrics */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-800/80">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-slate-800/80">
                 <div>
-                  <span className="text-2xl sm:text-3xl font-black text-emerald-400 block font-mono">₹7,500</span>
-                  <span className="text-xs text-slate-400 font-medium">Max savings per student</span>
+                  <span className="text-xl sm:text-3xl font-black text-emerald-400 block font-mono">₹7,500</span>
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-medium">Max savings per student</span>
                 </div>
                 <div>
-                  <span className="text-2xl sm:text-3xl font-black text-white block font-mono">0%</span>
-                  <span className="text-xs text-slate-400 font-medium">Exam-day turnaways</span>
+                  <span className="text-xl sm:text-3xl font-black text-white block font-mono">0%</span>
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-medium">Exam-day turnaways</span>
                 </div>
                 <div>
-                  <span className="text-2xl sm:text-3xl font-black text-amber-400 block font-mono">100%</span>
-                  <span className="text-xs text-slate-400 font-medium">Legitimate INR billing</span>
+                  <span className="text-xl sm:text-3xl font-black text-amber-400 block font-mono">100%</span>
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-medium">Legitimate INR billing</span>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                 <a
                   href="#partner-form"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all shadow-lg flex items-center gap-2"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 min-h-[44px]"
                 >
                   Request Campus Registration Drive
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href="tel:+919347379041"
-                  className="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-sm px-5 py-3.5 rounded-xl transition-colors flex items-center gap-2"
+                  className="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-sm px-5 py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 min-h-[44px]"
                 >
                   <Phone className="w-4 h-4 text-emerald-400" />
                   +91 93473 79041

@@ -102,6 +102,7 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
             onClick={() => setOpen(!open)}
             className="w-10 h-10 flex items-center justify-center text-[#0F172A] hover:bg-[#EBF3FF] rounded-xl transition-colors cursor-pointer active:scale-95"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={open}
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -111,10 +112,12 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
 
       {/* ── Mobile & Tablet Drawer (Refined & Light) ── */}
       {open && (
-        <div className="lg:hidden bg-[#FAF9F6] border-b border-[#E5E7EB] px-4 pt-3 pb-6 shadow-xl space-y-2 animate-in slide-in-from-top-2 duration-150">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748B] px-3 py-1">
-            Menu
+        <div className="lg:hidden bg-[#FAF9F6] border-b border-[#E5E7EB] px-4 pt-3 pb-6 shadow-xl space-y-3 animate-in slide-in-from-top-2 duration-150 max-h-[85dvh] overflow-y-auto touch-scroll">
+          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#64748B] px-3 py-1">
+            <span>Navigation Menu</span>
+            <span className="text-[9px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Live 2026</span>
           </div>
+
           <div className="space-y-0.5">
             {NAV_ITEMS.map((l) => (
               <a
@@ -124,21 +127,39 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
                   setOpen(false);
                   handleClick(e, l.href);
                 }}
-                className="flex items-center justify-between min-h-[44px] py-2.5 px-3 text-[14px] font-medium text-[#0F172A] hover:bg-[#EBF3FF] hover:text-[#1E3A8A] rounded-xl transition-colors"
+                className="flex items-center justify-between min-h-[46px] py-2.5 px-3.5 text-[14px] font-medium text-[#0F172A] hover:bg-[#EBF3FF] hover:text-[#1E3A8A] active:bg-[#EBF3FF] rounded-xl transition-colors"
               >
                 <span>{l.label}</span>
-                <span className="text-[#94A3B8] text-xs">›</span>
+                <span className="text-[#94A3B8] text-sm">›</span>
               </a>
             ))}
           </div>
 
-          <div className="pt-3 border-t border-[#E5E7EB]/80">
+          {/* Quick Direct Support Row for Mobile */}
+          <div className="pt-3 border-t border-[#E5E7EB]/80 grid grid-cols-2 gap-2">
+            <a
+              href="https://wa.me/919347379041?text=Hi%20Testly!%20I%20have%20a%20question%20about%20exam%20registration%20and%20savings."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+            >
+              <span>WhatsApp Us</span>
+            </a>
+            <a
+              href="tel:+919347379041"
+              className="bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+            >
+              <span>Call Desk</span>
+            </a>
+          </div>
+
+          <div className="pt-1">
             <button
               onClick={() => {
                 setOpen(false);
                 onOpenBooking('GRE');
               }}
-              className="w-full bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.98] transition-all"
+              className="w-full bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.98] transition-all"
             >
               <span>Check My Exam Savings</span>
               <ArrowRight className="w-4 h-4 text-blue-400" />

@@ -146,13 +146,13 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                 >
                   <div className="space-y-4">
                     {/* Header with Avatar and Role */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-3.5">
+                    <div className="flex flex-col xs:flex-row xs:items-start justify-between gap-3 sm:gap-4">
+                      <div className="flex items-center gap-3 sm:gap-3.5">
                         {pro.image ? (
                           <img
                             src={pro.image}
                             alt={pro.name}
-                            className="w-16 h-16 rounded-2xl object-cover ring-2 ring-blue-600/20 shadow-md"
+                            className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover ring-2 ring-blue-600/20 shadow-md shrink-0"
                             onError={(e) => {
                               e.target.style.display = 'none';
                               e.target.nextSibling.style.display = 'flex';
@@ -161,17 +161,22 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                         ) : null}
                         <div
                           style={{ display: pro.image ? 'none' : 'flex' }}
-                          className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] text-white font-black text-xl items-center justify-center shadow-md"
+                          className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] text-white font-black text-xl items-center justify-center shadow-md shrink-0"
                         >
                           {pro.avatarInitial}
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-slate-900">{pro.name}</h3>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-lg sm:text-xl font-bold text-slate-900">{pro.name}</h3>
+                            <span className="xs:hidden text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white border border-slate-200 text-blue-900 shadow-xs">
+                              {pro.badge}
+                            </span>
+                          </div>
                           <p className="text-xs text-blue-700 font-bold">{pro.role}</p>
                           <p className="text-[11px] text-slate-500 font-medium mt-0.5">{pro.experience}</p>
                         </div>
                       </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white border border-slate-200 text-blue-900 shadow-sm shrink-0">
+                      <span className="hidden xs:inline-block text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white border border-slate-200 text-blue-900 shadow-sm shrink-0">
                         {pro.badge}
                       </span>
                     </div>
@@ -204,14 +209,14 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
-                    <span className="text-xs text-slate-500 font-medium">Direct Founder Oversight</span>
+                  <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                    <span className="text-xs text-slate-500 font-medium text-center sm:text-left">Direct Founder Oversight</span>
                     <button
                       onClick={() => onOpenBooking('GRE')}
-                      className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                      className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer min-h-[44px]"
                     >
                       <span>Book with Testly</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
