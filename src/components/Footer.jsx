@@ -1,4 +1,5 @@
 import React from 'react';
+import BrandLogo from './BrandLogo';
 
 export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
   const handleClick = (e, href) => {
@@ -24,28 +25,26 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
   };
 
   return (
-    <footer className="bg-[#0B1528] text-white pt-14 pb-8 border-t border-slate-800 font-[Inter,system-ui,sans-serif]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <footer className="bg-[#0F172A] text-white pt-10 sm:pt-14 pb-8 border-t border-slate-800 font-[Inter,system-ui,sans-serif]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
-        {/* 5-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+        {/* 5-Column Grid — 2-column on mobile, 12-col on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8">
           
-          {/* Col 1: Brand & Bio (4 cols) */}
-          <div className="lg:col-span-4 space-y-3">
+          {/* Col 1: Brand & Bio (Spans full 2 cols on mobile, 4 cols on desktop) */}
+          <div className="col-span-2 lg:col-span-4 space-y-3">
             <a
               href="/"
               onClick={(e) => handleClick(e, '/')}
               className="inline-block"
             >
-              <span className="text-2xl font-black text-white tracking-tight block">
-                Testly
-              </span>
-              <span className="text-[11px] font-bold text-slate-400 block tracking-wide mt-0.5">
-                Book Smarter • Go Further
+              <BrandLogo variant="horizontal" size="md" theme="light" />
+              <span className="text-[11px] font-medium text-slate-400 block tracking-wide mt-1 italic">
+                Book smarter. Go further.
               </span>
             </a>
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              India's trusted exam registration partner. We help students save on exam fees, get end-to-end guidance and avoid costly errors.
+              India's verified exam registration partner. Save on fees with corporate vouchers and professional concierge assistance.
             </p>
           </div>
 

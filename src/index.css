@@ -27,6 +27,9 @@ html {
   overflow-x: clip !important;
   max-width: 100vw;
   width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -36,6 +39,8 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {

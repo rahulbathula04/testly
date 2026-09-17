@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ShieldCheck, CheckCircle2, Headphones, Zap, Sparkles } from 'lucide-react';
 
 const VALUES = [
@@ -36,40 +36,40 @@ const VALUES = [
 
 export default function BrandValues() {
   return (
-    <section className="py-12 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
+    <section className="py-10 sm:py-14 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[11px] font-bold tracking-wider uppercase">
+        <div className="text-center max-w-2xl mx-auto space-y-2 mb-7 sm:mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase">
             <span>BRAND VALUES</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
             Built on Integrity. Engineered for Aspirants.
           </h2>
-          <p className="text-sm text-[#64748B]">
+          <p className="text-xs sm:text-sm text-[#64748B]">
             Our five core pillars driving thousands of successful exam registrations across India.
           </p>
         </div>
 
-        {/* 5 Pillars Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {/* 5 Pillars Row (Clean responsive cards) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
           {VALUES.map((val) => {
             const Icon = val.icon;
             return (
               <div
                 key={val.title}
-                className="bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-5 flex flex-col justify-between hover:bg-white hover:border-[#3B82F6]/50 hover:shadow-lg transition-all duration-200 group"
+                className="bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-4 sm:p-5 flex flex-col justify-between hover:bg-white hover:border-[#3B82F6]/50 hover:shadow-md transition-all duration-200 group"
               >
-                <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white transition-colors flex items-center justify-center border border-[#BFDBFE]/80 shadow-2xs">
-                    <Icon className="w-5 h-5" />
+                <div className="space-y-2.5 sm:space-y-3">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white transition-colors flex items-center justify-center border border-[#BFDBFE]/80 shadow-2xs">
+                    <Icon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[#0F172A] leading-snug">
+                    <h3 className="text-[15px] sm:text-base font-bold text-[#0F172A] leading-snug">
                       {val.title}
                     </h3>
-                    <div className="text-[11px] font-semibold text-[#1E3A8A] mt-0.5">
+                    <div className="text-[10.5px] sm:text-[11px] font-semibold text-[#1E3A8A] mt-0.5">
                       {val.subtitle}
                     </div>
                   </div>

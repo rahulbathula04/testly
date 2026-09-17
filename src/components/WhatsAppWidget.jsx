@@ -74,19 +74,19 @@ export default function WhatsAppWidget() {
         </div>
       )}
 
-      {/* Persistent Trigger Button */}
+      {/* Discrete Trigger Button — compact circle on mobile, comfortable pill on desktop */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-4 rounded-full shadow-xl transition-all transform hover:scale-105 flex items-center gap-2 border-2 border-white group"
+        className="bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:py-2.5 sm:px-4 rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 border-2 border-white cursor-pointer"
         aria-label="Chat with Testly on WhatsApp"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
         </span>
-        <MessageCircle className="w-4 h-4" />
-        <span className="text-xs font-extrabold tracking-wide">
-          {isOpen ? 'Close Chat' : 'Chat with Booking Desk'}
+        <MessageCircle className="w-5 h-5 sm:w-4 sm:h-4" />
+        <span className="hidden sm:inline text-xs font-bold tracking-wide">
+          {isOpen ? 'Close Chat' : 'Chat with Desk'}
         </span>
       </button>
 

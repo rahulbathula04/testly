@@ -32,26 +32,26 @@ export default function FAQSection({ onBookTest }) {
   )}`;
 
   return (
-    <section id="faq" className="py-12 sm:py-16 bg-white border-b border-slate-200/80 font-[Inter,system-ui,sans-serif]">
+    <section id="faq" className="py-10 sm:py-16 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Column: Heading & Subtitle (3 cols) */}
-          <div className="lg:col-span-3 space-y-3.5">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200/80 text-blue-700 text-[10px] font-extrabold uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+          <div className="lg:col-span-3 space-y-2.5 sm:space-y-3.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[10.5px] font-bold tracking-wide uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
               <span>FREQUENTLY ASKED QUESTIONS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-tight">
-              Still Have<br className="hidden sm:block" /> Questions?
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
+              Still Have Questions?
             </h2>
-            <p className="text-xs text-slate-500 font-medium leading-relaxed">
+            <p className="text-xs text-[#64748B] font-normal leading-relaxed">
               Transparent answers regarding vouchers, fees, slot audits, and rescheduling rules.
             </p>
             <button
               onClick={() => onBookTest('GRE')}
-              className="inline-flex items-center gap-1.5 text-xs font-black text-blue-700 hover:text-blue-900 transition-colors pt-2 group cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors pt-1 group cursor-pointer"
             >
               <span>View All 18+ FAQs</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

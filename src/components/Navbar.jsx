@@ -39,7 +39,7 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
 
   return (
     <header className="sticky top-0 z-50 bg-[#FAF9F6]/95 backdrop-blur-xl border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(15,23,42,0.03)] transition-all w-full overflow-x-clip">
-      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 h-16 flex items-center justify-between gap-2 xl:gap-4 w-full">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-5 lg:px-6 h-14 sm:h-16 flex items-center justify-between gap-3 w-full">
 
         {/* ── Official Brand Logo from Brand Guide ── */}
         <a
@@ -64,8 +64,8 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
           ))}
         </nav>
 
-        {/* ── Right-Side Brand CTA & Search ── */}
-        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+        {/* ── Desktop Right-Side Brand CTA & Search ── */}
+        <div className="hidden lg:flex items-center gap-2.5 shrink-0">
           <button
             onClick={() => onOpenBooking('GRE')}
             className="p-2 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
@@ -86,17 +86,21 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
           </button>
         </div>
 
-        {/* ── Mobile & Tablet Hamburger (for <1280px) ── */}
-        <div className="xl:hidden flex items-center gap-2">
+        {/* ── Mobile & Tablet Right Action Bar (Search + Menu) ── */}
+        <div className="lg:hidden flex items-center gap-1.5">
           <button
             onClick={() => onOpenBooking('GRE')}
-            className="sm:hidden bg-slate-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xs cursor-pointer"
+            className="p-2 rounded-lg text-[#0F172A]/70 hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
+            aria-label="Search exams"
           >
-            Check Savings
+            <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </button>
+
           <button
             onClick={() => setOpen(!open)}
-            className="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center text-[#0F172A] hover:bg-[#EBF3FF] rounded-xl transition-colors cursor-pointer active:scale-95"
             aria-label="Toggle Navigation Menu"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -105,41 +109,39 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
 
       </div>
 
-      {/* ── Mobile & Tablet Drawer (Glassmorphic) ── */}
+      {/* ── Mobile & Tablet Drawer (Refined & Light) ── */}
       {open && (
-        <div className="xl:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-4 pt-2 pb-6 shadow-xl space-y-1 animate-in slide-in-from-top-2 duration-150">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 py-1">
-            Navigation Menu
+        <div className="lg:hidden bg-[#FAF9F6] border-b border-[#E5E7EB] px-4 pt-3 pb-6 shadow-xl space-y-2 animate-in slide-in-from-top-2 duration-150">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#64748B] px-3 py-1">
+            Menu
           </div>
-          {NAV_ITEMS.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              onClick={(e) => {
-                setOpen(false);
-                handleClick(e, l.href);
-              }}
-              className="flex items-center justify-between py-2.5 px-2.5 text-sm font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-50 rounded-lg transition-colors"
-            >
-              <span>{l.label}</span>
-              {l.badge && (
-                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  {l.badge}
-                </span>
-              )}
-            </a>
-          ))}
-          <div className="pt-3">
+          <div className="space-y-0.5">
+            {NAV_ITEMS.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={(e) => {
+                  setOpen(false);
+                  handleClick(e, l.href);
+                }}
+                className="flex items-center justify-between min-h-[44px] py-2.5 px-3 text-[14px] font-medium text-[#0F172A] hover:bg-[#EBF3FF] hover:text-[#1E3A8A] rounded-xl transition-colors"
+              >
+                <span>{l.label}</span>
+                <span className="text-[#94A3B8] text-xs">›</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="pt-3 border-t border-[#E5E7EB]/80">
             <button
               onClick={() => {
                 setOpen(false);
                 onOpenBooking('GRE');
               }}
-              className="w-full bg-slate-950 hover:bg-slate-900 text-white text-sm font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+              className="w-full bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.98] transition-all"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Check Your Exam & Savings</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Check My Exam Savings</span>
+              <ArrowRight className="w-4 h-4 text-blue-400" />
             </button>
           </div>
         </div>

@@ -32,7 +32,7 @@ import PracticeDashboardModal from './components/PracticeDashboardModal';
 import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
-import MobileStickyBar      from './components/MobileStickyBar';
+// MobileStickyBar removed — no sticky CTAs per UX direction
 // LiveActivityToast removed — fake popup disabled per brand guidelines
 import ExitIntentModal     from './components/ExitIntentModal';
 import CandidateAgencyAgreementModal from './components/CandidateAgencyAgreementModal';
@@ -254,8 +254,7 @@ export default function App() {
         onCheckPrice={handleOpenFunnel}
       />
 
-      {/* ── Mobile Sticky Conversion Bar ─────────────────────────── */}
-      <MobileStickyBar onOpenBooking={handleOpenFunnel} />
+      {/* ── Mobile Sticky Bar REMOVED (no sticky CTAs per UX direction) ── */}
 
       {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
       <WhatsAppWidget />

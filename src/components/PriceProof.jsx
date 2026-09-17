@@ -60,80 +60,80 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
   ];
 
   return (
-    <section id="pricing" className="py-10 bg-white border-b border-slate-200/80 font-[Inter,system-ui,sans-serif]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-9">
+    <section id="pricing" className="py-8 sm:py-12 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-9">
 
-        {/* ── 1. Top Logo Strip: EXAMS WE SUPPORT ── */}
-        <div className="flex flex-wrap items-center justify-between gap-4 py-3 px-4 rounded-2xl bg-slate-50/60 border border-slate-200/60">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#1E40AF] text-[10.5px] font-black uppercase tracking-wider shrink-0 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+        {/* ── 1. Top Logo Strip: EXAMS WE SUPPORT (Smooth horizontal scroll on mobile) ── */}
+        <div className="py-3 px-3.5 sm:px-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-3 overflow-hidden">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider shrink-0 self-start sm:self-auto">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
             <span>EXAMS WE SUPPORT</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 opacity-85 hover:opacity-100 transition-opacity">
-            <div className="hover:scale-105 transition-transform"><EtsGreLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><EtsToeflLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><PteLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><DuolingoLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><IeltsLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><GmatLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><SatLogo className="h-5" /></div>
-            <div className="hover:scale-105 transition-transform"><LsatLogo className="h-5" /></div>
-            <span className="text-xs font-semibold text-slate-400 italic">and more...</span>
+          <div className="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar py-1 opacity-90">
+            <div className="hover:scale-105 transition-transform shrink-0"><EtsGreLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><EtsToeflLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><PteLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><DuolingoLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><IeltsLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><GmatLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><SatLogo className="h-4.5 sm:h-5" /></div>
+            <div className="hover:scale-105 transition-transform shrink-0"><LsatLogo className="h-4.5 sm:h-5" /></div>
+            <span className="text-xs font-semibold text-[#94A3B8] italic shrink-0 whitespace-nowrap">+ more</span>
           </div>
         </div>
 
         {/* ── 2. Today's Exam Prices: Left Summary + 4 Cards Grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
           
-          {/* Left Summary Box (3 cols) */}
-          <div className="lg:col-span-3 flex flex-col justify-between p-3 rounded-2xl bg-slate-50/50 border border-slate-200/60 space-y-4">
-            <div className="space-y-3">
-              <span className="inline-block text-[10px] font-black uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200/80">
+          {/* Left Summary Box (3 cols on desktop, compact banner on mobile) */}
+          <div className="lg:col-span-3 flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] space-y-3 sm:space-y-4">
+            <div className="space-y-2 sm:space-y-3">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[#1E3A8A] bg-[#EBF3FF] px-2.5 py-0.5 rounded-md border border-[#BFDBFE]">
                 POPULAR EXAMS
               </span>
 
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
-                Today's<br />Exam Prices
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
+                Today's Exam Prices
               </h2>
 
-              <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                Latest verified prices with Testly advantages. Save more, stress less.
+              <p className="text-xs text-[#64748B] font-normal leading-relaxed">
+                Latest verified prices with Testly institutional advantages.
               </p>
 
-              <div className="pt-2 space-y-1.5 border-t border-slate-200/60 text-[11px] text-slate-600 font-medium">
+              <div className="pt-2 space-y-1.5 border-t border-[#E5E7EB] text-[11px] text-[#64748B] font-medium">
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   <span>Instant slot availability check</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span>Zero hidden payment gateway fees</span>
+                  <span>Zero payment gateway surcharge</span>
                 </div>
               </div>
             </div>
 
             <button
               onClick={() => onBookTest('GRE')}
-              className="inline-flex items-center gap-1.5 text-xs font-black text-blue-700 hover:text-blue-900 transition-colors pt-2 group cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors pt-1 group cursor-pointer"
             >
-              <span>View All Exams & Fee Breakdown</span>
+              <span>All Exams & Fee Breakdown</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          {/* Right 4 Cards (9 cols: 4 across on desktop) - Exact Signature Price Card from Brand Guide */}
-          <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          {/* Right 4 Cards (9 cols: 4 across on desktop, 1 on mobile, 2 on tablet) */}
+          <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3.5 sm:gap-4">
             {popularExams.map((ex) => (
               <div
                 key={ex.id}
-                className={`bg-white rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)] ${
+                className={`bg-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)] ${
                   ex.popular
                     ? 'border-2 border-[#1E3A8A] ring-2 ring-[#3B82F6]/10'
                     : 'border border-[#E5E7EB] hover:border-[#BFDBFE]'
                 }`}
               >
-                <div className="space-y-4">
+                <div className="space-y-3.5 sm:space-y-4">
                   {/* Card Header: Logo + POPULAR */}
                   <div className="flex items-center justify-between min-h-[32px]">
                     <div className="shrink-0">{ex.logo}</div>
@@ -219,61 +219,61 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
           </button>
         </div>
 
-        {/* ── 4. Four Value Pillars Horizontal Strip ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+        {/* ── 4. Four Value Pillars Strip (2-col on mobile, 4-col on desktop) ── */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 pt-1">
           
-          <div className="p-3.5 rounded-2xl bg-slate-50/60 border border-slate-200/70 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
-              <FileText className="w-5 h-5" />
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+              <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-wide">
-                Expert Registration Support
+            <div className="min-w-0">
+              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Expert Support
               </h4>
-              <p className="text-[11px] text-slate-500 font-medium mt-0.5 leading-snug">
-                From account setup to confirmation
+              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                From setup to confirmation
               </p>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50/60 border border-slate-200/70 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
-              <ShieldCheck className="w-5 h-5" />
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-wide">
-                Passport & Details Verification
+            <div className="min-w-0">
+              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Audit & Check
               </h4>
-              <p className="text-[11px] text-slate-500 font-medium mt-0.5 leading-snug">
-                Avoid costly name-mismatch errors
+              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                Avoid name-mismatch penalties
               </p>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50/60 border border-slate-200/70 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
-              <span className="font-black text-base">₹</span>
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+              <span className="font-bold text-sm sm:text-base">₹</span>
             </div>
-            <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-wide">
-                Best Available Prices
+            <div className="min-w-0">
+              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Best Rates
               </h4>
-              <p className="text-[11px] text-slate-500 font-medium mt-0.5 leading-snug">
-                Through verified corporate channels
+              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                Direct verified channels
               </p>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-slate-50/60 border border-slate-200/70 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
-              <Headphones className="w-5 h-5" />
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+              <Headphones className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-wide">
-                Dedicated Human Support
+            <div className="min-w-0">
+              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Human Support
               </h4>
-              <p className="text-[11px] text-slate-500 font-medium mt-0.5 leading-snug">
-                Real exam officers, not chatbots
+              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                Real officers on WhatsApp
               </p>
             </div>
           </div>

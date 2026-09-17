@@ -11,20 +11,20 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
   };
 
   return (
-    <section className="py-10 sm:py-14 bg-white border-b border-slate-200/80 font-[Inter,system-ui,sans-serif]">
+    <section className="py-8 sm:py-14 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Dark Navy Institutional Container */}
-        <div className="bg-gradient-to-br from-[#0B1528] via-[#0E1C38] to-[#081020] text-white rounded-3xl overflow-hidden shadow-2xl border border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <div className="bg-gradient-to-br from-[#0B1528] via-[#0E1C38] to-[#081020] text-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* Left Column: Campus Value Pitch (5 cols) */}
-          <div className="lg:col-span-5 p-7 sm:p-9 flex flex-col justify-between space-y-6">
-            <div className="space-y-3.5">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 text-[10.5px] font-black uppercase tracking-widest">
+          <div className="lg:col-span-5 p-5 sm:p-8 lg:p-9 flex flex-col justify-between space-y-5 sm:space-y-6">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span>TESTLY CAMPUS • INSTITUTIONAL PROGRAM</span>
+                <span>TESTLY CAMPUS</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-snug">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight leading-snug">
                 For Colleges, Universities & Study Abroad Cells
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
@@ -32,20 +32,20 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
               </p>
 
               {/* Micro stats */}
-              <div className="flex items-center gap-4 pt-1 text-[11px] text-slate-300 border-t border-slate-800/80">
+              <div className="flex items-center gap-3 sm:gap-4 pt-1 text-[10.5px] sm:text-[11px] text-slate-300 border-t border-slate-800/80">
                 <div>
-                  <span className="font-black text-white text-xs block">45+</span>
-                  <span className="text-slate-400 text-[10px]">Campus Drives</span>
+                  <span className="font-bold text-white text-xs block">45+</span>
+                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Campus Drives</span>
                 </div>
-                <div className="h-6 w-px bg-slate-800" />
+                <div className="h-5 w-px bg-slate-800" />
                 <div>
-                  <span className="font-black text-white text-xs block">12,000+</span>
-                  <span className="text-slate-400 text-[10px]">Students Guided</span>
+                  <span className="font-bold text-white text-xs block">12,000+</span>
+                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Students</span>
                 </div>
-                <div className="h-6 w-px bg-slate-800" />
+                <div className="h-5 w-px bg-slate-800" />
                 <div>
-                  <span className="font-black text-white text-xs block">100%</span>
-                  <span className="text-slate-400 text-[10px]">Official Booking</span>
+                  <span className="font-bold text-white text-xs block">100%</span>
+                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Official</span>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
             <div>
               <button
                 onClick={handleCampusClick}
-                className="bg-white hover:bg-slate-100 text-[#0B1528] font-black text-xs px-5 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto bg-white hover:bg-slate-100 text-[#0B1528] font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-sm hover:shadow active:scale-[0.98] inline-flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>Partner with Testly Campus</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -62,7 +62,7 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
           </div>
 
           {/* Center Column: Campus Students Photo (3 cols) */}
-          <div className="lg:col-span-3 relative min-h-[240px] lg:min-h-full">
+          <div className="lg:col-span-3 relative min-h-[160px] sm:min-h-[200px] lg:min-h-full">
             <img
               src="/assets/images/global-university-campus.jpg"
               alt="Indian university students studying abroad on university campus"

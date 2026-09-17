@@ -38,35 +38,35 @@ const STEPS = [
 
 export default function HowItWorksAndDeciding({ onBookTest }) {
   return (
-    <section id="how-it-works" className="py-16 sm:py-20 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="how-it-works" className="py-10 sm:py-16 md:py-20 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-2.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[11px] font-bold tracking-wide">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+          <div className="space-y-2 sm:space-y-2.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[11px] font-bold tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
               <span>HOW IT WORKS</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
               Registered in 4 Simple Steps
             </h2>
-            <p className="text-sm text-[#64748B] max-w-md">
+            <p className="text-xs sm:text-sm text-[#64748B] max-w-md">
               From first message to official hall ticket — we manage the entire process for you.
             </p>
           </div>
 
           <button
             onClick={() => onBookTest('GRE')}
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto whitespace-nowrap"
           >
             <span>Start Now</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 relative">
           {/* Connecting line (desktop only) */}
           <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#BFDBFE] via-[#3B82F6]/40 to-[#BFDBFE] z-0" />
 
@@ -75,17 +75,17 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
             return (
               <div
                 key={step.num}
-                className="relative flex flex-col gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-6 hover:bg-white hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-200 group z-10"
+                className="relative flex flex-col gap-4 sm:gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-4.5 sm:p-6 hover:bg-white hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-200 group z-10"
               >
                 {/* Step Number + Icon Row */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5 sm:gap-3">
                   {/* Step circle */}
-                  <div className="w-9 h-9 rounded-full bg-[#0F172A] group-hover:bg-[#1E3A8A] text-white text-[13px] font-bold flex items-center justify-center shrink-0 transition-colors shadow-sm z-10">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0F172A] group-hover:bg-[#1E3A8A] text-white text-xs sm:text-[13px] font-bold flex items-center justify-center shrink-0 transition-colors shadow-2xs z-10">
                     {step.num}
                   </div>
                   {/* Icon */}
-                  <div className="w-9 h-9 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white flex items-center justify-center border border-[#BFDBFE] transition-all">
-                    <Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] group-hover:bg-[#0F172A] group-hover:text-white flex items-center justify-center border border-[#BFDBFE] transition-all">
+                    <Icon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
                   </div>
                 </div>
 
