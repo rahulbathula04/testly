@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-// ── Landing page sections ───────────────────────────────────────────────────
+// ── Scalable Error Boundary ──────────────────────────────────────────────────
+import ErrorBoundary        from './components/ErrorBoundary';
+
+// ── Critical landing page sections (eager loaded for fastest First Paint) ────
 import Navbar               from './components/Navbar';
 import Hero                 from './components/Hero';
 import PriceProof           from './components/PriceProof';
@@ -12,33 +15,38 @@ import ExamResources        from './components/ExamResources';
 import FAQSection           from './components/FAQSection';
 import Footer               from './components/Footer';
 
-// ── Practice engine ──────────────────────────────────────────────────────────
-import PracticeDashboard    from './components/practice/PracticeDashboard';
-import TestEngineModal      from './components/practice/TestEngineModal';
-
-// ── Authority Pages & Hubs ───────────────────────────────────────────────────
-import HyderabadHubPage     from './pages/HyderabadHubPage';
-import MadhapurHubPage      from './pages/MadhapurHubPage';
-import ExamPriceTrackerPage from './pages/ExamPriceTrackerPage';
-import ProfessionalsPage    from './pages/ProfessionalsPage';
-import BlogDirectoryPage    from './pages/BlogDirectoryPage';
-import ArticlePage          from './pages/ArticlePage';
-import CampusPage           from './pages/CampusPage';
-
-// ── Funnel & Modals ──────────────────────────────────────────────────────────
+// ── Core Lightweight Modals ──────────────────────────────────────────────────
 import LeadCaptureModal     from './components/LeadCaptureModal';
-import BookingFlowModal     from './components/BookingFlowModal';
-import PracticeDashboardModal from './components/PracticeDashboardModal';
 import AuthModal            from './components/AuthModal';
 import SearchModal          from './components/SearchModal';
 import WhatsAppWidget       from './components/WhatsAppWidget';
-// MobileStickyBar removed — no sticky CTAs per UX direction
-// LiveActivityToast removed — fake popup disabled per brand guidelines
-import ExitIntentModal     from './components/ExitIntentModal';
-import CandidateAgencyAgreementModal from './components/CandidateAgencyAgreementModal';
+import ExitIntentModal      from './components/ExitIntentModal';
 
-// ── Secure Standalone Admin Portal ───────────────────────────────────────────
-import AdminLoginGate       from './components/admin/AdminLoginGate';
+// ── Code-Split Secondary Pages (Lazy loaded for peak mobile performance) ────
+const HyderabadHubPage     = lazy(() => import('./pages/HyderabadHubPage'));
+const MadhapurHubPage      = lazy(() => import('./pages/MadhapurHubPage'));
+const ExamPriceTrackerPage = lazy(() => import('./pages/ExamPriceTrackerPage'));
+const ProfessionalsPage    = lazy(() => import('./pages/ProfessionalsPage'));
+const BlogDirectoryPage    = lazy(() => import('./pages/BlogDirectoryPage'));
+const ArticlePage          = lazy(() => import('./pages/ArticlePage'));
+const CampusPage           = lazy(() => import('./pages/CampusPage'));
+
+// ── Code-Split Heavy Modals (Lazy loaded on demand) ───────────────────────────
+const BookingFlowModal     = lazy(() => import('./components/BookingFlowModal'));
+const CandidateAgencyAgreementModal = lazy(() => import('./components/CandidateAgencyAgreementModal'));
+const TestEngineModal      = lazy(() => import('./components/practice/TestEngineModal'));
+const PracticeDashboardModal = lazy(() => import('./components/PracticeDashboardModal'));
+const AdminLoginGate       = lazy(() => import('./components/admin/AdminLoginGate'));
+
+// ── Lightweight Suspense Fallback ───────────────────────────────────────────
+function PageLoadingFallback() {
+  return (
+    <div className="min-h-[50vh] flex flex-col items-center justify-center p-8 space-y-3 font-[Inter,system-ui,sans-serif]">
+      <div className="w-8 h-8 rounded-full border-2 border-[#1E3A8A] border-t-transparent animate-spin" />
+      <span className="text-xs font-semibold text-[#64748B] tracking-wide">Loading Testly...</span>
+    </div>
+  );
+}
 
 function getActiveRoute() {
   if (typeof window === 'undefined') return { type: 'home' };
@@ -126,7 +134,13 @@ export default function App() {
 
   // ── 1. Secure Admin Portal Route ───────────────────────────────────────────
   if (currentRoute.type === 'admin') {
-    return <AdminLoginGate onNavigateHome={() => navigate('/')} />;
+    return (
+      <ErrorBoundary>
+        <Suspense fallback={<PageLoadingFallback />}>
+          <AdminLoginGate onNavigateHome={() => navigate('/')} />
+        </Suspense>
+      </ErrorBoundary>
+    );
   }
 
   // ── 2. Render Page Content According to Active Route ────────────────────────
@@ -204,69 +218,71 @@ export default function App() {
   };
 
   return (
-    <>
-      {renderContent()}
+    <ErrorBoundary>
+      <Suspense fallback={<PageLoadingFallback />}>
+        {renderContent()}
 
-      {/* ── High-Converting Lead Capture Modal ────────────────────── */}
-      <LeadCaptureModal
-        isOpen={leadModalOpen}
-        onClose={() => setLeadModalOpen(false)}
-        defaultTest={selectedExam}
-        onOpenAgreement={() => setAgreementOpen(true)}
-      />
+        {/* ── High-Converting Lead Capture Modal ────────────────────── */}
+        <LeadCaptureModal
+          isOpen={leadModalOpen}
+          onClose={() => setLeadModalOpen(false)}
+          defaultTest={selectedExam}
+          onOpenAgreement={() => setAgreementOpen(true)}
+        />
 
-      {/* ── Candidate Agency Agreement Modal (Indian Contract Act 1872) ─ */}
-      <CandidateAgencyAgreementModal
-        isOpen={agreementOpen}
-        onClose={() => setAgreementOpen(false)}
-      />
+        {/* ── Candidate Agency Agreement Modal (Indian Contract Act 1872) ─ */}
+        <CandidateAgencyAgreementModal
+          isOpen={agreementOpen}
+          onClose={() => setAgreementOpen(false)}
+        />
 
-      {/* ── Full Booking Flow (Secondary) ─────────────────────────── */}
-      <BookingFlowModal
-        isOpen={bookingOpen}
-        onClose={() => setBookingOpen(false)}
-        defaultTest={selectedExam}
-        onOpenDashboard={() => setDashboardOpen(true)}
-      />
+        {/* ── Full Booking Flow (Secondary) ─────────────────────────── */}
+        <BookingFlowModal
+          isOpen={bookingOpen}
+          onClose={() => setBookingOpen(false)}
+          defaultTest={selectedExam}
+          onOpenDashboard={() => setDashboardOpen(true)}
+        />
 
-      {/* ── Practice & Search Modals ──────────────────────────────── */}
-      <TestEngineModal
-        isOpen={engineOpen}
-        onClose={() => setEngineOpen(false)}
-        mode={engineMode}
-        defaultExam={engineExam}
-      />
+        {/* ── Practice & Search Modals ──────────────────────────────── */}
+        <TestEngineModal
+          isOpen={engineOpen}
+          onClose={() => setEngineOpen(false)}
+          mode={engineMode}
+          defaultExam={engineExam}
+        />
 
-      <PracticeDashboardModal
-        isOpen={dashboardOpen}
-        onClose={() => setDashboardOpen(false)}
-      />
+        <PracticeDashboardModal
+          isOpen={dashboardOpen}
+          onClose={() => setDashboardOpen(false)}
+        />
 
-      <AuthModal
-        isOpen={authOpen}
-        onClose={() => setAuthOpen(false)}
-      />
+        <AuthModal
+          isOpen={authOpen}
+          onClose={() => setAuthOpen(false)}
+        />
 
-      <SearchModal
-        isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
-        onBookTest={handleOpenFunnel}
-        onCheckPrice={handleOpenFunnel}
-      />
+        <SearchModal
+          isOpen={searchOpen}
+          onClose={() => setSearchOpen(false)}
+          onBookTest={handleOpenFunnel}
+          onCheckPrice={handleOpenFunnel}
+        />
 
-      {/* ── Mobile Sticky Bar REMOVED (no sticky CTAs per UX direction) ── */}
+        {/* ── Mobile Sticky Bar REMOVED (no sticky CTAs per UX direction) ── */}
 
-      {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
-      <WhatsAppWidget />
+        {/* ── WhatsApp Help Widget ──────────────────────────────────── */}
+        <WhatsAppWidget />
 
-      {/* ── Live Activity Toast REMOVED (per brand guidelines — no fake popups) */}
-      {/* <LiveActivityToast /> */}
+        {/* ── Live Activity Toast REMOVED (per brand guidelines — no fake popups) */}
+        {/* <LiveActivityToast /> */}
 
-      {/* ── Exit-Intent Quota Hold Modal ──────────────────────────── */}
-      <ExitIntentModal
-        onOpenBooking={handleOpenFunnel}
-        isAnyModalOpen={leadModalOpen || bookingOpen || agreementOpen || engineOpen || dashboardOpen || authOpen || searchOpen}
-      />
-    </>
+        {/* ── Exit-Intent Quota Hold Modal ──────────────────────────── */}
+        <ExitIntentModal
+          onOpenBooking={handleOpenFunnel}
+          isAnyModalOpen={leadModalOpen || bookingOpen || agreementOpen || engineOpen || dashboardOpen || authOpen || searchOpen}
+        />
+      </Suspense>
+    </ErrorBoundary>
   );
 }

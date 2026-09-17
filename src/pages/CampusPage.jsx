@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { EXAM_OFFERINGS_LIST, formatINR } from '../data/examOfferings';
 import { createNewLead } from '../utils/crmStore';
+import BrandLogo from '../components/BrandLogo';
 
 const PARTNER_BENEFITS = [
   {
@@ -128,13 +129,11 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
       <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavigate('/')}>
-            <div className="w-9 h-9 bg-emerald-500 rounded-xl flex items-center justify-center font-black text-white text-lg shadow-md">
-              T
-            </div>
+            <BrandLogo variant="symbol" size="md" theme="light" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-base font-black tracking-tight text-white">Testly Campus</span>
-                <span className="text-[10px] font-extrabold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold uppercase bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full">
                   Institutional B2B
                 </span>
               </div>

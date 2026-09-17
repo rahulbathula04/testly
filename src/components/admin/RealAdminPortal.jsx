@@ -30,7 +30,11 @@ import {
   BookOpen,
   FileText,
   Sparkles,
-  ShieldAlert
+  ShieldAlert,
+  MapPin,
+  ExternalLink,
+  ShieldCheck,
+  X
 } from 'lucide-react';
 import {
   getStoredLeads,
