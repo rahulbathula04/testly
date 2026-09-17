@@ -225,7 +225,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
               {/* Reassurance Guarantee with Founders */}
               <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 text-[11px] text-slate-600 flex items-center gap-2">
                 <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Audited directly by founders Rahul & Deep. Zero advance payment needed now.</span>
+                <span>Audited directly by founders Rahul & Deepak. Zero advance payment needed now.</span>
               </div>
 
               {/* Primary Submit Button */}
@@ -246,7 +246,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#128C7E] hover:text-[#075E54] transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
-                  <span>Prefer WhatsApp? Chat directly with Rahul & Deep →</span>
+                  <span>Prefer WhatsApp? Chat directly with Rahul & Deepak →</span>
                 </a>
               </div>
 
@@ -275,7 +275,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   Booking Request Received!
                 </h4>
                 <p className="text-xs text-slate-600 font-medium">
-                  Founders <strong>Rahul Bathula</strong> or <strong>Deep Royal</strong> are reviewing test slot availability for <strong>{exam}</strong>.
+                  Founders <strong>Rahul Bathula</strong> or <strong>Deepak Royal</strong> are reviewing test slot availability for <strong>{exam}</strong>.
                 </p>
               </div>
 
@@ -292,13 +292,13 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
               </div>
 
               <a
-                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Rahul & Deep! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
+                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Rahul & Deepak! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Open WhatsApp with Rahul & Deep</span>
+                <span>Open WhatsApp with Rahul & Deepak</span>
               </a>
             </div>
           )}

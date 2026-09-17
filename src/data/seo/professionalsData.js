@@ -2,7 +2,7 @@
  * TESTLY E-E-A-T PROFESSIONALS & FOUNDING LEADERSHIP
  * Testly is founded and operated strictly by 2 dedicated professionals:
  * 1. Rahul Bathula — Founder & Chief Exam Strategist
- * 2. Deep Royal — Co-Founder & Head of Operations
+ * 2. Deepak Royal — Co-Founder & Head of Operations
  *
  * Every candidate booking and passport audit is handled personally by them.
  */
@@ -24,7 +24,7 @@ export const PROFESSIONALS = {
 
   deep_royal: {
     id: 'deep_royal',
-    name: 'Deep Royal',
+    name: 'Deepak Royal',
     role: 'Co-Founder & Head of Operations',
     credentials: 'Co-Founder, 6+ Years Exam Logistics & Verification',
     experience: '6+ Years',
@@ -41,7 +41,7 @@ export const PROFESSIONALS_LIST = Object.values(PROFESSIONALS);
 export function getProfessionalById(id) {
   if (!id) return PROFESSIONALS.rahul_bathula;
   const key = id.toLowerCase();
-  if (key === 'deep_royal' || key.includes('deep') || key.includes('royal')) {
+  if (key === 'deep_royal' || key === 'deepak_royal' || key.includes('deep') || key.includes('royal')) {
     return PROFESSIONALS.deep_royal;
   }
   return PROFESSIONALS[key] || PROFESSIONALS.rahul_bathula;

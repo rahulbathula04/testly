@@ -240,7 +240,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-[#0F172A]">Rahul Bathula & Deep Royal</div>
+                  <div className="text-sm font-bold text-[#0F172A]">Rahul Bathula & Deepak Royal</div>
                   <div className="text-xs text-[#64748B]">Founders & Registration Specialists, Testly</div>
                 </div>
               </div>
@@ -254,13 +254,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   <ArrowRight className="w-3.5 h-3.5 text-blue-400" />
                 </button>
                 <a
-                  href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deep,%20I%20read%20your%20story%20on%20Testly%20and%20wanted%20to%20connect."
+                  href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deepak,%20I%20read%20your%20story%20on%20Testly%20and%20wanted%20to%20connect."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] font-bold text-xs sm:text-sm transition-colors min-h-[44px]"
                 >
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  <span>WhatsApp Rahul & Deep</span>
+                  <span>WhatsApp Rahul & Deepak</span>
                 </a>
               </div>
             </div>
@@ -606,13 +606,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   Only two professionals. Absolute founder accountability.
                 </h2>
                 <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
-                  Testly is not an anonymous enterprise or an outsourced customer support agency. It is founded and operated strictly by two dedicated specialists: <strong>Rahul Bathula</strong> (Founder & Chief Exam Strategist) and <strong>Deep Royal</strong> (Co-Founder & Head of Operations).
+                  Testly is not an anonymous enterprise or an outsourced customer support agency. It is founded and operated strictly by two dedicated specialists: <strong>Rahul Bathula</strong> (Founder & Chief Exam Strategist) and <strong>Deepak Royal</strong> (Co-Founder & Head of Operations).
                 </p>
                 <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
                   We are based in the Madhapur Hitech City corridor of Hyderabad. Between the two of us, we monitor daily ETS portal changes, Prometric and Pearson venue schedules, emergency slot drops, and passport compliance.
                 </p>
                 <p className="text-sm sm:text-base text-[#0F172A] font-semibold leading-relaxed">
-                  When you submit your registration request on Testly, no interns or call center reps touch your profile. Rahul and Deep verify your data character-by-character, execute the booking, and send your official confirmation docket.
+                  When you submit your registration request on Testly, no interns or call center reps touch your profile. Rahul and Deepak verify your data character-by-character, execute the booking, and send your official confirmation docket.
                 </p>
               </div>
 
@@ -620,7 +620,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                 <div className="bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-4 text-center">
                   <Award className="w-6 h-6 text-[#1E3A8A] mx-auto mb-2" />
                   <div className="text-sm font-bold text-[#0F172A]">2 Founders</div>
-                  <div className="text-xs text-[#64748B] mt-1">Rahul Bathula & Deep Royal</div>
+                  <div className="text-xs text-[#64748B] mt-1">Rahul Bathula & Deepak Royal</div>
                 </div>
 
                 <div className="bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-4 text-center">
@@ -819,7 +819,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
           </div>
         </section>
 
-        {/* ── 14. FOUNDING LEADERSHIP PROFILES (RAHUL BATHULA & DEEP ROYAL) ── */}
+        {/* ── 14. FOUNDING LEADERSHIP PROFILES (RAHUL BATHULA & DEEPAK ROYAL) ── */}
         <section className="py-16 sm:py-20 bg-[#FAF9F6] border-b border-[#E5E7EB]">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <div className="max-w-3xl">
@@ -829,28 +829,25 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
               <h2 className="text-2xl sm:text-4xl font-black text-[#0F172A] tracking-tight font-['DM_Serif_Display',Georgia,serif]">
                 Meet the Two Founders Behind Testly
               </h2>
-              <p className="mt-2 text-sm text-[#64748B] leading-relaxed">
-                We keep our leadership team small and accountable on purpose. Zero middle-men, zero outsourced contractors. Every candidate dossier is handled personally by Rahul and Deep.
+              <p className="text-sm sm:text-base text-[#64748B] mt-2">
+                Direct accountability. No anonymous coordinators, no offshore support tiers.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {/* Profile 1: Rahul Bathula */}
               <div className="bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border-2 border-blue-200/80 shadow-md">
-                      <img
-                        src={FOUNDER_IMAGE}
-                        alt="Rahul Bathula"
-                        className="w-full h-full object-cover object-center"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = 'https://ui-avatars.com/api/?name=Rahul+Bathula&background=1E3A8A&color=fff&size=256';
-                        }}
-                      />
-                    </div>
+                    <img
+                      src="/assets/images/rahul-bathula-founder.jpg"
+                      alt="Rahul Bathula - Founder of Testly"
+                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover object-top border-2 border-blue-200/80 shadow-md shrink-0"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://ui-avatars.com/api/?name=Rahul+Bathula&background=1E3A8A&color=fff&size=128';
+                      }}
+                    />
                     <div>
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#EBF3FF] text-[#1E3A8A] text-[10px] font-bold">
                         <Award className="w-3 h-3" />
@@ -866,24 +863,33 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   </div>
 
                   <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                    Computer Engineering background. Specializes in candidate administrative advocacy, zero-defect passport validation, and institutional voucher economics. Built Testly to eliminate the hidden markups and bureaucratic anxiety Indian students face when booking high-stakes tests.
+                    7+ years in international test advisory, voucher systems, and compliance architecture. Personally pioneered Testly's zero-defect booking framework after witnessing hundreds of students lose non-refundable exam fees to subtle passport discrepancies.
                   </p>
 
                   <div className="text-xs font-semibold text-[#0F172A] space-y-1 pt-2 border-t border-[#E5E7EB]">
                     <div className="text-[10px] uppercase font-bold text-[#64748B]">Core Focus:</div>
-                    <div>GRE, TOEFL, GMAT, Legal Agency Compliance</div>
+                    <div>GRE, TOEFL, GMAT, Identification & Name Verification</div>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://wa.me/919347379041?text=Hi%20Rahul,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly."
+                    href="https://wa.me/919347379041?text=Hi%20Rahul,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20registration."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
                     <span>WhatsApp Rahul</span>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/rahul-bathula"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 bg-[#FAF9F6] hover:bg-[#EBF3FF] text-[#0F172A] border border-[#E5E7EB] text-xs font-bold px-3 py-2 rounded-xl transition-all"
+                  >
+                    <span>LinkedIn Profile</span>
+                    <ExternalLink className="w-3 h-3 text-[#1E3A8A]" />
                   </a>
                   <a
                     href="tel:+919347379041"
@@ -895,7 +901,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                 </div>
               </div>
 
-              {/* Profile 2: Deep Royal */}
+              {/* Profile 2: Deepak Royal */}
               <div className="bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
@@ -908,7 +914,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                         <span>CO-FOUNDER</span>
                       </div>
                       <h3 className="text-xl sm:text-2xl font-black text-[#0F172A] font-['DM_Serif_Display',Georgia,serif] mt-1">
-                        Deep Royal
+                        Deepak Royal
                       </h3>
                       <p className="text-xs font-bold text-[#1E3A8A]">
                         Co-Founder & Head of Operations
@@ -928,13 +934,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
 
                 <div className="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://wa.me/919347379041?text=Hi%20Deep,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20operations."
+                    href="https://wa.me/919347379041?text=Hi%20Deepak,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20operations."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
-                    <span>WhatsApp Deep</span>
+                    <span>WhatsApp Deepak</span>
                   </a>
                   <a
                     href="tel:+919347379041"

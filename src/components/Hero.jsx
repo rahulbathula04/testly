@@ -85,7 +85,7 @@ export default function Hero({ onBookTest }) {
 
           {/* Subheading */}
           <p className="text-[13.5px] xs:text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed">
-            Eliminate unfair bank forex card markups. Get verified institutional rates and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deep Royal.
+            Eliminate unfair bank forex card markups. Get verified institutional rates and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deepak Royal.
           </p>
 
           {/* 4 Value Pillars — Compact 2x2 on all screens */}
@@ -117,7 +117,7 @@ export default function Hero({ onBookTest }) {
             </button>
             <p className="text-[10.5px] sm:text-[11px] text-[#64748B] font-medium flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              <span>100% Official ETS & Pearson slots • Direct WhatsApp with Rahul & Deep</span>
+              <span>100% Official ETS & Pearson slots • Direct WhatsApp with Rahul & Deepak</span>
             </p>
           </div>
 

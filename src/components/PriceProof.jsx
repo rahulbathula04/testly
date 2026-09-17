@@ -222,7 +222,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 {/* ₹199 Concierge Guarantee */}
                 <div className="pt-1 text-[11px] text-slate-300 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span>Includes ₹199 concierge: character-by-character passport audit by Rahul & Deep.</span>
+                  <span>Includes ₹199 concierge: character-by-character passport audit by Rahul & Deepak.</span>
                 </div>
               </div>
 
@@ -390,7 +390,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 Direct Founder Audit
               </h4>
               <p className="text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
-                Verified by Rahul & Deep
+                Verified by Rahul & Deepak
               </p>
             </div>
           </div>

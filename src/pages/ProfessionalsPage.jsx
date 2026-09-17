@@ -32,7 +32,7 @@ const PROFESSIONALS = [
     image: '/assets/images/rahul-bathula-founder.jpg'
   },
   {
-    name: 'Deep Royal',
+    name: 'Deepak Royal',
     role: 'Co-Founder & Head of Operations',
     experience: '6+ Years Exam Logistics & Verification',
     exams: ['PTE Academic', 'IELTS Academic & General', 'Pearson VUE & Prometric Logistics'],
@@ -55,7 +55,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Meet the two founders behind Testly: Rahul Bathula (Founder) and Deep Royal (Co-Founder). No outsourced staff or call centers—every exam registration is audited and executed personally by the founders.'
+        'Meet the two founders behind Testly: Rahul Bathula (Founder) and Deepak Royal (Co-Founder). No outsourced staff or call centers—every exam registration is audited and executed personally by the founders.'
       );
     }
     window.scrollTo(0, 0);
@@ -95,7 +95,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
-                Testly is not an anonymous automated website or an outsourced call center. We are intentionally run by our two dedicated founders — <strong>Rahul Bathula</strong> and <strong>Deep Royal</strong>. Every single candidate is audited and registered directly by them.
+                Testly is not an anonymous automated website or an outsourced call center. We are intentionally run by our two dedicated founders — <strong>Rahul Bathula</strong> and <strong>Deepak Royal</strong>. Every single candidate is audited and registered directly by them.
               </p>
             </div>
 
@@ -131,7 +131,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
             <div className="max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Direct Accountability</span>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                Meet Rahul & Deep
+                Meet Rahul & Deepak
               </h2>
               <p className="text-sm text-slate-600 font-medium mt-1">
                 Zero middle-men. When you register with Testly, your booking is personally handled by our founders in Hyderabad.
@@ -234,7 +234,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                 The Testly Founder Doctrine
               </h2>
               <p className="text-sm text-slate-600 font-medium mt-1">
-                How Rahul and Deep protect candidates before they spend ₹20,000+ on foreign testing fees.
+                How Rahul and Deepak protect candidates before they spend ₹20,000+ on foreign testing fees.
               </p>
             </div>
 
@@ -265,7 +265,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                 </div>
                 <h3 className="text-base font-bold text-slate-900">Direct WhatsApp Helpline</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  No automated chatbots running in circles. When you reach out to Testly, you speak directly with Rahul and Deep who understand local test centers and university intake deadlines.
+                  No automated chatbots running in circles. When you reach out to Testly, you speak directly with Rahul and Deepak who understand local test centers and university intake deadlines.
                 </p>
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
               Ready to Book Your Exam with Founder Guidance?
             </h2>
             <p className="text-base text-slate-600 font-medium max-w-xl mx-auto">
-              Save up to ₹7,500 on your test voucher while having your registration verified directly by Rahul Bathula and Deep Royal.
+              Save up to ₹7,500 on your test voucher while having your registration verified directly by Rahul Bathula and Deepak Royal.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
@@ -290,13 +290,13 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
-                href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deep%2C%20I%20would%20like%20to%20speak%20with%20you%20regarding%20my%20exam%20registration."
+                href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deepak%2C%20I%20would%20like%20to%20speak%20with%20you%20regarding%20my%20exam%20registration."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl text-sm transition-colors shadow-sm flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Chat with Rahul & Deep on WhatsApp</span>
+                <span>Chat with Rahul & Deepak on WhatsApp</span>
               </a>
             </div>
           </div>
