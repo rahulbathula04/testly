@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Lock, Mail, KeyRound, ArrowRight, ShieldCheck, AlertCircle, Eye, EyeOff, Globe } from 'lucide-react';
 import RealAdminPortal from './RealAdminPortal';
+import BrandLogo from '../BrandLogo';
 
 const AUTH_KEY = 'testly_admin_session';
 const ADMIN_EMAIL = 'rahulbathula04@gmail.com';
@@ -78,10 +79,10 @@ export default function AdminLoginGate({ onNavigateHome }) {
       {/* Top bar */}
       <div className="max-w-6xl mx-auto w-full flex items-center justify-between py-2">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-white text-base">
-            T
-          </div>
-          <span className="font-black text-white tracking-tight">Testly Admin</span>
+          <BrandLogo variant="horizontal" size="sm" theme="light" />
+          <span className="text-[10px] font-bold uppercase bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full ml-1">
+            Admin Portal
+          </span>
         </div>
 
         <button

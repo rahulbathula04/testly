@@ -7,6 +7,7 @@ import './scoring.test.js';
 import './integration.test.js';
 import './redTeamSecurity.test.js';
 import './exhaustiveMasterTest.test.js';
+import './comprehensiveAudit.test.js';
 
 console.log('\n=======================================================');
 console.log('✅ TESTLY ENTERPRISE TEST SUITE: ALL SUITES PASSED (100%)');

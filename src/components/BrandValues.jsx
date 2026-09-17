@@ -18,7 +18,7 @@ const VALUES = [
     icon: Headphones,
     title: 'Human',
     subtitle: 'Real Support',
-    description: 'Direct WhatsApp and desk support from dedicated human registration officers—never generic automated bots.'
+    description: 'Direct WhatsApp and desk support from founders Rahul Bathula & Deep Royal in Hyderabad—never automated bots.'
   },
   {
     icon: Zap,

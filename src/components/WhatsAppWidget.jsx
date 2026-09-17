@@ -28,7 +28,7 @@ export default function WhatsAppWidget() {
                 <MessageCircle className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-900">Testly Booking Desk</h4>
+                <h4 className="text-xs font-black text-slate-900">Rahul & Deep (Founders)</h4>
                 <span className="text-[10px] text-emerald-700 font-bold flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Online • Avg reply: 2 mins
@@ -44,7 +44,7 @@ export default function WhatsAppWidget() {
           </div>
 
           <p className="text-xs text-slate-600 leading-relaxed font-medium">
-            Chat directly with a certified Testly booking specialist for instant fee savings & slot reservations:
+            Chat directly with founders Rahul Bathula & Deep Royal in Hyderabad for instant exam fee savings & slot reservations:
           </p>
 
           {/* Quick 1-tap prompts */}

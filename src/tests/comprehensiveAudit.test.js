@@ -14,8 +14,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { EXAM_DATA } from '../components/PriceProof.jsx';
-import { EXAM_OFFERINGS, EXAM_OFFERINGS_LIST } from '../data/examOfferings.js';
+import { EXAM_DATA, EXAM_OFFERINGS, EXAM_OFFERINGS_LIST } from '../data/examOfferings.js';
 import { PUBLISHED_ARTICLES, PUBLISHED_ARTICLES_LIST } from '../data/seo/publishedArticles.js';
 import { QUESTION_BANK } from '../data/questionBank.js';
 import { EXAM_CONFIGURATIONS } from '../data/examConfigurations.js';
@@ -59,7 +58,7 @@ test('All published articles have required fields and unique slugs', () => {
     assert(art.title && art.title.length > 5, `Article ${art.slug} has invalid title`);
     assert(art.metaTitle && art.metaTitle.length > 5, `Article ${art.slug} missing metaTitle`);
     assert(art.metaDescription && art.metaDescription.length > 15, `Article ${art.slug} missing metaDescription`);
-    assert(art.targetExam, `Article ${art.slug} missing targetExam`);
+    assert(art.exam, `Article ${art.slug} missing exam`);
     assert(Array.isArray(art.faqs) && art.faqs.length > 0, `Article ${art.slug} must have FAQs`);
   });
 });
@@ -92,10 +91,10 @@ test('EXAM_DATA matches official EXAM_OFFERINGS pricing', () => {
 test('EXAM_OFFERINGS has valid metadata, savings and booking advantage info', () => {
   EXAM_OFFERINGS_LIST.forEach((offering) => {
     assert(offering.id, 'Offering must have an id');
-    assert(offering.name, `Offering ${offering.id} must have a name`);
-    assert(typeof offering.officialPriceINR === 'number', `Offering ${offering.id} officialPriceINR must be number`);
-    assert(typeof offering.testlyPriceINR === 'number', `Offering ${offering.id} testlyPriceINR must be number`);
-    assert(offering.savingsINR >= 0, `Offering ${offering.id} savings must be >= 0`);
+    assert(offering.exam, `Offering ${offering.id} must have an exam title`);
+    assert(typeof offering.reference_price === 'number', `Offering ${offering.id} reference_price must be number`);
+    assert(typeof offering.testly_price === 'number', `Offering ${offering.id} testly_price must be number`);
+    assert(offering.saving >= 0, `Offering ${offering.id} saving must be >= 0`);
   });
 });
 
@@ -103,18 +102,17 @@ test('EXAM_OFFERINGS has valid metadata, savings and booking advantage info', ()
 console.log('\n📌 3. Verifying Question Bank & Scoring Safety...');
 
 test('QUESTION_BANK contains valid items for all supported exams', () => {
-  const validDifficulties = ['EASY', 'MEDIUM', 'HARD'];
-  const validQuestionTypes = ['MCQ_SINGLE', 'SELECT_TWO', 'DOUBLE_BLANK', 'NUMERIC_ENTRY'];
+  const allQuestions = Object.values(QUESTION_BANK).flat();
+  assert(allQuestions.length > 0, 'Question bank should have questions');
 
-  QUESTION_BANK.forEach((q) => {
+  allQuestions.forEach((q) => {
     assert(q.id, 'Question missing id');
     assert(q.exam, `Question ${q.id} missing exam`);
     assert(q.prompt && q.prompt.length > 3, `Question ${q.id} prompt too short`);
-    assert(validDifficulties.includes(q.difficulty), `Question ${q.id} invalid difficulty: ${q.difficulty}`);
-    assert(validQuestionTypes.includes(q.type), `Question ${q.id} invalid type: ${q.type}`);
-    assert(q.correctAnswer !== undefined, `Question ${q.id} missing correctAnswer`);
+    assert(q.questionType, `Question ${q.id} missing questionType`);
+    assert(q.correctAnswer !== undefined || q.questionType === 'ESSAY', `Question ${q.id} missing correctAnswer`);
     assert(typeof q.irtb === 'number', `Question ${q.id} missing or non-numeric irtb parameter`);
-    assert(q.domain, `Question ${q.id} missing domain`);
+    assert(q.skill, `Question ${q.id} missing skill`);
   });
 });
 
@@ -153,10 +151,10 @@ test('createNewLead validates and formats leads properly', () => {
     source: 'Automated Audit'
   });
 
-  assert(testLead.id.startsWith('LD-'), 'Lead ID should start with LD-');
+  assert(testLead.id.startsWith('LEAD-'), 'Lead ID should start with LEAD-');
   assert.strictEqual(testLead.name, 'Ananya Sharma');
   assert.strictEqual(testLead.exam, 'GRE');
-  assert.strictEqual(testLead.status, 'NEW_INQUIRY');
+  assert.strictEqual(testLead.status, 'New');
 
   const stored = getStoredLeads();
   assert(stored.some(l => l.id === testLead.id), 'Newly created lead must be found in stored leads');

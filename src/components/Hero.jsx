@@ -2,10 +2,10 @@ import React from 'react';
 import { ArrowRight, BadgeCheck, Clock, ShieldCheck, FileCheck } from 'lucide-react';
 
 const pillars = [
-  { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional rates' },
-  { icon: Clock,       label: '₹199 CONCIERGE',    sub: 'Full registration assistance' },
-  { icon: ShieldCheck, label: 'ZERO ERRORS',       sub: 'Passport name & slot audit' },
-  { icon: FileCheck,   label: 'OFFICIAL CONFIRMATION', sub: 'Direct ETS & Pearson booking slip' },
+  { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional pricing' },
+  { icon: Clock,       label: '₹199 CONCIERGE',    sub: 'Done-for-you registration' },
+  { icon: ShieldCheck, label: 'ZERO DEFECT AUDIT', sub: 'Passport & slot verification' },
+  { icon: FileCheck,   label: 'DIRECT ETS & PEARSON', sub: 'Official booking confirmation' },
 ];
 
 const studentAvatars = [
@@ -66,25 +66,26 @@ export default function Hero({ onBookTest }) {
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[10.5px] font-bold tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-              <span>LIVE RATES TODAY • MARCH 2026</span>
+              <span>LIVE RATES TODAY • 2026</span>
             </div>
             <span className="text-slate-300 hidden sm:inline">•</span>
             <p className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748B]">
-              The Smarter Way To
+              THE AUTHORIZED EXAM REGISTRATION RAIL
             </p>
           </div>
 
           {/* Main Headline */}
           <h1
             style={{ fontFamily: "'DM Serif Display', serif" }}
-            className="text-[34px] xs:text-4xl sm:text-5xl lg:text-[68px] text-[#0F172A] leading-[1.08] sm:leading-[1.02] tracking-[-0.015em]"
+            className="text-[34px] xs:text-4xl sm:text-5xl lg:text-[62px] text-[#0F172A] leading-[1.08] sm:leading-[1.03] tracking-[-0.015em]"
           >
-            Book Your Exam.
+            Book Your Exam.<br />
+            <span className="text-[#1E3A8A]">Save Up to ₹6,043</span> on Official Fees.
           </h1>
 
           {/* Subheading */}
           <p className="text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed">
-            Check your current exam price, see what you save, and get professional registration assistance from Testly for ₹199.
+            Eliminate unfair bank forex card markups. Get verified institutional rates and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deep Royal.
           </p>
 
           {/* 4 Value Pillars — Compact 2x2 on all screens */}
@@ -116,7 +117,7 @@ export default function Hero({ onBookTest }) {
             </button>
             <p className="text-[10.5px] sm:text-[11px] text-[#64748B] font-medium flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              <span>100% Official ETS & Pearson slots • WhatsApp support</span>
+              <span>100% Official ETS & Pearson slots • Direct WhatsApp with Rahul & Deep</span>
             </p>
           </div>
 
@@ -140,7 +141,7 @@ export default function Hero({ onBookTest }) {
                 <span className="text-[11px] font-bold text-[#0F172A] ml-1">4.9/5</span>
               </div>
               <p className="text-[12px] text-[#64748B]">
-                <strong className="font-bold text-[#0F172A]">4,000+</strong> Indian students guided.
+                <strong className="font-bold text-[#0F172A]">5,000+</strong> Indian students guided across India.
               </p>
             </div>
           </div>

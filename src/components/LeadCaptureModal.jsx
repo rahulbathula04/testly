@@ -204,10 +204,11 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                     <span className="absolute left-2.5 top-2.5 text-xs font-bold text-slate-400">+91</span>
                     <input
                       type="tel"
+                      inputMode="numeric"
                       required
                       placeholder="98765 43210"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                       className="w-full text-xs font-semibold pl-9 pr-3 py-2.5 rounded-lg border border-slate-300 focus:border-slate-900 outline-none transition-all"
                     />
                   </div>
@@ -220,16 +221,16 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                 </p>
               )}
 
-              {/* Reassurance Guarantee */}
+              {/* Reassurance Guarantee with Founders */}
               <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 text-[11px] text-slate-600 flex items-center gap-2">
                 <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Zero payment required now. Official rate & slot availability dispatched to your WhatsApp.</span>
+                <span>Audited directly by founders Rahul & Deep. Zero advance payment needed now.</span>
               </div>
 
               {/* Primary Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 group"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 group cursor-pointer active:scale-[0.98]"
               >
                 <span>Check My Savings & Available Slots</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -244,7 +245,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#128C7E] hover:text-[#075E54] transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
-                  <span>Prefer WhatsApp? Chat directly with Booking Officer →</span>
+                  <span>Prefer WhatsApp? Chat directly with Rahul & Deep →</span>
                 </a>
               </div>
 
@@ -270,10 +271,10 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
 
               <div className="space-y-1">
                 <h4 className="text-xl font-black text-slate-900 tracking-tight">
-                  Booking Request Confirmed!
+                  Booking Request Received!
                 </h4>
                 <p className="text-xs text-slate-600 font-medium">
-                  A certified Testly booking specialist is reviewing slot availability for <strong>{exam}</strong>.
+                  Founders <strong>Rahul Bathula</strong> or <strong>Deep Royal</strong> are reviewing test slot availability for <strong>{exam}</strong>.
                 </p>
               </div>
 
@@ -281,22 +282,22 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                 <p className="font-bold text-slate-900 uppercase text-[10px] tracking-wider">Next 5 Minutes:</p>
                 <p className="text-slate-600 flex items-center gap-2">
                   <span className="text-emerald-600 font-bold">✓</span>
-                  Official voucher saving verification: <strong>Save ₹{currentPricing.saving.toLocaleString('en-IN')}</strong>
+                  Official voucher saving check: <strong>Save ₹{currentPricing.saving.toLocaleString('en-IN')}</strong>
                 </p>
                 <p className="text-slate-600 flex items-center gap-2">
                   <span className="text-emerald-600 font-bold">✓</span>
-                  Passport spelling & test center appointment check
+                  Passport name & test center slot verification in Hyderabad
                 </p>
               </div>
 
               <a
-                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Testly! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
+                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Rahul & Deep! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"
+                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Open WhatsApp for Instant Slot Confirmation</span>
+                <span>Open WhatsApp with Rahul & Deep</span>
               </a>
             </div>
           )}

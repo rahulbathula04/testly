@@ -131,9 +131,9 @@ export function createNewLead({
     timing: timing || 'Within 1 month',
     needs: needs.length ? needs : ['Get a discounted exam voucher', 'Complete my registration'],
     pricing: pricing || {
-      refPrice: 26500,
-      testlyPrice: 19000,
-      saving: 7500
+      refPrice: 26542,
+      testlyPrice: 20499,
+      saving: 6043
     },
     source,
     campaign,

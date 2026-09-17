@@ -14,6 +14,7 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('UPI');
+  const [stepError, setStepError] = useState('');
 
   if (!isOpen) return null;
 
@@ -404,17 +405,42 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
                 <span>Our specialist will cross-check your Given Name & Surname with ETS/IDP official guidelines.</span>
               </div>
 
+              {stepError && (
+                <div className="p-3 bg-red-50 rounded-xl border border-red-200 text-xs font-bold text-red-700 max-w-2xl mx-auto">
+                  {stepError}
+                </div>
+              )}
+
               <div className="pt-4 flex items-center justify-between">
                 <button
-                  onClick={() => setStep(3)}
+                  onClick={() => {
+                    setStepError('');
+                    setStep(3);
+                  }}
                   className="text-xs font-bold text-[#667085] hover:text-[#102A56]"
                 >
                   ← Back
                 </button>
 
                 <button
-                  onClick={() => setStep(5)}
-                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2"
+                  onClick={() => {
+                    if (!name.trim()) {
+                      setStepError('Please enter your Given Name as per your Indian Passport.');
+                      return;
+                    }
+                    const cleanPhone = phone.replace(/\D/g, '');
+                    if (cleanPhone.length < 10) {
+                      setStepError('Please enter a valid 10-digit WhatsApp phone number.');
+                      return;
+                    }
+                    if (email && (!email.includes('@') || !email.includes('.'))) {
+                      setStepError('Please enter a valid email address.');
+                      return;
+                    }
+                    setStepError('');
+                    setStep(5);
+                  }}
+                  className="bg-[#1769E0] hover:bg-[#102A56] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer"
                 >
                   <span>Proceed to Payment</span>
                   <ArrowRight className="w-4 h-4" />
@@ -460,7 +486,7 @@ export default function BookingFlowModal({ isOpen, onClose, defaultTest = 'TOEFL
                 <div className="bg-white p-3 rounded-xl border border-slate-200 text-xs font-bold text-[#102A56] space-y-1">
                   <div className="flex justify-between">
                     <span className="text-[#667085]">Candidate Name:</span>
-                    <span>{name || 'Rahul Reddy'} {surname}</span>
+                    <span>{name ? `${name} ${surname}`.trim() : 'Candidate'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#667085]">Target Exam & Location:</span>

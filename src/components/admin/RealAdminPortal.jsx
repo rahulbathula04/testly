@@ -50,6 +50,7 @@ import { EXAM_OFFERINGS, EXAM_OFFERINGS_LIST, formatINR } from '../../data/examO
 import { ALL_CONTENT_OPPORTUNITIES } from '../../data/seo/contentOpportunities';
 import { PUBLISHED_ARTICLES_LIST } from '../../data/seo/publishedArticles';
 import { runQualityAudit } from '../../utils/contentQualityGate';
+import BrandLogo from '../BrandLogo';
 
 export default function RealAdminPortal({
   onNavigateHome,
@@ -173,7 +174,7 @@ export default function RealAdminPortal({
       'Latest Note'
     ];
     const rows = leads.map((l) => {
-      const p = l.pricing || EXAM_DATA[l.exam] || { refPrice: 26500, testlyPrice: 19000, saving: 7500 };
+      const p = l.pricing || EXAM_DATA[l.exam] || { refPrice: 26542, testlyPrice: 20499, saving: 6043 };
       const latestNote = l.notes?.[0]?.text || '';
       return [
         l.id,
@@ -296,13 +297,11 @@ export default function RealAdminPortal({
       <header className="h-16 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between shrink-0 sticky top-0 z-30">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-emerald-500 rounded-xl flex items-center justify-center font-black text-white text-lg shadow-md">
-              T
-            </div>
+            <BrandLogo variant="symbol" size="md" theme="light" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-base font-black tracking-tight text-white">TESTLY INTERNAL OS</h1>
-                <span className="text-[10px] font-extrabold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.2 rounded-full">
+                <span className="text-[10px] font-bold uppercase bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full">
                   Admin Console
                 </span>
               </div>

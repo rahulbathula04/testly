@@ -1,5 +1,17 @@
-import React from 'react';
-import { ArrowRight, ShieldCheck, FileText, Headphones, IndianRupee, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  ArrowRight,
+  ShieldCheck,
+  FileText,
+  Headphones,
+  Sparkles,
+  CheckCircle2,
+  Calculator,
+  Percent,
+  Lock,
+  Building2,
+  Info
+} from 'lucide-react';
 import {
   EtsGreLogo,
   EtsToeflLogo,
@@ -10,60 +22,81 @@ import {
   SatLogo,
   LsatLogo
 } from './ExamLogos';
-import { EXAM_DATA } from '../data/examOfferings';
+import { EXAM_DATA, formatINR } from '../data/examOfferings';
 
-// Re-export EXAM_DATA for backward compatibility
 export { EXAM_DATA };
 
+const POPULAR_EXAMS = [
+  {
+    id: 'GRE',
+    title: 'GRE',
+    logo: <EtsGreLogo className="h-6" />,
+    popular: true,
+    refPrice: 26542,
+    testlyPrice: 20499,
+    saving: 6043,
+    forexSaved: 1180,
+    btnText: 'Book GRE with Testly'
+  },
+  {
+    id: 'TOEFL',
+    title: 'TOEFL',
+    logo: <EtsToeflLogo className="h-6" />,
+    popular: false,
+    refPrice: 17999,
+    testlyPrice: 13999,
+    saving: 4000,
+    forexSaved: 850,
+    btnText: 'Book TOEFL with Testly'
+  },
+  {
+    id: 'PTE',
+    title: 'PTE',
+    logo: <PteLogo className="h-6" />,
+    popular: false,
+    refPrice: 18900,
+    testlyPrice: 14999,
+    saving: 3901,
+    forexSaved: 890,
+    btnText: 'Book PTE with Testly'
+  },
+  {
+    id: 'Duolingo',
+    title: 'DET',
+    logo: <DuolingoLogo className="h-6" />,
+    popular: false,
+    refPrice: 5800,
+    testlyPrice: 5499,
+    saving: 301,
+    forexSaved: 280,
+    btnText: 'Book DET with Testly'
+  }
+];
+
+const CALCULATOR_EXAMS = [
+  { id: 'GRE', label: 'GRE® General', retail: 26542, testly: 20499, save: 6043, forexFee: 1180 },
+  { id: 'TOEFL', label: 'TOEFL iBT®', retail: 17999, testly: 13999, save: 4000, forexFee: 850 },
+  { id: 'PTE', label: 'PTE Academic', retail: 18900, testly: 14999, save: 3901, forexFee: 890 },
+  { id: 'Duolingo', label: 'Duolingo DET', retail: 5800, testly: 5499, save: 301, forexFee: 280 },
+  { id: 'IELTS', label: 'IELTS Academic', retail: 18200, testly: 18200, save: 0, forexFee: 0, note: 'Zero-markup concierge booking' },
+  { id: 'GMAT', label: 'GMAT Focus', retail: 24800, testly: 24800, save: 0, forexFee: 0, note: 'Center slot & ID audit' }
+];
+
 export default function PriceProof({ onBookTest, onOpenAgreement }) {
-  const popularExams = [
-    {
-      id: 'GRE',
-      title: 'GRE',
-      logo: <EtsGreLogo className="h-6" />,
-      popular: true,
-      refPrice: 26542,
-      testlyPrice: 20499,
-      saving: 6043,
-      btnText: 'Book GRE with Testly'
-    },
-    {
-      id: 'TOEFL',
-      title: 'TOEFL',
-      logo: <EtsToeflLogo className="h-6" />,
-      popular: false,
-      refPrice: 17999,
-      testlyPrice: 13999,
-      saving: 4000,
-      btnText: 'Book TOEFL with Testly'
-    },
-    {
-      id: 'PTE',
-      title: 'PTE',
-      logo: <PteLogo className="h-6" />,
-      popular: false,
-      refPrice: 18900,
-      testlyPrice: 14999,
-      saving: 3901,
-      btnText: 'Book PTE with Testly'
-    },
-    {
-      id: 'Duolingo',
-      title: 'DET',
-      logo: <DuolingoLogo className="h-6" />,
-      popular: false,
-      refPrice: 5800,
-      testlyPrice: 5499,
-      saving: 301,
-      btnText: 'Book DET with Testly'
-    }
-  ];
+  const [activeTab, setActiveTab] = useState('GRE');
+  const [mobileFilter, setMobileFilter] = useState('ALL');
+
+  const currentCalc = CALCULATOR_EXAMS.find((e) => e.id === activeTab) || CALCULATOR_EXAMS[0];
+
+  const visibleCards = mobileFilter === 'ALL'
+    ? POPULAR_EXAMS
+    : POPULAR_EXAMS.filter((e) => e.id === mobileFilter);
 
   return (
-    <section id="pricing" className="py-8 sm:py-12 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-9">
+    <section id="pricing" className="py-8 sm:py-14 bg-white border-b border-[#E5E7EB] font-[Inter,system-ui,sans-serif]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
 
-        {/* ── 1. Top Logo Strip: EXAMS WE SUPPORT (Smooth horizontal scroll on mobile) ── */}
+        {/* ── 1. Top Logo Strip: EXAMS WE SUPPORT ── */}
         <div className="py-3 px-3.5 sm:px-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-3 overflow-hidden">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider shrink-0 self-start sm:self-auto">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
@@ -83,57 +116,180 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
           </div>
         </div>
 
-        {/* ── 2. Today's Exam Prices: Left Summary + 4 Cards Grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
-          
-          {/* Left Summary Box (3 cols on desktop, compact banner on mobile) */}
-          <div className="lg:col-span-3 flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] space-y-3 sm:space-y-4">
-            <div className="space-y-2 sm:space-y-3">
-              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[#1E3A8A] bg-[#EBF3FF] px-2.5 py-0.5 rounded-md border border-[#BFDBFE]">
-                POPULAR EXAMS
-              </span>
+        {/* ── 2. HIGH-CRO INTERACTIVE SAVINGS CALCULATOR ── */}
+        <div className="bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white rounded-3xl p-5 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden">
+          <div className="absolute -right-16 -top-16 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
-                Today's Exam Prices
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left: Headline & Selector */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold">
+                <Calculator className="w-3.5 h-3.5 text-blue-400" />
+                <span>INTERACTIVE FEE & FOREX CALCULATOR</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight font-['DM_Serif_Display',Georgia,serif]">
+                Check Your Exact Exam Savings Live.
               </h2>
 
-              <p className="text-xs text-[#64748B] font-normal leading-relaxed">
-                Latest verified prices with Testly institutional advantages.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Select your exam to see the net cost after eliminating retail bank markups (3.5% forex + 18% GST) and applying Testly's verified institutional advantages.
               </p>
 
-              <div className="pt-2 space-y-1.5 border-t border-[#E5E7EB] text-[11px] text-[#64748B] font-medium">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span>Instant slot availability check</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span>Zero payment gateway surcharge</span>
+              {/* Exam Selector Pills */}
+              <div className="pt-2">
+                <label className="text-[10.5px] uppercase font-extrabold tracking-wider text-slate-400 block mb-2">
+                  Select Exam to Compare:
+                </label>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2">
+                  {CALCULATOR_EXAMS.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setActiveTab(item.id)}
+                      className={`text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center cursor-pointer ${
+                        activeTab === item.id
+                          ? 'bg-[#3B82F6] text-white shadow-md scale-[1.02]'
+                          : 'bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 border border-slate-700'
+                      }`}
+                    >
+                      {item.id}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <button
-              onClick={() => onBookTest('GRE')}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors pt-1 group cursor-pointer"
-            >
-              <span>All Exams & Fee Breakdown</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            {/* Right: Calculation Comparison Card */}
+            <div className="lg:col-span-6 bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="text-xs uppercase font-extrabold tracking-wider text-blue-300">
+                  {currentCalc.label} Breakdown
+                </span>
+                <span className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Verified Official Rate
+                </span>
+              </div>
+
+              <div className="space-y-3 text-xs sm:text-sm">
+                {/* Retail Price */}
+                <div className="flex items-center justify-between text-slate-300">
+                  <span>Official Foreign Retail Price:</span>
+                  <span className="line-through text-slate-400 font-medium">₹{currentCalc.retail.toLocaleString('en-IN')}</span>
+                </div>
+
+                {/* Bank Forex */}
+                {currentCalc.forexFee > 0 && (
+                  <div className="flex items-center justify-between text-amber-300 text-xs">
+                    <span className="flex items-center gap-1">
+                      <Info className="w-3 h-3 text-amber-400" />
+                      Hidden Bank Forex & GST Markup:
+                    </span>
+                    <span className="line-through">+₹{currentCalc.forexFee.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
+
+                {/* Testly Net Price */}
+                <div className="flex items-center justify-between text-white font-bold pt-2 border-t border-white/10 text-base sm:text-lg">
+                  <span>Testly Net Price:</span>
+                  <span className="text-emerald-400 font-black">₹{currentCalc.testly.toLocaleString('en-IN')}</span>
+                </div>
+
+                {/* Direct Savings Callout */}
+                {currentCalc.save > 0 ? (
+                  <div className="bg-emerald-500/20 border border-emerald-400/40 rounded-xl p-3 flex items-center justify-between">
+                    <div>
+                      <div className="text-[10px] uppercase font-extrabold text-emerald-300">Your Direct Net Savings</div>
+                      <div className="text-xs text-slate-200">Kept in your bank account</div>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-black text-emerald-300">
+                      ₹{currentCalc.save.toLocaleString('en-IN')}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-blue-500/20 border border-blue-400/40 rounded-xl p-3 flex items-center justify-between">
+                    <div className="text-xs text-blue-200">
+                      {currentCalc.note || 'Zero bank markup + zero-defect passport verification'}
+                    </div>
+                    <div className="text-xs font-bold text-blue-300">
+                      Included
+                    </div>
+                  </div>
+                )}
+
+                {/* ₹199 Concierge Guarantee */}
+                <div className="pt-1 text-[11px] text-slate-300 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
+                  <span>Includes ₹199 concierge: character-by-character passport audit by Rahul & Deep.</span>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <div className="pt-2">
+                <button
+                  onClick={() => onBookTest(currentCalc.id)}
+                  className="w-full bg-[#22C55E] hover:bg-[#16A34A] text-slate-950 font-black text-xs sm:text-sm py-3.5 px-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+                >
+                  <span>Lock {currentCalc.id} Rate & Check Available Slots</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        {/* ── 3. TODAY'S EXAM PRICES GRID ── */}
+        <div className="space-y-4">
+          
+          {/* Section Header & Mobile Filter Tabs */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[#1E3A8A] bg-[#EBF3FF] px-2.5 py-0.5 rounded-md border border-[#BFDBFE] mb-1">
+                ALL-INCLUSIVE INR RATES
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight font-['DM_Serif_Display',Georgia,serif]">
+                Today's Verified Exam Prices
+              </h2>
+              <p className="text-xs sm:text-sm text-[#64748B] mt-0.5">
+                Every price includes institutional discounts and professional concierge booking assistance.
+              </p>
+            </div>
+
+            {/* Mobile Filter Pills (Shows on small screens to reduce vertical scroll) */}
+            <div className="flex sm:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+              <span className="text-[10.5px] font-bold text-[#64748B] uppercase shrink-0">Filter:</span>
+              {['ALL', 'GRE', 'TOEFL', 'PTE', 'Duolingo'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setMobileFilter(tab)}
+                  className={`text-[11px] font-bold px-3 py-1 rounded-full border transition-all shrink-0 ${
+                    mobileFilter === tab
+                      ? 'bg-[#0F172A] text-white border-[#0F172A]'
+                      : 'bg-[#FAF9F6] text-[#64748B] border-[#E5E7EB]'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Right 4 Cards (9 cols: 4 across on desktop, 1 on mobile, 2 on tablet) */}
-          <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3.5 sm:gap-4">
-            {popularExams.map((ex) => (
+          {/* 4 Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+            {visibleCards.map((ex) => (
               <div
                 key={ex.id}
-                className={`bg-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)] ${
+                className={`bg-white rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 relative shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.08)] ${
                   ex.popular
                     ? 'border-2 border-[#1E3A8A] ring-2 ring-[#3B82F6]/10'
                     : 'border border-[#E5E7EB] hover:border-[#BFDBFE]'
                 }`}
               >
-                <div className="space-y-3.5 sm:space-y-4">
+                <div className="space-y-4">
                   {/* Card Header: Logo + POPULAR */}
                   <div className="flex items-center justify-between min-h-[32px]">
                     <div className="shrink-0">{ex.logo}</div>
@@ -149,46 +305,44 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                     <span className="text-xs font-medium text-[#94A3B8] line-through">
                       ₹{ex.refPrice.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[10px] text-[#94A3B8] font-medium ml-1.5">ref. price</span>
+                    <span className="text-[10px] text-[#94A3B8] font-medium ml-1.5">ref. foreign fee</span>
                   </div>
 
-                  {/* Testly Price + small inline savings chip */}
-                  <div className="space-y-1.5">
+                  {/* Testly Price + Savings Chip */}
+                  <div className="space-y-1">
                     <div className="flex items-baseline gap-2 flex-wrap">
-                      <span className="text-[26px] font-black text-[#0F172A] tracking-tight leading-none">
+                      <span className="text-[28px] font-black text-[#0F172A] tracking-tight leading-none">
                         ₹{ex.testlyPrice.toLocaleString('en-IN')}
                       </span>
-                      {/* Subtle amber savings chip — NOT a big box */}
-                      <span className="text-[10px] font-semibold text-[#B45309] bg-amber-50 border border-amber-200/60 px-1.5 py-0.5 rounded-md">
-                        −₹{ex.saving.toLocaleString('en-IN')}
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+                        Save ₹{ex.saving.toLocaleString('en-IN')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider">
-                      Testly Price
+                    <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider block">
+                      All-Inclusive Testly Rate
                     </span>
                   </div>
 
-                  {/* Quiet single-line service note */}
-                  <div className="flex items-center gap-1.5 text-[10.5px] text-[#64748B]">
-                    <svg className="w-3 h-3 text-[#3B82F6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <span>Incl. registration assistance · ₹199</span>
+                  {/* Service Inclusion Tag */}
+                  <div className="flex items-center gap-1.5 text-[11px] text-[#0F172A] font-semibold bg-[#FAF9F6] p-2 rounded-lg border border-[#E5E7EB]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Includes ₹199 done-for-you concierge</span>
                   </div>
 
-                  {/* Verification note */}
-                  <div className="text-[9px] text-[#94A3B8] font-medium">
-                    Price verified · 16 Sep 2026
+                  {/* Verification Note */}
+                  <div className="text-[10px] text-[#64748B] flex items-center justify-between">
+                    <span>Zero Card Forex Markup</span>
+                    <span className="text-emerald-700 font-bold">Save ₹{ex.forexSaved}</span>
                   </div>
                 </div>
 
                 {/* CTA */}
-                <div className="pt-4 mt-2 border-t border-[#F1F5F9]">
+                <div className="pt-4 mt-3 border-t border-[#F1F5F9]">
                   <button
                     onClick={() => onBookTest(ex.id)}
                     className="w-full py-2.5 px-3 rounded-xl bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-xs hover:shadow group cursor-pointer active:scale-[0.98]"
                   >
-                    <span>Check My Savings</span>
+                    <span>Check Available Slots</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#93C5FD] group-hover:text-white" />
                   </button>
                 </div>
@@ -198,82 +352,87 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
 
         </div>
 
-        {/* ── 3. + ₹199 Professional Service Banner Strip ── */}
-        <div className="bg-gradient-to-r from-blue-50/90 via-indigo-50/40 to-blue-50/90 border border-blue-200/90 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-600 text-white text-[11px] font-black uppercase tracking-wide shrink-0 shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>+ ₹199 Professional Service</span>
+        {/* ── 4. THE FOREX SHIELD BANNER ── */}
+        <div className="bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 border-2 border-blue-200/90 rounded-2xl p-5 sm:p-6 shadow-xs flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="space-y-1.5 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-blue-600 text-white text-[10.5px] font-black uppercase tracking-wide">
+              <Sparkles className="w-3 h-3" />
+              <span>THE TESTLY FOREX SHIELD</span>
             </div>
-            <p className="text-xs text-slate-700 font-medium leading-relaxed">
-              Registration assistance by Testly Professionals. We audit your passport details, book preferred test slots, and handle the entire process.
+            <h3 className="text-base sm:text-lg font-bold text-[#0F172A]">
+              Why paying directly on foreign portals costs you ₹800–₹1,400 extra.
+            </h3>
+            <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
+              When paying with Indian credit or debit cards on ETS or Pearson, banks add 3.5% foreign exchange markups + 18% GST on the fee. Testly uses corporate enterprise billing rails — so you pay in clean INR with zero bank markup.
             </p>
           </div>
 
-          <button
-            onClick={() => onOpenAgreement ? onOpenAgreement() : onBookTest('GRE')}
-            className="text-xs font-black text-blue-700 hover:text-blue-900 transition-colors shrink-0 flex items-center gap-1 self-end sm:self-auto group cursor-pointer"
-          >
-            <span>Learn More</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          <div className="shrink-0 flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => onOpenAgreement ? onOpenAgreement() : onBookTest('GRE')}
+              className="bg-[#1E3A8A] hover:bg-[#0F172A] text-white text-xs font-bold px-5 py-3 rounded-xl transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>Read Agency Protection Policy</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
-        {/* ── 4. Four Value Pillars Strip (2-col on mobile, 4-col on desktop) ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 pt-1">
+        {/* ── 5. FOUR VALUE PILLARS STRIP ── */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-1">
           
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
               <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div className="min-w-0">
-              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
-                Expert Support
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Direct Founder Audit
               </h4>
-              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
-                From setup to confirmation
+              <p className="text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                Verified by Rahul & Deep
               </p>
             </div>
           </div>
 
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
               <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div className="min-w-0">
-              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
-                Audit & Check
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Zero Error Check
               </h4>
-              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
-                Avoid name-mismatch penalties
+              <p className="text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                Passport name match guarantee
               </p>
             </div>
           </div>
 
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
-              <span className="font-bold text-sm sm:text-base">₹</span>
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+              <span className="font-bold text-base sm:text-lg">₹</span>
             </div>
             <div className="min-w-0">
-              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
-                Best Rates
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Clean INR Rates
               </h4>
-              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
-                Direct verified channels
+              <p className="text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                0% foreign transaction markup
               </p>
             </div>
           </div>
 
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F6] border border-[#E5E7EB] hover:bg-white hover:border-[#BFDBFE] transition-all flex flex-col sm:flex-row items-start gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EBF3FF] text-[#1E3A8A] flex items-center justify-center shrink-0 border border-[#BFDBFE]/70 shadow-2xs">
               <Headphones className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div className="min-w-0">
-              <h4 className="text-[11px] sm:text-xs font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
-                Human Support
+              <h4 className="text-xs sm:text-sm font-bold text-[#0F172A] uppercase tracking-wide leading-tight">
+                Live WhatsApp Desk
               </h4>
-              <p className="text-[10px] sm:text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
-                Real officers on WhatsApp
+              <p className="text-[11px] text-[#64748B] font-normal mt-0.5 leading-snug">
+                Direct line: +91 93473 79041
               </p>
             </div>
           </div>
