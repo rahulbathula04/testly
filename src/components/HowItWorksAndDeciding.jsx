@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Users, FileText, CreditCard, CheckCircle2, ArrowRight } from 'lucide-react';
 
 const STEPS = [
@@ -42,7 +43,13 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-20px' }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4"
+        >
           <div className="space-y-2 sm:space-y-2.5">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[11px] font-bold tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
@@ -56,14 +63,16 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
             </p>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ x: 2 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => onBookTest('GRE')}
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto whitespace-nowrap"
           >
             <span>Start Now</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Steps Grid — Clean 2x2 on mobile, 4-col on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6 relative">
@@ -73,9 +82,15 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
           {STEPS.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div
+              <motion.div
                 key={step.num}
-                className="relative flex flex-col justify-between gap-3 sm:gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-3.5 sm:p-6 hover:bg-white hover:border-[#BFDBFE] hover:shadow-lg transition-all duration-200 group z-10 shadow-2xs"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.4, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -3.5, backgroundColor: '#FFFFFF', borderColor: '#BFDBFE', transition: { duration: 0.2, ease: 'easeOut' } }}
+                whileTap={{ scale: 0.99 }}
+                className="relative flex flex-col justify-between gap-3 sm:gap-5 bg-[#FAF9F6] border border-[#E5E7EB] rounded-2xl p-3.5 sm:p-6 hover:shadow-lg transition-colors group z-10 shadow-2xs cursor-default select-none"
               >
                 <div className="space-y-2.5 sm:space-y-4">
                   {/* Step Number + Icon Row */}
@@ -108,13 +123,19 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
                     <span className="truncate">{step.tag}</span>
                   </span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Reassurance strip */}
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-[#64748B] font-medium border-t border-[#E5E7EB] pt-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-[#64748B] font-medium border-t border-[#E5E7EB] pt-6"
+        >
           {[
             'Official Candidate Booking Protocol',
             'Zero Disqualification Guarantee',
@@ -125,7 +146,7 @@ export default function HowItWorksAndDeciding({ onBookTest }) {
               <span>{item}</span>
             </div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

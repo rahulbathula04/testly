@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Users, FileCheck, Briefcase, FileSpreadsheet, ArrowRight } from 'lucide-react';
 
 export default function CampusBanner({ onOpenBooking, onNavigate }) {
@@ -15,7 +16,13 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Dark Navy Institutional Container */}
-        <div className="bg-gradient-to-br from-[#0B1528] via-[#0E1C38] to-[#081020] text-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-gradient-to-br from-[#0B1528] via-[#0E1C38] to-[#081020] text-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 items-stretch"
+        >
           
           {/* Left Column: Campus Value Pitch (5 cols) */}
           <div className="lg:col-span-5 p-5 sm:p-8 lg:p-9 flex flex-col justify-between space-y-5 sm:space-y-6">
@@ -51,13 +58,16 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
             </div>
 
             <div>
-              <button
+              <motion.button
+                whileHover={{ y: -1.5, backgroundColor: '#F8FAFC' }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
                 onClick={handleCampusClick}
-                className="w-full sm:w-auto bg-white hover:bg-slate-100 text-[#0B1528] font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-sm hover:shadow active:scale-[0.98] inline-flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto bg-white text-[#0B1528] font-bold text-xs px-5 py-3 rounded-xl transition-shadow shadow-sm hover:shadow inline-flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>Partner with Testly Campus</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </motion.button>
             </div>
           </div>
 
@@ -73,7 +83,13 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-transparent to-transparent lg:hidden" />
 
             {/* Floating Trust Tag */}
-            <div className="absolute bottom-4 left-4 right-4 bg-[#0B1528]/85 backdrop-blur-md border border-slate-700/80 rounded-xl p-2.5 shadow-lg">
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="absolute bottom-4 left-4 right-4 bg-[#0B1528]/85 backdrop-blur-md border border-slate-700/80 rounded-xl p-2.5 shadow-lg"
+            >
               <p className="text-[10px] font-extrabold text-white flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 Institutional MoU Available
@@ -81,7 +97,7 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
               <p className="text-[9.5px] text-slate-400 font-medium mt-0.5">
                 Direct coordinator for your university department
               </p>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Column: Campus Features & Inset Card (4 cols) */}
@@ -89,37 +105,33 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
             
             {/* 4 Feature Items */}
             <div className="space-y-2.5">
-              <div className="flex items-center gap-2.5 text-xs text-slate-200 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                <div className="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-                  <Users className="w-3.5 h-3.5" />
-                </div>
-                <span className="font-bold">Campus Workshops & Seminars</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-xs text-slate-200 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                <div className="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-                  <FileCheck className="w-3.5 h-3.5" />
-                </div>
-                <span className="font-bold">Cohort Bulk Registration Support</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-xs text-slate-200 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                <div className="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-                  <Briefcase className="w-3.5 h-3.5" />
-                </div>
-                <span className="font-bold">Dedicated Institutional Desk</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-xs text-slate-200 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                <div className="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-                  <FileSpreadsheet className="w-3.5 h-3.5" />
-                </div>
-                <span className="font-bold">Live Status & Reporting Dashboard</span>
-              </div>
+              {[
+                { icon: Users, label: 'Campus Workshops & Seminars' },
+                { icon: FileCheck, label: 'Cohort Bulk Registration Support' },
+                { icon: Briefcase, label: 'Dedicated Institutional Desk' },
+                { icon: FileSpreadsheet, label: 'Live Status & Reporting Dashboard' }
+              ].map(({ icon: Icon, label }) => (
+                <motion.div
+                  key={label}
+                  whileHover={{ x: 3, backgroundColor: 'rgba(255,255,255,0.05)' }}
+                  whileTap={{ scale: 0.985 }}
+                  transition={{ duration: 0.15 }}
+                  className="flex items-center gap-2.5 text-xs text-slate-200 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04] transition-colors cursor-default select-none"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+                    <Icon className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="font-bold">{label}</span>
+                </motion.div>
+              ))}
             </div>
 
             {/* Inset Card: Let's Empower Your Students */}
-            <div className="bg-gradient-to-br from-[#132347] to-[#0E1A33] border border-blue-500/30 rounded-2xl p-4.5 space-y-2.5 shadow-lg">
+            <motion.div
+              whileHover={{ borderColor: 'rgba(96,165,250,0.5)' }}
+              transition={{ duration: 0.2 }}
+              className="bg-gradient-to-br from-[#132347] to-[#0E1A33] border border-blue-500/30 rounded-2xl p-4.5 space-y-2.5 shadow-lg"
+            >
               <h4 className="text-xs font-black text-white uppercase tracking-wider flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-blue-400" />
                 Let's Empower Your Students
@@ -127,18 +139,21 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
               <p className="text-[11px] text-slate-300 leading-relaxed">
                 Partner with Testly Campus and make exam registration simple, secure and stress-free for your entire cohort.
               </p>
-              <button
+              <motion.button
+                whileHover={{ y: -1, backgroundColor: '#3B82F6' }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
                 onClick={handleCampusClick}
-                className="w-full py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-md group cursor-pointer active:scale-[0.98]"
+                className="w-full py-2.5 px-3 rounded-xl bg-blue-600 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-md group cursor-pointer"
               >
                 <span>Connect with Campus Team</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

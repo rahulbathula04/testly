@@ -23,6 +23,7 @@ import { ExamLogo } from '../components/ExamLogos';
 import { EXAM_DATA } from '../components/PriceProof';
 import { getArticleBySlug, PUBLISHED_ARTICLES_LIST } from '../data/seo/publishedArticles';
 import { getProfessionalById } from '../data/seo/professionalsData';
+import PassportNameValidator from '../components/tools/PassportNameValidator';
 import {
   injectArticleSchema,
   injectFAQSchema,
@@ -260,6 +261,11 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
                   </section>
                 ))}
               </div>
+
+              {/* Interactive Passport Name Match & ID Compliance Validator */}
+              {article.slug === 'how-to-fix-passport-name-mismatch-for-gre-toefl' && (
+                <PassportNameValidator onOpenBooking={onOpenBooking} />
+              )}
 
               {/* Dynamic Live Price & Savings Card */}
               <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">

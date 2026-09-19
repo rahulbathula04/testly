@@ -222,6 +222,39 @@ export function injectExamAssessmentSchema() {
   scriptEl.textContent = JSON.stringify(schemaData, null, 2);
 }
 
+export function injectHowToSchema({ name, description, steps = [], estimatedCost = '19000' }) {
+  if (typeof document === 'undefined' || !name || !steps.length) return;
+
+  const scriptId = 'testly-dynamic-howto-schema';
+  let scriptEl = document.getElementById(scriptId);
+  if (!scriptEl) {
+    scriptEl = document.createElement('script');
+    scriptEl.id = scriptId;
+    scriptEl.type = 'application/ld+json';
+    document.head.appendChild(scriptEl);
+  }
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    'name': name,
+    'description': description,
+    'estimatedCost': {
+      '@type': 'MonetaryAmount',
+      'currency': 'INR',
+      'value': estimatedCost
+    },
+    'step': steps.map((step, idx) => ({
+      '@type': 'HowToStep',
+      'position': idx + 1,
+      'name': step.title || `Step ${idx + 1}`,
+      'text': step.text || step.detail || step.content || step
+    }))
+  };
+
+  scriptEl.textContent = JSON.stringify(schemaData, null, 2);
+}
+
 export function updatePageMeta({ title, description, canonicalUrl }) {
   if (typeof document === 'undefined') return;
 
@@ -247,4 +280,5 @@ export function updatePageMeta({ title, description, canonicalUrl }) {
     canonical.setAttribute('href', canonicalUrl);
   }
 }
+
 
