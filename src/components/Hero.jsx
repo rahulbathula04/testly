@@ -97,7 +97,7 @@ export default function Hero({ onBookTest }) {
           <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[10.5px] font-bold tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-              <span>LIVE RATES TODAY • 2026</span>
+              <span>LIVE FEE SCHEDULE • 2026</span>
             </div>
             <span className="text-slate-300 hidden sm:inline">•</span>
             <p className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748B]">
@@ -120,7 +120,7 @@ export default function Hero({ onBookTest }) {
             variants={itemVariants}
             className="text-[13.5px] xs:text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed"
           >
-            Eliminate unfair bank forex card markups. Get verified institutional rates and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deepak Royal.
+            Eliminate unfair bank forex card markups. Get verified institutional fee schedules and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deepak Royal.
           </motion.p>
 
           {/* 4 Value Pillars — Compact 2x2 on all screens with classic tactile feel */}
