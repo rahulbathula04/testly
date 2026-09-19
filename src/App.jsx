@@ -31,6 +31,8 @@ const BlogDirectoryPage    = lazy(() => import('./pages/BlogDirectoryPage'));
 const ArticlePage          = lazy(() => import('./pages/ArticlePage'));
 const CampusPage           = lazy(() => import('./pages/CampusPage'));
 const FounderPage          = lazy(() => import('./pages/FounderPage'));
+const AssessmentIntelligencePage = lazy(() => import('./pages/AssessmentIntelligencePage'));
+const AssessmentEngineCommandCenter = lazy(() => import('./components/admin/AssessmentEngineCommandCenter'));
 
 // ── Code-Split Heavy Modals (Lazy loaded on demand) ───────────────────────────
 const BookingFlowModal     = lazy(() => import('./components/BookingFlowModal'));
@@ -55,8 +57,14 @@ function getActiveRoute() {
   const hash = window.location.hash.toLowerCase();
   const search = window.location.search.toLowerCase();
 
+  if (path.includes('/admin/assessment-engine') || hash.includes('admin/assessment-engine')) {
+    return { type: 'admin-assessment-engine' };
+  }
   if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
     return { type: 'admin' };
+  }
+  if (path.includes('/assessment-intelligence') || hash.includes('assessment-intelligence') || path.includes('/assessment-engine') || hash.includes('assessment-engine')) {
+    return { type: 'assessment-intelligence' };
   }
   if (path.includes('/campus') || hash.includes('/campus') || hash.includes('campus')) {
     return { type: 'campus' };
@@ -173,6 +181,12 @@ export default function App() {
 
       case 'about':
         return <FounderPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'assessment-intelligence':
+        return <AssessmentIntelligencePage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'admin-assessment-engine':
+        return <AssessmentEngineCommandCenter onNavigateHome={() => navigate('/')} />;
 
       case 'home':
       default:
