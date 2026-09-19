@@ -124,7 +124,7 @@ export const EXAM_FEES_INDEX = {
     freshnessStatus: 'GREEN',
     eligibility: 'Test Center & Online Proctored',
     voucherValidityPeriod: '6 months from issuance',
-    currencySavedReason: 'Corporate rate on premier business entrance test.'
+    currencySavedReason: 'Institutional fee schedule on premier business entrance test.'
   }
 };
 
