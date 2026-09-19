@@ -464,6 +464,194 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
         answer: 'Over 85% of PTE candidates in Bengaluru receive their official Pearson score report within 24 to 48 hours.'
       }
     ]
+  },
+
+  'gre-prep-strategy-study-plan-india-2026': {
+    slug: 'gre-prep-strategy-study-plan-india-2026',
+    title: 'GRE 60-Day Preparation Strategy (2026): Master Study Plan for Indian STEM Students & Working Techies',
+    metaTitle: 'GRE 60-Day Preparation Strategy (2026): Study Plan for Indian Students',
+    metaDescription: 'A structured 60-day roadmap for scoring 325+ on the shortened GRE. Balance Quant and Verbal while working full-time or finishing your engineering degree.',
+    exam: 'GRE',
+    intent: 'STUDY_PLAN',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'deep_royal',
+    publishedDate: '2026-09-01',
+    lastVerifiedDate: '2026-09-19',
+    freshnessStatus: 'GREEN',
+    readTime: '8 min read',
+    category: 'GRE Preparation & Strategy',
+    toc: [
+      { id: 'shortened-gre-overview', label: '1. The 1:58 Shortened GRE Reality' },
+      { id: 'phase-1-diagnostic', label: '2. Days 1–15: Baseline Diagnostic & Foundations' },
+      { id: 'phase-2-domain-mastery', label: '3. Days 16–40: Hard Quant & Contextual Verbal' },
+      { id: 'phase-3-adaptive-mocks', label: '4. Days 41–60: Section-Adaptive Simulations' },
+      { id: 'testly-gre-diagnostic', label: '5. Calibrate Your Baseline on Testly / GRE' }
+    ],
+    summary: 'Preparing for the shortened GRE requires a radically different mindset than legacy prep books. With only 27 Verbal and 27 Quant questions, every single mistake carries a heavier psychometric penalty. Learn how to allocate 2 hours daily to secure a 325+ target.',
+    sections: [
+      {
+        id: 'shortened-gre-overview',
+        title: 'The 1:58 Shortened GRE Reality: Higher Penalties Per Error',
+        content: `Since ETS eliminated the unscored research section and shortened both Verbal and Quant to 27 questions each, pacing pressure has shifted:
+- **Verbal:** 12 questions in Section 1 (18 min) + 15 questions in Section 2 (23 min).
+- **Quant:** 12 questions in Section 1 (21 min) + 15 questions in Section 2 (26 min).
+Because section 1 routes you into Easy, Medium, or Hard for Section 2, missing 3 or more questions in Section 1 caps your maximum potential scaled score around 158.`
+      },
+      {
+        id: 'phase-1-diagnostic',
+        title: 'Days 1–15: Baseline Diagnostic & Core Foundations',
+        content: `Begin with a zero-prep diagnostic to establish your raw starting point across all 7 core skills. Spend the first two weeks reviewing arithmetic number properties, prime factorization, quadratic equations, and high-frequency root words.`
+      },
+      {
+        id: 'phase-2-domain-mastery',
+        title: 'Days 16–40: Hard Quant Traps & Academic Text Completion',
+        content: `Focus on Quantitative Comparison traps where variables could be zero, negative, or fractions. In Verbal, master Sentence Equivalence synonym pairs and distractor elimination.`
+      },
+      {
+        id: 'phase-3-adaptive-mocks',
+        title: 'Days 41–60: Section-Adaptive Simulations & Error Logging',
+        content: `Take full-length 1:58 mock simulations every Saturday morning. Maintain an Error Log documenting whether each mistake was conceptual, computational, or pacing-induced.`
+      },
+      {
+        id: 'testly-gre-diagnostic',
+        title: 'Calibrate Your Baseline on Testly / GRE',
+        content: `Testly provides an authentic, 15-question GRE diagnostic that yields your exact skill profile, identifies your highest-leverage weakness, and computes your calibrated Testly GRE Readiness Score™.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I prepare for the GRE in 60 days while working full-time?',
+        answer: 'Yes. Allocating 1.5 hours on weekday mornings and 4 hours on Saturday and Sunday provides over 110 focused study hours, which is optimal for the shortened GRE format.'
+      }
+    ]
+  },
+
+  'gre-quantitative-reasoning-tips-indian-engineers': {
+    slug: 'gre-quantitative-reasoning-tips-indian-engineers',
+    title: 'How Indian Engineering Students Can Score 168+ in GRE Quant (2026 Master Guide)',
+    metaTitle: 'How Indian Engineers Can Score 168+ in GRE Quant (2026 Guide)',
+    metaDescription: 'Why Indian engineers with strong math backgrounds still miss 170 in GRE Quant. Avoid subtle traps in Data Analysis, Standard Deviation, and Quantitative Comparison.',
+    exam: 'GRE',
+    intent: 'QUANT_STRATEGY',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'deep_royal',
+    publishedDate: '2026-09-05',
+    lastVerifiedDate: '2026-09-19',
+    freshnessStatus: 'GREEN',
+    readTime: '7 min read',
+    category: 'GRE Quantitative Reasoning',
+    toc: [
+      { id: 'why-engineers-miss-170', label: '1. The Paradox of the 162 Ceiling' },
+      { id: 'trap-1-qc-constraints', label: '2. Trap 1: Hidden Constraints in Quant Comparison' },
+      { id: 'trap-2-stats-geometry', label: '3. Trap 2: Normal Distributions & Boxplots' },
+      { id: 'trap-3-calculator-overuse', label: '4. Trap 3: Calculator Over-reliance vs Mental Estimation' },
+      { id: 'free-quant-drills', label: '5. Practice with Testly GRE Topic Drills' }
+    ],
+    summary: 'Indian engineering students often assume GRE Quant will be simple compared to JEE or GATE. However, ETS tests logical precision, counterexample construction, and wording traps rather than advanced calculus.',
+    sections: [
+      {
+        id: 'why-engineers-miss-170',
+        title: 'The Paradox of the 162 Ceiling for Engineering Candidates',
+        content: `Graduates from IITs, NITs, BITS, and state universities frequently plateau between 161 and 164. The reason is not lack of math capability; it is rushing through questions and falling for deliberately crafted ETS answer traps.`
+      },
+      {
+        id: 'trap-1-qc-constraints',
+        title: 'Trap 1: Hidden Constraints in Quantitative Comparison',
+        content: `When a prompt states "x and y are numbers", remember:
+- Could x be zero?
+- Could x be negative?
+- Could x be a non-integer fraction like 0.5?
+Testing the "FROZEN" numbers (Fractions, Roots, One, Zero, Extremes, Negatives) eliminates 80% of Quantitative Comparison false assumptions.`
+      },
+      {
+        id: 'trap-2-stats-geometry',
+        title: 'Trap 2: Normal Distributions & Statistical Dispersion',
+        content: `Understand standard deviation properties: adding a constant to all numbers in a set does NOT change the standard deviation, while multiplying by a constant scales the standard deviation by the absolute value of that constant.`
+      },
+      {
+        id: 'trap-3-calculator-overuse',
+        title: 'Trap 3: Calculator Over-reliance vs Mental Estimation',
+        content: `The on-screen GRE calculator is slow and cumbersome. Candidates who use mental estimation and unit-digit analysis solve questions in 45 seconds rather than 110 seconds.`
+      },
+      {
+        id: 'free-quant-drills',
+        title: 'Practice with Testly GRE Topic Drills',
+        content: `Sharpen your problem-solving speed with original Testly Quantitative items covering Arithmetic, Algebra, Geometry, and Data Analysis with instant step-by-step rationales.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'What is a competitive GRE Quant score for Top 20 US Computer Science Masters?',
+        answer: 'For top 20 US MS in Computer Science programs (CMU, Stanford, Berkeley, UIUC, Georgia Tech), a Quant score of 167+ (85th percentile or higher) is typical for competitive applicants.'
+      }
+    ]
+  },
+
+  'gre-verbal-vocabulary-mnemonics-guide': {
+    slug: 'gre-verbal-vocabulary-mnemonics-guide',
+    title: 'GRE Verbal Reasoning: Essential Vocabulary, Etymology & Contextual Roots Guide (2026)',
+    metaTitle: 'GRE Verbal Vocabulary Guide (2026): Roots, Mnemonics & Context',
+    metaDescription: 'Stop memorizing 3,500 random flashcards. Learn how Greek and Latin roots, semantic direction markers, and contextual contrast unlock 160+ in GRE Verbal.',
+    exam: 'GRE',
+    intent: 'VERBAL_VOCAB',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'deep_royal',
+    publishedDate: '2026-09-10',
+    lastVerifiedDate: '2026-09-19',
+    freshnessStatus: 'GREEN',
+    readTime: '9 min read',
+    category: 'GRE Verbal Reasoning',
+    toc: [
+      { id: 'why-flashcards-fail', label: '1. Why Rote Flashcard Memorization Fails' },
+      { id: 'root-families', label: '2. High-Yield Latin and Greek Root Families' },
+      { id: 'discourse-markers', label: '3. Sentence Contrast & Discourse Markers' },
+      { id: 'sentence-equivalence-pairs', label: '4. Sentence Equivalence Synonym Pair Traps' },
+      { id: 'testly-verbal-practice', label: '5. Launch Testly Verbal Practice Drills' }
+    ],
+    summary: 'The modern GRE Verbal section does not test obscure dictionary trivia; it tests semantic precision and contextual nuance in academic prose. Discover the 80/20 root-word strategy that delivers maximum score improvement.',
+    sections: [
+      {
+        id: 'why-flashcards-fail',
+        title: 'Why Rote Flashcard Memorization Fails on the Shortened GRE',
+        content: `Students who memorize 3,000 words without understanding sentence structure often pick a word whose definition they know, even when it creates an incoherent sentence. On the GRE, the sentence syntax dictates the precise meaning required.`
+      },
+      {
+        id: 'root-families',
+        title: 'High-Yield Latin and Greek Root Families',
+        content: `Mastering key roots gives you instant access to dozens of academic terms:
+- **BELL-** (war): belligerent, bellicose, antebellum
+- **LUC- / LUM-** (light, clear): elucidate, pellucid, luminous
+- **TAC- / TIC-** (silent): tacit, taciturn, reticent
+- **PUG-** (fight): pugnacious, impugn, repugnant
+- **VOR- / PHAG-** (eat, consume): voracious, esophagus, phytophagous.`
+      },
+      {
+        id: 'discourse-markers',
+        title: 'Sentence Contrast & Discourse Markers',
+        content: `Identify whether the sentence continues in the same direction (+ to +) or reverses direction (+ to -):
+- **Continuation:** moreover, furthermore, consequently, likewise, thus
+- **Reversal:** although, despite, however, whereas, while, paradoxically, ironically.`
+      },
+      {
+        id: 'sentence-equivalence-pairs',
+        title: 'Sentence Equivalence Synonym Pair Traps',
+        content: `In Sentence Equivalence, ETS frequently includes two words that are perfect synonyms of each other, but do not fit the sentence context. Always verify that the pair fits the blank context before checking if they are synonyms.`
+      },
+      {
+        id: 'testly-verbal-practice',
+        title: 'Launch Testly Verbal Practice Drills',
+        content: `Practice original Text Completion and Sentence Equivalence items on Testly with instant distractor breakdowns.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'How many words do I really need to know for the GRE?',
+        answer: 'Around 800 to 1,000 high-frequency academic vocabulary words, combined with etymological root knowledge, is sufficient to score in the 90th percentile of GRE Verbal.'
+      }
+    ]
   }
 };
 

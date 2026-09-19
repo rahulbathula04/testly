@@ -105,6 +105,123 @@ export function injectBreadcrumbSchema(items) {
   scriptEl.textContent = JSON.stringify(schemaData, null, 2);
 }
 
+export function injectLocalBusinessSchema(location) {
+  if (typeof document === 'undefined' || !location) return;
+
+  const scriptId = 'testly-dynamic-local-schema';
+  let scriptEl = document.getElementById(scriptId);
+  if (!scriptEl) {
+    scriptEl = document.createElement('script');
+    scriptEl.id = scriptId;
+    scriptEl.type = 'application/ld+json';
+    document.head.appendChild(scriptEl);
+  }
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    'name': `Testly Exam Registration & Advisory (${location.name})`,
+    'alternateName': `Testly ${location.name} Candidate Hub`,
+    'url': `https://testly.in/locations/${location.id}`,
+    'logo': 'https://testly.in/favicon.svg',
+    'image': 'https://testly.in/assets/images/global-university-campus.jpg',
+    'telephone': location.helpline || '+91 93473 79041',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': location.deskAddress || 'Cyber Hills Corridor, Madhapur',
+      'addressLocality': location.name,
+      'addressRegion': location.state,
+      'addressCountry': 'IN'
+    },
+    'priceRange': '₹199 - ₹20,499',
+    'areaServed': location.primaryLocalities || [location.name],
+    'hasOfferCatalog': {
+      '@type': 'OfferCatalog',
+      'name': 'Discounted Exam Vouchers & Registration Support',
+      'itemListElement': [
+        {
+          '@type': 'Offer',
+          'itemOffered': {
+            '@type': 'Service',
+            'name': 'GRE General Test Registration & Official Voucher',
+            'description': 'Official prepaid voucher + zero-defect passport name audit'
+          },
+          'price': '20499',
+          'priceCurrency': 'INR'
+        },
+        {
+          '@type': 'Offer',
+          'itemOffered': {
+            '@type': 'Service',
+            'name': 'TOEFL iBT Official Exam Voucher',
+            'description': 'Authorized ETS institutional discount code'
+          },
+          'price': '13999',
+          'priceCurrency': 'INR'
+        },
+        {
+          '@type': 'Offer',
+          'itemOffered': {
+            '@type': 'Service',
+            'name': 'PTE Academic Voucher',
+            'description': 'Pearson authorized booking voucher'
+          },
+          'price': '14999',
+          'priceCurrency': 'INR'
+        }
+      ]
+    }
+  };
+
+  scriptEl.textContent = JSON.stringify(schemaData, null, 2);
+}
+
+export function injectExamAssessmentSchema() {
+  if (typeof document === 'undefined') return;
+
+  const scriptId = 'testly-gre-assessment-schema';
+  let scriptEl = document.getElementById(scriptId);
+  if (!scriptEl) {
+    scriptEl = document.createElement('script');
+    scriptEl.id = scriptId;
+    scriptEl.type = 'application/ld+json';
+    document.head.appendChild(scriptEl);
+  }
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    'name': 'Testly GRE Assessment Intelligence & Diagnostic Engine',
+    'description': 'Adaptive GRE diagnostic assessment, construct-level skill mapping across Verbal and Quant, and Testly GRE Readiness Score™ simulator.',
+    'learningResourceType': 'Assessment',
+    'educationalLevel': 'Graduate Education',
+    'provider': {
+      '@type': 'EducationalOrganization',
+      'name': 'Testly',
+      'url': 'https://testly.in/'
+    },
+    'hasPart': [
+      {
+        '@type': 'Course',
+        'name': 'GRE Diagnostic Assessment',
+        'description': '15-question baseline assessment measuring Reading Comprehension, Text Completion, Sentence Equivalence, Arithmetic, Algebra, Geometry, and Data Analysis.'
+      },
+      {
+        '@type': 'Course',
+        'name': 'GRE Topic Drills',
+        'description': 'Focused question-by-question practice with step-by-step rationales.'
+      },
+      {
+        '@type': 'Course',
+        'name': 'Full-Length GRE Mock Simulations',
+        'description': '1:58 full-length practice tests matching current shortened GRE structure.'
+      }
+    ]
+  };
+
+  scriptEl.textContent = JSON.stringify(schemaData, null, 2);
+}
+
 export function updatePageMeta({ title, description, canonicalUrl }) {
   if (typeof document === 'undefined') return;
 
@@ -130,3 +247,4 @@ export function updatePageMeta({ title, description, canonicalUrl }) {
     canonical.setAttribute('href', canonicalUrl);
   }
 }
+

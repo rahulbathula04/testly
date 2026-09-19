@@ -32,6 +32,7 @@ const ArticlePage          = lazy(() => import('./pages/ArticlePage'));
 const CampusPage           = lazy(() => import('./pages/CampusPage'));
 const FounderPage          = lazy(() => import('./pages/FounderPage'));
 const GreProductPage       = lazy(() => import('./pages/GreProductPage'));
+const LocationHubPage      = lazy(() => import('./pages/LocationHubPage'));
 const AssessmentIntelligencePage = lazy(() => import('./pages/AssessmentIntelligencePage'));
 const AssessmentEngineCommandCenter = lazy(() => import('./components/admin/AssessmentEngineCommandCenter'));
 
@@ -76,11 +77,15 @@ function getActiveRoute() {
   if (path.includes('/campus') || hash.includes('/campus') || hash.includes('campus')) {
     return { type: 'campus' };
   }
-  if (path.includes('/locations/madhapur') || hash.includes('/locations/madhapur') || hash.includes('madhapur')) {
+  if (path.includes('/locations/madhapur') || hash.includes('locations/madhapur') || hash.includes('madhapur')) {
     return { type: 'madhapur' };
   }
   if (path.includes('/locations/hyderabad') || hash.includes('/locations/hyderabad') || hash.includes('hyderabad')) {
     return { type: 'hyderabad' };
+  }
+  const locMatch = path.match(/^\/locations\/([a-z0-9_-]+)/) || hash.match(/#(?:locations)\/([a-z0-9_-]+)/);
+  if (locMatch && locMatch[1]) {
+    return { type: 'location', city: locMatch[1].toLowerCase().replace('-', '_') };
   }
   if (path.includes('/exam-fees') || hash.includes('/exam-fees') || hash.includes('exam-fees')) {
     return { type: 'exam-fees' };
@@ -173,6 +178,9 @@ export default function App() {
 
       case 'madhapur':
         return <MadhapurHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'location':
+        return <LocationHubPage city={currentRoute.city} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
       case 'exam-fees':
         return <ExamPriceTrackerPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
