@@ -21,12 +21,12 @@ export function injectArticleSchema({ article, author, url }) {
     '@type': 'Article',
     'headline': article.title,
     'description': article.metaDescription,
-    'image': 'https://testly.in/assets/images/global-university-campus.jpg',
+    'image': 'https://www.testly.co.in/assets/images/global-university-campus.jpg',
     'datePublished': article.publishedDate,
     'dateModified': article.lastVerifiedDate || article.publishedDate,
     'mainEntityOfPage': {
       '@type': 'WebPage',
-      '@id': url || `https://testly.in/guides/${article.slug}`
+      '@id': url || `https://www.testly.co.in/guides/${article.slug}`
     },
     'author': {
       '@type': 'Person',
@@ -40,10 +40,10 @@ export function injectArticleSchema({ article, author, url }) {
     'publisher': {
       '@type': 'EducationalOrganization',
       'name': 'Testly',
-      'url': 'https://testly.in/',
+      'url': 'https://www.testly.co.in/',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://testly.in/favicon.svg'
+        'url': 'https://www.testly.co.in/favicon.svg'
       }
     }
   };
@@ -122,9 +122,9 @@ export function injectLocalBusinessSchema(location) {
     '@type': 'EducationalOrganization',
     'name': `Testly Exam Registration & Advisory (${location.name})`,
     'alternateName': `Testly ${location.name} Candidate Hub`,
-    'url': `https://testly.in/locations/${location.id}`,
-    'logo': 'https://testly.in/favicon.svg',
-    'image': 'https://testly.in/assets/images/global-university-campus.jpg',
+    'url': `https://www.testly.co.in/locations/${location.id}`,
+    'logo': 'https://www.testly.co.in/favicon.svg',
+    'image': 'https://www.testly.co.in/assets/images/global-university-campus.jpg',
     'telephone': location.helpline || '+91 93473 79041',
     'address': {
       '@type': 'PostalAddress',
@@ -198,7 +198,7 @@ export function injectExamAssessmentSchema() {
     'provider': {
       '@type': 'EducationalOrganization',
       'name': 'Testly',
-      'url': 'https://testly.in/'
+      'url': 'https://www.testly.co.in/'
     },
     'hasPart': [
       {

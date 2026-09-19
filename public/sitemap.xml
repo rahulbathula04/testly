@@ -4,131 +4,197 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Homepage / Core Platform -->
+  <!-- ── 1. Core Platform & Hubs ── -->
   <url>
-    <loc>https://testly.in/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://www.testly.co.in/</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Dynamic Exam Fees & Discount Voucher Tracker -->
   <url>
-    <loc>https://testly.in/exam-fees</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- Testly Campus Institutional B2B System -->
-  <url>
-    <loc>https://testly.in/campus</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- Central Guides & Research Intelligence Library -->
-  <url>
-    <loc>https://testly.in/guides</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- Published High-Authority Articles -->
-  <url>
-    <loc>https://testly.in/guides/gre-exam-fee-in-india-2026</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/guides/how-to-fix-passport-name-mismatch-for-gre-toefl</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/guides/ielts-vs-pte-for-indian-students</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/guides/toefl-voucher-discount-india</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/guides/gre-registration-in-hyderabad</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/guides/pte-academic-registration-bengaluru</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- Local Authority Hubs -->
-  <url>
-    <loc>https://testly.in/locations/hyderabad</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://www.testly.co.in/exam-fees</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://testly.in/locations/madhapur</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://www.testly.co.in/campus</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
 
-  <!-- Testly Registration Specialists & E-E-A-T Team -->
   <url>
-    <loc>https://testly.in/professionals</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://www.testly.co.in/professionals</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Landing Page Sections -->
   <url>
-    <loc>https://testly.in/#savings</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/#exams</loc>
-    <lastmod>2026-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://testly.in/#how-it-works</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://www.testly.co.in/about</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ── 2. Testly GRE Vertical & Assessment Platform ── -->
+  <url>
+    <loc>https://www.testly.co.in/gre</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://testly.in/#faq</loc>
-    <lastmod>2026-09-16</lastmod>
+    <loc>https://www.testly.co.in/gre/diagnostic</loc>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/gre/practice</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/gre/mock</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/assessment-intelligence</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ── 3. Guides & Research Intelligence Library ── -->
+  <url>
+    <loc>https://www.testly.co.in/guides</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-exam-fee-in-india-2026</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/how-to-fix-passport-name-mismatch-for-gre-toefl</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/ielts-vs-pte-for-indian-students</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/toefl-voucher-discount-india</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-registration-in-hyderabad</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/pte-exam-centers-in-bengaluru</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-prep-strategy-study-plan-india-2026</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-quantitative-reasoning-tips-indian-engineers</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-verbal-vocabulary-mnemonics-guide</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- ── 4. Verified Regional Test Hubs ── -->
+  <url>
+    <loc>https://www.testly.co.in/locations/hyderabad</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/locations/madhapur</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/locations/bengaluru</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/locations/mumbai</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/locations/pune</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/locations/delhi-ncr</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/locations/chennai</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
 </urlset>

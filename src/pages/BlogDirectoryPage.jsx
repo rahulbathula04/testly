@@ -39,7 +39,7 @@ export default function BlogDirectoryPage({ onOpenBooking, onNavigate }) {
     updatePageMeta({
       title: 'Exam Registration Guides, Fee Indexes & Savings Resources | Testly',
       description: 'Explore authoritative guides on GRE, TOEFL, IELTS, PTE, and GMAT in India. Learn official fee schedules, how to avoid forex markups, and fix passport name mismatches.',
-      canonicalUrl: 'https://testly.in/guides'
+      canonicalUrl: 'https://www.testly.co.in/guides'
     });
   }, []);
 

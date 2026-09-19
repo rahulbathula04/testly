@@ -659,5 +659,9 @@ export const PUBLISHED_ARTICLES_LIST = Object.values(PUBLISHED_ARTICLES);
 
 export function getArticleBySlug(slug) {
   if (!slug) return null;
-  return PUBLISHED_ARTICLES[slug.toLowerCase()] || null;
+  const s = slug.toLowerCase();
+  if (s === 'pte-academic-registration-bengaluru') {
+    return PUBLISHED_ARTICLES['pte-exam-centers-in-bengaluru'] || null;
+  }
+  return PUBLISHED_ARTICLES[s] || null;
 }

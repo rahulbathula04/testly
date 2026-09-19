@@ -1,5 +1,5 @@
 # Testly Robots Configuration
-# https://testly.in/
+# https://www.testly.co.in/
 
 User-agent: *
 Allow: /
@@ -9,4 +9,4 @@ Disallow: /admin/
 Disallow: /#/admin
 
 # Sitemaps
-Sitemap: https://testly.in/sitemap.xml
+Sitemap: https://www.testly.co.in/sitemap.xml

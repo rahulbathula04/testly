@@ -41,7 +41,7 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
     updatePageMeta({
       title: `${article.metaTitle || article.title} | Testly`,
       description: article.metaDescription,
-      canonicalUrl: `https://testly.in/guides/${article.slug}`
+      canonicalUrl: `https://www.testly.co.in/guides/${article.slug}`
     });
 
     const author = getProfessionalById(article.authorId);
@@ -50,7 +50,7 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
     injectArticleSchema({
       article,
       author,
-      url: `https://testly.in/guides/${article.slug}`
+      url: `https://www.testly.co.in/guides/${article.slug}`
     });
 
     if (article.faqs && article.faqs.length) {
@@ -58,9 +58,9 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
     }
 
     injectBreadcrumbSchema([
-      { name: 'Home', url: 'https://testly.in/' },
-      { name: 'Guides & Research', url: 'https://testly.in/guides' },
-      { name: article.title, url: `https://testly.in/guides/${article.slug}` }
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'Guides & Research', url: 'https://www.testly.co.in/guides' },
+      { name: article.title, url: `https://www.testly.co.in/guides/${article.slug}` }
     ]);
   }, [article]);
 

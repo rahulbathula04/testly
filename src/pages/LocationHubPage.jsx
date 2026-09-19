@@ -30,14 +30,14 @@ export default function LocationHubPage({ city = 'bengaluru', onOpenBooking, onN
     updatePageMeta({
       title,
       description: desc,
-      canonicalUrl: `https://testly.in/locations/${loc.id}`
+      canonicalUrl: `https://www.testly.co.in/locations/${loc.id}`
     });
 
     injectLocalBusinessSchema(loc);
     injectBreadcrumbSchema([
-      { name: 'Home', url: 'https://testly.in/' },
-      { name: 'Locations', url: 'https://testly.in/locations' },
-      { name: loc.name, url: `https://testly.in/locations/${loc.id}` }
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'Locations', url: 'https://www.testly.co.in/locations' },
+      { name: loc.name, url: `https://www.testly.co.in/locations/${loc.id}` }
     ]);
 
     injectFAQSchema([
