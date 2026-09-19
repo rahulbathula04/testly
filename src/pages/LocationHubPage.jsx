@@ -242,7 +242,7 @@ export default function LocationHubPage({ city = 'bengaluru', onOpenBooking, onN
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
               <div>
                 <span className="text-xs font-mono font-bold uppercase text-emerald-700">
-                  OFFICIAL INSTITUTIONAL RATES
+                  OFFICIAL INSTITUTIONAL FEE SCHEDULE
                 </span>
                 <h2
                   style={{ fontFamily: "'DM Serif Display', serif" }}

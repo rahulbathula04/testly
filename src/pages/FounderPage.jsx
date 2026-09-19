@@ -417,7 +417,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   Why should booking an international exam costing ₹15,000 to ₹22,000 be any different?
                 </p>
                 <p className="text-sm sm:text-base text-[#0F172A] font-semibold leading-relaxed">
-                  Testly is the pre-booking verification layer that every Indian student uses before committing funds. You check current INR fee rates, verify your passport name formatting, check seat availability at verified centers, and lock in institutional pricing before giving money to foreign portals.
+                  Testly is the pre-booking verification layer that every Indian student uses before committing funds. You check current INR fee schedules, verify your passport name formatting, check seat availability at verified centers, and lock in institutional pricing before giving money to foreign portals.
                 </p>
               </div>
 
@@ -979,7 +979,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
               Before you book, check Testly.
             </h2>
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-              Don’t pay unnecessary bank forex markups or risk a passport name rejection. Check today's verified rates and let our Hyderabad team handle your registration with zero errors.
+              Don’t pay unnecessary bank forex markups or risk a passport name rejection. Check today's verified fee schedules and let our Hyderabad team handle your registration with zero errors.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full max-w-lg mx-auto sm:max-w-none">
               <button

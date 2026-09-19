@@ -275,7 +275,7 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
                       Live Verified Pricing • India 2026
                     </span>
                     <h3 className="text-lg font-bold text-white mt-0.5">
-                      {pricing.label} Voucher & Registration Rates
+                      {pricing.label} Voucher & Registration Fee Schedule
                     </h3>
                   </div>
                   <div className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full">

@@ -30,7 +30,7 @@ export default function SavingsCalculator({ onBookTest }) {
             See Your Exact Savings & Effective Total.
           </h2>
           <p className="text-base sm:text-lg text-[#667085] font-semibold leading-relaxed">
-            Get official test vouchers at reduced coupon rates + ₹199 guided registration support with unlimited free practice mocks.
+            Get official test vouchers through authorized institutional fee schedules + ₹199 guided registration support with calibrated diagnostic assessments.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function SavingsCalculator({ onBookTest }) {
               {/* Row 1: Test Voucher Pricing */}
               <div className="bg-white p-4 rounded-2xl border border-[#E5EAF2] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <span className="text-xs font-bold text-[#667085] uppercase">Exam Voucher / Coupon Rate</span>
+                  <span className="text-xs font-bold text-[#667085] uppercase">Exam Voucher / Institutional Fee</span>
                   <p className="text-sm font-black text-[#102A56]">{current.name} Official Voucher</p>
                 </div>
                 <div className="text-right">

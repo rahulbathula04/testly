@@ -197,7 +197,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 </span>
                 <span className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  Verified Official Rate
+                  Verified Official Fee Schedule
                 </span>
               </div>
 
@@ -272,7 +272,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                   onClick={() => onBookTest(currentCalc.id)}
                   className="w-full bg-[#22C55E] text-slate-950 font-black text-xs sm:text-sm py-3.5 px-4 rounded-xl transition-shadow shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Lock {currentCalc.id} Rate & Check Available Slots</span>
+                  <span>Lock {currentCalc.id} Fee Schedule & Check Available Slots</span>
                   <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </div>
@@ -295,7 +295,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
           >
             <div>
               <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[#1E3A8A] bg-[#EBF3FF] px-2.5 py-0.5 rounded-md border border-[#BFDBFE] mb-1">
-                ALL-INCLUSIVE INR RATES
+                ALL-INCLUSIVE INR FEE SCHEDULE
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight font-['DM_Serif_Display',Georgia,serif]">
                 Today's Verified Exam Prices
@@ -372,7 +372,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                       </span>
                     </div>
                     <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider block">
-                      All-Inclusive Testly Rate
+                      Authorized Institutional Fee
                     </span>
                   </div>
 
@@ -448,7 +448,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
           {[
             { icon: FileText, title: 'Direct Founder Audit', sub: 'Verified by Rahul & Deepak', isRupee: false },
             { icon: ShieldCheck, title: 'Zero Error Check', sub: 'Passport name match guarantee', isRupee: false },
-            { icon: null, title: 'Clean INR Rates', sub: '0% foreign transaction markup', isRupee: true },
+            { icon: null, title: 'Clean INR Fee Structure', sub: '0% foreign transaction markup', isRupee: true },
             { icon: Headphones, title: 'Live WhatsApp Desk', sub: 'Direct line: +91 93473 79041', isRupee: false }
           ].map((pillar, idx) => {
             const Icon = pillar.icon;

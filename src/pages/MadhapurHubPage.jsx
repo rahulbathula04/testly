@@ -312,7 +312,7 @@ export default function MadhapurHubPage({ onOpenBooking, onNavigate }) {
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Official Exam Savings</span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                  Madhapur Candidate Voucher Rates
+                  Madhapur Candidate Voucher Fee Schedule
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
                   Valid for test dates at Prometric Madhapur, Pearson Begumpet, and IDP Somajiguda

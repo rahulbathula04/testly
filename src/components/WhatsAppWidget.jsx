@@ -6,7 +6,7 @@ export default function WhatsAppWidget() {
 
   const defaultPhone = '919347379041';
   const defaultMessage = encodeURIComponent(
-    'Hi Testly! I want to check exam registration, institutional rates, and book the ₹199 registration concierge.'
+    'Hi Testly! I want to check exam registration, institutional fee schedules, and book the ₹199 registration concierge.'
   );
 
   const quickPrompts = [
