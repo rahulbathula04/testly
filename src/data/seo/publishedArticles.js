@@ -54,7 +54,7 @@ This pushes the realistic out-of-pocket cost of direct registration to **₹26,5
         content: `Testly procures authorized, institutional prepaid promotional voucher allotments directly for Indian students. 
 
 - **Regular Retail Out-of-Pocket:** ₹26,500
-- **Testly Official Voucher Rate:** ₹19,000
+- **Testly Official Voucher Fee:** ₹19,000
 - **Net Direct Savings:** **₹7,500**
 - **Testly Professional Service Fee:** ₹199 (Complete passport audit, slot verification, profile setup)
 
@@ -368,7 +368,7 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
       { id: 'hyderabad-venues', label: '1. Authorized GRE Test Centers in Hyderabad' },
       { id: 'prometric-madhapur-guide', label: '2. Prometric Madhapur Test-Day Protocol' },
       { id: 'slot-availability', label: '3. Booking Peak Season Slots (Aug - Dec)' },
-      { id: 'voucher-rates', label: '4. Hyderabad Student Voucher Discounts' },
+      { id: 'voucher-discounts', label: '4. Hyderabad Student Voucher Discounts' },
       { id: 'how-to-book', label: '5. Booking via Testly Madhapur Desk' },
       { id: 'faq', label: '6. Frequently Asked Questions' }
     ],
@@ -394,7 +394,7 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
         content: `Between August and December, GRE morning slots (8:00 AM & 9:00 AM) in Hyderabad sell out 4 to 6 weeks in advance. If you cannot find slots, the Testly Hyderabad desk monitors slot churn in real-time.`
       },
       {
-        id: 'voucher-rates',
+        id: 'voucher-discounts',
         title: 'Hyderabad Student Voucher Discounts',
         content: `Through corporate partnerships with Hyderabad tech institutions, Testly provides GRE vouchers for **₹19,000 net** (retail ETS cost is ₹26,500 with forex). Direct savings of **₹7,500** per registration.`
       },
@@ -810,7 +810,7 @@ When paying this fee using an Indian credit or debit card:
       {
         id: 'testly-slot-concierge',
         title: 'How Testly Concierge Protects You from Cancellation Costs',
-        content: `Through Testly’s ₹199 Professional Service, our exam advisors assist candidates with timeline planning based on their target university deadlines. Because Testly vouchers remain valid for 12 months, students can procure their voucher at institutional rates and lock in their slot only when their preparation reaches readiness benchmarks.`
+        content: `Through Testly’s ₹199 Professional Service, our exam advisors assist candidates with timeline planning based on their target university deadlines. Because Testly vouchers remain valid for 12 months, students can procure their voucher with institutional fee schedules and lock in their slot only when their preparation reaches readiness benchmarks.`
       }
     ],
     faqs: [
@@ -845,9 +845,9 @@ When paying this fee using an Indian credit or debit card:
       { id: 'us-university-acceptance', label: '2. US University Recognition: 100% Parity' },
       { id: 'speaking-section-reality', label: '3. Speaking: AI Headset vs Human Examiner' },
       { id: 'score-concordance-table', label: '4. Official Score Concordance (TOEFL 100 vs IELTS 7.5)' },
-      { id: 'fees-voucher-comparison', label: '5. India Fee Comparison & Testly Voucher Rates' }
+      { id: 'fees-voucher-comparison', label: '5. India Fee Comparison & Testly Voucher Fee Schedules' }
     ],
-    summary: 'For Indian engineering and commerce graduates applying to graduate programs in the United States, both TOEFL iBT and IELTS Academic enjoy universal acceptance. However, ETS’s transition to a streamlined 1-hour 56-minute test duration, automated speaking evaluation, and cheaper voucher rates makes TOEFL increasingly favorable for STEM candidates accustomed to computerized interfaces.',
+    summary: 'For Indian engineering and commerce graduates applying to graduate programs in the United States, both TOEFL iBT and IELTS Academic enjoy universal acceptance. However, ETS’s transition to a streamlined 1-hour 56-minute test duration, automated speaking evaluation, and authorized institutional voucher pricing makes TOEFL increasingly favorable for STEM candidates accustomed to computerized interfaces.',
     sections: [
       {
         id: 'shortened-toefl-evolution',
@@ -889,10 +889,10 @@ Most Tier-1 graduate STEM departments set baseline minimum cutoffs at:
       },
       {
         id: 'fees-voucher-comparison',
-        title: 'India Fee Comparison & Testly Voucher Rates',
+        title: 'India Fee Comparison & Testly Voucher Fee Schedules',
         content: `Comparing standard registration versus Testly institutional voucher pricing:
-- **Standard TOEFL iBT Retail:** USD 205 (~₹24,900 with banking fees). **Testly Rate:** ₹18,500 (**Save ₹6,400**).
-- **Standard IELTS Academic Retail:** ₹17,000 flat. **Testly Rate:** ₹13,000 (**Save ₹4,000**).
+- **Standard TOEFL iBT Retail:** USD 205 (~₹24,900 with banking fees). **Testly Fee:** ₹18,500 (**Save ₹6,400**).
+- **Standard IELTS Academic Retail:** ₹17,000 flat. **Testly Fee:** ₹13,000 (**Save ₹4,000**).
 
 Payment is completed cleanly in INR with zero foreign exchange fees and ₹199 done-for-you passport compliance audit.`
       }

@@ -244,7 +244,7 @@ export const EXAM_DATA = {
     category: EXAM_OFFERINGS.GRE.category,
     categoryBadge: EXAM_OFFERINGS.GRE.categoryBadge,
     propHighlight: 'Save ₹6,043 on official exam fee',
-    features: ['Verified institutional rate', 'Zero passport name error guarantee', 'Direct ETS portal confirmation'],
+    features: ['Verified institutional fee schedule', 'Zero passport name error guarantee', 'Direct ETS portal confirmation'],
     salesScript: EXAM_OFFERINGS.GRE.sales_script
   },
   TOEFL: {

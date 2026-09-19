@@ -64,7 +64,7 @@ export const EXAM_FEES_INDEX = {
     freshnessStatus: 'GREEN',
     eligibility: 'Computer-delivered & Paper-based testing across India',
     voucherValidityPeriod: '90 days from issuance',
-    currencySavedReason: 'Corporate bulk partner allotment rate.'
+    currencySavedReason: 'Corporate bulk partner allotment fee schedule.'
   },
 
   PTE: {

@@ -138,7 +138,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700">
                     1. Target Exam
                   </label>
-                  <span className="text-[10px] text-emerald-700 font-bold">✓ Pre-cleared rate</span>
+                  <span className="text-[10px] text-emerald-700 font-bold">✓ Pre-cleared fee</span>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   {EXAM_OPTIONS.map((opt) => (
