@@ -31,6 +31,7 @@ const BlogDirectoryPage    = lazy(() => import('./pages/BlogDirectoryPage'));
 const ArticlePage          = lazy(() => import('./pages/ArticlePage'));
 const CampusPage           = lazy(() => import('./pages/CampusPage'));
 const FounderPage          = lazy(() => import('./pages/FounderPage'));
+const GreProductPage       = lazy(() => import('./pages/GreProductPage'));
 const AssessmentIntelligencePage = lazy(() => import('./pages/AssessmentIntelligencePage'));
 const AssessmentEngineCommandCenter = lazy(() => import('./components/admin/AssessmentEngineCommandCenter'));
 
@@ -62,6 +63,12 @@ function getActiveRoute() {
   }
   if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
     return { type: 'admin' };
+  }
+  // Dedicated Testly GRE Product Vertical
+  const greMatch = path.match(/^\/(?:gre|assessment\/gre)(?:\/([a-z0-9-]+))?/) || hash.match(/#(?:gre|assessment\/gre)(?:\/([a-z0-9-]+))?/);
+  if (greMatch || path === '/gre' || hash.includes('/gre') || hash === '#gre') {
+    const subview = greMatch ? greMatch[1] : null;
+    return { type: 'gre', subview: subview || 'intelligence' };
   }
   if (path.includes('/assessment-intelligence') || hash.includes('assessment-intelligence') || path.includes('/assessment-engine') || hash.includes('assessment-engine')) {
     return { type: 'assessment-intelligence' };
@@ -181,6 +188,9 @@ export default function App() {
 
       case 'about':
         return <FounderPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'gre':
+        return <GreProductPage subview={currentRoute.subview} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
       case 'assessment-intelligence':
         return <AssessmentIntelligencePage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;

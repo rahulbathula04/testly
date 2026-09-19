@@ -5,7 +5,7 @@ import BrandLogo from './BrandLogo';
 const NAV_ITEMS = [
   { label: 'Exams', href: '/#pricing' },
   { label: 'Exam Fees', href: '/exam-fees' },
-  { label: 'Assessment Intelligence', href: '/assessment-intelligence' },
+  { label: 'Testly GRE', href: '/gre' },
   { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Professionals', href: '/professionals' },
   { label: 'Testly Campus', href: '/campus' },
