@@ -395,7 +395,7 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
               Verified Institutional Offerings
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Pre-Cleared Batch Rates for College Students
+              Pre-Cleared Batch Fee Schedules for College Students
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
               Derived from the master <code className="text-emerald-400 font-mono">exam_offerings</code> database. Fixed transparent savings per student.
@@ -422,7 +422,7 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
 
                 <div className="grid grid-cols-3 gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-center">
                   <div>
-                    <span className="text-[9px] uppercase font-bold text-slate-500 block">Retail Rate</span>
+                    <span className="text-[9px] uppercase font-bold text-slate-500 block">Standard Fee</span>
                     <span className="text-xs font-bold text-slate-400 line-through">
                       {formatINR(exam.reference_price)}
                     </span>

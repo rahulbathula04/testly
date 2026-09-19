@@ -44,7 +44,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
       phone: `+91 ${cleanPhone.slice(-10)}`,
       exam,
       timing,
-      needs: ['Institutional Discount Rate', 'Registration Concierge'],
+      needs: ['Institutional Fee Allocation', 'Registration Concierge'],
       pricing: currentPricing,
       source: 'Landing Page Form',
       campaign: `${exam} High-CRO Booking Flow`
@@ -61,7 +61,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
   };
 
   const directWaUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
-    `Hi Testly! I want to check exam slot availability for ${exam} (${timing}) and lock in the ₹${currentPricing.testlyPrice.toLocaleString('en-IN')} rate with ₹199 Concierge.`
+    `Hi Testly! I want to check exam slot availability for ${exam} (${timing}) and lock in the ₹${currentPricing.testlyPrice.toLocaleString('en-IN')} fee with ₹199 Concierge.`
   )}`;
 
   return (
@@ -97,7 +97,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
           {!isSubmitted ? (
             <form onSubmit={handleSubmit} className="space-y-4">
 
-              {/* Dynamic Live Rate Banner */}
+              {/* Dynamic Live Fee Banner */}
               <div className={`border rounded-xl p-3 flex items-center justify-between shadow-2xs ${
                 currentPricing.saving > 1000
                   ? 'bg-emerald-50/90 border-emerald-200'
@@ -107,7 +107,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
                     currentPricing.saving > 1000 ? 'text-emerald-800' : 'text-blue-800'
                   }`}>
-                    {exam} {currentPricing.saving > 1000 ? 'Verified Institutional Rate' : 'Registration Concierge'}
+                    {exam} {currentPricing.saving > 1000 ? 'Verified Institutional Fee' : 'Registration Concierge'}
                   </span>
                   <p className="text-xs text-slate-700 font-semibold mt-0.5">
                     {currentPricing.saving > 1000 ? (

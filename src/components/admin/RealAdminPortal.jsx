@@ -1071,10 +1071,10 @@ export default function RealAdminPortal({
                             {/* Step 3 */}
                             <div className="bg-slate-900/90 border border-slate-800/80 rounded-lg p-2.5 space-y-1">
                               <span className="text-[10px] font-black uppercase text-emerald-400 block font-mono">
-                                Step 3 • Booking Rate & Savings Advantage
+                                Step 3 • Institutional Fee & Savings Advantage
                               </span>
                               <p className="text-slate-300 text-[11px] leading-relaxed italic">
-                                "The standard fee on the official portal is ₹{refP.toLocaleString('en-IN')}. Through Testly's institutional allocation, your rate is ₹{testlyP.toLocaleString('en-IN')}, saving you ₹{saveP.toLocaleString('en-IN')} upfront in INR with zero foreign card fees."
+                                "The standard fee on the official portal is ₹{refP.toLocaleString('en-IN')}. Through Testly's institutional allocation, your fee is ₹{testlyP.toLocaleString('en-IN')}, saving you ₹{saveP.toLocaleString('en-IN')} upfront in INR with zero foreign card fees."
                               </p>
                             </div>
 

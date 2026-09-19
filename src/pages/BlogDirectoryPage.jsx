@@ -19,6 +19,7 @@ import { PUBLISHED_ARTICLES_LIST } from '../data/seo/publishedArticles';
 import { ALL_CONTENT_OPPORTUNITIES } from '../data/seo/contentOpportunities';
 import { getProfessionalById } from '../data/seo/professionalsData';
 import { updatePageMeta } from '../utils/seoEngine';
+import PassportNameValidator from '../components/tools/PassportNameValidator';
 
 const EXAM_FILTERS = ['ALL', 'GRE', 'TOEFL', 'IELTS', 'PTE', 'GMAT', 'Duolingo'];
 const CATEGORY_FILTERS = [
@@ -222,6 +223,11 @@ export default function BlogDirectoryPage({ onOpenBooking, onNavigate }) {
                 })}
               </div>
             )}
+
+            {/* Interactive Candidate Tool Section */}
+            <div className="pt-8">
+              <PassportNameValidator onOpenBooking={onOpenBooking} />
+            </div>
           </div>
         </section>
 

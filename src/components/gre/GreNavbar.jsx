@@ -75,13 +75,20 @@ export default function GreNavbar({ activeTab, onSelectTab, onNavigate, onOpenBo
               <button
                 key={tab.id}
                 onClick={() => onSelectTab(tab.id)}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
                   isActive
                     ? 'bg-[#0F172A] text-white shadow-xs'
                     : 'text-[#64748B] hover:text-[#0F172A] hover:bg-slate-200/60'
                 }`}
               >
-                {tab.label}
+                <span>{tab.label}</span>
+                {tab.id === 'mock' && (
+                  <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
+                    isActive ? 'bg-amber-400 text-slate-900' : 'bg-amber-100 text-amber-800'
+                  }`}>
+                    100 Seats
+                  </span>
+                )}
               </button>
             );
           })}
@@ -107,13 +114,20 @@ export default function GreNavbar({ activeTab, onSelectTab, onNavigate, onOpenBo
             <button
               key={tab.id}
               onClick={() => onSelectTab(tab.id)}
-              className={`text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap transition-all cursor-pointer ${
+              className={`text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                 isActive
                   ? 'bg-[#0F172A] text-white'
                   : 'text-[#64748B] bg-slate-100'
               }`}
             >
-              {tab.label}
+              <span>{tab.label}</span>
+              {tab.id === 'mock' && (
+                <span className={`text-[9px] font-mono px-1 py-0.5 rounded font-bold uppercase ${
+                  isActive ? 'bg-amber-400 text-slate-900' : 'bg-amber-200 text-amber-900'
+                }`}>
+                  100 Seats
+                </span>
+              )}
             </button>
           );
         })}

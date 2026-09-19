@@ -58,7 +58,7 @@ export default function ExitIntentModal({ onOpenBooking, isAnyModalOpen }) {
   };
 
   const waHoldUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
-    'Hi Rahul & Deepak! Please hold today’s institutional exam discount rate for me before quota resets.'
+    'Hi Rahul & Deepak! Please hold today’s institutional exam fee schedule for me before quota resets.'
   )}`;
 
   return (
@@ -83,13 +83,13 @@ export default function ExitIntentModal({ onOpenBooking, isAnyModalOpen }) {
           </div>
 
           <h3 className="text-xl font-black text-slate-900 tracking-tight leading-snug">
-            Before you pay full retail fees...
+            Before you pay standard portal examination fees...
           </h3>
           <p className="text-xs text-slate-600 mt-1 leading-relaxed">
             Direct test board vouchers give you the identical exam credited immediately to your official portal at pre-cleared savings:
           </p>
 
-          {/* Quick Rate Snapshot */}
+          {/* Quick Fee Schedule Snapshot */}
           <div className="mt-4 bg-slate-50 border border-slate-200/90 rounded-xl p-3.5 space-y-2">
             <div className="flex items-center justify-between text-xs font-bold border-b border-slate-200/70 pb-2">
               <span className="text-slate-800">GRE General Test</span>
@@ -120,7 +120,7 @@ export default function ExitIntentModal({ onOpenBooking, isAnyModalOpen }) {
               className="w-full bg-[#128C7E] hover:bg-[#0d6e63] text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Freeze Today’s Rate via WhatsApp (15s)</span>
+              <span>Lock Today’s Fee Schedule via WhatsApp (15s)</span>
             </a>
 
             <button

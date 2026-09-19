@@ -165,7 +165,7 @@ export default function ExamPriceTrackerPage({ onOpenBooking, onNavigate }) {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
-                Why pay full international card rates when booking your study-abroad or immigration tests? Compare official standard test fees against Testly corporate discount vouchers. Save up to <strong className="text-slate-900 font-bold">₹7,500 per test</strong> with zero forex markups.
+                Why pay full international portal fees when booking your study-abroad or immigration tests? Compare official standard test fees against Testly corporate discount vouchers. Save up to <strong className="text-slate-900 font-bold">₹7,500 per test</strong> with zero forex markups.
               </p>
             </div>
 
