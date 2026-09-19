@@ -449,8 +449,8 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
       },
       {
         id: 'bengaluru-savings',
-        title: 'Voucher Rates & Instant Savings',
-        content: `Standard Pearson retail price is ₹18,000. Testly voucher rate is **₹13,500**, saving you **₹4,500** on your official appointment.`
+        title: 'Voucher Fee Schedules & Direct Savings',
+        content: `Standard Pearson official examination price is ₹18,000. Testly institutional voucher fee is **₹13,500**, saving you **₹4,500** on your official appointment.`
       },
       {
         id: 'booking-assistance',
