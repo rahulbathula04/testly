@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 
 // ── Scalable Error Boundary ──────────────────────────────────────────────────
 import ErrorBoundary        from './components/ErrorBoundary';
@@ -321,6 +322,9 @@ export default function App() {
           onOpenBooking={handleOpenFunnel}
           isAnyModalOpen={leadModalOpen || bookingOpen || agreementOpen || engineOpen || dashboardOpen || authOpen || searchOpen}
         />
+
+        {/* ── Vercel Web Analytics ──────────────────────────────────── */}
+        <Analytics />
       </Suspense>
     </ErrorBoundary>
   );
