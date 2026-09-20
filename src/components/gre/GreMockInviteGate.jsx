@@ -40,7 +40,7 @@ export default function GreMockInviteGate({
   };
 
   const waRequestUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
-    'Hi Rahul & Deepak! I would like to request an invite code for the exclusive 100-member GRE Mock Test cohort on Testly.'
+    'Hi Testly Team! I would like to request an invite code for the exclusive 100-member GRE Mock Test cohort on Testly.'
   )}`;
 
   return (
@@ -154,10 +154,10 @@ export default function GreMockInviteGate({
             <span className="text-xs font-semibold text-slate-500">Need an invite?</span>
           </div>
           <h3 className="text-lg sm:text-xl font-black text-[#0F172A] font-['DM_Serif_Display',Georgia,serif]">
-            Request an Access Token from Founders
+            Request an Access Token from Testly Desk
           </h3>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            If you are registered or planning your GRE test date within the next 90 days, connect with Rahul & Deepak via WhatsApp to receive a reserved single-use invitation code.
+            If you are registered or planning your GRE test date within the next 90 days, connect with the Testly team via WhatsApp to receive a reserved single-use invitation code.
           </p>
         </div>
 

@@ -1939,7 +1939,7 @@ export default function Testly100CommandCenter({
                               <td className="py-3 px-4 text-right space-x-1.5">
                                 {lead.phone && (
                                   <a
-                                    href={`https://wa.me/91${lead.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi ${lead.name}, this is Rahul from Testly regarding your ${lead.exam || 'GRE'} booking assistance.`)}`}
+                                    href={`https://wa.me/91${lead.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi ${lead.name}, this is the Testly team regarding your ${lead.exam || 'GRE'} booking assistance.`)}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="px-2.5 py-1 rounded bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-100 text-[11px] font-semibold transition-colors inline-flex items-center gap-1"

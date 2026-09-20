@@ -58,7 +58,7 @@ export default function ExitIntentModal({ onOpenBooking, isAnyModalOpen }) {
   };
 
   const waHoldUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
-    'Hi Rahul & Deepak! Please hold today’s institutional exam fee schedule for me before quota resets.'
+    'Hi Testly Team! Please hold today’s institutional exam fee schedule for me before quota resets.'
   )}`;
 
   return (

@@ -55,47 +55,47 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Meet the two founders behind Testly: Rahul Bathula (Founder) and Deepak Royal (Co-Founder). No outsourced staff or call centers—every exam registration is audited and executed personally by the founders.'
+        'Meet the leadership and verification team behind Testly. Every exam registration is audited character-by-character by our dedicated team in Hyderabad.'
       );
     }
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col font-sans text-[#0F172A] selection:bg-[#EBF3FF] selection:text-[#1E3A8A]">
       <Navbar onOpenBooking={onOpenBooking} onNavigate={onNavigate} />
 
       {/* Breadcrumb Navigation */}
-      <nav className="bg-white border-b border-slate-200 py-3">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 text-xs font-medium text-slate-500">
-          <button onClick={() => onNavigate('/')} className="hover:text-blue-600 transition-colors">
+      <nav className="bg-[#FAF9F6] border-b border-[#E5E7EB] py-2.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center space-x-2 text-xs font-semibold text-[#64748B]">
+          <button onClick={() => onNavigate('/')} className="hover:text-[#0F172A] transition-colors">
             Home
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-bold">Founding Leadership & Specialists</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+          <span className="text-[#0F172A] font-bold">Founding Leadership & Specialists</span>
         </div>
       </nav>
 
       <main className="flex-grow">
 
         {/* ── 1. Hero / E-E-A-T Statement ── */}
-        <section className="relative bg-gradient-to-b from-slate-50 to-white py-14 lg:py-20 border-b border-slate-200">
+        <section className="relative bg-gradient-to-b from-white via-[#FAF9F6] to-[#FAF9F6] py-14 lg:py-20 border-b border-[#E5E7EB]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-800 px-3 py-1 rounded-full text-xs font-bold">
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-                <span>Founder-Operated Registration Advisory</span>
+              <div className="inline-flex items-center gap-2 bg-[#EBF3FF] border border-blue-200/80 text-[#1E3A8A] px-3 py-1 rounded-full text-xs font-bold">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#3B82F6]" />
+                <span>Founder-Led Registration Advisory</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                The Two Specialists Behind <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">
+              <h1 className="text-3xl sm:text-5xl font-serif text-[#0F172A] tracking-tight leading-[1.1]">
+                The Leadership & Team Behind <br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6]">
                   Zero-Defect Exam Registration
                 </span>
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
-                Testly is not an anonymous automated website or an outsourced call center. We are intentionally run by our two dedicated founders — <strong>Rahul Bathula</strong> and <strong>Deepak Royal</strong>. Every single candidate is audited and registered directly by them.
+                Testly is not an anonymous automated website or an outsourced call center. Founded by <strong>Rahul Bathula</strong> and <strong>Deepak Royal</strong>, our candidate operations are managed by a dedicated specialist team in Hyderabad. Every candidate profile is collected, reviewed, and audited character-by-character before registration.
               </p>
             </div>
 
@@ -131,10 +131,10 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
             <div className="max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Direct Accountability</span>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                Meet Rahul & Deepak
+                Meet the Founding Leadership
               </h2>
               <p className="text-sm text-slate-600 font-medium mt-1">
-                Zero middle-men. When you register with Testly, your booking is personally handled by our founders in Hyderabad.
+                When you register with Testly, your booking is audited and verified with strict zero-defect standards developed by our founders.
               </p>
             </div>
 
@@ -231,10 +231,10 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
             <div className="max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Service Standards</span>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                The Testly Founder Doctrine
+                The Testly Verification Doctrine
               </h2>
               <p className="text-sm text-slate-600 font-medium mt-1">
-                How Rahul and Deepak protect candidates before they spend ₹20,000+ on foreign testing fees.
+                How the Testly team protects candidates before they spend ₹20,000+ on foreign testing fees.
               </p>
             </div>
 
@@ -265,7 +265,7 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                 </div>
                 <h3 className="text-base font-bold text-slate-900">Direct WhatsApp Helpline</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  No automated chatbots running in circles. When you reach out to Testly, you speak directly with Rahul and Deepak who understand local test centers and university intake deadlines.
+                  No automated chatbots running in circles. When you reach out to Testly, you speak directly with the Testly support team who understand local test centers and university intake deadlines.
                 </p>
               </div>
             </div>
@@ -276,10 +276,10 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-              Ready to Book Your Exam with Founder Guidance?
+              Ready to Book Your Exam with Expert Support?
             </h2>
             <p className="text-base text-slate-600 font-medium max-w-xl mx-auto">
-              Save up to ₹7,500 on your test voucher while having your registration verified directly by Rahul Bathula and Deepak Royal.
+              Save up to ₹7,500 on your test voucher while having your registration verified directly by the Testly team.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
@@ -290,13 +290,13 @@ export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
-                href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deepak%2C%20I%20would%20like%20to%20speak%20with%20you%20regarding%20my%20exam%20registration."
+                href="https://wa.me/919347379041?text=Hi%20Testly%20Team%2C%20I%20would%20like%20to%20speak%20with%20you%20regarding%20my%20exam%20registration."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl text-sm transition-colors shadow-sm flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Chat with Rahul & Deepak on WhatsApp</span>
+                <span>Chat with Testly Support Team on WhatsApp</span>
               </a>
             </div>
           </div>

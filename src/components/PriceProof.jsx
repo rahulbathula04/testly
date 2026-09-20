@@ -258,7 +258,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                   {/* ₹199 Concierge Guarantee */}
                   <div className="pt-1 text-[11px] text-slate-300 flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span>Includes ₹199 concierge: character-by-character passport audit by Rahul & Deepak.</span>
+                    <span>Includes ₹199 concierge: character-by-character passport audit by the Testly Registration Team.</span>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -446,7 +446,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
         {/* ── 5. FOUR VALUE PILLARS STRIP ── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-1">
           {[
-            { icon: FileText, title: 'Direct Founder Audit', sub: 'Verified by Rahul & Deepak', isRupee: false },
+            { icon: FileText, title: 'Profile Verification Audit', sub: 'Verified by Testly Team', isRupee: false },
             { icon: ShieldCheck, title: 'Zero Error Check', sub: 'Passport name match guarantee', isRupee: false },
             { icon: null, title: 'Clean INR Fee Structure', sub: '0% foreign transaction markup', isRupee: true },
             { icon: Headphones, title: 'Live WhatsApp Desk', sub: 'Direct line: +91 93473 79041', isRupee: false }

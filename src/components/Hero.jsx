@@ -120,7 +120,7 @@ export default function Hero({ onBookTest }) {
             variants={itemVariants}
             className="text-[13.5px] xs:text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed"
           >
-            Eliminate unfair bank forex card markups. Get verified institutional fee schedules and done-for-you ₹199 registration assistance, audited personally by founders Rahul Bathula & Deepak Royal.
+            Eliminate unfair bank forex card markups. Get verified institutional fee schedules and done-for-you ₹199 registration assistance, audited character-by-character by the Testly Registration Team.
           </motion.p>
 
           {/* 4 Value Pillars — Compact 2x2 on all screens with classic tactile feel */}

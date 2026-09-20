@@ -261,13 +261,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   <ArrowRight className="w-3.5 h-3.5 text-blue-400" />
                 </button>
                 <a
-                  href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deepak,%20I%20read%20your%20story%20on%20Testly%20and%20wanted%20to%20connect."
+                  href="https://wa.me/919347379041?text=Hi%20Testly%20Team,%20I%20read%20the%20story%20on%20Testly%20and%20wanted%20to%20connect."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] font-bold text-xs sm:text-sm transition-colors min-h-[44px]"
                 >
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  <span>WhatsApp Rahul & Deepak</span>
+                  <span>WhatsApp Testly Support Team</span>
                 </a>
               </div>
             </div>
@@ -619,7 +619,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   We are based in the Madhapur Hitech City corridor of Hyderabad. Between the two of us, we monitor daily ETS portal changes, Prometric and Pearson venue schedules, emergency slot drops, and passport compliance.
                 </p>
                 <p className="text-sm sm:text-base text-[#0F172A] font-semibold leading-relaxed">
-                  When you submit your registration request on Testly, no interns or call center reps touch your profile. Rahul and Deepak verify your data character-by-character, execute the booking, and send your official confirmation docket.
+                  When you submit your registration request on Testly, no automated bots or random call centers touch your profile. The Testly team collects, reviews, and audits your profile character-by-character, executes the booking, and sends your official confirmation docket.
                 </p>
               </div>
 
@@ -881,13 +881,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
 
                 <div className="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://wa.me/919347379041?text=Hi%20Rahul,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20registration."
+                    href="https://wa.me/919347379041?text=Hi%20Testly%20Team,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20registration."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
-                    <span>WhatsApp Rahul</span>
+                    <span>Connect on WhatsApp</span>
                   </a>
                   <a
                     href="https://www.linkedin.com/in/rahul-bathula"
@@ -947,13 +947,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
 
                 <div className="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://wa.me/919347379041?text=Hi%20Deepak,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20operations."
+                    href="https://wa.me/919347379041?text=Hi%20Testly%20Team,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20operations."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
-                    <span>WhatsApp Deepak</span>
+                    <span>Connect on WhatsApp</span>
                   </a>
                   <a
                     href="tel:+919347379041"

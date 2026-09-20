@@ -9,7 +9,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-2.jpg',
     score: '328 / 340',
     admit: 'Univ of Oxford',
-    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, founders Rahul and Deepak spotted that my middle name was missing before submitting to ETS. Zero stress!'
+    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, the Testly team spotted that my middle name was missing before submitting to ETS. Zero stress!'
   },
   {
     name: 'Arjun Mehta',
@@ -17,7 +17,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-1.jpg',
     score: '114 / 120',
     admit: 'NYU Stern MS',
-    quote: 'Super responsive WhatsApp team. Rahul and Deepak booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
+    quote: 'Super responsive WhatsApp team. The Testly desk booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
   },
   {
     name: 'Rohit K.',
@@ -25,7 +25,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-rohit.jpg',
     score: '110 / 120',
     admit: 'Univ of Waterloo',
-    quote: 'My Indian credit card kept declining on the international ETS gateway with forex penalties. With Rahul & Deepak, I paid cleanly via UPI, saved ₹4,000, and got instant confirmation.'
+    quote: 'My Indian credit card kept declining on the international ETS gateway with forex penalties. With the Testly team, I paid cleanly via UPI, saved ₹4,000, and got instant confirmation.'
   },
   {
     name: 'Sneha Reddy',
@@ -49,7 +49,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-4.jpg',
     score: '8.5 / 9.0',
     admit: 'Imperial College London',
-    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist Rahul & Deepak shared saved me from a costly date-rescheduling penalty at IDP.'
+    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist the Testly team shared saved me from a costly date-rescheduling penalty at IDP.'
   },
   {
     name: 'Rohan Deshmukh',
@@ -65,7 +65,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-pooja.jpg',
     score: '111 / 120',
     admit: 'Univ of Toronto',
-    quote: 'The ₹199 done-for-you service is worth 10x the money. Rahul and Deepak monitored slot openings and booked the exact Saturday morning test center slot in Navrangpura.'
+    quote: 'The ₹199 done-for-you service is worth 10x the money. The Testly team monitored slot openings and booked the exact Saturday morning test center slot in Navrangpura.'
   },
   {
     name: 'Vikram Malhotra',

@@ -63,26 +63,26 @@ export default function LocationHubPage({ city = 'bengaluru', onOpenBooking, onN
   const exams = Object.values(EXAM_DATA);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased text-slate-900">
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col font-sans antialiased text-[#0F172A]">
       <Navbar onOpenBooking={onOpenBooking} onNavigate={onNavigate} />
 
       {/* ── Breadcrumb Bar ── */}
-      <nav aria-label="Breadcrumb" className="bg-slate-50 border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-slate-500">
-          <button onClick={() => onNavigate('/')} className="hover:text-slate-900 transition-colors">
+      <nav aria-label="Breadcrumb" className="bg-[#FAF9F6] border-b border-[#E5E7EB] py-2.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-[#64748B]">
+          <button onClick={() => onNavigate('/')} className="hover:text-[#0F172A] transition-colors">
             Home
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-500">Locations</span>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-bold">{loc.name}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+          <span className="text-[#64748B]">Locations</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+          <span className="text-[#0F172A] font-bold">{loc.name}</span>
         </div>
       </nav>
 
       <main className="flex-grow">
         
         {/* ── 1. Hero Section ── */}
-        <section className="relative bg-gradient-to-b from-slate-50 to-white py-14 lg:py-20 border-b border-slate-200">
+        <section className="relative bg-gradient-to-b from-white via-[#FAF9F6] to-[#FAF9F6] py-14 lg:py-20 border-b border-[#E5E7EB]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
@@ -92,10 +92,7 @@ export default function LocationHubPage({ city = 'bengaluru', onOpenBooking, onN
                   <span>{loc.name} Candidate Advisory Hub • {loc.state}</span>
                 </div>
 
-                <h1
-                  style={{ fontFamily: "'DM Serif Display', serif" }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight"
-                >
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#0F172A] leading-[1.05] tracking-tight">
                   Exam Registration & Discounted Vouchers in {loc.name}.
                 </h1>
 

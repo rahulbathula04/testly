@@ -28,7 +28,7 @@ const REAL_STUDENTS = [
     saved: 6043,
     bookingRef: 'ETS-CONF-782914',
     clearanceStatus: '100% Test-Day Entry Clearance',
-    problemSolved: 'My Indian passport had a single Given Name with a blank Surname. Rahul & Deepak audited my passport and configured my ETS profile with proper FNU protocols. I walked straight through test center security with zero delays.'
+    problemSolved: 'My Indian passport had a single Given Name with a blank Surname. The Testly team audited my passport and configured my ETS profile with proper FNU protocols. I walked straight through test center security with zero delays.'
   },
   {
     id: 'rohit-canada',
@@ -45,7 +45,7 @@ const REAL_STUDENTS = [
     saved: 4000,
     bookingRef: 'ETS-CONF-914022',
     clearanceStatus: 'Domestic UPI Booking • Zero Forex',
-    problemSolved: 'My Indian credit card kept declining on the international US ETS gateway with forex fee penalties. With Rahul & Deepak at Testly, I paid cleanly in INR via UPI, saved ₹4,000, and my voucher code applied instantly on ets.org.'
+    problemSolved: 'My Indian credit card kept declining on the international US ETS gateway with forex fee penalties. With the Testly team, I paid cleanly in INR via UPI, saved ₹4,000, and my voucher code applied instantly on ets.org.'
   },
   {
     id: 'venkatesh-uk',
@@ -62,7 +62,7 @@ const REAL_STUDENTS = [
     saved: 3901,
     bookingRef: 'PRSN-CONF-882104',
     clearanceStatus: 'Batch Passport Verified',
-    problemSolved: 'Four of us were applying for UK intake before CAS deadlines. Rahul & Deepak coordinated our registrations as a batch, verified every passport character-by-character, and saved each of us ₹3,901 on official fees.'
+    problemSolved: 'Four of us were applying for UK intake before CAS deadlines. The Testly team coordinated our registrations as a batch, verified every passport character-by-character, and saved each of us ₹3,901 on official fees.'
   }
 ];
 

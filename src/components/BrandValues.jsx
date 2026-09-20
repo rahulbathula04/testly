@@ -19,7 +19,7 @@ const VALUES = [
     icon: Headphones,
     title: 'Human',
     subtitle: 'Real Support',
-    description: 'Direct WhatsApp and desk support from founders Rahul Bathula & Deepak Royal in Hyderabad—never automated bots.'
+    description: 'Direct WhatsApp and desk support from the dedicated Testly Team in Hyderabad—never automated bots.'
   },
   {
     icon: Zap,

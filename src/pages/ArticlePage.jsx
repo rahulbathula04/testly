@@ -67,18 +67,18 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif]">
+      <div className="min-h-screen bg-[#FAF9F6] flex flex-col font-sans">
         <Navbar onOpenBooking={onOpenBooking} onNavigate={onNavigate} />
         <div className="flex-grow flex items-center justify-center p-8 text-center">
           <div className="max-w-md space-y-4">
-            <h1 className="text-2xl font-bold text-slate-900">Guide Under Editorial Review</h1>
-            <p className="text-sm text-slate-600">
+            <h1 className="text-2xl font-serif text-[#0F172A]">Guide Under Editorial Review</h1>
+            <p className="text-sm text-[#64748B]">
               This guide is currently being updated with verified 2026 testing agency guidelines and fee schedules.
             </p>
             <div className="pt-2 flex flex-col gap-2">
               <button
                 onClick={() => onNavigate('/guides')}
-                className="bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs"
+                className="bg-[#0F172A] hover:bg-[#1E3A8A] text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors"
               >
                 Browse All Published Guides
               </button>
@@ -117,36 +117,36 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased text-slate-900">
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col font-sans antialiased text-[#0F172A]">
       <Navbar onOpenBooking={onOpenBooking} onNavigate={onNavigate} />
 
       {/* ── Breadcrumb Bar ── */}
-      <nav aria-label="Breadcrumb" className="bg-slate-50 border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-slate-500 overflow-x-auto whitespace-nowrap">
-          <button onClick={() => onNavigate('/')} className="hover:text-slate-900 transition-colors">
+      <nav aria-label="Breadcrumb" className="bg-[#FAF9F6] border-b border-[#E5E7EB] py-2.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-[#64748B] overflow-x-auto whitespace-nowrap">
+          <button onClick={() => onNavigate('/')} className="hover:text-[#0F172A] transition-colors">
             Home
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <button onClick={() => onNavigate('/guides')} className="hover:text-slate-900 transition-colors">
+          <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8] shrink-0" />
+          <button onClick={() => onNavigate('/guides')} className="hover:text-[#0F172A] transition-colors">
             Guides & Research
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <span className="text-slate-900 font-bold truncate">{article.title}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8] shrink-0" />
+          <span className="text-[#0F172A] font-bold truncate">{article.title}</span>
         </div>
       </nav>
 
       <main className="flex-grow">
 
         {/* ── 1. Article Hero Header ── */}
-        <header className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200 pt-10 pb-12">
+        <header className="bg-gradient-to-b from-white via-[#FAF9F6] to-[#FAF9F6] border-b border-[#E5E7EB] pt-10 pb-12">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
             {/* Badges & Tags */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-blue-50 border border-blue-200 text-blue-800 text-[11px] font-bold px-2.5 py-1 rounded-md">
+              <span className="bg-[#EBF3FF] border border-blue-200/80 text-[#1E3A8A] text-[11px] font-bold px-2.5 py-1 rounded-md">
                 {article.category}
               </span>
-              <span className="bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1.5">
+              <span className="bg-white border border-[#E5E7EB] text-[#334155] text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-xs">
                 <ExamLogo examId={article.exam} className="h-3.5" />
                 <span>{article.exam} Focus</span>
               </span>
@@ -159,7 +159,7 @@ export default function ArticlePage({ slug, onOpenBooking, onNavigate }) {
             </div>
 
             {/* Title */}
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-[#0F172A] tracking-tight leading-[1.15]">
               {article.title}
             </h1>
 

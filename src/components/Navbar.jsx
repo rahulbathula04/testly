@@ -7,9 +7,10 @@ const NAV_ITEMS = [
   { label: 'Exams', href: '/#pricing' },
   { label: 'Exam Fees', href: '/exam-fees' },
   { label: 'Testly GRE', href: '/gre' },
+  { label: 'Assessment Intel', href: '/assessment-intelligence' },
   { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Professionals', href: '/professionals' },
-  { label: 'Testly Campus', href: '/campus' },
+  { label: 'Campus', mobileLabel: 'Testly Campus', href: '/campus' },
   { label: 'Guides', href: '/guides' },
   { label: 'About', href: '/about' },
 ];
@@ -41,7 +42,7 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
 
   return (
     <header className="sticky top-0 z-50 bg-[#FAF9F6]/95 backdrop-blur-xl border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(15,23,42,0.03)] transition-all w-full overflow-x-clip">
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-5 lg:px-6 h-14 sm:h-16 flex items-center justify-between gap-3 w-full">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-5 lg:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 lg:gap-3 xl:gap-4 w-full">
 
         {/* ── Official Brand Logo from Brand Guide ── */}
         <a
@@ -52,59 +53,36 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
           <BrandLogo variant="horizontal" size="md" />
         </a>
 
-        {/* ── Desktop Nav Items (Exact items from Brand Guide) ── */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink min-w-0">
+        {/* ── Desktop Nav Items (Exact items with zero-overlap spacing) ── */}
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleClick(e, item.href)}
-              className="text-[13px] xl:text-[14px] font-medium text-[#0F172A]/80 hover:text-[#0F172A] hover:bg-[#EBF3FF] px-2.5 xl:px-3 py-1.5 rounded-lg transition-all whitespace-nowrap"
+              className="text-[12px] xl:text-[13.5px] font-medium text-[#0F172A]/80 hover:text-[#0F172A] hover:bg-[#EBF3FF] px-2 xl:px-2.5 py-1.5 rounded-lg transition-all whitespace-nowrap"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* ── Desktop Right-Side Brand CTA & Search ── */}
-        <div className="hidden lg:flex items-center gap-2.5 shrink-0">
-          <motion.button
-            whileTap={{ scale: 0.94 }}
-            onClick={() => onOpenBooking('GRE')}
-            className="p-2 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
-            aria-label="Search exams"
-            title="Search exams"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </motion.button>
-
+        {/* ── Desktop Right-Side Brand CTA (Clean, No Overlap) ── */}
+        <div className="hidden lg:flex items-center shrink-0">
           <motion.button
             whileHover={{ y: -1, backgroundColor: '#1E3A8A' }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.15 }}
             onClick={() => onOpenBooking('GRE')}
-            className="group relative inline-flex items-center gap-2 bg-[#0F172A] text-white text-[12.5px] font-bold px-4 py-2 rounded-xl shadow-xs hover:shadow-md cursor-pointer whitespace-nowrap"
+            className="group relative inline-flex items-center gap-2 bg-[#0F172A] text-white text-[12.5px] font-bold px-3.5 xl:px-4 py-2 rounded-xl shadow-xs hover:shadow-md cursor-pointer whitespace-nowrap"
           >
             <span>Check My Savings</span>
             <ArrowRight className="w-3.5 h-3.5 text-blue-400 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
           </motion.button>
         </div>
 
-        {/* ── Mobile & Tablet Right Action Bar (Search + Menu) ── */}
-        <div className="lg:hidden flex items-center gap-1.5">
-          <motion.button
-            whileTap={{ scale: 0.92 }}
-            onClick={() => onOpenBooking('GRE')}
-            className="p-2 rounded-lg text-[#0F172A]/70 hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
-            aria-label="Search exams"
-          >
-            <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </motion.button>
-
+        {/* ── Mobile & Tablet Right Action Bar (Menu Toggle) ── */}
+        <div className="lg:hidden flex items-center">
           <motion.button
             whileTap={{ scale: 0.92 }}
             onClick={() => setOpen(!open)}
@@ -152,7 +130,7 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
                   }}
                   className="flex items-center justify-between min-h-[46px] py-2.5 px-3.5 text-[14px] font-medium text-[#0F172A] hover:bg-[#EBF3FF] hover:text-[#1E3A8A] active:bg-[#EBF3FF] rounded-xl transition-colors"
                 >
-                  <span>{l.label}</span>
+                  <span>{l.mobileLabel || l.label}</span>
                   <span className="text-[#94A3B8] text-sm">›</span>
                 </a>
               ))}
