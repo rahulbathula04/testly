@@ -54,12 +54,12 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
               Exams
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">GRE</a></li>
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">TOEFL</a></li>
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">PTE</a></li>
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">IELTS</a></li>
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">GMAT</a></li>
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">SAT</a></li>
+              <li><a href="/gre" onClick={(e) => handleClick(e, '/gre')} className="hover:text-white transition-colors">Testly GRE</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">TOEFL iBT</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">PTE Academic</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">IELTS Academic</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">GMAT Focus</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">Duolingo DET</a></li>
             </ul>
           </div>
 
@@ -69,12 +69,12 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
               Quick Links
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li><a href="/about" onClick={(e) => handleClick(e, '/about')} className="hover:text-white transition-colors">Why I Built Testly</a></li>
-              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">Exam Fees</a></li>
-              <li><a href="/#how-it-works" onClick={(e) => handleClick(e, '/#how-it-works')} className="hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="/about" onClick={(e) => handleClick(e, '/about')} className="hover:text-white transition-colors">Why We Built Testly</a></li>
+              <li><a href="/exam-fees" onClick={(e) => handleClick(e, '/exam-fees')} className="hover:text-white transition-colors">Exam Fees Tracker</a></li>
+              <li><a href="/assessment-intelligence" onClick={(e) => handleClick(e, '/assessment-intelligence')} className="hover:text-white transition-colors">Assessment Intel</a></li>
               <li><a href="/campus" onClick={(e) => handleClick(e, '/campus')} className="hover:text-white transition-colors">Testly Campus</a></li>
-              <li><a href="/guides" onClick={(e) => handleClick(e, '/guides')} className="hover:text-white transition-colors">Resources</a></li>
-              <li><a href="/#faq" onClick={(e) => handleClick(e, '/#faq')} className="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="/professionals" onClick={(e) => handleClick(e, '/professionals')} className="hover:text-white transition-colors">Team Specialists</a></li>
+              <li><a href="/guides" onClick={(e) => handleClick(e, '/guides')} className="hover:text-white transition-colors">Candidate Guides</a></li>
             </ul>
           </div>
 

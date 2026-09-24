@@ -54,7 +54,7 @@ This pushes the realistic out-of-pocket cost of direct registration to **₹26,5
         content: `Testly procures authorized, institutional prepaid promotional voucher allotments directly for Indian students. 
 
 - **Regular Retail Out-of-Pocket:** ₹26,500
-- **Testly Official Voucher Rate:** ₹19,000
+- **Testly Official Voucher Fee:** ₹19,000
 - **Net Direct Savings:** **₹7,500**
 - **Testly Professional Service Fee:** ₹199 (Complete passport audit, slot verification, profile setup)
 
@@ -368,7 +368,7 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
       { id: 'hyderabad-venues', label: '1. Authorized GRE Test Centers in Hyderabad' },
       { id: 'prometric-madhapur-guide', label: '2. Prometric Madhapur Test-Day Protocol' },
       { id: 'slot-availability', label: '3. Booking Peak Season Slots (Aug - Dec)' },
-      { id: 'voucher-rates', label: '4. Hyderabad Student Voucher Discounts' },
+      { id: 'voucher-discounts', label: '4. Hyderabad Student Voucher Discounts' },
       { id: 'how-to-book', label: '5. Booking via Testly Madhapur Desk' },
       { id: 'faq', label: '6. Frequently Asked Questions' }
     ],
@@ -394,7 +394,7 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
         content: `Between August and December, GRE morning slots (8:00 AM & 9:00 AM) in Hyderabad sell out 4 to 6 weeks in advance. If you cannot find slots, the Testly Hyderabad desk monitors slot churn in real-time.`
       },
       {
-        id: 'voucher-rates',
+        id: 'voucher-discounts',
         title: 'Hyderabad Student Voucher Discounts',
         content: `Through corporate partnerships with Hyderabad tech institutions, Testly provides GRE vouchers for **₹19,000 net** (retail ETS cost is ₹26,500 with forex). Direct savings of **₹7,500** per registration.`
       },
@@ -449,8 +449,8 @@ Most candidates find reaching 79+ on PTE significantly more achievable than secu
       },
       {
         id: 'bengaluru-savings',
-        title: 'Voucher Rates & Instant Savings',
-        content: `Standard Pearson retail price is ₹18,000. Testly voucher rate is **₹13,500**, saving you **₹4,500** on your official appointment.`
+        title: 'Voucher Fee Schedules & Direct Savings',
+        content: `Standard Pearson official examination price is ₹18,000. Testly institutional voucher fee is **₹13,500**, saving you **₹4,500** on your official appointment.`
       },
       {
         id: 'booking-assistance',
@@ -650,6 +650,261 @@ Testing the "FROZEN" numbers (Fractions, Roots, One, Zero, Extremes, Negatives) 
       {
         question: 'How many words do I really need to know for the GRE?',
         answer: 'Around 800 to 1,000 high-frequency academic vocabulary words, combined with etymological root knowledge, is sufficient to score in the 90th percentile of GRE Verbal.'
+      }
+    ]
+  },
+
+  'gre-at-home-vs-test-center-india-2026': {
+    slug: 'gre-at-home-vs-test-center-india-2026',
+    title: 'GRE at Home vs. Test Center in India (2026): Room Proctors, Passports, Whiteboards & Cancellation Risks',
+    metaTitle: 'GRE at Home vs. Test Center in India (2026): Comprehensive Comparison',
+    metaDescription: 'Should you take the GRE at home or at Prometric in India? Compare ProctorU room scans, transparent whiteboard rules, score cancellation risks, and center reliability.',
+    exam: 'GRE',
+    intent: 'TEST_MODE_COMPARISON',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'deep_royal',
+    publishedDate: '2026-09-12',
+    lastVerifiedDate: '2026-09-19',
+    freshnessStatus: 'GREEN',
+    readTime: '8 min read',
+    category: 'GRE Preparation & Strategy',
+    toc: [
+      { id: 'environment-comparison', label: '1. Environment: Prometric Center vs ProctorU' },
+      { id: 'hardware-room-scans', label: '2. Hardware & 360° Room Scan Requirements' },
+      { id: 'whiteboard-rules', label: '3. Transparent Whiteboard & Erasable Marker Rules' },
+      { id: 'score-holds-cancellations', label: '4. Why At-Home Scores Get Placed on Administrative Hold' },
+      { id: 'center-security-peace', label: '5. In-Person Test Center Protocols in India' },
+      { id: 'testly-recommendation', label: '6. Testly Recommendation: Which Should You Choose?' }
+    ],
+    summary: 'While the GRE General Test content, scoring (130-170 per section), and adaptive algorithm are identical across test centers and the at-home edition, the test-day experience differs radically. In-person centers eliminate internet instability, software crashes, and room-scan disputes, while the at-home edition offers schedule flexibility at the risk of stringent proctoring interruptions and administrative score reviews.',
+    sections: [
+      {
+        id: 'environment-comparison',
+        title: 'Environment: Prometric Center vs ProctorU Home Edition',
+        content: `The GRE General Test is administered either in-person at authorized computerized testing facilities (such as Prometric Testing Center Madhapur in Hyderabad or Pearson Professional Centers in Begumpet/MG Road Bengaluru) or remotely via the ETS at-home edition monitored by ProctorU/Meazure Learning human invigilators.
+
+Key differences:
+- **Test Center:** Workstations are pre-configured with standardized desktop hardware, wired high-speed local area networks, noise-dampening partitions, and uninterruptible power supply (UPS) backups.
+- **Home Edition:** The candidate is personally responsible for electrical supply stability, dual-core processor performance, reliable 5+ Mbps upload/download internet bandwidth, webcam placement, and private room silence.`
+      },
+      {
+        id: 'hardware-room-scans',
+        title: 'Hardware & 360-Degree Room Scan Mandates for Home Edition',
+        content: `Taking the test from home imposes strict physical room requirements:
+1. **Private Room Only:** No public spaces, shared dormitories, or glass-walled rooms are allowed. Doors must remain closed and visible to the proctor throughout the 1-hour 58-minute test.
+2. **Table Clearance:** The computer desk must be completely clear of all monitors, second keyboards, paper, pens, mobile phones, sticky notes, and cables.
+3. **Webcam 360-Degree Sweep:** Before launch, the remote proctor requires you to pan your webcam around the entire 360-degree perimeter of the room, showing the ceiling, floor, under the desk, and doorways.`
+      },
+      {
+        id: 'whiteboard-rules',
+        title: 'Transparent Whiteboard & Erasable Marker Rules (Zero Paper)',
+        content: `ETS strictly bans scratch paper for the GRE at Home. Candidates may ONLY use:
+- One small desktop whiteboard with an erasable dry-erase marker, OR
+- A sheet of paper sealed inside a transparent plastic sheet protector.
+
+At the conclusion of each section and before dismissing you, the proctor demands that you hold the whiteboard directly to the webcam lens and thoroughly erase all handwritten calculations. Failing to erase completely before closing the session will trigger an automatic security report.`
+      },
+      {
+        id: 'score-holds-cancellations',
+        title: 'Why At-Home Scores Get Placed on Administrative Hold in India',
+        content: `Over the past two years, the ETS Office of Testing Integrity (OTI) has placed thousands of at-home GRE score reports under "Administrative Review". The primary triggers include:
+- **Gaze Deviation:** Looking away from the laptop monitor for more than 3 consecutive seconds (e.g. looking at scratch work placed off-center).
+- **Audio Detection:** Microphones detecting background speech, family members speaking outside the door, or street traffic noise.
+- **Software Background Tasks:** Unofficial background processes or VPNs detected by the ETS Secure Test Browser.
+- **Score Review Delays:** Once flagged, reviews can take 4 to 8 weeks, frequently causing Indian students to miss Fall admission deadlines.`
+      },
+      {
+        id: 'center-security-peace',
+        title: 'In-Person Test Center Protocols in India (Zero Technical Liability)',
+        content: `Taking your test at Prometric (Madhapur, Mumbai, Delhi) or Pearson transfers 100% of technical and network liability to the test provider:
+- If a computer terminal freezes, the local test center administrator pauses the clock, reboots the workstation, and restores your session without penalty.
+- Official physical scratch paper booklets and sharpened pencils are supplied on-site and replenished upon request.
+- Identification check is executed on original Indian passports at the security counter with biometric verification.`
+      },
+      {
+        id: 'testly-recommendation',
+        title: 'The Testly Verdict: Which Should Indian Students Choose?',
+        content: `**Choose Prometric In-Person Test Center if:**
+- You want 100% score delivery reliability without the fear of administrative holds.
+- You prefer writing Quant equations on physical scratch paper rather than whiteboard plastic.
+- You live in a Tier 1 or Tier 2 city within commuting distance of an authorized center.
+
+**Choose GRE at Home only if:**
+- You live in an area without an authorized test center within a 4-hour travel radius.
+- You have an isolated private room with enterprise-grade fiber internet and power inverter backup.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Are GRE at Home scores treated equally by US university graduate admissions?',
+        answer: 'Yes. Official ETS score reports do not differentiate between in-center and at-home administrations when sent to universities, and both have identical validity of 5 years.'
+      },
+      {
+        question: 'Can I redeem a Testly discounted GRE voucher for the GRE at Home?',
+        answer: 'Yes. Testly GRE vouchers are official ETS institutional promotional vouchers that apply to both in-person test centers and the GRE at Home edition.'
+      }
+    ]
+  },
+
+  'gre-slot-booking-rescheduling-cancellation-rules-india': {
+    slug: 'gre-slot-booking-rescheduling-cancellation-rules-india',
+    title: 'GRE Slot Booking, Rescheduling ($50) & Cancellation Rules in India (2026 Complete Policy)',
+    metaTitle: 'GRE Slot Booking, Rescheduling ($50) & Cancellation Rules in India',
+    metaDescription: 'Understand ETS India policies for rescheduling and cancelling your GRE test. Learn the strict 4-day deadline, $50 penalty, slot churn monitoring, and voucher rollover rules.',
+    exam: 'GRE',
+    intent: 'SLOT_BOOKING_RULES',
+    location: 'India',
+    authorId: 'deep_royal',
+    reviewerId: 'rahul_bathula',
+    publishedDate: '2026-09-14',
+    lastVerifiedDate: '2026-09-19',
+    freshnessStatus: 'GREEN',
+    readTime: '7 min read',
+    category: 'Exam Fees & Savings',
+    toc: [
+      { id: 'ets-rescheduling-policy', label: '1. Official ETS 4-Day Rescheduling Policy' },
+      { id: 'fee-breakdown-reschedule', label: '2. The $50 USD (~₹4,200) Surcharge & Bank Markups' },
+      { id: 'cancellation-refund-rules', label: '3. Cancellation Refund Rules (50% Loss)' },
+      { id: 'peak-rush-calendar', label: '4. Peak Season Slot Churn in Hyderabad & Bengaluru (Aug–Dec)' },
+      { id: 'testly-slot-concierge', label: '5. How Testly Concierge Protects You from Cancellation Costs' }
+    ],
+    summary: 'Rescheduling or cancelling a GRE General Test appointment in India is subject to strict ETS timelines. Rescheduling must occur at least 4 full days prior to your test date and incurs a USD 50 (~₹4,200) fee. Cancellations made at least 4 days in advance yield only a 50% refund, while cancellations within 4 days forfeit 100% of the payment. Learn how to secure your test slot efficiently.',
+    sections: [
+      {
+        id: 'ets-rescheduling-policy',
+        title: 'Official ETS 4-Day Rescheduling Policy for India',
+        content: `Educational Testing Service (ETS) requires Indian candidates to complete any date or test center change at least **4 full calendar days** prior to the scheduled test date (excluding the day of the test and the day of your request).
+
+For example:
+- If your test is scheduled for a **Saturday at 8:00 AM**, your reschedule request must be completed and submitted on ETS.org by **Tuesday at 11:59 PM**.
+- If you miss this 4-day window, your registration cannot be changed, and failure to appear results in complete forfeiture of the test fee.`
+      },
+      {
+        id: 'fee-breakdown-reschedule',
+        title: 'The USD 50 (~₹4,200) Surcharge & Foreign Banking Markups',
+        content: `ETS charges a mandatory **USD 50** fee to change your test date, switch from center to home testing, or move between test centers (e.g. Prometric Madhapur to Pearson Begumpet).
+
+When paying this fee using an Indian credit or debit card:
+- The base fee is USD 50 (~₹4,200).
+- Indian banks apply an additional 3.5% cross-border transaction fee (~₹147).
+- 18% integrated GST is levied on the transaction markup.
+- Total out-of-pocket cost to change a test slot reaches approximately **₹4,400**.`
+      },
+      {
+        id: 'cancellation-refund-rules',
+        title: 'Cancellation Refund Rules: Forfeiting 50% of Your Investment',
+        content: `If you decide to cancel your GRE appointment:
+1. **Cancelled at least 4 days prior:** ETS refunds exactly **50% of the baseline test registration fee**. The remaining 50% is retained by ETS as an administrative handling fee.
+2. **Cancelled within 4 days or Absent on Test Day:** You receive **zero refund ($0.00)**.
+3. **Refund Processing Duration:** Refunds issued by ETS back to original Indian payment cards typically take **10 to 14 business days** to reflect on bank statements.`
+      },
+      {
+        id: 'peak-rush-calendar',
+        title: 'Peak Season Slot Churn in Hyderabad & Bengaluru (Aug–Dec)',
+        content: `Between August and December, university application deadlines for US Fall admissions create an intense slot shortage across Prometric and Pearson centers in India.
+- Prime morning slots (8:00 AM and 9:00 AM) frequently book out **5 to 6 weeks in advance**.
+- However, cancellation churn increases 7 to 10 days before exam dates as students who feel unprepared reschedule their seats.
+- Candidates who monitor ETS availability during late evening hours (10:00 PM to 1:00 AM IST) often capture newly reopened test center workstations.`
+      },
+      {
+        id: 'testly-slot-concierge',
+        title: 'How Testly Concierge Protects You from Cancellation Costs',
+        content: `Through Testly’s ₹199 Professional Service, our exam advisors assist candidates with timeline planning based on their target university deadlines. Because Testly vouchers remain valid for 12 months, students can procure their voucher with institutional fee schedules and lock in their slot only when their preparation reaches readiness benchmarks.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I change my test center from in-person to GRE at Home?',
+        answer: 'Yes. You can switch between an authorized test center and the GRE at Home edition on your ETS portal, provided you do so at least 4 days prior to your test date and pay the USD 50 rescheduling fee.'
+      },
+      {
+        question: 'What happens if the test center cancels my appointment due to technical issues?',
+        answer: 'If Prometric or ETS cancels an appointment due to venue emergencies, system outages, or weather events, you are offered a free reschedule to the next available date or a 100% full refund.'
+      }
+    ]
+  },
+
+  'toefl-ibt-vs-ielts-for-us-universities-indian-students': {
+    slug: 'toefl-ibt-vs-ielts-for-us-universities-indian-students',
+    title: 'TOEFL iBT vs IELTS Academic for US STEM & Business Schools (2026 Admissions Analysis)',
+    metaTitle: 'TOEFL iBT vs IELTS Academic for US Universities: Which is Better in 2026?',
+    metaDescription: 'Comparing TOEFL iBT and IELTS for US Master’s and MBA admissions. Discover the shortened 2-hour TOEFL format, speaking section differences, score concordance, and fee savings.',
+    exam: 'TOEFL',
+    intent: 'EXAM_COMPARISON',
+    location: 'India',
+    authorId: 'rahul_bathula',
+    reviewerId: 'deep_royal',
+    publishedDate: '2026-09-15',
+    lastVerifiedDate: '2026-09-19',
+    freshnessStatus: 'GREEN',
+    readTime: '7 min read',
+    category: 'Exam Comparisons',
+    toc: [
+      { id: 'shortened-toefl-evolution', label: '1. The Shortened 2-Hour TOEFL Format' },
+      { id: 'us-university-acceptance', label: '2. US University Recognition: 100% Parity' },
+      { id: 'speaking-section-reality', label: '3. Speaking: AI Headset vs Human Examiner' },
+      { id: 'score-concordance-table', label: '4. Official Score Concordance (TOEFL 100 vs IELTS 7.5)' },
+      { id: 'fees-voucher-comparison', label: '5. India Fee Comparison & Testly Voucher Fee Schedules' }
+    ],
+    summary: 'For Indian engineering and commerce graduates applying to graduate programs in the United States, both TOEFL iBT and IELTS Academic enjoy universal acceptance. However, ETS’s transition to a streamlined 1-hour 56-minute test duration, automated speaking evaluation, and authorized institutional voucher pricing makes TOEFL increasingly favorable for STEM candidates accustomed to computerized interfaces.',
+    sections: [
+      {
+        id: 'shortened-toefl-evolution',
+        title: 'The Shortened 2-Hour TOEFL Format vs 2h 45m IELTS',
+        content: `The TOEFL iBT was overhauled to reduce candidate test fatigue:
+- **Total Test Duration:** Under 2 hours (1 hour 56 minutes) with zero unscored experimental sections.
+- **Reading:** 20 questions in 35 minutes.
+- **Listening:** 28 questions in 36 minutes.
+- **Speaking:** 4 tasks in 16 minutes.
+- **Writing:** 2 tasks in 29 minutes, replacing the long independent essay with a modern "Writing for an Academic Discussion" task.
+
+By comparison, IELTS Academic requires **2 hours and 45 minutes**, and the Speaking interview is often held on a separate calendar day or required afternoon time slot.`
+      },
+      {
+        id: 'us-university-acceptance',
+        title: 'US University Recognition: 100% Parity Across Top 100 Programs',
+        content: `A persistent myth among Indian applicants is that American universities prefer TOEFL while Commonwealth universities prefer IELTS. In reality, **100% of US universities**, including all Ivy League institutions (Harvard, Princeton, Yale, Columbia) and top public flagships (UC Berkeley, UIUC, Georgia Tech, Michigan), accept both examinations without prejudice.
+
+Most Tier-1 graduate STEM departments set baseline minimum cutoffs at:
+- **TOEFL iBT:** 100 total (with 22+ or 25+ in Speaking for Graduate Teaching Assistantships).
+- **IELTS Academic:** 7.0 or 7.5 overall band score.`
+      },
+      {
+        id: 'speaking-section-reality',
+        title: 'Speaking Section Reality: Computer Headset vs Human Invigilator',
+        content: `The psychological experience of the speaking assessment is the determining factor for most Indian candidates:
+- **TOEFL iBT Speaking:** You speak into a noise-reducing headset microphone in response to audio lectures and reading passages. Responses are scored using a combination of SpeechRater AI algorithms and certified human raters. This eliminates interpersonal social anxiety, but requires strict adherence to timing beeps.
+- **IELTS Speaking:** You sit face-to-face across a table from a certified human examiner who conducts an organic 11 to 14 minute dialogue. This favors individuals who thrive on eye contact and conversational cues.`
+      },
+      {
+        id: 'score-concordance-table',
+        title: 'Official Score Concordance: TOEFL iBT to IELTS Band Equivalency',
+        content: `ETS and university admissions offices utilize the following concordance mapping:
+- **IELTS Band 8.5–9.0:** TOEFL 115–120
+- **IELTS Band 8.0:** TOEFL 110–114
+- **IELTS Band 7.5:** TOEFL 102–109 (Competitive cutoff for Top 30 US programs)
+- **IELTS Band 7.0:** TOEFL 94–101 (Standard graduate admission requirement)
+- **IELTS Band 6.5:** TOEFL 79–93 (Minimum baseline for state universities)`
+      },
+      {
+        id: 'fees-voucher-comparison',
+        title: 'India Fee Comparison & Testly Voucher Fee Schedules',
+        content: `Comparing standard registration versus Testly institutional voucher pricing:
+- **Standard TOEFL iBT Retail:** USD 205 (~₹24,900 with banking fees). **Testly Fee:** ₹18,500 (**Save ₹6,400**).
+- **Standard IELTS Academic Retail:** ₹17,000 flat. **Testly Fee:** ₹13,000 (**Save ₹4,000**).
+
+Payment is completed cleanly in INR with zero foreign exchange fees and ₹199 done-for-you passport compliance audit.`
+      }
+    ],
+    faqs: [
+      {
+        question: 'Does Harvard or Stanford prefer TOEFL over IELTS for MS Computer Science?',
+        answer: 'Neither. Both Stanford and Harvard evaluate TOEFL and IELTS with equal validity as long as candidates satisfy the department minimum cutoff (typically TOEFL 100+ or IELTS 7.5+).'
+      },
+      {
+        question: 'Which test gives faster score reporting for tight application deadlines?',
+        answer: 'TOEFL iBT officially delivers score reports in 4 to 8 calendar days. IELTS Computer-delivered delivers results in 3 to 5 calendar days, whereas paper-based IELTS requires 13 days.'
       }
     ]
   }

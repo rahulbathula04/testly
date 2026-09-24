@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- ── 1. Core Platform & Hubs ── -->
+  <!-- 1. Core Platform and Institutional Hubs -->
   <url>
     <loc>https://www.testly.co.in/</loc>
     <lastmod>2026-09-19</lastmod>
@@ -40,7 +40,7 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- ── 2. Testly GRE Vertical & Assessment Platform ── -->
+  <!-- 2. Testly GRE Vertical and Assessment Platform -->
   <url>
     <loc>https://www.testly.co.in/gre</loc>
     <lastmod>2026-09-19</lastmod>
@@ -76,7 +76,7 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- ── 3. Guides & Research Intelligence Library ── -->
+  <!-- 3. Guides and Research Intelligence Library -->
   <url>
     <loc>https://www.testly.co.in/guides</loc>
     <lastmod>2026-09-19</lastmod>
@@ -147,7 +147,28 @@
     <priority>0.90</priority>
   </url>
 
-  <!-- ── 4. Verified Regional Test Hubs ── -->
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-at-home-vs-test-center-india-2026</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/gre-slot-booking-rescheduling-cancellation-rules-india</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.testly.co.in/guides/toefl-ibt-vs-ielts-for-us-universities-indian-students</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- 4. Verified Regional Test Hubs -->
   <url>
     <loc>https://www.testly.co.in/locations/hyderabad</loc>
     <lastmod>2026-09-19</lastmod>

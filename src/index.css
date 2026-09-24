@@ -13,11 +13,23 @@
   --color-muted-text: #667085;
   --color-border-line: #E5EAF2;
 
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --color-brand-ink: #0F172A;
+  --color-brand-navy: #1E3A8A;
+  --color-brand-blue: #3B82F6;
+  --color-brand-canvas: #FAF9F6;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
   --font-hand: 'Caveat', cursive, sans-serif;
 }
 
 @layer utilities {
+  .font-brand-serif {
+    font-family: 'DM Serif Display', Georgia, serif;
+  }
+  .font-brand-sans {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
   .font-handwriting {
     font-family: 'Caveat', cursive, sans-serif;
   }

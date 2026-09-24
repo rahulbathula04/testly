@@ -6,7 +6,7 @@ export default function WhatsAppWidget() {
 
   const defaultPhone = '919347379041';
   const defaultMessage = encodeURIComponent(
-    'Hi Testly! I want to check exam registration, institutional rates, and book the ₹199 registration concierge.'
+    'Hi Testly! I want to check exam registration, institutional fee schedules, and book the ₹199 registration concierge.'
   );
 
   const quickPrompts = [
@@ -28,10 +28,10 @@ export default function WhatsAppWidget() {
                 <MessageCircle className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-xs font-black text-slate-900">Rahul & Deepak (Founders)</h4>
+                <h4 className="text-xs font-black text-slate-900">Testly Support Team</h4>
                 <span className="text-[10px] text-emerald-700 font-bold flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Online • Avg reply: 2 mins
+                  Online • Candidate Support Desk
                 </span>
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function WhatsAppWidget() {
           </div>
 
           <p className="text-xs text-slate-600 leading-relaxed font-medium">
-            Chat directly with founders Rahul Bathula & Deepak Royal in Hyderabad for instant exam fee savings & slot reservations:
+            Chat with Testly professionals team:
           </p>
 
           {/* Quick 1-tap prompts */}
@@ -69,7 +69,7 @@ export default function WhatsAppWidget() {
             className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-extrabold py-2.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all"
           >
             <MessageCircle className="w-4 h-4" />
-            <span>Open Direct WhatsApp Chat</span>
+            <span>Open WhatsApp with Testly Team</span>
           </a>
         </div>
       )}
@@ -86,7 +86,7 @@ export default function WhatsAppWidget() {
         </span>
         <MessageCircle className="w-5 h-5 sm:w-4 sm:h-4" />
         <span className="hidden sm:inline text-xs font-bold tracking-wide">
-          {isOpen ? 'Close Chat' : 'Chat with Desk'}
+          {isOpen ? 'Close Chat' : 'Chat with Team'}
         </span>
       </button>
 

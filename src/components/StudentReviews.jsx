@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Star, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const REVIEWS = [
@@ -8,7 +9,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-2.jpg',
     score: '328 / 340',
     admit: 'Univ of Oxford',
-    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, founders Rahul and Deepak spotted that my middle name was missing before submitting to ETS. Zero stress!'
+    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, the Testly team spotted that my middle name was missing before submitting to ETS. Zero stress!'
   },
   {
     name: 'Arjun Mehta',
@@ -16,7 +17,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-1.jpg',
     score: '114 / 120',
     admit: 'NYU Stern MS',
-    quote: 'Super responsive WhatsApp team. Rahul and Deepak booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
+    quote: 'Super responsive WhatsApp team. The Testly desk booked my preferred Sunday morning slot in Bengaluru in under 15 minutes and delivered the official ETS receipt instantly.'
   },
   {
     name: 'Rohit K.',
@@ -24,7 +25,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-rohit.jpg',
     score: '110 / 120',
     admit: 'Univ of Waterloo',
-    quote: 'My Indian credit card kept declining on the international ETS gateway with forex penalties. With Rahul & Deepak, I paid cleanly via UPI, saved ₹4,000, and got instant confirmation.'
+    quote: 'My Indian credit card kept declining on the international ETS gateway with forex penalties. With the Testly team, I paid cleanly via UPI, saved ₹4,000, and got instant confirmation.'
   },
   {
     name: 'Sneha Reddy',
@@ -48,7 +49,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-4.jpg',
     score: '8.5 / 9.0',
     admit: 'Imperial College London',
-    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist Rahul & Deepak shared saved me from a costly date-rescheduling penalty at IDP.'
+    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist the Testly team shared saved me from a costly date-rescheduling penalty at IDP.'
   },
   {
     name: 'Rohan Deshmukh',
@@ -64,7 +65,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-pooja.jpg',
     score: '111 / 120',
     admit: 'Univ of Toronto',
-    quote: 'The ₹199 done-for-you service is worth 10x the money. Rahul and Deepak monitored slot openings and booked the exact Saturday morning test center slot in Navrangpura.'
+    quote: 'The ₹199 done-for-you service is worth 10x the money. The Testly team monitored slot openings and booked the exact Saturday morning test center slot in Navrangpura.'
   },
   {
     name: 'Vikram Malhotra',
@@ -78,7 +79,12 @@ const REVIEWS = [
 
 function ReviewCard({ review }) {
   return (
-    <div className="w-[275px] xs:w-[300px] sm:w-[360px] shrink-0 bg-white border border-[#E5E7EB] rounded-2xl p-4.5 sm:p-6 flex flex-col justify-between space-y-3.5 sm:space-y-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] hover:shadow-xl hover:border-[#BFDBFE] hover:-translate-y-1 transition-all duration-300 mx-2 sm:mx-3">
+    <motion.div
+      whileHover={{ y: -3, scale: 1.015, borderColor: '#93C5FD' }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      className="w-[275px] xs:w-[300px] sm:w-[360px] shrink-0 bg-white border border-[#E5E7EB] rounded-2xl p-4.5 sm:p-6 flex flex-col justify-between space-y-3.5 sm:space-y-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] hover:shadow-xl transition-colors mx-2 sm:mx-3 cursor-default select-none"
+    >
       <div className="space-y-2.5 sm:space-y-3.5">
         {/* Stars & Score */}
         <div className="flex items-center justify-between">
@@ -122,7 +128,7 @@ function ReviewCard({ review }) {
           </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -137,7 +143,13 @@ export default function StudentReviews({ onBookTest }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-10">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-20px' }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4"
+        >
           <div className="space-y-2 sm:space-y-2.5">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[11px] font-bold tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
@@ -151,14 +163,16 @@ export default function StudentReviews({ onBookTest }) {
             </p>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ x: 2 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => onBookTest('GRE')}
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto"
           >
             <span>All Student Stories</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* ── Infinite CSS Marquee — pauses on hover and touch ── */}
         <div

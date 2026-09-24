@@ -36,6 +36,9 @@ const GreProductPage       = lazy(() => import('./pages/GreProductPage'));
 const LocationHubPage      = lazy(() => import('./pages/LocationHubPage'));
 const AssessmentIntelligencePage = lazy(() => import('./pages/AssessmentIntelligencePage'));
 const AssessmentEngineCommandCenter = lazy(() => import('./components/admin/AssessmentEngineCommandCenter'));
+const Testly100InvitePage   = lazy(() => import('./pages/Testly100InvitePage'));
+const Testly100AssessmentPage = lazy(() => import('./pages/Testly100AssessmentPage'));
+const Testly100ReportPage   = lazy(() => import('./pages/Testly100ReportPage'));
 
 // ── Code-Split Heavy Modals (Lazy loaded on demand) ───────────────────────────
 const BookingFlowModal     = lazy(() => import('./components/BookingFlowModal'));
@@ -66,7 +69,33 @@ function getActiveRoute() {
   if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
     return { type: 'admin' };
   }
-  // Dedicated Testly GRE Product Vertical
+
+  // ── TESTLY 100 Private Diagnostic Routes ────────────────────────────────────
+  if (path.includes('/testly-100/assessment') || path.includes('/testly100/assessment') || hash.includes('testly-100/assessment')) {
+    return { type: 'testly-100-assessment' };
+  }
+  const reportMatch = path.match(/\/testly-100\/report(?:\/([a-zA-Z0-9_-]+))?/) || hash.match(/#(?:testly-100\/report|report)(?:\/([a-zA-Z0-9_-]+))?/);
+  if (reportMatch) {
+    return { type: 'testly-100-report', reportId: reportMatch[1] || null };
+  }
+
+  // Support /i/:token, /i, /invite/:token, /invite/testly-100, /testly100, /testly-100
+  const iMatch = path.match(/^\/i(?:\/([a-zA-Z0-9_-]+))?/) || hash.match(/#(?:i|invite)(?:\/([a-zA-Z0-9_-]+))?/);
+  const inviteMatch = path.match(/^\/invite(?:\/([a-zA-Z0-9_-]+))?/);
+  if (
+    iMatch ||
+    inviteMatch ||
+    path.startsWith('/invite') ||
+    path === '/testly-100' ||
+    path === '/testly100' ||
+    hash.includes('invite/testly-100') ||
+    hash.includes('testly-100')
+  ) {
+    const token = (iMatch && iMatch[1]) || (inviteMatch && inviteMatch[1]) || null;
+    return { type: 'testly-100-invite', inviteToken: token };
+  }
+
+  // Dedicated Testly GRE Product Vertical (Public Mocks & Diagnostics Preserved)
   const greMatch = path.match(/^\/(?:gre|assessment\/gre)(?:\/([a-z0-9-]+))?/) || hash.match(/#(?:gre|assessment\/gre)(?:\/([a-z0-9-]+))?/);
   if (greMatch || path === '/gre' || hash.includes('/gre') || hash === '#gre') {
     const subview = greMatch ? greMatch[1] : null;
@@ -206,6 +235,15 @@ export default function App() {
 
       case 'admin-assessment-engine':
         return <AssessmentEngineCommandCenter onNavigateHome={() => navigate('/')} />;
+
+      case 'testly-100-invite':
+        return <Testly100InvitePage inviteToken={currentRoute.inviteToken} onNavigate={navigate} />;
+
+      case 'testly-100-assessment':
+        return <Testly100AssessmentPage onNavigate={navigate} />;
+
+      case 'testly-100-report':
+        return <Testly100ReportPage reportId={currentRoute.reportId} onNavigate={navigate} />;
 
       case 'home':
       default:
