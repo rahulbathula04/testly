@@ -18,5 +18,27 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/locations/madhapur",
+      "destination": "/locations/hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/locations/madhapur/",
+      "destination": "/locations/hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/locations/delhi",
+      "destination": "/locations/delhi-ncr",
+      "permanent": true
+    },
+    {
+      "source": "/locations/delhi/",
+      "destination": "/locations/delhi-ncr",
+      "permanent": true
+    }
   ]
 }
