@@ -1189,9 +1189,9 @@ export const testly100Service = {
     // Ensure 100 sequential invites exist
     let invites = store.invites.filter(i => i.code && i.code.startsWith('TESTLY-INV-'));
     if (invites.length < 100) {
-      store.invites = generate100DefaultInvites();
-      saveLocalStore(store);
-      invites = store.invites.filter(i => i.code && i.code.startsWith('TESTLY-INV-'));
+      const defaults = generate100DefaultInvites().filter(i => i.code && i.code.startsWith('TESTLY-INV-'));
+      const existingByCode = new Map(invites.map(i => [i.code, i]));
+      invites = defaults.map(inv => existingByCode.get(inv.code) || inv);
     }
 
     return invites.map((inv, idx) => {
