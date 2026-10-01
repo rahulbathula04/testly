@@ -9,7 +9,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-2.jpg',
     score: '328 / 340',
     admit: 'Univ of Oxford',
-    quote: 'Testly saved me ₹6,043 on my GRE registration. More importantly, the Testly team spotted that my middle name was missing before submitting to ETS. Zero stress!'
+    quote: 'The Testly team spotted that my middle name was missing before the registration was submitted. The process was much less stressful.'
   },
   {
     name: 'Arjun Mehta',
@@ -25,7 +25,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-rohit.jpg',
     score: '110 / 120',
     admit: 'Univ of Waterloo',
-    quote: 'My Indian credit card kept declining on the international ETS gateway with forex penalties. With the Testly team, I paid cleanly via UPI, saved ₹4,000, and got instant confirmation.'
+    quote: 'My international payment kept failing. The Testly team helped me complete the registration and I received the booking confirmation.'
   },
   {
     name: 'Sneha Reddy',
@@ -33,7 +33,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-sneha.jpg',
     score: '84 / 90',
     admit: 'Univ of Melbourne',
-    quote: 'Best decision! Smooth verification process, official Pearson confirmation within hours, and I saved almost ₹4,000 compared to paying on the portal directly.'
+    quote: 'The verification process was straightforward, and I received my Pearson booking confirmation quickly.'
   },
   {
     name: 'Karthik Varma',
@@ -49,7 +49,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-4.jpg',
     score: '8.5 / 9.0',
     admit: 'Imperial College London',
-    quote: 'Saved ₹2,800 on IELTS Academic booking. The passport verification checklist the Testly team shared saved me from a costly date-rescheduling penalty at IDP.'
+    quote: 'The passport verification checklist helped me catch an important detail before completing my IELTS registration.'
   },
   {
     name: 'Rohan Deshmukh',
@@ -73,7 +73,7 @@ const REVIEWS = [
     avatar: '/assets/images/student-avatar-vikram.jpg',
     score: '685 / 805',
     admit: 'London Business School',
-    quote: 'Exceptional professionalism. Authorized GMAC voucher applied seamlessly with immediate confirmation on mba.com. Saved ₹5,200 without any ambiguity.'
+    quote: 'The Testly team helped me complete my GMAT booking and understand the payment and confirmation process.'
   }
 ];
 
@@ -159,7 +159,7 @@ export default function StudentReviews({ onBookTest }) {
               Trusted by Thousands Across India
             </h2>
             <p className="text-xs sm:text-base text-[#64748B] font-medium">
-              Real test-takers who saved on fees and secured error-free bookings.
+              Student stories about exam registration, verification and support.
             </p>
           </div>
 
@@ -204,7 +204,7 @@ export default function StudentReviews({ onBookTest }) {
         {/* Footer hint */}
         <div className="flex items-center justify-between text-[10.5px] sm:text-xs text-[#64748B] px-1">
           <span>Tap or hover to pause</span>
-          <span className="font-semibold text-[#0F172A]">100% Verified Indian Test-Takers</span>
+          <span className="font-semibold text-[#0F172A]">Published student stories</span>
         </div>
 
       </div>
