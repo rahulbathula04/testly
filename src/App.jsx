@@ -25,6 +25,9 @@ import ExitIntentModal      from './components/ExitIntentModal';
 
 // ── Code-Split Secondary Pages (Lazy loaded for peak mobile performance) ────
 const HyderabadHubPage     = lazy(() => import('./pages/HyderabadHubPage'));
+const ExamSeoPage          = lazy(() => import('./pages/ExamSeoPage'));
+const LocationSeoPage      = lazy(() => import('./pages/LocationSeoPage'));
+const CityExamPage         = lazy(() => import('./pages/CityExamPage'));
 const MadhapurHubPage      = lazy(() => import('./pages/MadhapurHubPage'));
 const ExamPriceTrackerPage = lazy(() => import('./pages/ExamPriceTrackerPage'));
 const ProfessionalsPage    = lazy(() => import('./pages/ProfessionalsPage'));
@@ -34,6 +37,8 @@ const CampusPage           = lazy(() => import('./pages/CampusPage'));
 const FounderPage          = lazy(() => import('./pages/FounderPage'));
 const GreProductPage       = lazy(() => import('./pages/GreProductPage'));
 const LocationHubPage      = lazy(() => import('./pages/LocationHubPage'));
+const LocationDirectoryPage = lazy(() => import('./pages/LocationDirectoryPage'));
+const ExamDirectoryPage     = lazy(() => import('./pages/ExamDirectoryPage'));
 const AssessmentIntelligencePage = lazy(() => import('./pages/AssessmentIntelligencePage'));
 const AssessmentEngineCommandCenter = lazy(() => import('./components/admin/AssessmentEngineCommandCenter'));
 const Testly100InvitePage   = lazy(() => import('./pages/Testly100InvitePage'));
@@ -104,6 +109,16 @@ function getActiveRoute() {
   if (path.includes('/assessment-intelligence') || hash.includes('assessment-intelligence') || path.includes('/assessment-engine') || hash.includes('assessment-engine')) {
     return { type: 'assessment-intelligence' };
   }
+  // Canonical SEO directories and scalable India geo routes
+  const cityExamMatch = path.match(/^\/locations\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/);
+  if (cityExamMatch) return { type: 'city-exam-seo', city: cityExamMatch[1], exam: cityExamMatch[2] };
+  const examMatch = path.match(/^\/exams\/([a-z0-9-]+)\/?$/);
+  if (examMatch) return { type: 'exam-seo', exam: examMatch[1] };
+  if (path === '/exams' || hash === '#exams') return { type: 'exam-directory' };
+  if (path === '/locations' || hash === '#locations') return { type: 'location-directory' };
+  const citySeoMatch = path.match(/^\/locations\/([a-z0-9-]+)\/?$/);
+  if (citySeoMatch) return { type: 'location-seo', city: citySeoMatch[1] };
+
   if (path.includes('/campus') || hash.includes('/campus') || hash.includes('campus')) {
     return { type: 'campus' };
   }
@@ -200,6 +215,21 @@ export default function App() {
   // ── 2. Render Page Content According to Active Route ────────────────────────
   const renderContent = () => {
     switch (currentRoute.type) {
+      case 'exam-directory':
+        return <ExamDirectoryPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'exam-seo':
+        return <ExamSeoPage examSlug={currentRoute.exam} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'location-directory':
+        return <LocationDirectoryPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'location-seo':
+        return <LocationSeoPage citySlug={currentRoute.city} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'city-exam-seo':
+        return <CityExamPage citySlug={currentRoute.city} examSlug={currentRoute.exam} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
       case 'campus':
         return <CampusPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
