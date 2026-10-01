@@ -70,149 +70,9 @@ export function updateEventConfig(updates, adminUser = 'Rahul Bathula') {
 
 // ── 2. SEED DATA GENERATOR (Realistic Cohort of 86 Approved Participants) ──
 function generateSeedParticipants() {
-  const colleges = [
-    'IIT Hyderabad', 'BITS Pilani Hyderabad', 'IIIT Hyderabad', 'CBIT Hyderabad',
-    'VNR VJIET', 'Osmania University', 'JNTU Hyderabad', 'Gokaraju Rangaraju',
-    'Vasavi College of Engg', 'IIT Madras', 'IIT Bombay', 'NIT Warangal'
-  ];
-  const cities = ['Hyderabad', 'Secunderabad', 'Warangal', 'Bengaluru', 'Vijayawada', 'Visakhapatnam'];
-  const captains = ['CAPTAIN01', 'CAPTAIN02', 'CAPTAIN03', 'DIRECT', 'DIRECT'];
-
-  const names = [
-    'Aarav Sharma', 'Diya Reddy', 'Rohan Verma', 'Ananya Iyer', 'Vikram Patel',
-    'Sneha Rao', 'Aditya Kulkarni', 'Pooja Nair', 'Siddharth Joshi', 'Meera Varma',
-    'Karthik Menon', 'Ishaan Gupta', 'Divya Chawla', 'Nikhil Deshmukh', 'Tanvi Singhania',
-    'Arjun Nambiar', 'Rhea Pillai', 'Varun Kapoor', 'Kavya Sunder', 'Harsh Vardhan',
-    'Pranav Teja', 'Sanjana Roy', 'Gautam Sen', 'Akansha Hegde', 'Abhinav Bhat',
-    'Bhavana Raju', 'Chirag Sethi', 'Deepika Das', 'Eshwar Prasad', 'Farhan Ali'
-  ];
-
-  const participants = [];
-
-  // Generate 86 Approved Participants (1 to 86)
-  for (let i = 1; i <= 86; i++) {
-    const numStr = String(i).padStart(3, '0');
-    const name = names[(i - 1) % names.length] + (i > names.length ? ` ${Math.floor(i / names.length) + 1}` : '');
-    const email = `${name.toLowerCase().replace(/\s+/g, '.')}${i}@gmail.com`;
-    const phone = `+91 98${String(10000000 + i * 7891).slice(0, 8)}`;
-    const college = colleges[i % colleges.length];
-    const city = cities[i % cities.length];
-    const captain = captains[i % captains.length];
-
-    // Live distribution: 72 Active, 6 Idle, 3 Paused, 5 Completed
-    let liveStatus = 'ACTIVE';
-    let progress = Math.min(95, 20 + ((i * 7) % 75));
-    let currentSection = (i % 2 === 0) ? 'Quantitative Reasoning' : 'Verbal Reasoning';
-    let currentQuestion = Math.min(27, Math.max(1, Math.round((progress / 100) * 27)));
-    let timeRemaining = `${Math.max(12, 50 - Math.round(progress * 0.4))}:${String((i * 13) % 60).padStart(2, '0')}`;
-    let lastActiveSecondsAgo = (i % 5 === 0) ? 12 : ((i % 3 === 0) ? 4 : 2);
-    let score = null;
-
-    if (i <= 5) {
-      liveStatus = 'COMPLETED';
-      progress = 100;
-      currentQuestion = 27;
-      timeRemaining = '00:00';
-      lastActiveSecondsAgo = 320 + i * 45;
-      score = {
-        quantitative: 160 + (i % 8),
-        verbal: 156 + (i % 10),
-        total: 316 + (i % 18),
-        accuracyPercent: 78 + (i % 18),
-        percentile: 88 + (i % 10)
-      };
-    } else if (i <= 8) {
-      liveStatus = 'PAUSED';
-      lastActiveSecondsAgo = 180 + i * 30;
-    } else if (i <= 14) {
-      liveStatus = 'IDLE';
-      lastActiveSecondsAgo = 310 + (i * 15);
-    }
-
-    participants.push({
-      id: `app_${numStr}`,
-      participant_number: `TESTLY-${numStr}`,
-      seat_index: i,
-      access_token: `T100-${Math.random().toString(36).substring(2, 8).toUpperCase()}-${numStr}`,
-      name,
-      email,
-      phone,
-      city,
-      college,
-      education_level: 'Undergraduate Senior (B.Tech)',
-      target_exam: 'GRE',
-      target_date: 'November 2026',
-      target_country: 'United States',
-      target_intake: 'Fall 2027',
-      referral_source: captain,
-      status: 'APPROVED',
-      applied_at: new Date(Date.now() - (100 - i) * 3600000).toISOString(),
-      approved_at: new Date(Date.now() - (90 - i) * 3600000).toISOString(),
-      approved_by: 'Rahul Bathula',
-      // Live session state
-      session: {
-        status: liveStatus,
-        started_at: new Date(Date.now() - 45 * 60000).toISOString(),
-        last_active_at: new Date(Date.now() - lastActiveSecondsAgo * 1000).toISOString(),
-        current_section: currentSection,
-        current_question: currentQuestion,
-        total_questions: 27,
-        progress,
-        time_remaining: timeRemaining,
-        questions_answered: Math.max(0, currentQuestion - 1),
-        device: i % 3 === 0 ? 'MacBook Pro (Chrome)' : (i % 2 === 0 ? 'Windows 11 (Edge)' : 'Dell XPS (Chrome)'),
-        score
-      },
-      timeline: [
-        { type: 'INVITE_OPENED', timestamp: new Date(Date.now() - (100 - i) * 3600000).toISOString(), label: 'Invite Link Opened' },
-        { type: 'APPLICATION_SUBMITTED', timestamp: new Date(Date.now() - (99 - i) * 3600000).toISOString(), label: 'Submitted Application Form' },
-        { type: 'APPROVED', timestamp: new Date(Date.now() - (90 - i) * 3600000).toISOString(), label: `Approved by Rahul Bathula (Seat TESTLY-${numStr})` },
-        { type: 'TEST_STARTED', timestamp: new Date(Date.now() - 45 * 60000).toISOString(), label: 'Started GRE Simulation Section 1' },
-        { type: 'QUESTION_ANSWERED', timestamp: new Date(Date.now() - lastActiveSecondsAgo * 1000).toISOString(), label: `Answered Question ${currentQuestion}` }
-      ]
-    });
-  }
-
-  // 12 Pending Applications waiting for approval
-  const pendingApplicants = [
-    { name: 'Naveen Kumar', college: 'Gokaraju Rangaraju', city: 'Hyderabad', target_date: 'October 2026', phone: '+91 9440112233', ref: 'CAPTAIN01' },
-    { name: 'Sowmya Rao', college: 'Osmania University', city: 'Secunderabad', target_date: 'December 2026', phone: '+91 9440223344', ref: 'DIRECT' },
-    { name: 'Kiran Mai', college: 'VNR VJIET', city: 'Hyderabad', target_date: 'November 2026', phone: '+91 9440334455', ref: 'CAPTAIN02' },
-    { name: 'Mahesh Babu', college: 'CBIT Hyderabad', city: 'Hyderabad', target_date: 'January 2027', phone: '+91 9440445566', ref: 'CAPTAIN01' },
-    { name: 'Pranathi Reddy', college: 'IIT Hyderabad', city: 'Hyderabad', target_date: 'October 2026', phone: '+91 9440556677', ref: 'DIRECT' },
-    { name: 'Srinivas G.', college: 'BITS Pilani Hyderabad', city: 'Hyderabad', target_date: 'December 2026', phone: '+91 9440667788', ref: 'CAPTAIN03' }
-  ];
-
-  pendingApplicants.forEach((p, idx) => {
-    participants.push({
-      id: `app_pnd_${idx + 1}`,
-      participant_number: null,
-      seat_index: null,
-      access_token: null,
-      name: p.name,
-      email: `${p.name.toLowerCase().replace(/\s+/g, '.')}@gmail.com`,
-      phone: p.phone,
-      city: p.city,
-      college: p.college,
-      education_level: 'Undergraduate Final Year',
-      target_exam: 'GRE',
-      target_date: p.target_date,
-      target_country: 'United States',
-      target_intake: 'Fall 2027',
-      referral_source: p.ref,
-      status: 'PENDING',
-      applied_at: new Date(Date.now() - (idx + 1) * 720000).toISOString(),
-      approved_at: null,
-      approved_by: null,
-      session: null,
-      timeline: [
-        { type: 'INVITE_OPENED', timestamp: new Date(Date.now() - (idx + 1) * 750000).toISOString(), label: 'Invite Link Opened' },
-        { type: 'APPLICATION_SUBMITTED', timestamp: new Date(Date.now() - (idx + 1) * 720000).toISOString(), label: 'Submitted Application Form' }
-      ]
-    });
-  });
-
-  return participants;
+  // Production must start empty. Demo data belongs in an explicit demo fixture,
+  // never in the default client store.
+  return [];
 }
 
 // ── 3. APPLICATIONS & PARTICIPANTS STORE ────────────────────────────────────
@@ -220,9 +80,9 @@ export function getApplications() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY_APPLICATIONS);
     if (!raw) {
-      const seeded = generateSeedParticipants();
-      localStorage.setItem(STORAGE_KEY_APPLICATIONS, JSON.stringify(seeded));
-      return seeded;
+      const empty = [];
+      localStorage.setItem(STORAGE_KEY_APPLICATIONS, JSON.stringify(empty));
+      return empty;
     }
     return JSON.parse(raw);
   } catch {
@@ -478,10 +338,7 @@ export function logTelemetryEvent(applicationId, eventType, metadata = {}) {
 export function getAuditLogs() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY_AUDIT_LOG);
-    return raw ? JSON.parse(raw) : [
-      { id: 'aud_1', admin: 'Rahul Bathula', action: 'INIT_EVENT', target: 'testly-100-gre-2026', timestamp: new Date(Date.now() - 3600000 * 24).toISOString(), details: { capacity: 100 } },
-      { id: 'aud_2', admin: 'Rahul Bathula', action: 'APPROVE_BATCH', target: '86 Candidates', timestamp: new Date(Date.now() - 3600000 * 12).toISOString(), details: { count: 86 } }
-    ];
+    return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
   }
