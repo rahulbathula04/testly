@@ -800,46 +800,35 @@ export const testly100Service = {
   // 9. Candidate Verification & Gate (Authoritative Access Verification)
   async verifyCandidateAccess(identifier) {
     if (!identifier) return { authorized: false, reason: 'NO_TOKEN' };
-    const clean = identifier.trim().toLowerCase();
+    const clean = identifier.trim();
+
+    if (isSupabaseConfigured && supabase) {
+      // Only opaque access tokens can authenticate a candidate.
+      const { data, error } = await supabase.rpc('verify_testly_candidate', {
+        p_access_token: clean,
+      });
+      if (error) throw new Error(`Candidate verification failed: ${error.message}`);
+      return data || { authorized: false, reason: 'NOT_FOUND' };
+    }
+
     const store = getLocalStore();
-
-    // Check by email or seat ID (e.g. TESTLY-014) or access token
-    const part = store.participants.find(p => {
-      if (p.access_token.toLowerCase() === clean) return true;
-      if (p.seat_id.toLowerCase() === clean) return true;
-      const app = store.applications.find(a => a.id === p.application_id);
-      return app && app.email.toLowerCase() === clean;
-    });
-
-    if (!part) {
-      // Check if they are pending in applications
-      const pendingApp = store.applications.find(a => a.email.toLowerCase() === clean);
-      if (pendingApp) {
-        return {
-          authorized: false,
-          status: pendingApp.status,
-          applicantName: pendingApp.full_name,
-          reason: pendingApp.status === 'PENDING' ? 'PENDING_APPROVAL' : pendingApp.status,
-        };
-      }
-      return { authorized: false, reason: 'NOT_FOUND' };
-    }
-
-    if (part.status === 'REVOKED') {
-      return { authorized: false, reason: 'ACCESS_REVOKED', revokedReason: part.revoked_reason };
-    }
+    const normalized = clean.toLowerCase();
+    const part = store.participants.find(p => p.access_token?.toLowerCase() === normalized);
+    if (!part) return { authorized: false, reason: 'NOT_FOUND' };
+    if (part.status === 'REVOKED') return { authorized: false, reason: 'ACCESS_REVOKED' };
 
     const application = store.applications.find(a => a.id === part.application_id);
     const session = store.sessions.find(s => s.participant_id === part.id);
+    const report = store.reports.find(r => r.participant_id === part.id);
 
     return {
       authorized: true,
       participant: part,
       application,
       session,
+      report,
       seatId: part.seat_id,
       seatNumber: part.seat_number,
-      accessToken: part.access_token,
     };
   },
 
