@@ -358,54 +358,96 @@ export const testly100Service = {
 
   // 2. Fetch Dashboard Metrics (Executive Pulse)
   async getDashboardMetrics() {
+    if (isSupabaseConfigured && supabase) {
+      const eventResult = await supabase.from('events').select('id,capacity,status').eq('slug', 'testly-100').single();
+      if (eventResult.error) throw new Error(`Failed to load event metrics: ${eventResult.error.message}`);
+
+      const eventId = eventResult.data.id;
+      const [participantsResult, applicationsResult, sessionsResult, alertsResult] = await Promise.all([
+        supabase.from('event_participants').select('id,status').eq('event_id', eventId),
+        supabase.from('event_applications').select('id,status').eq('event_id', eventId),
+        supabase.from('participant_sessions').select('participant_id,status,last_activity_at').eq('event_id', eventId),
+        supabase.from('admin_alerts').select('id').eq('event_id', eventId).eq('is_resolved', false),
+      ]);
+
+      for (const result of [participantsResult, applicationsResult, sessionsResult, alertsResult]) {
+        if (result.error) throw new Error(`Failed to load Testly 100 metrics: ${result.error.message}`);
+      }
+
+      const participants = participantsResult.data || [];
+      const applications = applicationsResult.data || [];
+      const sessions = sessionsResult.data || [];
+      const now = Date.now();
+
+      let activeNow = 0;
+      let idleNow = 0;
+      let pausedNow = 0;
+      let completedNow = 0;
+      let notStartedNow = 0;
+
+      for (const session of sessions) {
+        if (session.status === 'COMPLETED' || session.status === 'SUBMITTED') {
+          completedNow++;
+        } else if (session.status === 'PAUSED' || session.status === 'DISCONNECTED' || session.status === 'EXPIRED') {
+          pausedNow++;
+        } else if (session.status === 'NOT_STARTED') {
+          notStartedNow++;
+        } else {
+          const diffSec = (now - new Date(session.last_activity_at || 0).getTime()) / 1000;
+          if (diffSec < 45) activeNow++;
+          else if (diffSec < 180) idleNow++;
+          else pausedNow++;
+        }
+      }
+
+      const approvedCount = participants.filter(p => p.status !== 'REVOKED').length;
+      const capacity = eventResult.data.capacity || 100;
+      const pendingCount = applications.filter(a => a.status === 'PENDING').length;
+      const waitlistedCount = applications.filter(a => a.status === 'WAITLISTED').length;
+      const rejectedCount = applications.filter(a => a.status === 'REJECTED').length;
+      const activeAlerts = alertsResult.data?.length || 0;
+
+      return {
+        capacity,
+        approvedCount,
+        seatsRemaining: Math.max(0, capacity - approvedCount),
+        isFull: approvedCount >= capacity,
+        pendingCount,
+        waitlistedCount,
+        rejectedCount,
+        activeNow,
+        idleNow,
+        pausedNow,
+        completedNow,
+        notStartedNow,
+        attentionNeededCount: activeAlerts + (idleNow > 0 ? 1 : 0),
+        isDemoMode: false,
+      };
+    }
+
     const store = getLocalStore();
     const participants = store.participants.filter(p => p.status !== 'REVOKED');
     const approvedCount = participants.length;
     const capacity = store.event?.capacity || 100;
     const seatsRemaining = Math.max(0, capacity - approvedCount);
-
     const pendingCount = store.applications.filter(a => a.status === 'PENDING').length;
     const waitlistedCount = store.applications.filter(a => a.status === 'WAITLISTED').length;
     const rejectedCount = store.applications.filter(a => a.status === 'REJECTED').length;
 
-    // Real-time telemetry calculations
     const now = Date.now();
-    let activeNow = 0;
-    let idleNow = 0;
-    let pausedNow = 0;
-    let completedNow = 0;
-    let notStartedNow = 0;
-
+    let activeNow = 0, idleNow = 0, pausedNow = 0, completedNow = 0, notStartedNow = 0;
     participants.forEach(p => {
       const sess = store.sessions.find(s => s.participant_id === p.id);
-      if (!sess || sess.status === 'NOT_STARTED') {
-        notStartedNow++;
-        return;
-      }
-      if (sess.status === 'COMPLETED' || sess.status === 'SUBMITTED') {
-        completedNow++;
-        return;
-      }
-      if (sess.status === 'PAUSED') {
-        pausedNow++;
-        return;
-      }
-      // Check last activity threshold (Idle if > 90s)
-      const lastActiveTime = new Date(sess.last_activity_at || 0).getTime();
-      const diffSec = (now - lastActiveTime) / 1000;
-      if (diffSec < 45) {
-        activeNow++;
-      } else if (diffSec < 180) {
-        idleNow++;
-      } else {
-        pausedNow++;
-      }
+      if (!sess || sess.status === 'NOT_STARTED') { notStartedNow++; return; }
+      if (sess.status === 'COMPLETED' || sess.status === 'SUBMITTED') { completedNow++; return; }
+      if (sess.status === 'PAUSED') { pausedNow++; return; }
+      const diffSec = (now - new Date(sess.last_activity_at || 0).getTime()) / 1000;
+      if (diffSec < 45) activeNow++;
+      else if (diffSec < 180) idleNow++;
+      else pausedNow++;
     });
 
-    // Alerts requiring attention
     const activeAlerts = store.alerts.filter(a => !a.is_resolved);
-    const attentionNeededCount = activeAlerts.length + (idleNow > 0 ? 1 : 0);
-
     return {
       capacity,
       approvedCount,
@@ -419,10 +461,10 @@ export const testly100Service = {
       pausedNow,
       completedNow,
       notStartedNow,
-      attentionNeededCount,
+      attentionNeededCount: activeAlerts.length + (idleNow > 0 ? 1 : 0),
       isDemoMode: this.isDemoModeActive(),
     };
-  },
+  }
 
   // 3. Submit Candidate Application
   async submitApplication(appData) {
