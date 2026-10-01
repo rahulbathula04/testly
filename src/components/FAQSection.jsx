@@ -5,15 +5,15 @@ import { ChevronDown, Headphones, MessageCircle, ArrowRight } from 'lucide-react
 const FAQS = [
   {
     q: 'Is Testly affiliated with ETS, Pearson or Duolingo?',
-    a: 'Testly is an independent professional candidate registration and advisory service operating under the Indian Contract Act, 1872. We procure official vouchers through authorized institutional corporate rails and provide zero-defect registration concierge services.'
+    a: 'Testly is an independent exam registration and advisory service. Where voucher-based pricing is available, the applicable voucher and eligibility are confirmed before payment.'
   },
   {
     q: 'How does the ₹199 service work?',
-    a: 'For a flat ₹199, our registration experts handle your entire booking process: we audit your passport name to avoid test-day disqualification, check slot availability, apply the discounted institutional voucher, and deliver your confirmed official hall ticket.'
+    a: '₹199 is Testly's registration assistance fee. The exact scope, provider fee, voucher availability and any applicable taxes or charges are shown before payment.'
   },
   {
     q: 'Are the prices updated regularly?',
-    a: 'Yes. Our pricing engine syncs daily with active institutional voucher allocations and foreign exchange rates to ensure you always receive the maximum verified savings.'
+    a: 'Prices can change by exam, location, provider, test type and available offers. Testly should show the current applicable price and final payable amount before payment.'
   },
   {
     q: 'Can you help with rescheduling or cancellations?',
@@ -140,13 +140,13 @@ export default function FAQSection({ onBookTest }) {
             <div className="space-y-1">
               <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-black text-emerald-800">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>OFFICERS ONLINE NOW</span>
+                <span>SUPPORT TEAM</span>
               </div>
               <h4 className="text-sm font-black text-slate-900 pt-1">
                 Need Fast Help?
               </h4>
               <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                Connect directly with a certified exam officer on WhatsApp.
+                Connect directly with the Testly support team on WhatsApp.
               </p>
             </div>
 
