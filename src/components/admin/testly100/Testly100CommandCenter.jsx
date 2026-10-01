@@ -231,7 +231,7 @@ export default function Testly100CommandCenter({
   };
 
   const handleCopyAll100 = () => {
-    const formatted = testly100Service.copyAll100LinksFormatted(window.location.origin);
+    const formatted = testly100Service.copyAll100LinksFormatted(window.location.origin, dataState);
     navigator.clipboard.writeText(formatted);
     setCopied100Text(true);
     setTimeout(() => setCopied100Text(false), 3000);
@@ -239,7 +239,7 @@ export default function Testly100CommandCenter({
   };
 
   const handleExport100CSV = () => {
-    const csv = testly100Service.export100LinksCSV(window.location.origin);
+    const csv = testly100Service.export100LinksCSV(window.location.origin, dataState);
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
