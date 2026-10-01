@@ -2,57 +2,98 @@ import React, { useState, useEffect } from 'react';
 import { Lock, Mail, KeyRound, ArrowRight, ShieldCheck, AlertCircle, Eye, EyeOff, Globe } from 'lucide-react';
 import RealAdminPortal from './RealAdminPortal';
 import BrandLogo from '../BrandLogo';
+import { supabase, isSupabaseConfigured } from '../../services/supabaseClient';
 
 const AUTH_KEY = 'testly_admin_session';
-const ADMIN_EMAIL = 'rahulbathula04@gmail.com';
-const ADMIN_PASS = '9347379041Ra';
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || '';
 
 export default function AdminLoginGate({ onNavigateHome }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [email, setEmail] = useState('rahulbathula04@gmail.com');
+  const [email, setEmail] = useState(ADMIN_EMAIL);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    try {
-      const savedAuth = localStorage.getItem(AUTH_KEY);
-      if (savedAuth) {
-        const parsed = JSON.parse(savedAuth);
-        if (parsed.email === ADMIN_EMAIL && parsed.token) {
-          setIsAuthenticated(true);
-        }
+    let mounted = true;
+
+    async function restoreSession() {
+      if (!isSupabaseConfigured || !supabase) {
+        if (mounted) setError('Administrator authentication is not configured. Contact the Testly operator.');
+        return;
       }
-    } catch (e) {}
+
+      const { data, error: sessionError } = await supabase.auth.getUser();
+      if (!mounted) return;
+
+      if (sessionError || !data?.user) {
+        setIsAuthenticated(false);
+        return;
+      }
+
+      const userEmail = data.user.email?.trim().toLowerCase() || '';
+      if (ADMIN_EMAIL && userEmail !== ADMIN_EMAIL.trim().toLowerCase()) {
+        await supabase.auth.signOut();
+        setError('This account is not authorized for the Testly administration console.');
+        return;
+      }
+
+      setIsAuthenticated(true);
+      setEmail(userEmail);
+    }
+
+    restoreSession();
+
+    const { data: authSubscription } = supabase?.auth?.onAuthStateChange((_event, session) => {
+      if (!mounted) return;
+      setIsAuthenticated(Boolean(session?.user));
+    }) || { data: { subscription: null } };
+
+    return () => {
+      mounted = false;
+      authSubscription?.subscription?.unsubscribe?.();
+    };
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!isSupabaseConfigured || !supabase) {
+      setError('Administrator authentication is not configured. Contact the Testly operator.');
+      return;
+    }
+
     setIsLoading(true);
 
-    setTimeout(() => {
-      if (email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase() && password === ADMIN_PASS) {
-        const sessionData = {
-          email: ADMIN_EMAIL,
-          name: 'Rahul Bathula',
-          role: 'Super Admin & Managing Director',
-          token: 'sec_' + Math.random().toString(36).substring(2),
-          loginAt: new Date().toISOString()
-        };
-        localStorage.setItem(AUTH_KEY, JSON.stringify(sessionData));
-        setIsAuthenticated(true);
-        setIsLoading(false);
-      } else {
-        setError('Invalid credentials. Please enter the authorized email and password.');
-        setIsLoading(false);
+    try {
+      const normalizedEmail = email.trim().toLowerCase();
+      if (ADMIN_EMAIL && normalizedEmail !== ADMIN_EMAIL.trim().toLowerCase()) {
+        throw new Error('This account is not authorized for the Testly administration console.');
       }
-    }, 400);
+
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email: normalizedEmail,
+        password,
+      });
+
+      if (authError) throw authError;
+      if (!data?.user) throw new Error('Authentication did not return a user session.');
+
+      setIsAuthenticated(true);
+      setEmail(data.user.email || normalizedEmail);
+    } catch (err) {
+      setError(err.message || 'Unable to authenticate administrator.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem(AUTH_KEY);
+  const handleLogout = async () => {
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
     setIsAuthenticated(false);
     setPassword('');
   };
@@ -107,7 +148,7 @@ export default function AdminLoginGate({ onNavigateHome }) {
               Testly Administration
             </h2>
             <p className="text-xs text-[#64748B]">
-              Authorized administrator access to TESTLY 100 cohort, invite rail & candidate records.
+              Authenticated administrator access to TESTLY 100 cohort, invite rail & candidate records.
             </p>
           </div>
 
@@ -187,7 +228,7 @@ export default function AdminLoginGate({ onNavigateHome }) {
       {/* Footer disclaimer */}
       <div className="max-w-6xl mx-auto w-full text-center py-2">
         <p className="text-[11px] text-slate-600">
-          Internal operating system for Testly Inc. Unauthorized access attempts are logged and monitored.
+          Internal operating system for Testly Inc. Administrator authentication and access are enforced by the Testly backend.
         </p>
       </div>
 
