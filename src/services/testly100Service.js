@@ -13,6 +13,17 @@ import { supabase, isSupabaseConfigured } from './supabaseClient';
 const LOCAL_STORE_KEY = 'testly_100_authoritative_store_v2';
 const DEMO_MODE_KEY = 'testly_100_demo_mode_active';
 
+function isLocalDemoAllowed() {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem(DEMO_MODE_KEY) === 'true';
+}
+
+function assertLocalFallbackAllowed() {
+  if (!isLocalDemoAllowed()) {
+    throw new Error('TESTLY 100 backend is unavailable. Production data cannot be stored in browser storage.');
+  }
+}
+
 // BroadcastChannel for optional local cross-tab UI optimization
 let localBus = null;
 if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
@@ -181,6 +192,7 @@ function generateDemoCohort() {
 // ── In-Memory / Local Authoritative Fallback Storage ──────────────────────────
 function getLocalStore() {
   if (typeof window === 'undefined') return getInitialEmptyStore();
+  assertLocalFallbackAllowed();
   try {
     const raw = localStorage.getItem(LOCAL_STORE_KEY);
     if (raw) return JSON.parse(raw);
@@ -290,7 +302,16 @@ export const testly100Service = {
   // Toggle Demo Mode on/off
   toggleDemoMode(activate) {
     if (typeof window === 'undefined') return;
-    localStorage.setItem(DEMO_MODE_KEY, activate ? 'true' : 'false');
+
+    // Read the existing demo store before disabling demo mode.
+    if (!activate && !isLocalDemoAllowed()) {
+      return;
+    }
+
+    if (activate) {
+      localStorage.setItem(DEMO_MODE_KEY, 'true');
+    }
+
     const store = getLocalStore();
     if (activate) {
       const demo = generateDemoCohort();
@@ -298,10 +319,11 @@ export const testly100Service = {
       store.participants = demo.participants;
       store.sessions = demo.sessions;
     } else {
-      // Purge demo records and keep only genuine records
+      // Purge demo records and keep only genuine records.
       store.applications = store.applications.filter(a => !a.id.startsWith('demo-'));
       store.participants = store.participants.filter(p => !p.id.startsWith('demo-'));
       store.sessions = store.sessions.filter(s => !s.id.startsWith('demo-'));
+      localStorage.setItem(DEMO_MODE_KEY, 'false');
     }
     saveLocalStore(store);
     window.dispatchEvent(new CustomEvent('testly100_data_changed'));
