@@ -832,54 +832,97 @@ export const testly100Service = {
     };
   },
 
-  // 10. Heartbeat & Live Telemetry (Throttled & Non-intrusive)
+  // 10. Heartbeat & Live Telemetry
   async recordTelemetry(participantId, eventType, payload = {}) {
+    if (isSupabaseConfigured && supabase) {
+      const { data: session, error: sessionError } = await supabase
+        .from('participant_sessions')
+        .select('id')
+        .eq('participant_id', participantId)
+        .single();
+      if (sessionError) throw new Error(`Session lookup failed: ${sessionError.message}`);
+
+      const sessionUpdate = {
+        last_activity_at: new Date().toISOString(),
+      };
+      if (payload.status) sessionUpdate.status = payload.status;
+      if (payload.current_section) sessionUpdate.current_section = payload.current_section;
+      if (payload.current_question !== undefined) sessionUpdate.current_question = payload.current_question;
+      if (payload.time_remaining_seconds !== undefined) sessionUpdate.time_remaining_seconds = payload.time_remaining_seconds;
+
+      const { error: updateError } = await supabase
+        .from('participant_sessions')
+        .update(sessionUpdate)
+        .eq('id', session.id);
+      if (updateError) throw new Error(`Session update failed: ${updateError.message}`);
+
+      const { error: eventError } = await supabase
+        .from('assessment_activity_events')
+        .insert({
+          session_id: session.id,
+          participant_id: participantId,
+          event_type: eventType,
+          payload,
+        });
+      if (eventError) throw new Error(`Telemetry write failed: ${eventError.message}`);
+      return;
+    }
+
     const store = getLocalStore();
     const sess = store.sessions.find(s => s.participant_id === participantId);
     if (!sess) return;
-
     sess.last_activity_at = new Date().toISOString();
     if (payload.status) sess.status = payload.status;
     if (payload.current_section) sess.current_section = payload.current_section;
     if (payload.current_question !== undefined) sess.current_question = payload.current_question;
     if (payload.time_remaining_seconds !== undefined) sess.time_remaining_seconds = payload.time_remaining_seconds;
-
-    const eventRecord = {
+    store.activityEvents.unshift({
       id: `act_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
       session_id: sess.id,
       participant_id: participantId,
       event_type: eventType,
       payload,
       created_at: new Date().toISOString(),
-    };
-
-    store.activityEvents.unshift(eventRecord);
-    // Keep last 500 events to prevent memory bloat
+    });
     if (store.activityEvents.length > 500) store.activityEvents.length = 500;
-
     saveLocalStore(store);
-
-    if (localBus) {
-      localBus.postMessage({
-        type: 'TELEMETRY_EVENT',
-        participantId,
-        eventType,
-        payload,
-        timestamp: Date.now(),
-      });
-    }
   },
 
-  // 11. Save Assessment Response (Autosave & Latency Tracking)
+  // 11. Save Assessment Response
   async recordResponse(participantId, questionId, sectionId, option, timeSpent, isFlagged = false) {
+    if (isSupabaseConfigured && supabase) {
+      const { data: session, error: sessionError } = await supabase
+        .from('participant_sessions')
+        .select('id')
+        .eq('participant_id', participantId)
+        .single();
+      if (sessionError) throw new Error(`Session lookup failed: ${sessionError.message}`);
+
+      const { error: responseError } = await supabase
+        .from('assessment_responses')
+        .upsert({
+          session_id: session.id,
+          question_id: questionId,
+          section_id: sectionId,
+          selected_option: option,
+          time_spent_seconds: timeSpent,
+          is_flagged: isFlagged,
+          answered_at: new Date().toISOString(),
+        }, { onConflict: 'session_id,question_id' });
+      if (responseError) throw new Error(`Response save failed: ${responseError.message}`);
+
+      const { error: sessionError2 } = await supabase
+        .from('participant_sessions')
+        .update({ last_activity_at: new Date().toISOString() })
+        .eq('id', session.id);
+      if (sessionError2) throw new Error(`Session activity update failed: ${sessionError2.message}`);
+      return;
+    }
+
     const store = getLocalStore();
     const sess = store.sessions.find(s => s.participant_id === participantId);
     if (!sess) return;
-
-    const existingIndex = store.responses.findIndex(
-      r => r.session_id === sess.id && r.question_id === questionId
-    );
-
+    const existingIndex = store.responses.findIndex(r => r.session_id === sess.id && r.question_id === questionId);
     const record = {
       id: `resp_${sess.id}_${questionId}`,
       session_id: sess.id,
@@ -891,13 +934,8 @@ export const testly100Service = {
       is_flagged: isFlagged,
       answered_at: new Date().toISOString(),
     };
-
-    if (existingIndex >= 0) {
-      store.responses[existingIndex] = record;
-    } else {
-      store.responses.push(record);
-    }
-
+    if (existingIndex >= 0) store.responses[existingIndex] = record;
+    else store.responses.push(record);
     sess.last_activity_at = new Date().toISOString();
     saveLocalStore(store);
   },
