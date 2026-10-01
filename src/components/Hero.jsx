@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { TESTLY_TRUST } from '../config/testlyTrust';
 
 const pillars = [
-  { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional pricing' },
+  { icon: BadgeCheck, label: 'CHECK CURRENT SAVINGS', sub: 'Current fee comparison' },
   { icon: Clock,       label: '₹199 CONCIERGE',    sub: 'Done-for-you registration' },
-  { icon: ShieldCheck, label: 'ZERO DEFECT AUDIT', sub: 'Passport & slot verification' },
-  { icon: FileCheck,   label: 'DIRECT ETS & PEARSON', sub: 'Official booking confirmation' },
+  { icon: ShieldCheck, label: 'REGISTRATION REVIEW', sub: 'Passport & slot review' },
+  { icon: FileCheck,   label: 'OFFICIAL PROVIDER FLOW', sub: 'Provider booking confirmation' },
 ];
 
 const studentAvatars = [
@@ -102,7 +102,7 @@ export default function Hero({ onBookTest }) {
             </div>
             <span className="text-slate-300 hidden sm:inline">•</span>
             <p className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748B]">
-              THE AUTHORIZED EXAM REGISTRATION RAIL
+              EXAM REGISTRATION & SAVINGS SERVICE
             </p>
           </motion.div>
 
@@ -113,7 +113,7 @@ export default function Hero({ onBookTest }) {
             className="text-[28px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[62px] text-[#0F172A] leading-[1.12] sm:leading-[1.03] tracking-[-0.015em] break-words"
           >
             Book Your Exam.<br />
-            <span className="text-[#1E3A8A]">Save Up to ₹6,043</span> on Official Fees.
+            <span className="text-[#1E3A8A]">Check the Current Fee</span> Before You Pay.
           </motion.h1>
 
           {/* Subheading */}
@@ -121,7 +121,7 @@ export default function Hero({ onBookTest }) {
             variants={itemVariants}
             className="text-[13.5px] xs:text-[14.5px] sm:text-[16px] text-[#64748B] font-normal leading-relaxed"
           >
-            Eliminate unfair bank forex card markups. Get verified institutional fee schedules and done-for-you ₹199 registration assistance, audited character-by-character by the Testly Registration Team.
+            Compare the current exam fee, see the Testly service charge upfront, and get registration assistance when you want someone to handle the process with you.
           </motion.p>
 
           {/* 4 Value Pillars — Compact 2x2 on all screens with classic tactile feel */}
@@ -159,7 +159,7 @@ export default function Hero({ onBookTest }) {
             </motion.button>
             <p className="text-[10.5px] sm:text-[11px] text-[#64748B] font-medium flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              <span>100% Official ETS & Pearson slots • Direct WhatsApp to professionals</span>
+              <span>Official provider booking confirmation • Direct WhatsApp support</span>
             </p>
           </motion.div>
 
