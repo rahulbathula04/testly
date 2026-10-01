@@ -986,9 +986,18 @@ export const testly100Service = {
       const results = await Promise.all(
         tables.map(async ([table]) => {
           const query = supabase.from(table).select('*');
+          const eventScoped = new Set([
+            'event_applications',
+            'event_participants',
+            'participant_sessions',
+            'assessment_activity_events',
+            'admin_alerts',
+          ]);
           const { data, error } = table === 'events'
             ? await query.eq('slug', 'testly-100').maybeSingle()
-            : await query.eq('event_id', CANONICAL_TESTLY_100_EVENT.id);
+            : eventScoped.has(table)
+              ? await query.eq('event_id', CANONICAL_TESTLY_100_EVENT.id)
+              : await query;
 
           if (error) throw new Error(`Failed to load ${table}: ${error.message}`);
           return data || (table === 'events' ? null : []);
