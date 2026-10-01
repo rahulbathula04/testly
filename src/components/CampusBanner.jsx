@@ -35,24 +35,24 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
                 For Colleges, Universities & Study Abroad Cells
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-                We partner directly with institutional placement cells to simplify exam registration for graduating cohorts. From subsidized vouchers to on-campus registration drives.
+                Testly Campus gives colleges a structured way to coordinate exam information, registration assistance and cohort reporting for students.
               </p>
 
               {/* Micro stats */}
               <div className="flex items-center gap-3 sm:gap-4 pt-1 text-[10.5px] sm:text-[11px] text-slate-300 border-t border-slate-800/80">
                 <div>
-                  <span className="font-bold text-white text-xs block">45+</span>
-                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Campus Drives</span>
+                  <span className="font-bold text-white text-xs block">Cohort</span>
+                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Registration support</span>
                 </div>
                 <div className="h-5 w-px bg-slate-800" />
                 <div>
-                  <span className="font-bold text-white text-xs block">12,000+</span>
-                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Students</span>
+                  <span className="font-bold text-white text-xs block">Live</span>
+                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Status reporting</span>
                 </div>
                 <div className="h-5 w-px bg-slate-800" />
                 <div>
-                  <span className="font-bold text-white text-xs block">100%</span>
-                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Official</span>
+                  <span className="font-bold text-white text-xs block">Direct</span>
+                  <span className="text-slate-400 text-[9.5px] sm:text-[10px]">Campus support</span>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function CampusBanner({ onOpenBooking, onNavigate }) {
             >
               <p className="text-[10px] font-extrabold text-white flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                Institutional MoU Available
+                Institutional partnership
               </p>
               <p className="text-[9.5px] text-slate-400 font-medium mt-0.5">
                 Direct coordinator for your university department
