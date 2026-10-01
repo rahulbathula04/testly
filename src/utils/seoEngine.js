@@ -120,57 +120,16 @@ export function injectLocalBusinessSchema(location) {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
-    'name': `Testly Exam Registration & Advisory (${location.name})`,
-    'alternateName': `Testly ${location.name} Candidate Hub`,
+    'name': 'Testly',
     'url': `https://www.testly.co.in/locations/${location.id}`,
     'logo': 'https://www.testly.co.in/favicon.svg',
-    'image': 'https://www.testly.co.in/assets/images/global-university-campus.jpg',
-    'telephone': location.helpline || '+91 93473 79041',
-    'address': {
-      '@type': 'PostalAddress',
-      'streetAddress': location.deskAddress || 'Cyber Hills Corridor, Madhapur',
-      'addressLocality': location.name,
-      'addressRegion': location.state,
-      'addressCountry': 'IN'
-    },
-    'priceRange': '₹199 - ₹20,499',
-    'areaServed': location.primaryLocalities || [location.name],
-    'hasOfferCatalog': {
-      '@type': 'OfferCatalog',
-      'name': 'Discounted Exam Vouchers & Registration Support',
-      'itemListElement': [
-        {
-          '@type': 'Offer',
-          'itemOffered': {
-            '@type': 'Service',
-            'name': 'GRE General Test Registration & Official Voucher',
-            'description': 'Official prepaid voucher + zero-defect passport name audit'
-          },
-          'price': '20499',
-          'priceCurrency': 'INR'
-        },
-        {
-          '@type': 'Offer',
-          'itemOffered': {
-            '@type': 'Service',
-            'name': 'TOEFL iBT Official Exam Voucher',
-            'description': 'Authorized ETS institutional discount code'
-          },
-          'price': '13999',
-          'priceCurrency': 'INR'
-        },
-        {
-          '@type': 'Offer',
-          'itemOffered': {
-            '@type': 'Service',
-            'name': 'PTE Academic Voucher',
-            'description': 'Pearson authorized booking voucher'
-          },
-          'price': '14999',
-          'priceCurrency': 'INR'
-        }
-      ]
-    }
+    'description': `Exam registration information and assistance for candidates in ${location.name}, ${location.state}.`,
+    'areaServed': [
+      { '@type': 'City', 'name': location.name },
+      { '@type': 'AdministrativeArea', 'name': location.state },
+      { '@type': 'Country', 'name': 'India' }
+    ],
+    'serviceType': 'Exam registration information and assistance'
   };
 
   scriptEl.textContent = JSON.stringify(schemaData, null, 2);
@@ -255,29 +214,35 @@ export function injectHowToSchema({ name, description, steps = [], estimatedCost
   scriptEl.textContent = JSON.stringify(schemaData, null, 2);
 }
 
-export function updatePageMeta({ title, description, canonicalUrl }) {
+export function updatePageMeta({ title, description, canonicalUrl, imageUrl }) {
   if (typeof document === 'undefined') return;
 
   if (title) document.title = title;
 
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc && description) {
-    metaDesc.setAttribute('content', description);
-  }
+  const setMeta = (selector, attr, value) => {
+    if (!value) return;
+    const el = document.querySelector(selector);
+    if (el) el.setAttribute(attr, value);
+  };
 
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle && title) {
-    ogTitle.setAttribute('content', title);
-  }
+  setMeta('meta[name="description"]', 'content', description);
+  setMeta('meta[property="og:title"]', 'content', title);
+  setMeta('meta[property="og:description"]', 'content', description);
+  setMeta('meta[property="og:url"]', 'content', canonicalUrl);
+  setMeta('meta[name="twitter:title"]', 'content', title);
+  setMeta('meta[name="twitter:description"]', 'content', description);
+  setMeta('meta[name="twitter:url"]', 'content', canonicalUrl);
+  setMeta('meta[property="og:image"]', 'content', imageUrl);
+  setMeta('meta[name="twitter:image"]', 'content', imageUrl);
 
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc && description) {
-    ogDesc.setAttribute('content', description);
-  }
-
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical && canonicalUrl) {
-    canonical.setAttribute('href', canonicalUrl);
+  if (canonicalUrl) {
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
   }
 }
 
