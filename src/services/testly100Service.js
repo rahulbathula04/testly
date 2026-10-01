@@ -942,26 +942,98 @@ export const testly100Service = {
 
   // 12. Submit Assessment & Generate Diagnostic Report
   async submitAssessment(participantId, evaluationData) {
+    if (!evaluationData || !Number.isFinite(evaluationData.quantScore) ||
+        !Number.isFinite(evaluationData.verbalScore) ||
+        !Number.isFinite(evaluationData.accuracyPct)) {
+      throw new Error('Assessment evaluation is incomplete. A report cannot be generated from fallback values.');
+    }
+
+    if (isSupabaseConfigured && supabase) {
+      const { data: session, error: sessionError } = await supabase
+        .from('participant_sessions')
+        .select('id,event_id')
+        .eq('participant_id', participantId)
+        .single();
+      if (sessionError) throw new Error(`Session lookup failed: ${sessionError.message}`);
+
+      const { data: participant, error: participantError } = await supabase
+        .from('event_participants')
+        .select('event_id,seat_id')
+        .eq('id', participantId)
+        .single();
+      if (participantError) throw new Error(`Participant lookup failed: ${participantError.message}`);
+
+      const totalScore = evaluationData.totalScore ?? (evaluationData.quantScore + evaluationData.verbalScore);
+      const { data: attempt, error: attemptError } = await supabase
+        .from('assessment_attempts')
+        .insert({
+          session_id: session.id,
+          participant_id: participantId,
+          event_id: participant.event_id,
+          raw_quant_score: evaluationData.rawQuantScore ?? 0,
+          raw_verbal_score: evaluationData.rawVerbalScore ?? 0,
+          practice_quant_score: evaluationData.quantScore,
+          practice_verbal_score: evaluationData.verbalScore,
+          total_practice_score: totalScore,
+          accuracy_pct: evaluationData.accuracyPct,
+          total_time_spent_seconds: evaluationData.totalTimeSpentSeconds ?? 0,
+          completed_at: new Date().toISOString(),
+        })
+        .select()
+        .single();
+      if (attemptError) throw new Error(`Attempt save failed: ${attemptError.message}`);
+
+      const { data: report, error: reportError } = await supabase
+        .from('participant_reports')
+        .upsert({
+          participant_id: participantId,
+          attempt_id: attempt.id,
+          practice_quant_score: evaluationData.quantScore,
+          practice_verbal_score: evaluationData.verbalScore,
+          total_practice_score: totalScore,
+          accuracy_pct: evaluationData.accuracyPct,
+          section_breakdown: evaluationData.sectionBreakdown || {},
+          skill_matrix: evaluationData.skillMatrix || {},
+          recommended_focus: evaluationData.recommendedFocus || [],
+          study_plan: evaluationData.studyPlan || [],
+          generated_at: new Date().toISOString(),
+        }, { onConflict: 'participant_id' })
+        .select()
+        .single();
+      if (reportError) throw new Error(`Report generation failed: ${reportError.message}`);
+
+      const { error: sessionUpdateError } = await supabase
+        .from('participant_sessions')
+        .update({ status: 'SUBMITTED', ended_at: new Date().toISOString(), last_activity_at: new Date().toISOString() })
+        .eq('id', session.id);
+      if (sessionUpdateError) throw new Error(`Session completion failed: ${sessionUpdateError.message}`);
+
+      const { error: participantUpdateError } = await supabase
+        .from('event_participants')
+        .update({ status: 'COMPLETED' })
+        .eq('id', participantId);
+      if (participantUpdateError) throw new Error(`Participant completion failed: ${participantUpdateError.message}`);
+
+      return report;
+    }
+
     const store = getLocalStore();
     const part = store.participants.find(p => p.id === participantId);
     const sess = store.sessions.find(s => s.participant_id === participantId);
     if (!part || !sess) throw new Error('Participant or session not found');
-    if (!evaluationData || !Number.isFinite(evaluationData.quantScore) || !Number.isFinite(evaluationData.verbalScore) || !Number.isFinite(evaluationData.accuracyPct)) {
-      throw new Error('Assessment evaluation is incomplete. A report cannot be generated from fallback values.');
-    }
 
     sess.status = 'COMPLETED';
     sess.ended_at = new Date().toISOString();
     part.status = 'COMPLETED';
 
-    const reportId = `rep_${part.id}`;
+    const totalScore = evaluationData.totalScore ?? (evaluationData.quantScore + evaluationData.verbalScore);
     const report = {
-      id: reportId,
+      id: `rep_${part.id}`,
       participant_id: part.id,
       seat_id: part.seat_id,
       practice_quant_score: evaluationData.quantScore,
       practice_verbal_score: evaluationData.verbalScore,
-      total_practice_score: evaluationData.totalScore ?? ((evaluationData.quantScore ?? 0) + (evaluationData.verbalScore ?? 0)),
+      total_practice_score: totalScore,
       accuracy_pct: evaluationData.accuracyPct,
       section_breakdown: evaluationData.sectionBreakdown || {},
       skill_matrix: evaluationData.skillMatrix || {},
@@ -969,18 +1041,8 @@ export const testly100Service = {
       study_plan: evaluationData.studyPlan || [],
       generated_at: new Date().toISOString(),
     };
-
     store.reports.push(report);
-
-    // Record Telemetry
-    this.recordTelemetry(participantId, 'TEST_SUBMITTED', {
-      total_score: report.total_practice_score,
-      quant_score: report.practice_quant_score,
-      verbal_score: report.practice_verbal_score,
-    });
-
     saveLocalStore(store);
-    window.dispatchEvent(new CustomEvent('testly100_data_changed'));
     return report;
   },
 
