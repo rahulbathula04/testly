@@ -43,7 +43,19 @@ export default function Testly100CommandCenter({
   initialView = 'dashboard'
 }) {
   const [activeNav, setActiveNav] = useState(initialView);
-  const [dataState, setDataState] = useState(testly100Service.getAllData());
+  const [dataState, setDataState] = useState({
+    event: null,
+    applications: [],
+    participants: [],
+    sessions: [],
+    responses: [],
+    activityEvents: [],
+    reports: [],
+    alerts: [],
+    auditLogs: [],
+    invites: [],
+    captains: [],
+  });
   const [metrics, setMetrics] = useState({
     capacity: 100,
     approvedCount: 0,
@@ -88,9 +100,12 @@ export default function Testly100CommandCenter({
   // Load and refresh state
   const refreshData = async () => {
     setIsRefreshing(true);
-    const m = await testly100Service.getDashboardMetrics();
+    const [m, data] = await Promise.all([
+      testly100Service.getDashboardMetrics(),
+      testly100Service.getAllData(),
+    ]);
     setMetrics(m);
-    setDataState(testly100Service.getAllData());
+    setDataState(data);
     setLeadsList(getStoredLeads());
     setTimeout(() => setIsRefreshing(false), 300);
   };
@@ -177,7 +192,7 @@ export default function Testly100CommandCenter({
   // 100 Private Cohort Links Memos & Actions
   const all100Links = useMemo(() => {
     const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://testly.in';
-    return testly100Service.get100InviteLinks(baseUrl);
+    return testly100Service.get100InviteLinks(baseUrl, dataState);
   }, [dataState]);
 
   const linksMetrics = useMemo(() => {
