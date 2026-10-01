@@ -671,15 +671,28 @@ export const testly100Service = {
   },
 
   // 5. Reject Application
-  async rejectApplication(applicationId, adminEmail = 'rahulbathula04@gmail.com') {
+  async rejectApplication(applicationId, adminEmail = 'system_admin') {
+    if (isSupabaseConfigured && supabase) {
+      const { error } = await supabase
+        .from('event_applications')
+        .update({ status: 'REJECTED', reviewed_at: new Date().toISOString(), reviewed_by: adminEmail })
+        .eq('id', applicationId);
+      if (error) throw new Error(`Failed to reject application: ${error.message}`);
+      await supabase.from('admin_audit_logs').insert({
+        admin_id: adminEmail,
+        action: 'REJECT_APPLICATION',
+        target_id: applicationId,
+        metadata: {},
+      });
+      return { success: true };
+    }
+
     const store = getLocalStore();
     const app = store.applications.find(a => a.id === applicationId);
     if (!app) throw new Error('Application not found');
-
     app.status = 'REJECTED';
     app.reviewed_at = new Date().toISOString();
     app.reviewed_by = adminEmail;
-
     store.auditLogs.unshift({
       id: `audit_${Date.now()}`,
       admin_id: adminEmail,
@@ -688,85 +701,97 @@ export const testly100Service = {
       metadata: { applicant_name: app.full_name },
       created_at: new Date().toISOString(),
     });
-
     saveLocalStore(store);
     window.dispatchEvent(new CustomEvent('testly100_data_changed'));
     return { success: true };
   },
 
   // 6. Waitlist Application
-  async waitlistApplication(applicationId, adminEmail = 'rahulbathula04@gmail.com') {
+  async waitlistApplication(applicationId, adminEmail = 'system_admin') {
+    if (isSupabaseConfigured && supabase) {
+      const { error } = await supabase
+        .from('event_applications')
+        .update({ status: 'WAITLISTED', reviewed_at: new Date().toISOString(), reviewed_by: adminEmail })
+        .eq('id', applicationId);
+      if (error) throw new Error(`Failed to waitlist application: ${error.message}`);
+      await supabase.from('admin_audit_logs').insert({
+        admin_id: adminEmail,
+        action: 'WAITLIST_APPLICATION',
+        target_id: applicationId,
+        metadata: {},
+      });
+      return { success: true };
+    }
+
     const store = getLocalStore();
     const app = store.applications.find(a => a.id === applicationId);
     if (!app) throw new Error('Application not found');
-
     app.status = 'WAITLISTED';
     app.reviewed_at = new Date().toISOString();
     app.reviewed_by = adminEmail;
-
-    store.auditLogs.unshift({
-      id: `audit_${Date.now()}`,
-      admin_id: adminEmail,
-      action: 'WAITLIST_APPLICATION',
-      target_id: applicationId,
-      metadata: { applicant_name: app.full_name },
-      created_at: new Date().toISOString(),
-    });
-
     saveLocalStore(store);
     window.dispatchEvent(new CustomEvent('testly100_data_changed'));
     return { success: true };
   },
 
   // 7. Revoke Seat Access
-  async revokeAccess(participantId, reason = 'Administrative Revocation', adminEmail = 'rahulbathula04@gmail.com') {
+  async revokeAccess(participantId, reason = 'Administrative Revocation', adminEmail = 'system_admin') {
+    if (isSupabaseConfigured && supabase) {
+      const { error } = await supabase
+        .from('event_participants')
+        .update({ status: 'REVOKED', revoked_at: new Date().toISOString(), revoked_reason: reason })
+        .eq('id', participantId);
+      if (error) throw new Error(`Failed to revoke access: ${error.message}`);
+
+      await supabase.from('participant_sessions')
+        .update({ status: 'DISCONNECTED', ended_at: new Date().toISOString() })
+        .eq('participant_id', participantId);
+
+      await supabase.from('admin_audit_logs').insert({
+        admin_id: adminEmail,
+        action: 'REVOKE_ACCESS',
+        target_id: participantId,
+        metadata: { reason },
+      });
+      return { success: true };
+    }
+
     const store = getLocalStore();
     const part = store.participants.find(p => p.id === participantId);
     if (!part) throw new Error('Participant not found');
-
     part.status = 'REVOKED';
     part.revoked_at = new Date().toISOString();
     part.revoked_reason = reason;
-
-    // Disconnect session
     const sess = store.sessions.find(s => s.participant_id === participantId);
-    if (sess) {
-      sess.status = 'DISCONNECTED';
-    }
-
-    store.auditLogs.unshift({
-      id: `audit_${Date.now()}`,
-      admin_id: adminEmail,
-      action: 'REVOKE_ACCESS',
-      target_id: participantId,
-      metadata: { seat_id: part.seat_id, reason },
-      created_at: new Date().toISOString(),
-    });
-
+    if (sess) sess.status = 'DISCONNECTED';
     saveLocalStore(store);
     window.dispatchEvent(new CustomEvent('testly100_data_changed'));
     return { success: true };
   },
 
   // 8. Restore Seat Access
-  async restoreAccess(participantId, adminEmail = 'rahulbathula04@gmail.com') {
+  async restoreAccess(participantId, adminEmail = 'system_admin') {
+    if (isSupabaseConfigured && supabase) {
+      const { error } = await supabase
+        .from('event_participants')
+        .update({ status: 'APPROVED', revoked_at: null, revoked_reason: null })
+        .eq('id', participantId);
+      if (error) throw new Error(`Failed to restore access: ${error.message}`);
+      await supabase.from('admin_audit_logs').insert({
+        admin_id: adminEmail,
+        action: 'RESTORE_ACCESS',
+        target_id: participantId,
+        metadata: {},
+      });
+      return { success: true };
+    }
+
     const store = getLocalStore();
     const part = store.participants.find(p => p.id === participantId);
     if (!part) throw new Error('Participant not found');
-
     part.status = 'APPROVED';
     part.revoked_at = null;
     part.revoked_reason = null;
-
-    store.auditLogs.unshift({
-      id: `audit_${Date.now()}`,
-      admin_id: adminEmail,
-      action: 'RESTORE_ACCESS',
-      target_id: participantId,
-      metadata: { seat_id: part.seat_id },
-      created_at: new Date().toISOString(),
-    });
-
     saveLocalStore(store);
     window.dispatchEvent(new CustomEvent('testly100_data_changed'));
     return { success: true };
