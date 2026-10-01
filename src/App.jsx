@@ -110,6 +110,7 @@ function getActiveRoute() {
     return { type: 'assessment-intelligence' };
   }
   // Canonical SEO directories and scalable India geo routes
+  if (path === '/locations/hyderabad' || path === '/locations/hyderabad/') return { type: 'hyderabad' };
   const cityExamMatch = path.match(/^\/locations\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/);
   if (cityExamMatch) return { type: 'city-exam-seo', city: cityExamMatch[1], exam: cityExamMatch[2] };
   const examMatch = path.match(/^\/exams\/([a-z0-9-]+)\/?$/);
