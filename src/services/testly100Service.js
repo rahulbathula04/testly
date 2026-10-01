@@ -835,36 +835,14 @@ export const testly100Service = {
   // 10. Heartbeat & Live Telemetry
   async recordTelemetry(participantId, eventType, payload = {}) {
     if (isSupabaseConfigured && supabase) {
-      const { data: session, error: sessionError } = await supabase
-        .from('participant_sessions')
-        .select('id')
-        .eq('participant_id', participantId)
-        .single();
-      if (sessionError) throw new Error(`Session lookup failed: ${sessionError.message}`);
-
-      const sessionUpdate = {
-        last_activity_at: new Date().toISOString(),
-      };
-      if (payload.status) sessionUpdate.status = payload.status;
-      if (payload.current_section) sessionUpdate.current_section = payload.current_section;
-      if (payload.current_question !== undefined) sessionUpdate.current_question = payload.current_question;
-      if (payload.time_remaining_seconds !== undefined) sessionUpdate.time_remaining_seconds = payload.time_remaining_seconds;
-
-      const { error: updateError } = await supabase
-        .from('participant_sessions')
-        .update(sessionUpdate)
-        .eq('id', session.id);
-      if (updateError) throw new Error(`Session update failed: ${updateError.message}`);
-
-      const { error: eventError } = await supabase
-        .from('assessment_activity_events')
-        .insert({
-          session_id: session.id,
-          participant_id: participantId,
-          event_type: eventType,
-          payload,
-        });
-      if (eventError) throw new Error(`Telemetry write failed: ${eventError.message}`);
+      const token = this.getActiveCandidateSession()?.token;
+      if (!token) throw new Error('Candidate session token is required for telemetry.');
+      const { error } = await supabase.rpc('testly_record_telemetry', {
+        p_access_token: token,
+        p_event_type: eventType,
+        p_payload: payload,
+      });
+      if (error) throw new Error(`Telemetry write failed: ${error.message}`);
       return;
     }
 
@@ -891,31 +869,17 @@ export const testly100Service = {
   // 11. Save Assessment Response
   async recordResponse(participantId, questionId, sectionId, option, timeSpent, isFlagged = false) {
     if (isSupabaseConfigured && supabase) {
-      const { data: session, error: sessionError } = await supabase
-        .from('participant_sessions')
-        .select('id')
-        .eq('participant_id', participantId)
-        .single();
-      if (sessionError) throw new Error(`Session lookup failed: ${sessionError.message}`);
-
-      const { error: responseError } = await supabase
-        .from('assessment_responses')
-        .upsert({
-          session_id: session.id,
-          question_id: questionId,
-          section_id: sectionId,
-          selected_option: option,
-          time_spent_seconds: timeSpent,
-          is_flagged: isFlagged,
-          answered_at: new Date().toISOString(),
-        }, { onConflict: 'session_id,question_id' });
-      if (responseError) throw new Error(`Response save failed: ${responseError.message}`);
-
-      const { error: sessionError2 } = await supabase
-        .from('participant_sessions')
-        .update({ last_activity_at: new Date().toISOString() })
-        .eq('id', session.id);
-      if (sessionError2) throw new Error(`Session activity update failed: ${sessionError2.message}`);
+      const token = this.getActiveCandidateSession()?.token;
+      if (!token) throw new Error('Candidate session token is required to save a response.');
+      const { error } = await supabase.rpc('testly_record_response', {
+        p_access_token: token,
+        p_question_id: questionId,
+        p_section_id: sectionId,
+        p_selected_option: option,
+        p_time_spent_seconds: timeSpent,
+        p_is_flagged: isFlagged,
+      });
+      if (error) throw new Error(`Response save failed: ${error.message}`);
       return;
     }
 
@@ -948,73 +912,26 @@ export const testly100Service = {
       throw new Error('Assessment evaluation is incomplete. A report cannot be generated from fallback values.');
     }
 
+    const totalScore = evaluationData.totalScore ?? (evaluationData.quantScore + evaluationData.verbalScore);
+
     if (isSupabaseConfigured && supabase) {
-      const { data: session, error: sessionError } = await supabase
-        .from('participant_sessions')
-        .select('id,event_id')
-        .eq('participant_id', participantId)
-        .single();
-      if (sessionError) throw new Error(`Session lookup failed: ${sessionError.message}`);
+      const token = this.getActiveCandidateSession()?.token;
+      if (!token) throw new Error('Candidate session token is required to submit the assessment.');
 
-      const { data: participant, error: participantError } = await supabase
-        .from('event_participants')
-        .select('event_id,seat_id')
-        .eq('id', participantId)
-        .single();
-      if (participantError) throw new Error(`Participant lookup failed: ${participantError.message}`);
-
-      const totalScore = evaluationData.totalScore ?? (evaluationData.quantScore + evaluationData.verbalScore);
-      const { data: attempt, error: attemptError } = await supabase
-        .from('assessment_attempts')
-        .insert({
-          session_id: session.id,
-          participant_id: participantId,
-          event_id: participant.event_id,
-          raw_quant_score: evaluationData.rawQuantScore ?? 0,
-          raw_verbal_score: evaluationData.rawVerbalScore ?? 0,
-          practice_quant_score: evaluationData.quantScore,
-          practice_verbal_score: evaluationData.verbalScore,
-          total_practice_score: totalScore,
-          accuracy_pct: evaluationData.accuracyPct,
-          total_time_spent_seconds: evaluationData.totalTimeSpentSeconds ?? 0,
-          completed_at: new Date().toISOString(),
-        })
-        .select()
-        .single();
-      if (attemptError) throw new Error(`Attempt save failed: ${attemptError.message}`);
-
-      const { data: report, error: reportError } = await supabase
-        .from('participant_reports')
-        .upsert({
-          participant_id: participantId,
-          attempt_id: attempt.id,
-          practice_quant_score: evaluationData.quantScore,
-          practice_verbal_score: evaluationData.verbalScore,
-          total_practice_score: totalScore,
-          accuracy_pct: evaluationData.accuracyPct,
-          section_breakdown: evaluationData.sectionBreakdown || {},
-          skill_matrix: evaluationData.skillMatrix || {},
-          recommended_focus: evaluationData.recommendedFocus || [],
-          study_plan: evaluationData.studyPlan || [],
-          generated_at: new Date().toISOString(),
-        }, { onConflict: 'participant_id' })
-        .select()
-        .single();
-      if (reportError) throw new Error(`Report generation failed: ${reportError.message}`);
-
-      const { error: sessionUpdateError } = await supabase
-        .from('participant_sessions')
-        .update({ status: 'SUBMITTED', ended_at: new Date().toISOString(), last_activity_at: new Date().toISOString() })
-        .eq('id', session.id);
-      if (sessionUpdateError) throw new Error(`Session completion failed: ${sessionUpdateError.message}`);
-
-      const { error: participantUpdateError } = await supabase
-        .from('event_participants')
-        .update({ status: 'COMPLETED' })
-        .eq('id', participantId);
-      if (participantUpdateError) throw new Error(`Participant completion failed: ${participantUpdateError.message}`);
-
-      return report;
+      const { data, error } = await supabase.rpc('testly_submit_assessment', {
+        p_access_token: token,
+        p_quant_score: evaluationData.quantScore,
+        p_verbal_score: evaluationData.verbalScore,
+        p_total_score: totalScore,
+        p_accuracy_pct: evaluationData.accuracyPct,
+        p_total_time_spent_seconds: evaluationData.totalTimeSpentSeconds ?? 0,
+        p_section_breakdown: evaluationData.sectionBreakdown || {},
+        p_skill_matrix: evaluationData.skillMatrix || {},
+        p_recommended_focus: evaluationData.recommendedFocus || [],
+        p_study_plan: evaluationData.studyPlan || [],
+      });
+      if (error) throw new Error(`Assessment submission failed: ${error.message}`);
+      return data;
     }
 
     const store = getLocalStore();
@@ -1026,7 +943,6 @@ export const testly100Service = {
     sess.ended_at = new Date().toISOString();
     part.status = 'COMPLETED';
 
-    const totalScore = evaluationData.totalScore ?? (evaluationData.quantScore + evaluationData.verbalScore);
     const report = {
       id: `rep_${part.id}`,
       participant_id: part.id,
