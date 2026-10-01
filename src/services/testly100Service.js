@@ -908,6 +908,9 @@ export const testly100Service = {
     const part = store.participants.find(p => p.id === participantId);
     const sess = store.sessions.find(s => s.participant_id === participantId);
     if (!part || !sess) throw new Error('Participant or session not found');
+    if (!evaluationData || !Number.isFinite(evaluationData.quantScore) || !Number.isFinite(evaluationData.verbalScore) || !Number.isFinite(evaluationData.accuracyPct)) {
+      throw new Error('Assessment evaluation is incomplete. A report cannot be generated from fallback values.');
+    }
 
     sess.status = 'COMPLETED';
     sess.ended_at = new Date().toISOString();
@@ -918,10 +921,10 @@ export const testly100Service = {
       id: reportId,
       participant_id: part.id,
       seat_id: part.seat_id,
-      practice_quant_score: evaluationData.quantScore || 156,
-      practice_verbal_score: evaluationData.verbalScore || 154,
-      total_practice_score: (evaluationData.quantScore || 156) + (evaluationData.verbalScore || 154),
-      accuracy_pct: evaluationData.accuracyPct || 74.5,
+      practice_quant_score: evaluationData.quantScore,
+      practice_verbal_score: evaluationData.verbalScore,
+      total_practice_score: evaluationData.totalScore ?? ((evaluationData.quantScore ?? 0) + (evaluationData.verbalScore ?? 0)),
+      accuracy_pct: evaluationData.accuracyPct,
       section_breakdown: evaluationData.sectionBreakdown || {},
       skill_matrix: evaluationData.skillMatrix || {},
       recommended_focus: evaluationData.recommendedFocus || [],
