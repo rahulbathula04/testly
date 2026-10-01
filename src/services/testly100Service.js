@@ -1140,8 +1140,8 @@ export const testly100Service = {
   },
 
   // 18. 100 PRIVATE SEQUENTIAL INVITE LINKS (Generate, Track, Copy, Export)
-  get100InviteLinks(baseUrl = null) {
-    const store = getLocalStore();
+  get100InviteLinks(baseUrl = null, sourceData = null) {
+    const store = sourceData || getLocalStore();
     const domain = baseUrl || (typeof window !== 'undefined' ? window.location.origin : 'https://testly.in');
     
     // Ensure 100 sequential invites exist
