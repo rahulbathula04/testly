@@ -27,61 +27,30 @@ import { EXAM_DATA, formatINR } from '../data/examOfferings';
 
 export { EXAM_DATA };
 
-const POPULAR_EXAMS = [
-  {
-    id: 'GRE',
-    title: 'GRE',
-    logo: <EtsGreLogo className="h-6" />,
-    popular: true,
-    refPrice: 26542,
-    testlyPrice: 20499,
-    saving: 6043,
-    forexSaved: 1180,
-    btnText: 'Book GRE with Testly'
-  },
-  {
-    id: 'TOEFL',
-    title: 'TOEFL',
-    logo: <EtsToeflLogo className="h-6" />,
-    popular: false,
-    refPrice: 17999,
-    testlyPrice: 13999,
-    saving: 4000,
-    forexSaved: 850,
-    btnText: 'Book TOEFL with Testly'
-  },
-  {
-    id: 'PTE',
-    title: 'PTE',
-    logo: <PteLogo className="h-6" />,
-    popular: false,
-    refPrice: 18900,
-    testlyPrice: 14999,
-    saving: 3901,
-    forexSaved: 890,
-    btnText: 'Book PTE with Testly'
-  },
-  {
-    id: 'Duolingo',
-    title: 'DET',
-    logo: <DuolingoLogo className="h-6" />,
-    popular: false,
-    refPrice: 5800,
-    testlyPrice: 5499,
-    saving: 301,
-    forexSaved: 280,
-    btnText: 'Book DET with Testly'
-  }
-];
+const POPULAR_EXAMS = ['GRE', 'TOEFL', 'PTE', 'Duolingo'].map((id) => {
+  const data = EXAM_DATA[id];
+  return {
+    id,
+    title: data.label,
+    logo: id === 'GRE' ? <EtsGreLogo className="h-6" /> :
+          id === 'TOEFL' ? <EtsToeflLogo className="h-6" /> :
+          id === 'PTE' ? <PteLogo className="h-6" /> :
+          <DuolingoLogo className="h-6" />,
+    popular: id === 'GRE',
+    testlyPrice: data.testlyPrice,
+    btnText: `Check ${data.label} options`
+  };
+});
 
-const CALCULATOR_EXAMS = [
-  { id: 'GRE', label: 'GRE® General', retail: 26542, testly: 20499, save: 6043, forexFee: 1180 },
-  { id: 'TOEFL', label: 'TOEFL iBT®', retail: 17999, testly: 13999, save: 4000, forexFee: 850 },
-  { id: 'PTE', label: 'PTE Academic', retail: 18900, testly: 14999, save: 3901, forexFee: 890 },
-  { id: 'Duolingo', label: 'Duolingo DET', retail: 5800, testly: 5499, save: 301, forexFee: 280 },
-  { id: 'IELTS', label: 'IELTS Academic', retail: 18200, testly: 18200, save: 0, forexFee: 0, note: 'Zero-markup concierge booking' },
-  { id: 'GMAT', label: 'GMAT Focus', retail: 24800, testly: 24800, save: 0, forexFee: 0, note: 'Center slot & ID audit' }
-];
+const CALCULATOR_EXAMS = ['GRE', 'TOEFL', 'PTE', 'Duolingo', 'IELTS', 'GMAT'].map((id) => {
+  const data = EXAM_DATA[id];
+  return {
+    id,
+    label: data.fullName,
+    testly: data.testlyPrice,
+    note: 'Provider fee and final Testly offer are confirmed before payment.'
+  };
+});
 
 export default function PriceProof({ onBookTest, onOpenAgreement }) {
   const [activeTab, setActiveTab] = useState('GRE');
@@ -156,11 +125,11 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight font-['DM_Serif_Display',Georgia,serif]">
-                Check Your Exact Exam Savings Live.
+                Compare the Current Exam Cost
               </h2>
 
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Select your exam to see the net cost after eliminating retail bank markups (3.5% forex + 18% GST) and applying Testly's verified institutional advantages.
+                Select an exam to see the current Testly-listed price. Provider fees, availability and any applicable offer are confirmed before payment.
               </p>
 
               {/* Exam Selector Pills */}
@@ -197,7 +166,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 </span>
                 <span className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  Verified Official Fee Schedule
+                  Current Testly Listing
                 </span>
               </div>
 
@@ -212,20 +181,12 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 >
                   {/* Retail Price */}
                   <div className="flex items-center justify-between text-slate-300">
-                    <span>Official Foreign Retail Price:</span>
-                    <span className="line-through text-slate-400 font-medium">₹{currentCalc.retail.toLocaleString('en-IN')}</span>
+                    <span>Provider fee:</span>
+                    <span className="text-slate-300 font-medium">Confirm live fee</span>
                   </div>
 
                   {/* Bank Forex */}
-                  {currentCalc.forexFee > 0 && (
-                    <div className="flex items-center justify-between text-amber-300 text-xs">
-                      <span className="flex items-center gap-1">
-                        <Info className="w-3 h-3 text-amber-400" />
-                        Hidden Bank Forex & GST Markup:
-                      </span>
-                      <span className="line-through">+₹{currentCalc.forexFee.toLocaleString('en-IN')}</span>
-                    </div>
-                  )}
+
 
                   {/* Testly Net Price */}
                   <div className="flex items-center justify-between text-white font-bold pt-2 border-t border-white/10 text-base sm:text-lg">
@@ -234,31 +195,15 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                   </div>
 
                   {/* Direct Savings Callout */}
-                  {currentCalc.save > 0 ? (
-                    <div className="bg-emerald-500/20 border border-emerald-400/40 rounded-xl p-3 flex items-center justify-between">
-                      <div>
-                        <div className="text-[10px] uppercase font-extrabold text-emerald-300">Your Direct Net Savings</div>
-                        <div className="text-xs text-slate-200">Kept in your bank account</div>
-                      </div>
-                      <div className="text-xl sm:text-2xl font-black text-emerald-300">
-                        ₹{currentCalc.save.toLocaleString('en-IN')}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="bg-blue-500/20 border border-blue-400/40 rounded-xl p-3 flex items-center justify-between">
-                      <div className="text-xs text-blue-200">
-                        {currentCalc.note || 'Zero bank markup + zero-defect passport verification'}
-                      </div>
-                      <div className="text-xs font-bold text-blue-300">
-                        Included
-                      </div>
-                    </div>
-                  )}
+                  <div className="bg-blue-500/20 border border-blue-400/40 rounded-xl p-3 flex items-center justify-between">
+                    <div className="text-xs text-blue-200">{currentCalc.note}</div>
+                    <div className="text-xs font-bold text-blue-300">Verify</div>
+                  </div>
 
                   {/* ₹199 Concierge Guarantee */}
                   <div className="pt-1 text-[11px] text-slate-300 flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span>Includes ₹199 concierge: character-by-character passport audit by the Testly Registration Team.</span>
+                    <span>Optional ₹199 registration assistance. Final scope and fee are shown before payment.</span>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -272,7 +217,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                   onClick={() => onBookTest(currentCalc.id)}
                   className="w-full bg-[#22C55E] text-slate-950 font-black text-xs sm:text-sm py-3.5 px-4 rounded-xl transition-shadow shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Lock {currentCalc.id} Fee Schedule & Check Available Slots</span>
+                  <span>Check {currentCalc.id} price & available options</span>
                   <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </div>
@@ -298,10 +243,10 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                 ALL-INCLUSIVE INR FEE SCHEDULE
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight font-['DM_Serif_Display',Georgia,serif]">
-                Today's Verified Exam Prices
+                Current Testly Exam Pricing
               </h2>
               <p className="text-xs sm:text-sm text-[#64748B] mt-0.5">
-                Every price includes institutional discounts and professional concierge booking assistance.
+                Prices shown are Testly listings. Provider fees, availability and final payable amounts are confirmed before payment.
               </p>
             </div>
 
@@ -355,10 +300,7 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
 
                   {/* Reference Price */}
                   <div>
-                    <span className="text-xs font-medium text-[#94A3B8] line-through">
-                      ₹{ex.refPrice.toLocaleString('en-IN')}
-                    </span>
-                    <span className="text-[10px] text-[#94A3B8] font-medium ml-1.5">ref. foreign fee</span>
+                    <span className="text-xs font-medium text-[#94A3B8]">Provider fee: verify live</span>
                   </div>
 
                   {/* Testly Price + Savings Chip */}
@@ -367,12 +309,10 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
                       <span className="text-[28px] font-black text-[#0F172A] tracking-tight leading-none">
                         ₹{ex.testlyPrice.toLocaleString('en-IN')}
                       </span>
-                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
-                        Save ₹{ex.saving.toLocaleString('en-IN')}
-                      </span>
+                      
                     </div>
                     <span className="text-[10px] text-[#64748B] font-medium uppercase tracking-wider block">
-                      Authorized Institutional Fee
+                      Testly listed price
                     </span>
                   </div>
 
@@ -384,8 +324,8 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
 
                   {/* Verification Note */}
                   <div className="text-[10px] text-[#64748B] flex items-center justify-between">
-                    <span>Zero Card Forex Markup</span>
-                    <span className="text-emerald-700 font-bold">Save ₹{ex.forexSaved}</span>
+                    <span>Final INR total shown before payment</span>
+                    
                   </div>
                 </div>
 
@@ -422,10 +362,10 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
               <span>THE TESTLY FOREX SHIELD</span>
             </div>
             <h3 className="text-base sm:text-lg font-bold text-[#0F172A]">
-              Why paying directly on foreign portals costs you ₹800–₹1,400 extra.
+              Understand the full cost before you pay.
             </h3>
             <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
-              When paying with Indian credit or debit cards on ETS or Pearson, banks add 3.5% foreign exchange markups + 18% GST on the fee. Testly uses corporate enterprise billing rails — so you pay in clean INR with zero bank markup.
+              Provider pricing, payment methods, taxes and bank charges can vary. Testly shows the applicable price and service charge before payment so you can compare the total cost.
             </p>
           </div>
 
@@ -447,8 +387,8 @@ export default function PriceProof({ onBookTest, onOpenAgreement }) {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-1">
           {[
             { icon: FileText, title: 'Profile Verification Audit', sub: 'Verified by Testly Team', isRupee: false },
-            { icon: ShieldCheck, title: 'Zero Error Check', sub: 'Passport name match guarantee', isRupee: false },
-            { icon: null, title: 'Clean INR Fee Structure', sub: '0% foreign transaction markup', isRupee: true },
+            { icon: ShieldCheck, title: 'Registration Review', sub: 'Passport and name review', isRupee: false },
+            { icon: null, title: 'Clear INR Pricing', sub: '0% foreign transaction markup', isRupee: true },
             { icon: Headphones, title: 'Live WhatsApp Desk', sub: 'Direct line: +91 93473 79041', isRupee: false }
           ].map((pillar, idx) => {
             const Icon = pillar.icon;
