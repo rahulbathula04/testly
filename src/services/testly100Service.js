@@ -1237,8 +1237,8 @@ export const testly100Service = {
     });
   },
 
-  copyAll100LinksFormatted(baseUrl = null) {
-    const links = this.get100InviteLinks(baseUrl);
+  copyAll100LinksFormatted(baseUrl = null, sourceData = null) {
+    const links = this.get100InviteLinks(baseUrl, sourceData);
     const domain = baseUrl || (typeof window !== 'undefined' ? window.location.origin : 'https://testly.in');
     
     let text = `TESTLY 100 · 100 PRIVATE GRE DIAGNOSTIC INVITATIONS\n`;
@@ -1259,8 +1259,8 @@ export const testly100Service = {
     return text;
   },
 
-  export100LinksCSV(baseUrl = null) {
-    const links = this.get100InviteLinks(baseUrl);
+  export100LinksCSV(baseUrl = null, sourceData = null) {
+    const links = this.get100InviteLinks(baseUrl, sourceData);
     const header = 'Seat Number,Seat ID,Invite Code,Invite Link,Status,Applicant Name,Applicant Email,College\n';
     const rows = links.map(l => 
       `"${l.index}","${l.seatId}","${l.code}","${l.url}","${l.status}","${l.applicantName || ''}","${l.applicantEmail || ''}","${l.applicantCollege || ''}"`
