@@ -135,6 +135,40 @@ export function injectLocalBusinessSchema(location) {
   scriptEl.textContent = JSON.stringify(schemaData, null, 2);
 }
 
+export function injectOrganizationSchema({ city, state, url }) {
+  if (typeof document === 'undefined') return;
+
+  const scriptId = 'testly-dynamic-organization-schema';
+  let scriptEl = document.getElementById(scriptId);
+  if (!scriptEl) {
+    scriptEl = document.createElement('script');
+    scriptEl.id = scriptId;
+    scriptEl.type = 'application/ld+json';
+    document.head.appendChild(scriptEl);
+  }
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    'name': 'Testly',
+    'url': url || 'https://www.testly.co.in/',
+    'description': 'Independent exam information and registration assistance for candidates in India.',
+    'areaServed': city && state ? [
+      { '@type': 'City', 'name': city },
+      { '@type': 'AdministrativeArea', 'name': state },
+      { '@type': 'Country', 'name': 'India' }
+    ] : [{ '@type': 'Country', 'name': 'India' }],
+    'serviceType': [
+      'Exam information',
+      'Exam registration assistance',
+      'Exam fee comparison',
+      'Test-centre planning'
+    ]
+  };
+
+  scriptEl.textContent = JSON.stringify(schemaData, null, 2);
+}
+
 export function injectExamAssessmentSchema() {
   if (typeof document === 'undefined') return;
 

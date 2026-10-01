@@ -44,7 +44,7 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
               </span>
             </a>
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              India's verified exam registration partner. Save on fees with corporate vouchers and professional concierge assistance.
+              Independent exam information and registration assistance for candidates in India. Final exam fees, appointments and provider policies are controlled by the relevant examination provider.
             </p>
           </div>
 
@@ -84,10 +84,11 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
               Legal
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Terms of Service</button></li>
-              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Privacy Policy</button></li>
-              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Refund Policy</button></li>
-              <li><button onClick={onOpenAgreement} className="hover:text-white transition-colors text-left">Disclaimer</button></li>
+              <li><a href="/legal/terms" onClick={(e) => handleClick(e, '/legal/terms')} className="hover:text-white transition-colors">Terms of Service</a></li>
+              <li><a href="/legal/privacy" onClick={(e) => handleClick(e, '/legal/privacy')} className="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="/legal/refunds" onClick={(e) => handleClick(e, '/legal/refunds')} className="hover:text-white transition-colors">Refund Policy</a></li>
+              <li><a href="/legal/disclaimer" onClick={(e) => handleClick(e, '/legal/disclaimer')} className="hover:text-white transition-colors">Disclaimer</a></li>
+              <li><a href="/legal/local" onClick={(e) => handleClick(e, '/legal/local')} className="hover:text-white transition-colors">Local Accuracy</a></li>
             </ul>
           </div>
 
@@ -162,15 +163,15 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
         <div className="pt-6 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-slate-400 text-xs">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-            <span className="font-semibold text-slate-300">100% Official Institutional Vouchers</span>
+            <span className="font-semibold text-slate-300">Independent registration assistance</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
-            <span className="font-semibold text-slate-300">Govt. of India MCA Registered</span>
+            <span className="font-semibold text-slate-300">Provider terms apply</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-purple-400 shrink-0" />
-            <span className="font-semibold text-slate-300">Zero Error Registration Guarantee</span>
+            <span className="font-semibold text-slate-300">Verify final details before payment</span>
           </div>
         </div>
 

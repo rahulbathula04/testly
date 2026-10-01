@@ -3,7 +3,7 @@ import { MapPin, ArrowRight, CheckCircle2, Clock3, FileText, Navigation, Search,
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { EXAM_DIRECTORY } from '../data/seo/geoData';
-import { updatePageMeta, injectBreadcrumbSchema, injectFAQSchema } from '../utils/seoEngine';
+import { updatePageMeta, injectBreadcrumbSchema, injectOrganizationSchema } from '../utils/seoEngine';
 
 const LOCAL_INTENTS = [
   { name: 'Madhapur & HITECH City', text: 'Useful for candidates working or studying around the western IT corridor. Check the exact provider venue and appointment before travelling.', anchor: 'Madhapur exam guide' },
@@ -36,12 +36,7 @@ export default function HyderabadHubPage({ onOpenBooking, onNavigate }) {
       { name: 'Locations', url: 'https://www.testly.co.in/locations' },
       { name: 'Hyderabad', url: 'https://www.testly.co.in/locations/hyderabad' }
     ]);
-    injectFAQSchema([
-      { question: 'Where can I take international exams in Hyderabad?', answer: 'Availability depends on the exam, provider, delivery mode and appointment date. Testly helps candidates understand the provider booking flow and points them to current official availability rather than maintaining a static centre list.' },
-      { question: 'Which exams can I register for in Hyderabad?', answer: 'Testly provides planning and registration information for GRE, IELTS, TOEFL, PTE, GMAT, SAT and Duolingo English Test. Exact availability is controlled by the respective provider.' },
-      { question: 'What should I check before booking an exam in Hyderabad?', answer: 'Check the exact exam version, current India fee, test date, venue, accepted identification, cancellation or rescheduling rules and score-reporting timeline before payment.' },
-      { question: 'Does Testly operate the test centres in Hyderabad?', answer: 'No. Testly is an independent exam information and registration assistance service. Exam providers control their own test centres, appointments, policies and final charges.' }
-    ]);
+    injectOrganizationSchema({ city: 'Hyderabad', state: 'Telangana', url: 'https://www.testly.co.in/locations/hyderabad' });
   }, []);
 
   return (
@@ -162,6 +157,25 @@ export default function HyderabadHubPage({ onOpenBooking, onNavigate }) {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="py-14 bg-white border-t border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Primary sources</span>
+            <h2 className="mt-2 text-3xl font-serif">Use the provider source for the final booking decision</h2>
+            <p className="mt-3 max-w-3xl text-slate-600 leading-relaxed">Testly can explain the process and compare information, but the examination provider controls the appointment, final fee and exam rules. These official sources are the final verification layer.</p>
+            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                ['GRE', 'ETS India schedule and location search', 'https://www.in.ets.org/india/gre/test-takers/general-test/schedule.html'],
+                ['TOEFL', 'ETS India test-centre information', 'https://www.in.ets.org/toefl-test-centre.html'],
+                ['IELTS', 'IELTS official Hyderabad centre listings', 'https://ielts.org/test-centres/hyderabad'],
+                ['PTE', 'Pearson PTE availability and centre search', 'https://www.pearsonpte.com/'],
+                ['GMAT', 'GMAT appointment and test-centre guidance', 'https://support.mba.com/hc/en-us/articles/41312708914971-GMAT-Where-and-When-Can-I-Take-the-Exam'],
+                ['SAT', 'College Board registration and test-centre search', 'https://satsuite.collegeboard.org/sat/registration']
+              ].map(([name,label,url]) => <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-blue-300"><span className="text-xs font-bold text-blue-700">{name}</span><h3 className="mt-2 font-bold">{label}</h3><span className="mt-3 inline-block text-xs font-semibold text-slate-500">Official provider source ↗</span></a>)}
+            </div>
+            <p className="mt-6 text-xs text-slate-500">Verification note: provider pages and appointment inventories can change. Page content should be rechecked before publishing a specific fee, venue or availability statement.</p>
           </div>
         </section>
 

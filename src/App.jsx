@@ -25,6 +25,7 @@ import ExitIntentModal      from './components/ExitIntentModal';
 
 // ── Code-Split Secondary Pages (Lazy loaded for peak mobile performance) ────
 const HyderabadHubPage     = lazy(() => import('./pages/HyderabadHubPage'));
+const LegalPage             = lazy(() => import('./pages/LegalPage'));
 const ExamSeoPage          = lazy(() => import('./pages/ExamSeoPage'));
 const LocationSeoPage      = lazy(() => import('./pages/LocationSeoPage'));
 const CityExamPage         = lazy(() => import('./pages/CityExamPage'));
@@ -110,6 +111,8 @@ function getActiveRoute() {
     return { type: 'assessment-intelligence' };
   }
   // Canonical SEO directories and scalable India geo routes
+  const legalMatch = path.match(/^\/legal\/(terms|privacy|refunds|disclaimer|local)\/?$/);
+  if (legalMatch) return { type: 'legal', section: legalMatch[1] };
   if (path === '/locations/hyderabad' || path === '/locations/hyderabad/') return { type: 'hyderabad' };
   const cityExamMatch = path.match(/^\/locations\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/);
   if (cityExamMatch) return { type: 'city-exam-seo', city: cityExamMatch[1], exam: cityExamMatch[2] };
@@ -236,6 +239,9 @@ export default function App() {
 
       case 'hyderabad':
         return <HyderabadHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'legal':
+        return <LegalPage section={currentRoute.section} onNavigate={navigate} />;
 
       case 'madhapur':
         return <MadhapurHubPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
