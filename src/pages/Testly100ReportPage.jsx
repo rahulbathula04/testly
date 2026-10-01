@@ -30,53 +30,14 @@ export default function Testly100ReportPage({ reportId, onNavigate }) {
         if (match) id = match[1];
       }
 
-      if (id) {
-        const r = await testly100Service.getReport(id);
-        if (r) {
-          setReport(r);
-        } else {
-          // Provide standard calibrated report display
-          setReport({
-            id: `rep_${id}`,
-            seat_id: id.toUpperCase().includes('TESTLY') ? id.toUpperCase() : 'TESTLY-100',
-            practice_quant_score: 158,
-            practice_verbal_score: 154,
-            total_practice_score: 312,
-            accuracy_pct: 77.8,
-            section_breakdown: {
-              quant: { correct: 18, total: 27, timePerQuestionSec: 94 },
-              verbal: { correct: 17, total: 27, timePerQuestionSec: 82 }
-            },
-            skill_matrix: {
-              arithmetic: 'Strong',
-              algebra: 'Proficient',
-              geometry: 'Needs Focus',
-              dataAnalysis: 'Proficient',
-              textCompletion: 'Strong',
-              sentenceEquivalence: 'Proficient',
-              readingComp: 'Needs Focus'
-            },
-            study_plan: [
-              { day: 'Day 1', task: 'Review Geometry Coordinate Geometry & Polygon proofs' },
-              { day: 'Day 2', task: 'Practice 25 high-density Text Completion 3-blank items' },
-              { day: 'Day 3', task: 'Timed Data Analysis simulation (standard deviation & quartiles)' },
-              { day: 'Day 4', task: 'Long Reading Comprehension dense inference passages' },
-              { day: 'Day 5', task: 'Full timed section practice with on-screen calculator drills' },
-              { day: 'Day 6', task: 'Targeted error log review of all flagged diagnostic questions' },
-              { day: 'Day 7', task: 'Section-Adaptive Simulation Testly Mock #2' }
-            ]
-          });
-        }
-      } else {
-        // Fallback demo report
-        setReport({
-          seat_id: 'TESTLY-COHORT',
-          practice_quant_score: 158,
-          practice_verbal_score: 154,
-          total_practice_score: 312,
-          accuracy_pct: 77.8,
-        });
+      if (!id) {
+        setReport(null);
+        setIsLoading(false);
+        return;
       }
+
+      const r = await testly100Service.getReport(id);
+      setReport(r || null);
       setIsLoading(false);
     }
     load();
@@ -87,6 +48,19 @@ export default function Testly100ReportPage({ reportId, onNavigate }) {
       <div className="min-h-screen bg-[#FAF9F6] flex flex-col items-center justify-center p-8 font-mono text-xs">
         <div className="w-8 h-8 rounded-full border-2 border-[#1E3A8A] border-t-transparent animate-spin mb-3" />
         <span>Compiling Calibrated Testly Diagnostic Report...</span>
+      </div>
+    );
+  }
+
+  if (!report) {
+    return (
+      <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center p-6 font-[Inter,system-ui,sans-serif]">
+        <div className="max-w-md w-full bg-white border border-slate-200 rounded-3xl p-8 text-center shadow-sm">
+          <AlertCircle className="w-8 h-8 text-amber-600 mx-auto mb-3" />
+          <h1 className="text-xl font-bold text-[#0F172A]">Report unavailable</h1>
+          <p className="text-sm text-[#64748B] mt-2">This diagnostic report could not be found or you are not authorized to view it.</p>
+          <button onClick={() => onNavigate?.('/')} className="mt-5 px-4 py-2.5 rounded-xl bg-[#0F172A] text-white text-sm font-bold">Back to Testly</button>
+        </div>
       </div>
     );
   }
@@ -163,7 +137,7 @@ export default function Testly100ReportPage({ reportId, onNavigate }) {
                 {total}
               </div>
               <p className="text-xs text-blue-100">
-                Scale 260–340 · Based on calibrated difficulty routing
+                Testly diagnostic scale · Not an official ETS score
               </p>
             </div>
 
@@ -186,7 +160,7 @@ export default function Testly100ReportPage({ reportId, onNavigate }) {
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-[#64748B] flex items-start gap-2.5">
             <ShieldCheck className="w-4 h-4 text-[#1E3A8A] shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong>Testly Practice Score & Diagnostic Report Doctrine:</strong> This score is an uninflated diagnostic simulation result. It does not represent an official ETS score or guarantee official performance. Use it strictly to diagnose timing bottlenecks and topic weaknesses before paying your ₹25,522 exam registration fee.
+              <strong>Testly Practice Score & Diagnostic Report Doctrine:</strong> This score is an uninflated diagnostic simulation result. It does not represent an official ETS score or guarantee official performance. Use it strictly to diagnose timing bottlenecks and topic weaknesses before registering for the official exam.
             </p>
           </div>
 
