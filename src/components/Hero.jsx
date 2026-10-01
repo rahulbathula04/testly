@@ -184,7 +184,7 @@ export default function Hero({ onBookTest }) {
                 <span className="text-[11px] font-bold text-[#0F172A] ml-1">4.9/5</span>
               </div>
               <p className="text-[12px] text-[#64748B]">
-                <strong className="font-bold text-[#0F172A]">5,000+</strong> Indian students guided across India.
+                <strong className="font-bold text-[#0F172A]">4,000+</strong> Indian students guided across India.
               </p>
             </div>
           </motion.div>
