@@ -1018,14 +1018,31 @@ export const testly100Service = {
 
   // 15. Create Shareable Invite Token
   async createInvite(nameOrCode, captainId = null, maxUses = null) {
-    const store = getLocalStore();
-    // Generate secure non-guessable token e.g. 7KQ9-X2M4
-    const randomSuffix = Math.random().toString(36).substring(2, 6).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    const randomSuffix = crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase();
     const cleanCode = nameOrCode ? nameOrCode.trim().toUpperCase() : `TESTLY-${randomSuffix}`;
 
+    if (isSupabaseConfigured && supabase) {
+      const { data, error } = await supabase
+        .from('event_invites')
+        .insert({
+          event_id: CANONICAL_TESTLY_100_EVENT.id,
+          code: cleanCode,
+          captain_id: captainId || null,
+          max_applications: maxUses ? parseInt(maxUses, 10) : null,
+          is_active: true,
+        })
+        .select()
+        .single();
+
+      if (error) throw new Error(`Failed to create invite: ${error.message}`);
+      return { success: true, invite: data };
+    }
+
+    const store = getLocalStore();
     if (store.invites.some(i => i.code === cleanCode)) {
       throw new Error('An invite with this code already exists.');
     }
+
     const newInvite = {
       id: `inv_${Date.now()}`,
       code: cleanCode,
