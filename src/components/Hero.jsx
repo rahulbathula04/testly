@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, BadgeCheck, Clock, ShieldCheck, FileCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { TESTLY_TRUST } from '../config/testlyTrust';
 
 const pillars = [
   { icon: BadgeCheck, label: 'SAVE ₹1,800–₹7,500', sub: 'Verified institutional pricing' },
@@ -184,7 +185,7 @@ export default function Hero({ onBookTest }) {
                 <span className="text-[11px] font-bold text-[#0F172A] ml-1">4.9/5</span>
               </div>
               <p className="text-[12px] text-[#64748B]">
-                <strong className="font-bold text-[#0F172A]">4,000+</strong> Indian students guided across India.
+                <strong className="font-bold text-[#0F172A]">{TESTLY_TRUST.studentsGuided}</strong> Indian students guided across India.
               </p>
             </div>
           </motion.div>
