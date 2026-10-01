@@ -65,10 +65,10 @@ export default function Testly100ReportPage({ reportId, onNavigate }) {
     );
   }
 
-  const quant = report?.practice_quant_score || 158;
-  const verbal = report?.practice_verbal_score || 154;
-  const total = report?.total_practice_score || (quant + verbal);
-  const seatId = report?.seat_id || 'TESTLY-100';
+  const quant = report.practice_quant_score;
+  const verbal = report.practice_verbal_score;
+  const total = report.total_practice_score;
+  const seatId = report.seat_id;
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#0F172A] font-[Inter,system-ui,sans-serif] selection:bg-[#1E3A8A] selection:text-white flex flex-col justify-between">
