@@ -945,14 +945,31 @@ export const testly100Service = {
 
   // 13. Get Report by Participant or Seat
   async getReport(identifier) {
+    if (!identifier) return null;
+
+    if (isSupabaseConfigured && supabase) {
+      const token = this.getActiveCandidateSession()?.token;
+      if (!token) return null;
+
+      const access = await this.verifyCandidateAccess(token);
+      const report = access?.report;
+      if (!report) return null;
+
+      const clean = identifier.trim().toLowerCase();
+      return report.id?.toLowerCase() === clean ||
+        report.participant_id?.toLowerCase() === clean ||
+        report.seat_id?.toLowerCase() === clean
+        ? report
+        : null;
+    }
+
     const store = getLocalStore();
     const clean = identifier.trim().toLowerCase();
-    const report = store.reports.find(r => 
+    return store.reports.find(r =>
       r.id.toLowerCase() === clean ||
       r.participant_id.toLowerCase() === clean ||
       r.seat_id.toLowerCase() === clean
-    );
-    return report || null;
+    ) || null;
   },
 
   // 14. Get All Data Collections for Command Center
