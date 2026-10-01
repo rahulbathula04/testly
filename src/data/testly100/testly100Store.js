@@ -364,10 +364,7 @@ export function logAdminAction(adminUser, action, targetId, details = {}) {
 export function getCaptainsReport() {
   const apps = getApplications();
   const captains = [
-    { code: 'CAPTAIN01', name: 'Arjun K. (CBIT Campus Ambassador)' },
-    { code: 'CAPTAIN02', name: 'Priya M. (BITS Hyderabad Representative)' },
-    { code: 'CAPTAIN03', name: 'Rohan T. (VNR VJIET Student Lead)' },
-    { code: 'DIRECT', name: 'Direct Public Invite / Organic' }
+    { code: 'DIRECT', name: 'Direct / Organic' }
   ];
 
   return captains.map(cap => {
