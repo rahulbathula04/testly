@@ -900,7 +900,39 @@ export const testly100Service = {
   },
 
   // 14. Get All Data Collections for Command Center
-  getAllData() {
+  async getAllData() {
+    if (isSupabaseConfigured && supabase) {
+      const tables = [
+        ['events', 'event'],
+        ['event_applications', 'applications'],
+        ['event_participants', 'participants'],
+        ['participant_sessions', 'sessions'],
+        ['assessment_responses', 'responses'],
+        ['assessment_activity_events', 'activityEvents'],
+        ['participant_reports', 'reports'],
+        ['admin_alerts', 'alerts'],
+        ['admin_audit_logs', 'auditLogs'],
+        ['event_invites', 'invites'],
+        ['captains', 'captains'],
+      ];
+
+      const results = await Promise.all(
+        tables.map(async ([table]) => {
+          const query = supabase.from(table).select('*');
+          const { data, error } = table === 'events'
+            ? await query.eq('slug', 'testly-100').maybeSingle()
+            : await query.eq('event_id', CANONICAL_TESTLY_100_EVENT.id);
+
+          if (error) throw new Error(`Failed to load ${table}: ${error.message}`);
+          return data || (table === 'events' ? null : []);
+        })
+      );
+
+      const output = { event: null, applications: [], participants: [], sessions: [], responses: [], activityEvents: [], reports: [], alerts: [], auditLogs: [], invites: [], captains: [] };
+      tables.forEach(([, key], index) => { output[key] = results[index]; });
+      return output;
+    }
+
     const store = getLocalStore();
     return {
       event: store.event,
