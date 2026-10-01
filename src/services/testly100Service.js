@@ -1097,72 +1097,34 @@ export const testly100Service = {
     } catch {}
   },
 
-  // 17. CENTRAL ASSESSMENT ENTITLEMENT GUARD (Rule: No approved participant = No Assessment OS)
+  // 17. CENTRAL ASSESSMENT ENTITLEMENT GUARD
   async getAssessmentEntitlement(explicitToken = null) {
-    const store = getLocalStore();
-    const active = explicitToken || this.getActiveCandidateSession()?.token || this.getActiveCandidateSession()?.seatId;
+    const active = explicitToken || this.getActiveCandidateSession()?.token;
+    if (!active) return { status: 'UNAUTHENTICATED', authorized: false };
 
-    if (!active) {
-      return { status: 'UNAUTHENTICATED', authorized: false };
-    }
-
-    const clean = active.trim().toLowerCase();
-
-    // 1. Check if participant exists with this token or seat ID
-    const participant = store.participants.find(p => 
-      p.access_token.toLowerCase() === clean ||
-      p.seat_id.toLowerCase() === clean
-    );
-
-    if (participant) {
-      if (participant.status === 'REVOKED') {
-        return {
-          status: 'REVOKED',
-          authorized: false,
-          revokedReason: participant.revoked_reason || 'Access suspended by administrator.',
-          participant,
-        };
-      }
-
-      const application = store.applications.find(a => a.id === participant.application_id);
-      const session = store.sessions.find(s => s.participant_id === participant.id);
-      const report = store.reports.find(r => r.participant_id === participant.id);
-
+    const result = await this.verifyCandidateAccess(active);
+    if (!result.authorized) {
       return {
-        status: 'APPROVED',
-        authorized: true,
-        participant,
-        application,
-        session,
-        report,
-        hasCompletedDiagnostic: Boolean(report || (session && (session.status === 'COMPLETED' || session.status === 'SUBMITTED'))),
-        seatId: participant.seat_id,
-        seatNumber: participant.seat_number,
-      };
-    }
-
-    // 2. Check if applicant has an application UNDER_REVIEW or WAITLISTED
-    const application = store.applications.find(a => 
-      a.id.toLowerCase() === clean ||
-      a.email.toLowerCase() === clean
-    );
-
-    if (application) {
-      if (application.status === 'APPROVED') {
-        // Participant should exist
-        const part = store.participants.find(p => p.application_id === application.id);
-        if (part) {
-          return this.getAssessmentEntitlement(part.seat_id);
-        }
-      }
-      return {
-        status: application.status === 'PENDING' ? 'UNDER_REVIEW' : application.status,
+        status: result.reason === 'ACCESS_REVOKED' ? 'REVOKED' : 'UNAUTHENTICATED',
         authorized: false,
-        application,
+        reason: result.reason,
       };
     }
 
-    return { status: 'UNAUTHENTICATED', authorized: false };
+    return {
+      status: 'APPROVED',
+      authorized: true,
+      participant: result.participant,
+      application: result.application,
+      session: result.session,
+      report: result.report,
+      hasCompletedDiagnostic: Boolean(
+        result.report ||
+        (result.session && (result.session.status === 'COMPLETED' || result.session.status === 'SUBMITTED'))
+      ),
+      seatId: result.participant?.seat_id,
+      seatNumber: result.participant?.seat_number,
+    };
   },
 
   // Record invite page view for analytics
