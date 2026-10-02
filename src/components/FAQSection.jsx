@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: 'How does the ₹199 service work?',
-    a: '₹199 is Testly's registration assistance fee. The exact scope, provider fee, voucher availability and any applicable taxes or charges are shown before payment.'
+    a: "₹199 is Testly's registration assistance fee. The exact scope, provider fee, voucher availability and any applicable taxes or charges are shown before payment."
   },
   {
     q: 'Are the prices updated regularly?',

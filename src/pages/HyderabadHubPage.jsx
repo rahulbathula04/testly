@@ -11,7 +11,7 @@ const LOCAL_INTENTS = [
   { name: 'Kukatpally & KPHB', text: 'A dense student area with access to the western Hyderabad education corridor and IELTS activity.', anchor: 'Kukatpally exam guide' },
   { name: 'Begumpet & Somajiguda', text: 'Central Hyderabad corridor with established international-exam and English-test activity.', anchor: 'Begumpet exam guide' },
   { name: 'Jubilee Hills & Banjara Hills', text: 'Useful for candidates looking for IELTS and other international-test information around central-west Hyderabad.', anchor: 'Jubilee Hills exam guide' },
-  { name: 'Ameerpet & Secunderabad', text: 'Long-standing education and transit hubs. Always check the provider's current appointment list rather than relying on an old address.', anchor: 'Ameerpet exam planning' },
+  { name: 'Ameerpet & Secunderabad', text: "Long-standing education and transit hubs. Always check the provider's current appointment list rather than relying on an old address.", anchor: 'Ameerpet exam planning' },
 ];
 
 const EXAM_GUIDES = [

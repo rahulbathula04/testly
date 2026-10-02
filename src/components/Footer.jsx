@@ -78,6 +78,22 @@ export default function Footer({ onOpenAdmin, onNavigate, onOpenAgreement }) {
             </ul>
           </div>
 
+          {/* Col 4: Verified Regional Hubs (Geo SEO) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-300">
+              Test Hubs
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><a href="/locations/hyderabad" onClick={(e) => handleClick(e, '/locations/hyderabad')} className="hover:text-white transition-colors">Hyderabad Hub</a></li>
+              <li><a href="/locations/madhapur" onClick={(e) => handleClick(e, '/locations/madhapur')} className="hover:text-white transition-colors">Madhapur Corridor</a></li>
+              <li><a href="/locations/bengaluru" onClick={(e) => handleClick(e, '/locations/bengaluru')} className="hover:text-white transition-colors">Bengaluru Hub</a></li>
+              <li><a href="/locations/mumbai" onClick={(e) => handleClick(e, '/locations/mumbai')} className="hover:text-white transition-colors">Mumbai Hub</a></li>
+              <li><a href="/locations/pune" onClick={(e) => handleClick(e, '/locations/pune')} className="hover:text-white transition-colors">Pune Hub</a></li>
+              <li><a href="/locations/delhi-ncr" onClick={(e) => handleClick(e, '/locations/delhi-ncr')} className="hover:text-white transition-colors">Delhi NCR Hub</a></li>
+              <li><a href="/locations/chennai" onClick={(e) => handleClick(e, '/locations/chennai')} className="hover:text-white transition-colors">Chennai Hub</a></li>
+            </ul>
+          </div>
+
           {/* Col 4: Legal (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-black uppercase tracking-wider text-slate-300">

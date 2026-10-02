@@ -464,7 +464,7 @@ export const testly100Service = {
       attentionNeededCount: activeAlerts.length + (idleNow > 0 ? 1 : 0),
       isDemoMode: this.isDemoModeActive(),
     };
-  }
+  },
 
   // 3. Submit Candidate Application
   async submitApplication(appData) {
