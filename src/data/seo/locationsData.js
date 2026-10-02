@@ -252,6 +252,39 @@ export const INDIA_LOCATIONS = {
       }
     ],
     primaryLocalities: ['Nungambakkam', 'OMR', 'Velachery', 'Anna Nagar', 'Adyar', 'Tambaram', 'T. Nagar']
+  },
+
+  madhapur: {
+    id: 'madhapur',
+    name: 'Madhapur (Cyber Towers)',
+    state: 'Telangana',
+    region: 'South India',
+    tier: 'Tier 1 Corridor',
+    isHub: true,
+    localSupportAvailable: true,
+    supportType: 'Walk-in Support Desk & WhatsApp VIP',
+    deskAddress: 'Plot 42, Cyber Hills Corridor, Near Durgam Cheruvu Metro & Cyber Towers, Madhapur, Hyderabad - 500081',
+    helpline: '+91 93473 79041',
+    metroConnectivity: 'Durgam Cheruvu Metro (Blue Line) - 2 min walk',
+    studentDemographics: 'Core test center hub in Hyderabad serving IT professionals and engineering graduates from JNTU, IIIT, and Osmania targeting GRE, TOEFL & PTE.',
+    passportQuirks: 'Prometric Madhapur strictly rejects test-takers if ETS account given name or surname does not match physical Indian passport format.',
+    testVenues: [
+      {
+        name: 'Prometric Testing Center (Madhapur)',
+        code: 'PRO-HYD-01',
+        exams: ['GRE', 'TOEFL iBT'],
+        address: 'Hitech City Main Rd, near Cyber Towers, Madhapur',
+        notes: 'Strict physical Indian passport verification. Morning slots fill fast.'
+      },
+      {
+        name: 'Pearson Test Center (Mindspace Hitech City)',
+        code: 'PEAR-HYD-02',
+        exams: ['PTE Academic'],
+        address: 'Near Mindspace IT Park, Kondapur / Madhapur Corridor',
+        notes: 'High demand for working IT professionals planning Australia/Canada PR.'
+      }
+    ],
+    primaryLocalities: ['Cyber Towers', 'Durgam Cheruvu', 'Inorbit Mall Corridor', 'Hitech City Phase 2', 'Kavuri Hills']
   }
 };
 
