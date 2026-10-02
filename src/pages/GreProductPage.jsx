@@ -28,6 +28,7 @@ import GreReportView from '../components/gre/GreReportView';
 import GrePracticeEngine from '../components/gre/GrePracticeEngine';
 import { evaluateDiagnosticAttempt } from '../data/gre/greDiagnosticEngine';
 import { testly100Service } from '../services/testly100Service';
+import { updatePageMeta, injectFAQSchema, injectBreadcrumbSchema, injectOrganizationSchema, injectExamAssessmentSchema } from '../utils/seoEngine';
 
 const TESTIMONIALS = [
   {
@@ -65,6 +66,44 @@ export default function GreProductPage({ subview = 'landing', onNavigate, onOpen
   // Diagnostic result state
   const [diagnosticResult, setDiagnosticResult] = useState(null);
   const [activeCandidate, setActiveCandidate] = useState(null);
+
+  // SEO meta injection
+  useEffect(() => {
+    updatePageMeta({
+      title: 'Free GRE Mock Test 2026 — Adaptive Practice, Score Predictor & Official Registration India | Testly',
+      description: 'Take Testly\'s free adaptive GRE mock test. Get a predicted GRE score, section-wise analysis, and book your official GRE exam at the lowest INR price — no forex markups.',
+      canonicalUrl: 'https://www.testly.co.in/gre',
+      imageUrl: 'https://www.testly.co.in/assets/og-gre.png'
+    });
+    injectOrganizationSchema();
+    injectBreadcrumbSchema([
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'GRE Mock Test & Registration', url: 'https://www.testly.co.in/gre' }
+    ]);
+    injectExamAssessmentSchema();
+    injectFAQSchema([
+      {
+        question: 'Is this GRE mock test free?',
+        answer: 'Yes. Testly\'s adaptive GRE mock test is completely free. It covers Verbal Reasoning and Quantitative Reasoning with 40 questions and gives you an instant predicted GRE score.'
+      },
+      {
+        question: 'How accurate is Testly\'s GRE score predictor?',
+        answer: 'Testly uses a 3-parameter Item Response Theory (IRT) model — the same statistical framework ETS uses. Your predicted score is calibrated to the 130–170 GRE scale with adaptive difficulty routing.'
+      },
+      {
+        question: 'How do I book the GRE exam in India?',
+        answer: 'Testly offers official GRE registration at ₹199 concierge fee. We handle passport-name verification, direct INR billing via ETS corporate agreement, and provide test-day support.'
+      },
+      {
+        question: 'What is the GRE exam fee in India?',
+        answer: 'The GRE General Test costs $228 USD. Through Testly institutional vouchers, you pay in INR via NEFT/UPI and save up to ₹5,000 compared to direct credit card registration.'
+      },
+      {
+        question: 'How many times can I take the GRE?',
+        answer: 'You can take the GRE up to 5 times in a 12-month period, with at least 21 days between attempts. ETS counts all scores from the last 5 years (ScoreSelect applies).'
+      }
+    ]);
+  }, []);
 
   // Check existing session
   useEffect(() => {

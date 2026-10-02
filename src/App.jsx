@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { updatePageMeta, injectOrganizationSchema, injectFAQSchema } from './utils/seoEngine';
 
 // ── Scalable Error Boundary ──────────────────────────────────────────────────
 import ErrorBoundary        from './components/ErrorBoundary';
@@ -169,6 +170,37 @@ export default function App() {
       window.removeEventListener('hashchange', handleLocationChange);
     };
   }, []);
+
+  // Homepage SEO — inject on mount when on the root route
+  useEffect(() => {
+    if (currentRoute.type === 'home') {
+      updatePageMeta({
+        title: 'Testly — Official GRE, TOEFL, IELTS & PTE Registration in India | Zero Hidden Fees',
+        description: 'Register for GRE, TOEFL, IELTS, PTE, and GMAT in India at the official price. Testly eliminates forex markups, passport-name rejections, and voucher risks. INR billing. ₹199 concierge.',
+        canonicalUrl: 'https://www.testly.co.in/',
+        imageUrl: 'https://www.testly.co.in/assets/og-home.png'
+      });
+      injectOrganizationSchema();
+      injectFAQSchema([
+        {
+          question: 'What is Testly?',
+          answer: 'Testly is India\'s official exam registration concierge based in Hyderabad. We help students register for GRE, TOEFL, IELTS, PTE, GMAT, and Duolingo at the official price in INR — with zero forex markups, zero passport-name rejection risk, and real-time booking support.'
+        },
+        {
+          question: 'How much does Testly charge for exam registration?',
+          answer: 'Testly charges a ₹199 all-inclusive concierge fee per registration. This covers passport-name audit, INR payment execution, official slot booking, and post-booking support.'
+        },
+        {
+          question: 'Does Testly eliminate forex currency markups on GRE and TOEFL fees?',
+          answer: 'Yes. Testly uses institutional corporate billing agreements with ETS (GRE/TOEFL), Pearson (PTE), and IDP (IELTS) to allow direct INR payments — saving Indian students 3–5% in Visa/Mastercard forex conversion fees.'
+        },
+        {
+          question: 'Is Testly based in Hyderabad?',
+          answer: 'Yes. Testly\'s office is located at Plot 42, Cyber Hills Corridor, near Durgam Cheruvu Metro and Cyber Towers, Madhapur, Hyderabad — 500081. Walk-in support is available.'
+        }
+      ]);
+    }
+  }, [currentRoute.type]);
 
   const navigate = (path) => {
     window.history.pushState({}, '', path);

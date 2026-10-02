@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { updatePageMeta, injectFAQSchema, injectBreadcrumbSchema, injectOrganizationSchema } from '../utils/seoEngine';
 
 const PROFESSIONALS = [
   {
@@ -50,14 +51,31 @@ const PROFESSIONALS = [
 
 export default function ProfessionalsPage({ onOpenBooking, onNavigate }) {
   useEffect(() => {
-    document.title = "Meet the Founders & Registration Specialists | Testly";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Meet the leadership and verification team behind Testly. Every exam registration is audited character-by-character by our dedicated team in Hyderabad.'
-      );
-    }
+    updatePageMeta({
+      title: 'Meet the Founders — Rahul Bathula & Deepak Royal | Testly Exam Registration Specialists India',
+      description: 'Meet Rahul Bathula and Deepak Royal — founders of Testly, India\'s zero-defect exam registration concierge for GRE, TOEFL, IELTS, and PTE in Hyderabad.',
+      canonicalUrl: 'https://www.testly.co.in/professionals',
+      imageUrl: 'https://www.testly.co.in/assets/images/rahul-bathula-founder.jpg'
+    });
+    injectOrganizationSchema();
+    injectBreadcrumbSchema([
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'Founding Team', url: 'https://www.testly.co.in/professionals' }
+    ]);
+    injectFAQSchema([
+      {
+        question: 'Who founded Testly?',
+        answer: 'Testly was co-founded by Rahul Bathula (Chief Exam Strategist) and Deepak Royal (Head of Operations) in Hyderabad, India. Together they have guided 5,000+ candidates through official GRE, TOEFL, IELTS, and PTE registrations.'
+      },
+      {
+        question: 'Is Testly a team of certified exam registration specialists?',
+        answer: 'Yes. Every Testly registration is handled by specialists with direct ETS, Pearson, and IDP operational experience. Rahul Bathula has a 99.8% zero passport-name rejection record across 3,500+ candidates.'
+      },
+      {
+        question: 'Where is Testly located?',
+        answer: 'Testly operates from Madhapur, Hyderabad (Plot 42, Cyber Hills Corridor, near Durgam Cheruvu Metro and Cyber Towers). Walk-in support is available. Phone: +91 93473 79041.'
+      }
+    ]);
     window.scrollTo(0, 0);
   }, []);
 

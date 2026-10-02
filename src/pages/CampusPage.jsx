@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   GraduationCap,
   Building2,
@@ -22,6 +22,7 @@ import { EXAM_OFFERINGS_LIST, formatINR } from '../data/examOfferings';
 import { createNewLead } from '../utils/crmStore';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { updatePageMeta, injectFAQSchema, injectBreadcrumbSchema, injectOrganizationSchema } from '../utils/seoEngine';
 
 const PARTNER_BENEFITS = [
   {
@@ -89,6 +90,39 @@ export default function CampusPage({ onOpenBooking, onNavigate }) {
   const [annualTakers, setAnnualTakers] = useState('100–300 Students');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    updatePageMeta({
+      title: 'Campus Exam Registration Partner — GRE, TOEFL, IELTS, PTE for Indian Colleges | Testly',
+      description: 'Testly partners with Indian engineering, MBA, and STEM colleges to run zero-cost campus exam registration drives for GRE, TOEFL, IELTS, and PTE with institutional INR pricing.',
+      canonicalUrl: 'https://www.testly.co.in/campus',
+      imageUrl: 'https://www.testly.co.in/assets/og-campus.png'
+    });
+    injectOrganizationSchema();
+    injectBreadcrumbSchema([
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'Campus Partners', url: 'https://www.testly.co.in/campus' }
+    ]);
+    injectFAQSchema([
+      {
+        question: 'How does Testly campus partnership work?',
+        answer: 'Testly partners with Indian colleges at zero cost. We visit your campus or run virtual registration drives for GRE, TOEFL, IELTS, and PTE — handling passport verification, INR billing, and official slot booking for your students.'
+      },
+      {
+        question: 'Is there any cost for the college to partner with Testly?',
+        answer: 'No. Testly campus partnerships are completely free for the institution. Students pay only the official exam fee plus Testly\'s ₹199 concierge fee — no college overhead.'
+      },
+      {
+        question: 'What exams does Testly support for campus registrations?',
+        answer: 'Testly supports campus-level registrations for GRE General Test, TOEFL iBT, IELTS Academic, PTE Academic, GMAT Focus, and Duolingo English Test.'
+      },
+      {
+        question: 'Can Testly provide a dashboard for tracking student exam registrations?',
+        answer: 'Yes. Testly provides a Dean and Placement Cell tracking dashboard with live data on student exam dates, test centers, and score report submission status for NAAC and NIRF reporting.'
+      }
+    ]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
