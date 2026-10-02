@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { updatePageMeta, injectOrganizationSchema, injectBreadcrumbSchema, injectFAQSchema } from '../utils/seoEngine';
 
 const FOUNDER_IMAGE = '/assets/images/rahul-bathula-founder.jpg';
 
@@ -189,8 +190,37 @@ const OPERATING_LAYERS = [
 
 export default function FounderPage({ onOpenBooking, onNavigate }) {
   useEffect(() => {
-    document.title = 'Why I Built Testly — Founder Story | Rahul Bathula';
-    window.scrollTo(0, 0);
+    const title = 'Why We Built Testly — Founder Story | Rahul Bathula & Deepak Royal';
+    const description = 'Discover why Testly was founded in Hyderabad to eliminate hidden currency markups, passport-name mismatch rejections, and registration friction for Indian study-abroad candidates.';
+    
+    updatePageMeta({
+      title,
+      description,
+      canonicalUrl: 'https://www.testly.co.in/about',
+      imageUrl: 'https://www.testly.co.in/assets/images/rahul-bathula-founder.jpg'
+    });
+
+    injectOrganizationSchema();
+    injectBreadcrumbSchema([
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'About Testly', url: 'https://www.testly.co.in/about' }
+    ]);
+    injectFAQSchema([
+      {
+        question: 'Why was Testly founded in India?',
+        answer: 'Testly was founded by Rahul Bathula and Deepak Royal in Hyderabad to solve hidden forex currency markups, lack of live support, passport-name verification rejections, and shadow market voucher risks for Indian students.'
+      },
+      {
+        question: 'What is the Testly ₹199 Concierge service fee for?',
+        answer: 'The ₹199 service fee covers character-by-character passport name auditing, corporate INR billing execution to avoid bank forex markups, official document dispatch, and test-morning emergency support.'
+      },
+      {
+        question: 'Is Testly a legally registered organization in India?',
+        answer: 'Yes, Testly operates under Section 182 of the Indian Contract Act 1872 as a verified candidate agent maintaining full GST compliance and documented transaction trails.'
+      }
+    ]);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (
