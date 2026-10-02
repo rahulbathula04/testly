@@ -173,7 +173,7 @@ export function createNewLead({
 
   // Async persist to Supabase if configured
   try {
-    import('../services/supabaseClient').then(({ supabase, isSupabaseConfigured }) => {
+    import('../services/supabaseClient.js').then(({ supabase, isSupabaseConfigured }) => {
       if (isSupabaseConfigured && supabase) {
         supabase
           .from('leads')
