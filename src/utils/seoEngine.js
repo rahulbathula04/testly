@@ -231,7 +231,6 @@ export function updatePageMeta({ title, description, canonicalUrl, imageUrl }) {
   setMeta('meta[property="og:url"]', 'content', canonicalUrl);
   setMeta('meta[name="twitter:title"]', 'content', title);
   setMeta('meta[name="twitter:description"]', 'content', description);
-  setMeta('meta[name="twitter:url"]', 'content', canonicalUrl);
   setMeta('meta[property="og:image"]', 'content', imageUrl);
   setMeta('meta[name="twitter:image"]', 'content', imageUrl);
 
@@ -244,6 +243,49 @@ export function updatePageMeta({ title, description, canonicalUrl, imageUrl }) {
     }
     canonical.href = canonicalUrl;
   }
+}
+
+export function injectOrganizationSchema() {
+  if (typeof document === 'undefined') return;
+
+  const scriptId = 'testly-organization-brand-schema';
+  let scriptEl = document.getElementById(scriptId);
+  if (!scriptEl) {
+    scriptEl = document.createElement('script');
+    scriptEl.id = scriptId;
+    scriptEl.type = 'application/ld+json';
+    document.head.appendChild(scriptEl);
+  }
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    'name': 'Testly',
+    'legalName': 'Testly Education Pvt Ltd',
+    'url': 'https://www.testly.co.in/',
+    'logo': 'https://www.testly.co.in/favicon.svg',
+    'foundingDate': '2025',
+    'founder': {
+      '@type': 'Person',
+      'name': 'Deepak Royal',
+      'jobTitle': 'Founder & CEO',
+      'sameAs': 'https://www.testly.co.in/about'
+    },
+    'contactPoint': {
+      '@type': 'ContactPoint',
+      'telephone': '+91 93473 79041',
+      'contactType': 'candidate support',
+      'areaServed': 'IN',
+      'availableLanguage': ['English', 'Hindi', 'Telugu']
+    },
+    'sameAs': [
+      'https://www.instagram.com',
+      'https://www.linkedin.com',
+      'https://www.youtube.com'
+    ]
+  };
+
+  scriptEl.textContent = JSON.stringify(schemaData, null, 2);
 }
 
 
