@@ -171,5 +171,31 @@ export function createNewLead({
     window.dispatchEvent(new CustomEvent('testly_new_lead_alert', { detail: newLead }));
   } catch (e) {}
 
+  // Async persist to Supabase if configured
+  try {
+    import('../services/supabaseClient').then(({ supabase, isSupabaseConfigured }) => {
+      if (isSupabaseConfigured && supabase) {
+        supabase
+          .from('leads')
+          .insert([
+            {
+              id: newLead.id,
+              name: newLead.name,
+              phone: newLead.phone,
+              exam: newLead.exam,
+              timing: newLead.timing,
+              city: newLead.city,
+              source: newLead.source,
+              campaign: newLead.campaign,
+              created_at: newLead.createdAt,
+            },
+          ])
+          .then(({ error }) => {
+            if (error) console.warn('Supabase lead insertion warning:', error.message);
+          });
+      }
+    });
+  } catch (e) {}
+
   return newLead;
 }
