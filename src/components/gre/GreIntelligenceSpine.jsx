@@ -154,21 +154,26 @@ export default function GreIntelligenceSpine({ onStartDiagnostic, onStartPractic
           {/* Action 3: Mock */}
           <div className="border border-slate-200 bg-white rounded-2xl p-5 flex flex-col justify-between space-y-4 hover:border-[#1E3A8A] transition-all shadow-xs group">
             <div className="space-y-2">
-              <span className="text-[10px] font-mono font-bold uppercase text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
-                STAGE 03
-              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-mono font-bold uppercase text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                  STAGE 03
+                </span>
+                <span className="text-[10px] font-mono font-bold uppercase text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                  100 SEATS ONLY
+                </span>
+              </div>
               <h3 className="text-lg font-black text-[#0F172A] font-['DM_Serif_Display',Georgia,serif]">
                 Full Mock
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Full-length simulations under authentic 1:58 time constraints and section flow.
+                Full-length simulations under authentic 1:58 time constraints and section flow. Invite-only cohort.
               </p>
             </div>
             <button
               onClick={onStartMock}
               className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              <span>Explore Mocks</span>
+              <span>Access Cohort Mocks</span>
               <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
             </button>
           </div>

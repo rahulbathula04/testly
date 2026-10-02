@@ -44,7 +44,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
       phone: `+91 ${cleanPhone.slice(-10)}`,
       exam,
       timing,
-      needs: ['Institutional Discount Rate', 'Registration Concierge'],
+      needs: ['Institutional Fee Allocation', 'Registration Concierge'],
       pricing: currentPricing,
       source: 'Landing Page Form',
       campaign: `${exam} High-CRO Booking Flow`
@@ -61,7 +61,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
   };
 
   const directWaUrl = `https://wa.me/919347379041?text=${encodeURIComponent(
-    `Hi Testly! I want to check exam slot availability for ${exam} (${timing}) and lock in the ₹${currentPricing.testlyPrice.toLocaleString('en-IN')} rate with ₹199 Concierge.`
+    `Hi Testly! I want to check exam slot availability for ${exam} (${timing}) and lock in the ₹${currentPricing.testlyPrice.toLocaleString('en-IN')} fee with ₹199 Concierge.`
   )}`;
 
   return (
@@ -97,7 +97,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
           {!isSubmitted ? (
             <form onSubmit={handleSubmit} className="space-y-4">
 
-              {/* Dynamic Live Rate Banner */}
+              {/* Dynamic Live Fee Banner */}
               <div className={`border rounded-xl p-3 flex items-center justify-between shadow-2xs ${
                 currentPricing.saving > 1000
                   ? 'bg-emerald-50/90 border-emerald-200'
@@ -107,7 +107,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
                     currentPricing.saving > 1000 ? 'text-emerald-800' : 'text-blue-800'
                   }`}>
-                    {exam} {currentPricing.saving > 1000 ? 'Verified Institutional Rate' : 'Registration Concierge'}
+                    {exam} {currentPricing.saving > 1000 ? 'Verified Institutional Fee' : 'Registration Concierge'}
                   </span>
                   <p className="text-xs text-slate-700 font-semibold mt-0.5">
                     {currentPricing.saving > 1000 ? (
@@ -138,7 +138,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700">
                     1. Target Exam
                   </label>
-                  <span className="text-[10px] text-emerald-700 font-bold">✓ Pre-cleared rate</span>
+                  <span className="text-[10px] text-emerald-700 font-bold">✓ Pre-cleared fee</span>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5">
                   {EXAM_OPTIONS.map((opt) => (
@@ -222,10 +222,10 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                 </p>
               )}
 
-              {/* Reassurance Guarantee with Founders */}
+              {/* Reassurance Guarantee with Testly Team */}
               <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 text-[11px] text-slate-600 flex items-center gap-2">
                 <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Audited directly by founders Rahul & Deepak. Zero advance payment needed now.</span>
+                <span>Audited character-by-character by the Testly Verification Team. Zero advance payment needed now.</span>
               </div>
 
               {/* Primary Submit Button */}
@@ -246,7 +246,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#128C7E] hover:text-[#075E54] transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
-                  <span>Prefer WhatsApp? Chat directly with Rahul & Deepak →</span>
+                  <span>Prefer WhatsApp? Chat directly with the Testly Team →</span>
                 </a>
               </div>
 
@@ -275,7 +275,7 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
                   Booking Request Received!
                 </h4>
                 <p className="text-xs text-slate-600 font-medium">
-                  Founders <strong>Rahul Bathula</strong> or <strong>Deepak Royal</strong> are reviewing test slot availability for <strong>{exam}</strong>.
+                  The <strong>Testly Support Team</strong> is reviewing test slot availability and candidate verification for <strong>{exam}</strong>.
                 </p>
               </div>
 
@@ -292,13 +292,13 @@ export default function LeadCaptureModal({ isOpen, onClose, defaultTest = 'GRE',
               </div>
 
               <a
-                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Rahul & Deepak! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
+                href={`https://wa.me/919347379041?text=${encodeURIComponent(`Hi Testly Team! I just submitted my booking request for ${exam} (${name}). Please share available test slots.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Open WhatsApp with Rahul & Deepak</span>
+                <span>Open WhatsApp with Testly Team</span>
               </a>
             </div>
           )}

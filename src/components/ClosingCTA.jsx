@@ -29,7 +29,7 @@ export default function ClosingCTA({ onBookTest, onOpenFreeMock }) {
         </h2>
 
         <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-medium">
-          Don't pay full market rates. Secure official ETS, Pearson, and GMAC test vouchers with flat ₹199 specialist booking support today.
+          Don't pay full portal examination fees. Secure official ETS, Pearson, and GMAC test vouchers with flat ₹199 specialist booking support today.
         </p>
 
         {/* Action Buttons */}

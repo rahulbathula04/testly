@@ -14,7 +14,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹14,198',
       saving: '₹4,001',
       savePercent: 'SAVE ₹4,001',
-      tagline: 'Testly Coupon Rate (₹13,999 + ₹199 Service = ₹14,198)'
+      tagline: 'Testly Institutional Fee (₹13,999 + ₹199 Service = ₹14,198)'
     },
     GRE: {
       name: 'GRE® General',
@@ -25,7 +25,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹20,198',
       saving: '₹2,551',
       savePercent: 'SAVE ₹2,551',
-      tagline: 'Testly Coupon Rate (₹19,999 + ₹199 Service = ₹20,198)'
+      tagline: 'Testly Institutional Fee (₹19,999 + ₹199 Service = ₹20,198)'
     },
     Duolingo: {
       name: 'Duolingo English',
@@ -36,7 +36,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹5,198',
       saving: '₹701',
       savePercent: 'SAVE ₹701',
-      tagline: 'Testly Coupon Rate (₹4,999 + ₹199 Service = ₹5,198)'
+      tagline: 'Testly Institutional Fee (₹4,999 + ₹199 Service = ₹5,198)'
     },
     PTE: {
       name: 'PTE Academic',
@@ -47,7 +47,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹15,198',
       saving: '₹3,901',
       savePercent: 'SAVE ₹3,901',
-      tagline: 'Testly Coupon Rate (₹14,999 + ₹199 Service = ₹15,198)'
+      tagline: 'Testly Institutional Fee (₹14,999 + ₹199 Service = ₹15,198)'
     },
     IELTS: {
       name: 'IELTS Academic',
@@ -58,7 +58,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹15,198',
       saving: '₹2,001',
       savePercent: 'SAVE ₹2,001',
-      tagline: 'Testly Coupon Rate (₹14,999 + ₹199 Service = ₹15,198)'
+      tagline: 'Testly Institutional Fee (₹14,999 + ₹199 Service = ₹15,198)'
     },
     GMAT: {
       name: 'GMAT Focus',
@@ -69,7 +69,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹22,198',
       saving: '₹2,801',
       savePercent: 'SAVE ₹2,801',
-      tagline: 'Testly Coupon Rate (₹21,999 + ₹199 Service = ₹22,198)'
+      tagline: 'Testly Institutional Fee (₹21,999 + ₹199 Service = ₹22,198)'
     },
     LSAT: {
       name: 'LSAT Law',
@@ -80,7 +80,7 @@ export default function PriceComparison({ onCheckPrice }) {
       total: '₹16,198',
       saving: '₹2,001',
       savePercent: 'SAVE ₹2,001',
-      tagline: 'Testly Coupon Rate (₹15,999 + ₹199 Service = ₹16,198)'
+      tagline: 'Testly Institutional Fee (₹15,999 + ₹199 Service = ₹16,198)'
     }
   };
 
@@ -102,11 +102,11 @@ export default function PriceComparison({ onCheckPrice }) {
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Why pay full retail?
+                Why pay full examination portal fees?
               </h2>
 
               <p className="text-sm font-bold text-slate-700">
-                Maximum Official Checkout Rates vs. Testly Savings Rate
+                Official Portal Fees vs. Testly Institutional Fee Advantage
               </p>
 
               <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
@@ -144,16 +144,16 @@ export default function PriceComparison({ onCheckPrice }) {
                   <span className="text-[10px] text-slate-500 block mt-1">{current.officialBreakdown}</span>
                 </div>
                 <p className="text-[11px] text-slate-500 pt-2 border-t border-slate-100 font-medium">
-                  Standard testing body retail rate
+                  Standard testing body official examination fee
                 </p>
               </div>
 
-              {/* Card 2: Testly Rate */}
+              {/* Card 2: Testly Institutional Fee */}
               <div className="bg-emerald-50/60 rounded-2xl p-5 border border-emerald-300 flex flex-col justify-between space-y-3 shadow-xs relative overflow-hidden">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-emerald-800">Testly Rate</span>
+                  <span className="text-xs font-bold text-emerald-800">Testly Institutional Fee</span>
                   <span className="text-[9px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded-md uppercase">
-                    Available Rate
+                    Authorized Allocation
                   </span>
                 </div>
                 <div>

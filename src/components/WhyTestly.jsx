@@ -7,7 +7,7 @@ export default function WhyTestly() {
       icon: DollarSign,
       title: 'Transparent & Low Pricing',
       desc: 'No hidden markup fees. Unlocking authentic promo vouchers that save you up to ₹8,800 per test booking.',
-      badge: 'Lowest Rate Guarantee'
+      badge: 'Authorized Fee Guarantee'
     },
     {
       icon: Headset,
@@ -18,7 +18,7 @@ export default function WhyTestly() {
     {
       icon: Layers,
       title: 'All-in-One Global Test Hub',
-      desc: 'From TOEFL and GRE to PTE, IELTS, GMAT & Duolingo — compare rates, prep, and register on one seamless platform.',
+      desc: 'From TOEFL and GRE to PTE, IELTS, GMAT & Duolingo — compare fees, assess readiness, and register on one seamless platform.',
       badge: '7+ Official Tests'
     },
     {

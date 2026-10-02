@@ -25,7 +25,7 @@ export default function MobileStickyBar({ onOpenBooking }) {
       <div>
         <div className="flex items-baseline gap-1.5">
           <span className="text-xs font-black uppercase text-slate-900">
-            GRE Rate:
+            GRE Fee:
           </span>
           <span className="text-sm font-black text-slate-900">
             ₹20,499

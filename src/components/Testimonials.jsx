@@ -8,7 +8,7 @@ export default function Testimonials() {
       avatar: '/assets/images/student-avatar-1.jpg',
       test: 'GRE® 328 Score (JNTU Hyderabad)',
       location: 'Madhapur, Hyderabad',
-      review: 'The ₹199 assisted registration saved me from a major mistake! I had a Given Name vs Surname mismatch on my Indian Passport for ETS. Rahul & Deepak guided me line-by-line via WhatsApp.',
+      review: 'The ₹199 assisted registration saved me from a major mistake! I had a Given Name vs Surname mismatch on my Indian Passport for ETS. The Testly team guided me line-by-line via WhatsApp.',
       tag: 'Verified Hyderabad Student'
     },
     {
@@ -24,7 +24,7 @@ export default function Testimonials() {
       avatar: '/assets/images/student-avatar-3.jpg',
       test: 'IELTS Academic Band 8.0 (CBIT)',
       location: 'Kukatpally, Hyderabad',
-      review: 'Booking assistance was super smooth via UPI (PhonePe). Rahul and Deepak helped me find a slot at the IDP Hyderabad center during peak rush. Best service for study abroad aspirants!',
+      review: 'Booking assistance was super smooth via UPI (PhonePe). The Testly team helped me find a slot at the IDP Hyderabad center during peak rush. Best service for study abroad aspirants!',
       tag: 'Verified Student'
     }
   ];

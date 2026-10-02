@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
@@ -6,9 +7,10 @@ const NAV_ITEMS = [
   { label: 'Exams', href: '/#pricing' },
   { label: 'Exam Fees', href: '/exam-fees' },
   { label: 'Testly GRE', href: '/gre' },
+  { label: 'Assessment Intel', href: '/assessment-intelligence' },
   { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Professionals', href: '/professionals' },
-  { label: 'Testly Campus', href: '/campus' },
+  { label: 'Campus', mobileLabel: 'Testly Campus', href: '/campus' },
   { label: 'Guides', href: '/guides' },
   { label: 'About', href: '/about' },
 ];
@@ -40,7 +42,7 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
 
   return (
     <header className="sticky top-0 z-50 bg-[#FAF9F6]/95 backdrop-blur-xl border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(15,23,42,0.03)] transition-all w-full overflow-x-clip">
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-5 lg:px-6 h-14 sm:h-16 flex items-center justify-between gap-3 w-full">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-5 lg:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 lg:gap-3 xl:gap-4 w-full">
 
         {/* ── Official Brand Logo from Brand Guide ── */}
         <a
@@ -51,123 +53,125 @@ export default function Navbar({ onOpenBooking, onNavigate }) {
           <BrandLogo variant="horizontal" size="md" />
         </a>
 
-        {/* ── Desktop Nav Items (Exact items from Brand Guide) ── */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink min-w-0">
+        {/* ── Desktop Nav Items (Exact items with zero-overlap spacing) ── */}
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleClick(e, item.href)}
-              className="text-[13px] xl:text-[14px] font-medium text-[#0F172A]/80 hover:text-[#0F172A] hover:bg-[#EBF3FF] px-2.5 xl:px-3 py-1.5 rounded-lg transition-all whitespace-nowrap"
+              className="text-[12px] xl:text-[13.5px] font-medium text-[#0F172A]/80 hover:text-[#0F172A] hover:bg-[#EBF3FF] px-2 xl:px-2.5 py-1.5 rounded-lg transition-all whitespace-nowrap"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* ── Desktop Right-Side Brand CTA & Search ── */}
-        <div className="hidden lg:flex items-center gap-2.5 shrink-0">
-          <button
+        {/* ── Desktop Right-Side Brand CTA (Clean, No Overlap) ── */}
+        <div className="hidden lg:flex items-center shrink-0">
+          <motion.button
+            whileHover={{ y: -1, backgroundColor: '#1E3A8A' }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.15 }}
             onClick={() => onOpenBooking('GRE')}
-            className="p-2 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
-            aria-label="Search exams"
-            title="Search exams"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-
-          <button
-            onClick={() => onOpenBooking('GRE')}
-            className="group relative inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-[12.5px] font-bold px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all duration-150 active:scale-[0.98] cursor-pointer whitespace-nowrap"
+            className="group relative inline-flex items-center gap-2 bg-[#0F172A] text-white text-[12.5px] font-bold px-3.5 xl:px-4 py-2 rounded-xl shadow-xs hover:shadow-md cursor-pointer whitespace-nowrap"
           >
             <span>Check My Savings</span>
             <ArrowRight className="w-3.5 h-3.5 text-blue-400 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
-          </button>
+          </motion.button>
         </div>
 
-        {/* ── Mobile & Tablet Right Action Bar (Search + Menu) ── */}
-        <div className="lg:hidden flex items-center gap-1.5">
-          <button
-            onClick={() => onOpenBooking('GRE')}
-            className="p-2 rounded-lg text-[#0F172A]/70 hover:text-[#0F172A] hover:bg-[#EBF3FF] transition-colors cursor-pointer"
-            aria-label="Search exams"
-          >
-            <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-
-          <button
+        {/* ── Mobile & Tablet Right Action Bar (Menu Toggle) ── */}
+        <div className="lg:hidden flex items-center">
+          <motion.button
+            whileTap={{ scale: 0.92 }}
             onClick={() => setOpen(!open)}
-            className="w-10 h-10 flex items-center justify-center text-[#0F172A] hover:bg-[#EBF3FF] rounded-xl transition-colors cursor-pointer active:scale-95"
+            className="w-10 h-10 flex items-center justify-center text-[#0F172A] hover:bg-[#EBF3FF] rounded-xl transition-colors cursor-pointer"
             aria-label="Toggle Navigation Menu"
             aria-expanded={open}
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          </motion.button>
         </div>
 
       </div>
 
       {/* ── Mobile & Tablet Drawer (Refined & Light) ── */}
-      {open && (
-        <div className="lg:hidden bg-[#FAF9F6] border-b border-[#E5E7EB] px-4 pt-3 pb-6 shadow-xl space-y-3 animate-in slide-in-from-top-2 duration-150 max-h-[85dvh] overflow-y-auto touch-scroll">
-          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#64748B] px-3 py-1">
-            <span>Navigation Menu</span>
-            <span className="text-[9px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Live 2026</span>
-          </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-drawer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: 'auto',
+              opacity: 1,
+              transition: { height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] }, opacity: { duration: 0.18 } }
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: { height: { duration: 0.2, ease: 'easeIn' }, opacity: { duration: 0.12 } }
+            }}
+            className="overflow-hidden lg:hidden bg-[#FAF9F6] border-b border-[#E5E7EB] px-4 pt-3 pb-6 shadow-xl space-y-3 max-h-[85dvh] overflow-y-auto touch-scroll"
+          >
+            <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#64748B] px-3 py-1">
+              <span>Navigation Menu</span>
+              <span className="text-[9px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Live 2026</span>
+            </div>
 
-          <div className="space-y-0.5">
-            {NAV_ITEMS.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={(e) => {
-                  setOpen(false);
-                  handleClick(e, l.href);
-                }}
-                className="flex items-center justify-between min-h-[46px] py-2.5 px-3.5 text-[14px] font-medium text-[#0F172A] hover:bg-[#EBF3FF] hover:text-[#1E3A8A] active:bg-[#EBF3FF] rounded-xl transition-colors"
+            <div className="space-y-0.5">
+              {NAV_ITEMS.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => {
+                    setOpen(false);
+                    handleClick(e, l.href);
+                  }}
+                  className="flex items-center justify-between min-h-[46px] py-2.5 px-3.5 text-[14px] font-medium text-[#0F172A] hover:bg-[#EBF3FF] hover:text-[#1E3A8A] active:bg-[#EBF3FF] rounded-xl transition-colors"
+                >
+                  <span>{l.mobileLabel || l.label}</span>
+                  <span className="text-[#94A3B8] text-sm">›</span>
+                </a>
+              ))}
+            </div>
+
+            {/* Quick Direct Support Row for Mobile */}
+            <div className="pt-3 border-t border-[#E5E7EB]/80 grid grid-cols-2 gap-2">
+              <motion.a
+                whileTap={{ scale: 0.97 }}
+                href="https://wa.me/919347379041?text=Hi%20Testly!%20I%20have%20a%20question%20about%20exam%20registration%20and%20savings."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
               >
-                <span>{l.label}</span>
-                <span className="text-[#94A3B8] text-sm">›</span>
-              </a>
-            ))}
-          </div>
+                <span>WhatsApp Us</span>
+              </motion.a>
+              <motion.a
+                whileTap={{ scale: 0.97 }}
+                href="tel:+919347379041"
+                className="bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+              >
+                <span>Call Desk</span>
+              </motion.a>
+            </div>
 
-          {/* Quick Direct Support Row for Mobile */}
-          <div className="pt-3 border-t border-[#E5E7EB]/80 grid grid-cols-2 gap-2">
-            <a
-              href="https://wa.me/919347379041?text=Hi%20Testly!%20I%20have%20a%20question%20about%20exam%20registration%20and%20savings."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
-            >
-              <span>WhatsApp Us</span>
-            </a>
-            <a
-              href="tel:+919347379041"
-              className="bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
-            >
-              <span>Call Desk</span>
-            </a>
-          </div>
-
-          <div className="pt-1">
-            <button
-              onClick={() => {
-                setOpen(false);
-                onOpenBooking('GRE');
-              }}
-              className="w-full bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.98] transition-all"
-            >
-              <span>Check My Exam Savings</span>
-              <ArrowRight className="w-4 h-4 text-blue-400" />
-            </button>
-          </div>
-        </div>
-      )}
+            <div className="pt-1">
+              <motion.button
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  setOpen(false);
+                  onOpenBooking('GRE');
+                }}
+                className="w-full bg-[#0F172A] hover:bg-[#1E3A8A] text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm cursor-pointer transition-colors"
+              >
+                <span>Check My Exam Savings</span>
+                <ArrowRight className="w-4 h-4 text-blue-400" />
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -19,6 +19,7 @@ import { PUBLISHED_ARTICLES_LIST } from '../data/seo/publishedArticles';
 import { ALL_CONTENT_OPPORTUNITIES } from '../data/seo/contentOpportunities';
 import { getProfessionalById } from '../data/seo/professionalsData';
 import { updatePageMeta } from '../utils/seoEngine';
+import PassportNameValidator from '../components/tools/PassportNameValidator';
 
 const EXAM_FILTERS = ['ALL', 'GRE', 'TOEFL', 'IELTS', 'PTE', 'GMAT', 'Duolingo'];
 const CATEGORY_FILTERS = [
@@ -55,34 +56,34 @@ export default function BlogDirectoryPage({ onOpenBooking, onNavigate }) {
   });
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased text-slate-900">
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col font-sans antialiased text-[#0F172A]">
       <Navbar onOpenBooking={onOpenBooking} onNavigate={onNavigate} />
 
       {/* ── Breadcrumb Bar ── */}
-      <nav aria-label="Breadcrumb" className="bg-slate-50 border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-slate-500">
-          <button onClick={() => onNavigate('/')} className="hover:text-slate-900 transition-colors">
+      <nav aria-label="Breadcrumb" className="bg-[#FAF9F6] border-b border-[#E5E7EB] py-2.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-[#64748B]">
+          <button onClick={() => onNavigate('/')} className="hover:text-[#0F172A] transition-colors">
             Home
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-bold">Guides & Research Intelligence</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+          <span className="text-[#0F172A] font-bold">Guides & Research Intelligence</span>
         </div>
       </nav>
 
       <main className="flex-grow">
 
         {/* ── 1. Hero Header ── */}
-        <section className="bg-gradient-to-b from-slate-50 to-white py-14 lg:py-16 border-b border-slate-200">
+        <section className="bg-gradient-to-b from-white via-[#FAF9F6] to-[#FAF9F6] py-14 lg:py-16 border-b border-[#E5E7EB]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             <div className="max-w-3xl space-y-3">
-              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-800 px-3 py-1 rounded-full text-xs font-bold">
-                <BookOpen className="w-3.5 h-3.5 text-blue-600" />
+              <div className="inline-flex items-center gap-2 bg-[#EBF3FF] border border-blue-200/80 text-[#1E3A8A] px-3 py-1 rounded-full text-xs font-bold">
+                <BookOpen className="w-3.5 h-3.5 text-[#3B82F6]" />
                 <span>Testly Candidate Intelligence Library • Updated 2026</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl font-serif text-[#0F172A] tracking-tight leading-[1.1]">
                 Exam Registration Guides, <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6]">
                   Fee Indexes & Savings Intelligence
                 </span>
               </h1>
@@ -222,6 +223,11 @@ export default function BlogDirectoryPage({ onOpenBooking, onNavigate }) {
                 })}
               </div>
             )}
+
+            {/* Interactive Candidate Tool Section */}
+            <div className="pt-8">
+              <PassportNameValidator onOpenBooking={onOpenBooking} />
+            </div>
           </div>
         </section>
 

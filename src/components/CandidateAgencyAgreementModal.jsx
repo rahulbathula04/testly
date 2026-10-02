@@ -56,7 +56,7 @@ export default function CandidateAgencyAgreementModal({ isOpen, onClose }) {
                 <strong>₹199 Professional Service Fee:</strong> Covers candidate document verification, character-by-character passport spelling review, official testing account configuration assistance, and post-booking support.
               </li>
               <li>
-                <strong>Exam Fee / Booking Advantage:</strong> Where legitimate institutional partner, corporate allocation, or bulk distributor agreements permit, Testly applies authorized prepaid allocations or partner rates directly toward your official registration, reducing your total out-of-pocket test expenditure.
+                <strong>Exam Fee / Booking Advantage:</strong> Where legitimate institutional partner, corporate allocation, or bulk distributor agreements permit, Testly applies authorized prepaid allocations or partner fee schedules directly toward your official registration, reducing your total out-of-pocket test expenditure.
               </li>
               <li>
                 Testly does not independently administer examinations, mark scores, issue candidate test tickets, or act as an exam board.

@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { updatePageMeta, injectOrganizationSchema, injectBreadcrumbSchema, injectFAQSchema } from '../utils/seoEngine';
 
 const FOUNDER_IMAGE = '/assets/images/rahul-bathula-founder.jpg';
 
@@ -189,8 +190,37 @@ const OPERATING_LAYERS = [
 
 export default function FounderPage({ onOpenBooking, onNavigate }) {
   useEffect(() => {
-    document.title = 'Why I Built Testly — Founder Story | Rahul Bathula';
-    window.scrollTo(0, 0);
+    const title = 'Why We Built Testly — Founder Story | Rahul Bathula & Deepak Royal';
+    const description = 'Discover why Testly was founded in Hyderabad to eliminate hidden currency markups, passport-name mismatch rejections, and registration friction for Indian study-abroad candidates.';
+    
+    updatePageMeta({
+      title,
+      description,
+      canonicalUrl: 'https://www.testly.co.in/about',
+      imageUrl: 'https://www.testly.co.in/assets/images/rahul-bathula-founder.jpg'
+    });
+
+    injectOrganizationSchema();
+    injectBreadcrumbSchema([
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'About Testly', url: 'https://www.testly.co.in/about' }
+    ]);
+    injectFAQSchema([
+      {
+        question: 'Why was Testly founded in India?',
+        answer: 'Testly was founded by Rahul Bathula and Deepak Royal in Hyderabad to solve hidden forex currency markups, lack of live support, passport-name verification rejections, and shadow market voucher risks for Indian students.'
+      },
+      {
+        question: 'What is the Testly ₹199 Concierge service fee for?',
+        answer: 'The ₹199 service fee covers character-by-character passport name auditing, corporate INR billing execution to avoid bank forex markups, official document dispatch, and test-morning emergency support.'
+      },
+      {
+        question: 'Is Testly a legally registered organization in India?',
+        answer: 'Yes, Testly operates under Section 182 of the Indian Contract Act 1872 as a verified candidate agent maintaining full GST compliance and documented transaction trails.'
+      }
+    ]);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (
@@ -261,13 +291,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   <ArrowRight className="w-3.5 h-3.5 text-blue-400" />
                 </button>
                 <a
-                  href="https://wa.me/919347379041?text=Hi%20Rahul%20%26%20Deepak,%20I%20read%20your%20story%20on%20Testly%20and%20wanted%20to%20connect."
+                  href="https://wa.me/919347379041?text=Hi%20Testly%20Team,%20I%20read%20the%20story%20on%20Testly%20and%20wanted%20to%20connect."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] font-bold text-xs sm:text-sm transition-colors min-h-[44px]"
                 >
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  <span>WhatsApp Rahul & Deepak</span>
+                  <span>WhatsApp Testly Support Team</span>
                 </a>
               </div>
             </div>
@@ -417,7 +447,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   Why should booking an international exam costing ₹15,000 to ₹22,000 be any different?
                 </p>
                 <p className="text-sm sm:text-base text-[#0F172A] font-semibold leading-relaxed">
-                  Testly is the pre-booking verification layer that every Indian student uses before committing funds. You check current INR fee rates, verify your passport name formatting, check seat availability at verified centers, and lock in institutional pricing before giving money to foreign portals.
+                  Testly is the pre-booking verification layer that every Indian student uses before committing funds. You check current INR fee schedules, verify your passport name formatting, check seat availability at verified centers, and lock in institutional pricing before giving money to foreign portals.
                 </p>
               </div>
 
@@ -619,7 +649,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
                   We are based in the Madhapur Hitech City corridor of Hyderabad. Between the two of us, we monitor daily ETS portal changes, Prometric and Pearson venue schedules, emergency slot drops, and passport compliance.
                 </p>
                 <p className="text-sm sm:text-base text-[#0F172A] font-semibold leading-relaxed">
-                  When you submit your registration request on Testly, no interns or call center reps touch your profile. Rahul and Deepak verify your data character-by-character, execute the booking, and send your official confirmation docket.
+                  When you submit your registration request on Testly, no automated bots or random call centers touch your profile. The Testly team collects, reviews, and audits your profile character-by-character, executes the booking, and sends your official confirmation docket.
                 </p>
               </div>
 
@@ -881,13 +911,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
 
                 <div className="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://wa.me/919347379041?text=Hi%20Rahul,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20registration."
+                    href="https://wa.me/919347379041?text=Hi%20Testly%20Team,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20registration."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
-                    <span>WhatsApp Rahul</span>
+                    <span>Connect on WhatsApp</span>
                   </a>
                   <a
                     href="https://www.linkedin.com/in/rahul-bathula"
@@ -947,13 +977,13 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
 
                 <div className="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://wa.me/919347379041?text=Hi%20Deepak,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20operations."
+                    href="https://wa.me/919347379041?text=Hi%20Testly%20Team,%20I'd%20like%20to%20connect%20with%20you%20regarding%20Testly%20operations."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all shadow-xs"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
-                    <span>WhatsApp Deepak</span>
+                    <span>Connect on WhatsApp</span>
                   </a>
                   <a
                     href="tel:+919347379041"
@@ -979,7 +1009,7 @@ export default function FounderPage({ onOpenBooking, onNavigate }) {
               Before you book, check Testly.
             </h2>
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-              Don’t pay unnecessary bank forex markups or risk a passport name rejection. Check today's verified rates and let our Hyderabad team handle your registration with zero errors.
+              Don’t pay unnecessary bank forex markups or risk a passport name rejection. Check today's verified fee schedules and let our Hyderabad team handle your registration with zero errors.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full max-w-lg mx-auto sm:max-w-none">
               <button

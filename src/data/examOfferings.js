@@ -19,7 +19,7 @@ export const EXAM_OFFERINGS = {
     providerAbbr: 'ETS',
     country: 'India',
     category: 'SAVINGS_HERO',
-    categoryBadge: 'Save ₹6,043',
+    categoryBadge: 'Check current savings',
     marketingPitch: 'Check how much you can save',
     supplier_cost: 19000,
     reference_price: 26542,
@@ -54,7 +54,7 @@ export const EXAM_OFFERINGS = {
     providerAbbr: 'ETS',
     country: 'India',
     category: 'SAVINGS_HERO',
-    categoryBadge: 'Save ₹4,000',
+    categoryBadge: 'Check current savings',
     marketingPitch: 'Check how much you can save',
     supplier_cost: 12400,
     reference_price: 17999,
@@ -89,7 +89,7 @@ export const EXAM_OFFERINGS = {
     providerAbbr: 'Pearson',
     country: 'India',
     category: 'SAVINGS_HERO',
-    categoryBadge: 'Save ₹3,901',
+    categoryBadge: 'Check current savings',
     marketingPitch: 'Check how much you can save',
     supplier_cost: 13400,
     reference_price: 18900,
@@ -243,8 +243,8 @@ export const EXAM_DATA = {
     serviceFee: EXAM_OFFERINGS.GRE.service_fee,
     category: EXAM_OFFERINGS.GRE.category,
     categoryBadge: EXAM_OFFERINGS.GRE.categoryBadge,
-    propHighlight: 'Save ₹6,043 on official exam fee',
-    features: ['Verified institutional rate', 'Zero passport name error guarantee', 'Direct ETS portal confirmation'],
+    propHighlight: 'Check current savings against the official fee',
+    features: ['Verified institutional fee schedule', 'Passport and name review', 'Direct ETS portal confirmation'],
     salesScript: EXAM_OFFERINGS.GRE.sales_script
   },
   TOEFL: {
@@ -258,7 +258,7 @@ export const EXAM_DATA = {
     serviceFee: EXAM_OFFERINGS.TOEFL.service_fee,
     category: EXAM_OFFERINGS.TOEFL.category,
     categoryBadge: EXAM_OFFERINGS.TOEFL.categoryBadge,
-    propHighlight: 'Save ₹4,000 on official exam fee',
+    propHighlight: 'Check current savings against the official fee',
     features: ['Domestic UPI billing (No Forex / Card declines)', 'Direct ETS test center & home slot audit', 'Official appointment confirmation'],
     salesScript: EXAM_OFFERINGS.TOEFL.sales_script
   },
@@ -273,7 +273,7 @@ export const EXAM_DATA = {
     serviceFee: EXAM_OFFERINGS.PTE.service_fee,
     category: EXAM_OFFERINGS.PTE.category,
     categoryBadge: EXAM_OFFERINGS.PTE.categoryBadge,
-    propHighlight: 'Save ₹3,901 on official exam fee',
+    propHighlight: 'Check current savings against the official fee',
     features: ['Pearson authorized prepaid booking', 'Fast 48-hr score turnaround advisory', 'Prompt test center slot confirmation'],
     salesScript: EXAM_OFFERINGS.PTE.sales_script
   },
@@ -304,7 +304,7 @@ export const EXAM_DATA = {
     category: EXAM_OFFERINGS.IELTS.category,
     categoryBadge: 'Official IDP Desk',
     propHighlight: 'Official IDP test center slot guidance',
-    features: ['Zero-defect passport & name verification', 'Urgent weekend & weekday slot matching', 'Official IDP portal registration assistance'],
+    features: ['Passport and name review', 'Urgent weekend & weekday slot matching', 'Official IDP portal registration assistance'],
     salesScript: EXAM_OFFERINGS.IELTS.sales_script
   },
   GMAT: {
@@ -319,7 +319,7 @@ export const EXAM_DATA = {
     category: EXAM_OFFERINGS.GMAT.category,
     categoryBadge: 'Official GMAC Desk',
     propHighlight: 'B-School application deadline slot audit',
-    features: ['Premier business school deadline alignment', 'Pearson Professional test center booking', 'Zero-error profile & appointment confirmation'],
+    features: ['Premier business school deadline alignment', 'Pearson Professional test center booking', 'Profile and appointment review'],
     salesScript: EXAM_OFFERINGS.GMAT.sales_script
   }
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FileText, BookOpen, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const RESOURCES = [
@@ -50,7 +51,13 @@ export default function ExamResources({ onNavigate }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-9">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-20px' }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-3"
+        >
           <div className="space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3FF] border border-[#BFDBFE] text-[#1E3A8A] text-[10px] sm:text-[10.5px] font-bold tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
@@ -64,24 +71,32 @@ export default function ExamResources({ onNavigate }) {
             </p>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ x: 2 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => onNavigate ? onNavigate('/guides') : window.location.href = '/guides'}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E3A8A] hover:text-[#3B82F6] transition-colors group cursor-pointer self-start sm:self-auto"
           >
             <span>Explore All 24+ Guides</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* 4 Cards Grid — 2-col on mobile, 4-col on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          {RESOURCES.map((item) => {
+          {RESOURCES.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.35, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -3.5, transition: { duration: 0.2, ease: 'easeOut' } }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() => handleClick(item.slug)}
-                className="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between gap-3 hover:shadow-md hover:border-[#BFDBFE] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer group shadow-2xs"
+                className="bg-white border border-[#E5E7EB] rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between gap-3 hover:shadow-md hover:border-[#BFDBFE] transition-colors cursor-pointer group shadow-2xs"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl ${item.iconBg} border flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform`}>
@@ -106,7 +121,7 @@ export default function ExamResources({ onNavigate }) {
                   <span>Read Guide</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

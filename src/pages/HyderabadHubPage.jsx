@@ -1,389 +1,201 @@
 import React, { useEffect } from 'react';
-import {
-  MapPin,
-  ShieldCheck,
-  CheckCircle2,
-  ArrowRight,
-  Clock,
-  Phone,
-  MessageCircle,
-  Building2,
-  Calendar,
-  AlertCircle,
-  Award,
-  Users,
-  ChevronRight
-} from 'lucide-react';
+import { MapPin, ArrowRight, CheckCircle2, Clock3, FileText, Navigation, Search, ShieldCheck } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { ExamLogo } from '../components/ExamLogos';
-import { EXAM_DATA } from '../components/PriceProof';
+import { EXAM_DIRECTORY } from '../data/seo/geoData';
+import { updatePageMeta, injectBreadcrumbSchema, injectFAQSchema } from '../utils/seoEngine';
 
-const HYDERABAD_CENTERS = [
-  {
-    name: 'Prometric Testing Center (Madhapur)',
-    exams: 'GRE, TOEFL iBT',
-    area: 'Madhapur, Hitech City Road',
-    landmark: 'Near Cyber Towers & Durgam Cheruvu Metro',
-    notes: 'Primary ETS computerized testing venue in West Hyderabad. High demand for morning slots.'
-  },
-  {
-    name: 'Pearson Professional Centers (Begumpet)',
-    exams: 'PTE Academic, GMAT Focus Edition',
-    area: 'Begumpet, Sardar Patel Road',
-    landmark: 'Opposite Hyderabad Public School',
-    notes: 'Official Pearson flagship facility with biometric verification and strict passport ID checks.'
-  },
-  {
-    name: 'IDP IELTS Official Test Center',
-    exams: 'IELTS Academic & General',
-    area: 'Somajiguda / Begumpet',
-    landmark: 'Raj Bhavan Road corridor',
-    notes: 'Computer-delivered and paper-based IELTS sessions conducted weekly.'
-  },
-  {
-    name: 'Pearson Test Center (Hitech City)',
-    exams: 'PTE Academic',
-    area: 'Hitech City, Kondapur Corridor',
-    landmark: 'Near Mindspace IT Park',
-    notes: 'Popular slot hub for engineering graduates and IT professionals planning Australia/UK immigration.'
-  }
+const LOCAL_INTENTS = [
+  { name: 'Madhapur & HITECH City', text: 'Useful for candidates working or studying around the western IT corridor. Check the exact provider venue and appointment before travelling.', anchor: 'Madhapur exam guide' },
+  { name: 'Gachibowli & Kondapur', text: 'A major student and technology corridor. Compare the exam first, then confirm the current venue shown by the provider.', anchor: 'Gachibowli exam planning' },
+  { name: 'Kukatpally & KPHB', text: 'A dense student area with access to the western Hyderabad education corridor and IELTS activity.', anchor: 'Kukatpally exam guide' },
+  { name: 'Begumpet & Somajiguda', text: 'Central Hyderabad corridor with established international-exam and English-test activity.', anchor: 'Begumpet exam guide' },
+  { name: 'Jubilee Hills & Banjara Hills', text: 'Useful for candidates looking for IELTS and other international-test information around central-west Hyderabad.', anchor: 'Jubilee Hills exam guide' },
+  { name: 'Ameerpet & Secunderabad', text: "Long-standing education and transit hubs. Always check the provider's current appointment list rather than relying on an old address.", anchor: 'Ameerpet exam planning' },
 ];
 
-const LOCALITIES_SERVED = [
-  'Madhapur', 'Hitech City', 'Gachibowli', 'Kondapur', 'Kukatpally',
-  'Jubilee Hills', 'Banjara Hills', 'Begumpet', 'Ameerpet', 'Somajiguda',
-  'Miyapur', 'Secunderabad', 'Dilsukhnagar', 'Narayanguda'
+const EXAM_GUIDES = [
+  { slug: 'gre', title: 'GRE in Hyderabad', intent: 'GRE registration, test locations, dates, ID requirements and booking planning.' },
+  { slug: 'ielts', title: 'IELTS in Hyderabad', intent: 'IELTS Academic and General Training registration, locations, dates and documents.' },
+  { slug: 'toefl', title: 'TOEFL in Hyderabad', intent: 'TOEFL iBT registration, location search, dates and test-day planning.' },
+  { slug: 'pte', title: 'PTE in Hyderabad', intent: 'PTE Academic registration, availability, test-centre search and ID planning.' },
+  { slug: 'gmat', title: 'GMAT in Hyderabad', intent: 'GMAT registration, test-centre appointments and exam-day preparation.' },
+  { slug: 'sat', title: 'SAT in Hyderabad', intent: 'SAT registration, test-centre planning, dates and admission-test resources.' },
+  { slug: 'duolingo', title: 'Duolingo English Test in Hyderabad', intent: 'DET information, eligibility, pricing checks and online-test planning.' },
 ];
 
 export default function HyderabadHubPage({ onOpenBooking, onNavigate }) {
   useEffect(() => {
-    document.title = "Exam Registration & Discounted Vouchers in Hyderabad | Testly Local Support";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Book GRE, TOEFL, IELTS & PTE in Hyderabad for less. Save up to ₹7,500 on official fees with Testly. Walk-in & online support across Madhapur, Begumpet & Hitech City with ₹199 passport check.'
-      );
-    }
+    updatePageMeta({
+      title: 'Exams in Hyderabad: GRE, IELTS, TOEFL, PTE, GMAT & SAT | Testly',
+      description: 'Hyderabad exam guide for GRE, IELTS, TOEFL, PTE, GMAT, SAT and Duolingo English Test. Compare registration steps, current fees, test-centre guidance, documents and local planning.',
+      canonicalUrl: 'https://www.testly.co.in/locations/hyderabad'
+    });
+    injectBreadcrumbSchema([
+      { name: 'Home', url: 'https://www.testly.co.in/' },
+      { name: 'Locations', url: 'https://www.testly.co.in/locations' },
+      { name: 'Hyderabad', url: 'https://www.testly.co.in/locations/hyderabad' }
+    ]);
+    injectFAQSchema([
+      { question: 'Where can I take international exams in Hyderabad?', answer: 'Availability depends on the exam, provider, delivery mode and appointment date. Testly helps candidates understand the provider booking flow and points them to current official availability rather than maintaining a static centre list.' },
+      { question: 'Which exams can I register for in Hyderabad?', answer: 'Testly provides planning and registration information for GRE, IELTS, TOEFL, PTE, GMAT, SAT and Duolingo English Test. Exact availability is controlled by the respective provider.' },
+      { question: 'What should I check before booking an exam in Hyderabad?', answer: 'Check the exact exam version, current India fee, test date, venue, accepted identification, cancellation or rescheduling rules and score-reporting timeline before payment.' },
+      { question: 'Does Testly operate the test centres in Hyderabad?', answer: 'No. Testly is an independent exam information and registration assistance service. Exam providers control their own test centres, appointments, policies and final charges.' }
+    ]);
   }, []);
 
-  const exams = Object.values(EXAM_DATA);
-
   return (
-    <div className="min-h-screen bg-white flex flex-col font-[Inter,system-ui,sans-serif] antialiased text-slate-900">
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col text-slate-900">
       <Navbar onOpenBooking={onOpenBooking} onNavigate={onNavigate} />
-
-      {/* ── Breadcrumb Bar ── */}
-      <nav aria-label="Breadcrumb" className="bg-slate-50 border-b border-slate-200 py-2.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-semibold text-slate-500">
-          <button onClick={() => onNavigate('/')} className="hover:text-slate-900 transition-colors">
-            Home
-          </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-500">Locations</span>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-bold">Hyderabad</span>
-        </div>
-      </nav>
-
       <main className="flex-grow">
+        <nav aria-label="Breadcrumb" className="border-b border-slate-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs text-slate-500">
+            <button onClick={() => onNavigate('/')} className="hover:text-slate-900">Home</button>
+            <span className="mx-2">/</span>
+            <button onClick={() => onNavigate('/locations')} className="hover:text-slate-900">Locations</button>
+            <span className="mx-2">/</span>
+            <span className="font-semibold text-slate-900">Hyderabad</span>
+          </div>
+        </nav>
 
-        {/* ── 1. Hero: Hyderabad Local Entity ── */}
-        <section className="relative bg-gradient-to-b from-slate-50 to-white py-14 lg:py-20 border-b border-slate-200">
+        <section className="bg-white border-b border-slate-200 py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Hyderabad Local Candidate Support • Madhapur & Begumpet</span>
-                </div>
-
-                <h1
-                  style={{ fontFamily: "'DM Serif Display', serif" }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight"
-                >
-                  Exam Registration & Discounted Vouchers in Hyderabad.
-                </h1>
-
-                <p className="text-lg text-slate-600 font-medium leading-relaxed">
-                  Why pay full exam fees when you can book through official discounted vouchers? Testly helps Hyderabad students save up to <strong>₹7,500 on GRE, TOEFL, IELTS & PTE</strong>, with complete registration and passport name audit for just <strong>₹199</strong>.
-                </p>
-
-                {/* Key Local Pillars */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <div className="bg-white border border-slate-200 rounded-xl p-3.5 flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-extrabold uppercase text-slate-900">TS/AP Passport Name Audit</p>
-                      <p className="text-[11px] text-slate-500 mt-0.5">We check Given Name / Surname formatting before booking to avoid test-day rejection.</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-white border border-slate-200 rounded-xl p-3.5 flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                      <Building2 className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-extrabold uppercase text-slate-900">Begumpet & Madhapur Concierge</p>
-                      <p className="text-[11px] text-slate-500 mt-0.5">Assistance with Prometric Madhapur and Pearson Begumpet test date selection.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <button
-                    onClick={() => onOpenBooking('GRE')}
-                    className="bg-slate-900 hover:bg-slate-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all shadow-md flex items-center gap-2"
-                  >
-                    <span>Check Hyderabad Exam Savings</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-
-                  <button
-                    onClick={() => onNavigate('/locations/madhapur')}
-                    className="border border-slate-300 hover:border-slate-500 text-slate-700 font-bold text-sm px-5 py-3.5 rounded-xl transition-colors"
-                  >
-                    Visit Madhapur Support Desk →
-                  </button>
-                </div>
+            <div className="max-w-4xl">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-700">
+                <MapPin className="w-4 h-4" /> Hyderabad, Telangana
               </div>
-
-              {/* Right: Hyderabad Local Office Snapshot */}
-              <div className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 shadow-xl space-y-5">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                  <div>
-                    <h3 className="text-base font-black text-slate-900">Hyderabad Hub Summary</h3>
-                    <p className="text-xs text-slate-500">Official Candidate Advisory Desk</p>
-                  </div>
-                  <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
-                    Active Desk
-                  </span>
-                </div>
-
-                <div className="space-y-3 text-xs">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
-                    <div>
-                      <p className="font-bold text-slate-900">Primary Hyderabad Hubs</p>
-                      <p className="text-slate-600">Madhapur (Opp. Cyber Towers) & Begumpet (SP Road Corridor)</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
-                    <div>
-                      <p className="font-bold text-slate-900">Advisory Desk Hours</p>
-                      <p className="text-slate-600">Monday – Saturday: 9:30 AM – 7:00 PM IST</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Award className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
-                    <div>
-                      <p className="font-bold text-slate-900">Hyderabad Track Record</p>
-                      <p className="text-slate-600">2,400+ local students assisted across JNTU, OU, CBIT, VNR, and GITAM.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase block">Done-For-You Registration</span>
-                  <span className="text-2xl font-black text-slate-900">₹199 Only</span>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Voucher price separate. Zero registration hassle.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* ── 2. Verified Hyderabad Exam Pricing Table ── */}
-        <section className="py-14 bg-white border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div className="max-w-3xl space-y-2">
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                Verified Exam Fees & Testly Vouchers in Hyderabad
-              </h2>
-              <p className="text-sm text-slate-600">
-                Official test prices for India vs. Testly discounted vouchers. Valid for computer-based testing at all Hyderabad test centers.
+              <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight">
+                International exams in Hyderabad, explained clearly.
+              </h1>
+              <p className="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
+                A local planning hub for students and professionals comparing GRE, IELTS, TOEFL, PTE, GMAT, SAT and Duolingo English Test options in Hyderabad.
               </p>
-            </div>
-
-            <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-sm">
-              <table className="w-full text-left border-collapse text-sm">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-[11px] uppercase tracking-wider text-slate-500 font-black">
-                    <th className="py-3.5 px-4">Exam</th>
-                    <th className="py-3.5 px-4">Regular Official Fee*</th>
-                    <th className="py-3.5 px-4">Testly Voucher</th>
-                    <th className="py-3.5 px-4">Your Net Saving</th>
-                    <th className="py-3.5 px-4">Registration Service</th>
-                    <th className="py-3.5 px-4 text-right">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {exams.map((exam) => (
-                    <tr key={exam.id} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-4 px-4">
-                        <div className="flex items-center gap-2">
-                          <ExamLogo examId={exam.id} className="h-6" />
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 font-semibold text-slate-400 line-through">
-                        ₹{exam.refPrice.toLocaleString('en-IN')}
-                      </td>
-                      <td className="py-4 px-4 font-black text-slate-900">
-                        ₹{exam.testlyPrice.toLocaleString('en-IN')}
-                      </td>
-                      <td className="py-4 px-4">
-                        <span className="inline-block bg-amber-50 border border-amber-200 text-amber-900 font-extrabold text-xs px-2.5 py-1 rounded-md">
-                          Save ₹{exam.saving.toLocaleString('en-IN')}
-                        </span>
-                      </td>
-                      <td className="py-4 px-4 font-medium text-slate-600">
-                        ₹199 (Done for you)
-                      </td>
-                      <td className="py-4 px-4 text-right">
-                        <button
-                          onClick={() => onOpenBooking(exam.id)}
-                          className="bg-slate-900 hover:bg-slate-700 text-white font-bold text-xs px-3.5 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5"
-                        >
-                          <span>Claim Voucher</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p className="text-xs text-slate-400">
-              * Reference official exam fees verified for India test-takers as of September 2026. Official exam fees are charged by ETS, Pearson, IDP, and GMAC. Testly is an independent voucher procurement and registration service.
-            </p>
-          </div>
-        </section>
-
-        {/* ── 3. Hyderabad Test Centers Directory ── */}
-        <section className="py-14 bg-slate-50 border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div className="max-w-3xl space-y-2">
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                Major International Exam Centers in Hyderabad
-              </h2>
-              <p className="text-sm text-slate-600">
-                When you book through Testly, our advisors help you navigate slot availability across Hyderabad's authorized test venues.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {HYDERABAD_CENTERS.map((center) => (
-                <div key={center.name} className="bg-white border border-slate-200 rounded-2xl p-5 space-y-3 shadow-sm hover:border-slate-400 transition-colors">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="text-base font-black text-slate-900">{center.name}</h3>
-                      <p className="text-xs font-semibold text-emerald-700 mt-0.5">{center.exams}</p>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
-                      Authorized Venue
-                    </span>
-                  </div>
-
-                  <div className="text-xs text-slate-600 space-y-1">
-                    <p><strong className="text-slate-800">Location:</strong> {center.area}</p>
-                    <p><strong className="text-slate-800">Landmark:</strong> {center.landmark}</p>
-                  </div>
-
-                  <p className="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100 leading-relaxed">
-                    {center.notes}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 4. Passport & Name Legal Audit for Telangana / AP Candidates ── */}
-        <section className="py-14 bg-white border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-slate-900 text-white rounded-3xl p-8 lg:p-12 space-y-6">
-              <div className="max-w-2xl space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                  Critical For Telangana & Andhra Pradesh Students
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-                  Avoid the "Single Name / Initial" Passport Rejection at Hyderabad Test Centers.
-                </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  Over 35% of exam day rejections at Prometric Madhapur and Pearson Begumpet happen because the student's Indian passport format does not match ETS or Pearson's mandatory Surname/Given Name structure.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 space-y-1.5">
-                  <h3 className="text-xs font-black uppercase text-amber-400">01 — Split Surname Audit</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Indian passports often have empty surnames or full names lumped in Given Name. We audit and map this properly to the exam database.
-                  </p>
-                </div>
-
-                <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 space-y-1.5">
-                  <h3 className="text-xs font-black uppercase text-amber-400">02 — No Expandable Initials</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    ETS & Pearson do not permit expanded initials unless exactly matched to the machine-readable zone (MRZ) of your passport.
-                  </p>
-                </div>
-
-                <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 space-y-1.5">
-                  <h3 className="text-xs font-black uppercase text-amber-400">03 — Included in ₹199</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Our ₹199 Professional Service includes 1-on-1 verification of your passport bio-page before any voucher is redeemed or date locked.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  onClick={() => onOpenBooking('GRE')}
-                  className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm px-6 py-3.5 rounded-xl transition-colors shadow-lg flex items-center gap-2"
-                >
-                  <span>Book with ₹199 Passport Verification</span>
-                  <ArrowRight className="w-4 h-4" />
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button onClick={() => onOpenBooking('GRE')} className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3.5 text-sm font-bold text-white">
+                  Check exam registration <ArrowRight className="w-4 h-4" />
+                </button>
+                <button onClick={() => onNavigate('/exams')} className="rounded-xl border border-slate-300 px-5 py-3.5 text-sm font-bold">
+                  Compare exams in India
                 </button>
               </div>
             </div>
+
+            <div className="mt-12 grid md:grid-cols-3 gap-4">
+              <div className="rounded-2xl border border-slate-200 bg-[#FAF9F6] p-5">
+                <Search className="w-5 h-5 text-blue-700" />
+                <h2 className="mt-3 font-bold">Find the right exam</h2>
+                <p className="mt-2 text-sm text-slate-600">Start with the destination, university or purpose, then compare the exam that actually fits the requirement.</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-[#FAF9F6] p-5">
+                <FileText className="w-5 h-5 text-blue-700" />
+                <h2 className="mt-3 font-bold">Check the current rules</h2>
+                <p className="mt-2 text-sm text-slate-600">Fees, dates, identification, delivery modes and cancellation policies can change. Confirm them before payment.</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-[#FAF9F6] p-5">
+                <Navigation className="w-5 h-5 text-blue-700" />
+                <h2 className="mt-3 font-bold">Plan the Hyderabad visit</h2>
+                <p className="mt-2 text-sm text-slate-600">Use the provider's current appointment result for the exact venue and time. Do not rely on an old static centre address.</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* ── 5. Localities Covered in Hyderabad ── */}
-        <section className="py-12 bg-slate-50 border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center">
-            <h3 className="text-lg font-black text-slate-900">
-              Serving Students Across Greater Hyderabad
-            </h3>
-            <p className="text-xs text-slate-500 max-w-xl mx-auto">
-              Our advisory team provides phone, WhatsApp, and in-person assistance across major student hubs:
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto pt-2">
-              {LOCALITIES_SERVED.map((loc) => (
-                <span
-                  key={loc}
-                  className="bg-white border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg shadow-2xs"
-                >
-                  {loc}
-                </span>
+        <section className="py-14">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Hyderabad exam directory</span>
+              <h2 className="mt-2 text-3xl font-serif">Every major international exam, one local starting point.</h2>
+              <p className="mt-3 text-slate-600">Open the exam-specific Hyderabad guide for registration, fee checks, provider availability, ID requirements and test-day planning.</p>
+            </div>
+            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {EXAM_GUIDES.map(exam => (
+                <button key={exam.slug} onClick={() => onNavigate('/locations/hyderabad/' + exam.slug)} className="text-left rounded-2xl border border-slate-200 bg-white p-5 hover:border-blue-300">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-lg font-bold">{exam.title}</h3>
+                    <ArrowRight className="w-4 h-4 shrink-0 mt-1" />
+                  </div>
+                  <p className="mt-2 text-sm text-slate-600">{exam.intent}</p>
+                  <span className="mt-4 inline-block text-xs font-bold text-blue-700">Open Hyderabad guide</span>
+                </button>
               ))}
             </div>
           </div>
         </section>
 
-      </main>
+        <section className="py-14 bg-white border-y border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="w-5 h-5 text-blue-700 mt-1" />
+              <div>
+                <h2 className="text-2xl font-bold">Hyderabad test-centre information: use live provider availability</h2>
+                <p className="mt-3 max-w-4xl text-slate-600 leading-relaxed">
+                  Centre inventories are not permanent. For example, IDP currently publishes Hyderabad IELTS locations including Begumpet, Kukatpally and Jubilee Hills, while GRE and GMAT appointment systems ask candidates to search by city and available dates. Testly therefore treats the provider's live result as the source of truth.
+                </p>
+              </div>
+            </div>
+            <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                ['GRE', 'Search Hyderabad locations and dates through ETS.'],
+                ['IELTS', 'Check the current Hyderabad locations and dates published by IDP.'],
+                ['PTE', 'Use Pearson availability to find the nearest centre and next slot.'],
+                ['GMAT', 'Search Hyderabad appointments inside the official GMAT registration flow.']
+              ].map(([name, text]) => (
+                <div key={name} className="rounded-2xl border border-slate-200 p-5">
+                  <h3 className="font-bold">{name} in Hyderabad</h3>
+                  <p className="mt-2 text-sm text-slate-600">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <Footer onOpenAdmin={() => onNavigate('/admin')} onNavigate={onNavigate} />
+        <section className="py-14">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Local search map</span>
+            <h2 className="mt-2 text-3xl font-serif">Exam planning across Hyderabad's major student corridors</h2>
+            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {LOCAL_INTENTS.map(area => (
+                <div key={area.name} className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <h3 className="font-bold">{area.name}</h3>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">{area.text}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-slate-500"><MapPin className="w-3 h-3" /> Local planning intent</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 bg-slate-900 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <Clock3 className="w-6 h-6 text-blue-300" />
+              <h2 className="mt-4 text-3xl sm:text-4xl font-serif">The Hyderabad booking checklist</h2>
+              <p className="mt-4 text-slate-300">Before you pay for any exam appointment, verify these six things.</p>
+            </div>
+            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {['Correct exam and version', 'Current India fee and final payable amount', 'Exact Hyderabad venue and appointment time', 'Accepted identification and name format', 'Cancellation and rescheduling policy', 'Score-reporting timeline versus your application deadline'].map((item, i) => (
+                <div key={item} className="rounded-2xl border border-slate-700 bg-slate-800 p-5">
+                  <div className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-blue-300" /><span className="text-xs font-bold text-slate-400">0{i + 1}</span></div>
+                  <p className="mt-3 font-semibold">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 bg-white border-t border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold">Explore more Testly resources</h2>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <button onClick={() => onNavigate('/exams')} className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold">All exams</button>
+              <button onClick={() => onNavigate('/exam-fees')} className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold">India exam fees</button>
+              <button onClick={() => onNavigate('/guides')} className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold">Exam guides</button>
+              <button onClick={() => onNavigate('/locations')} className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold">Indian cities</button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer onNavigate={onNavigate} onOpenAdmin={() => onNavigate('/admin')} />
     </div>
   );
 }

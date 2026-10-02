@@ -7,7 +7,7 @@ export default function HowItWorks({ onBookService, onOpenFreeMock }) {
       step: 'STEP 1',
       title: 'Choose Official Exam Voucher',
       saving: 'Save Up To ₹4,001',
-      desc: 'Select your exam (TOEFL ₹13,999, GRE ₹19,999, DET ₹4,999, PTE ₹14,999). Get instant official voucher codes at exclusive discounted student rates.',
+      desc: 'Select your exam (TOEFL ₹13,999, GRE ₹19,999, DET ₹4,999, PTE ₹14,999). Get instant official voucher codes with authorized institutional fee schedules.',
       icon: Ticket,
       badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     },

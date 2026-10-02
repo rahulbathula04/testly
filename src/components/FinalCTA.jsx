@@ -32,7 +32,7 @@ export default function FinalCTA({ onBookTest }) {
                 onClick={() => onBookTest('GRE')}
                 className="bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs sm:text-sm px-7 py-3 rounded-xl transition-all shadow-md inline-flex items-center gap-2 group"
               >
-                <span>Check Available Slots & Verified Rates</span>
+                <span>Check Available Slots & Verified Fee Schedules</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>

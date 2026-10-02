@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { updatePageMeta, injectOrganizationSchema, injectFAQSchema } from './utils/seoEngine';
 
 // ── Scalable Error Boundary ──────────────────────────────────────────────────
 import ErrorBoundary        from './components/ErrorBoundary';
@@ -25,6 +26,9 @@ import ExitIntentModal      from './components/ExitIntentModal';
 
 // ── Code-Split Secondary Pages (Lazy loaded for peak mobile performance) ────
 const HyderabadHubPage     = lazy(() => import('./pages/HyderabadHubPage'));
+const ExamSeoPage          = lazy(() => import('./pages/ExamSeoPage'));
+const LocationSeoPage      = lazy(() => import('./pages/LocationSeoPage'));
+const CityExamPage         = lazy(() => import('./pages/CityExamPage'));
 const MadhapurHubPage      = lazy(() => import('./pages/MadhapurHubPage'));
 const ExamPriceTrackerPage = lazy(() => import('./pages/ExamPriceTrackerPage'));
 const ProfessionalsPage    = lazy(() => import('./pages/ProfessionalsPage'));
@@ -34,8 +38,13 @@ const CampusPage           = lazy(() => import('./pages/CampusPage'));
 const FounderPage          = lazy(() => import('./pages/FounderPage'));
 const GreProductPage       = lazy(() => import('./pages/GreProductPage'));
 const LocationHubPage      = lazy(() => import('./pages/LocationHubPage'));
+const LocationDirectoryPage = lazy(() => import('./pages/LocationDirectoryPage'));
+const ExamDirectoryPage     = lazy(() => import('./pages/ExamDirectoryPage'));
 const AssessmentIntelligencePage = lazy(() => import('./pages/AssessmentIntelligencePage'));
 const AssessmentEngineCommandCenter = lazy(() => import('./components/admin/AssessmentEngineCommandCenter'));
+const Testly100InvitePage   = lazy(() => import('./pages/Testly100InvitePage'));
+const Testly100AssessmentPage = lazy(() => import('./pages/Testly100AssessmentPage'));
+const Testly100ReportPage   = lazy(() => import('./pages/Testly100ReportPage'));
 
 // ── Code-Split Heavy Modals (Lazy loaded on demand) ───────────────────────────
 const BookingFlowModal     = lazy(() => import('./components/BookingFlowModal'));
@@ -66,7 +75,33 @@ function getActiveRoute() {
   if (path.startsWith('/admin') || hash.includes('admin') || search.includes('admin')) {
     return { type: 'admin' };
   }
-  // Dedicated Testly GRE Product Vertical
+
+  // ── TESTLY 100 Private Diagnostic Routes ────────────────────────────────────
+  if (path.includes('/testly-100/assessment') || path.includes('/testly100/assessment') || hash.includes('testly-100/assessment')) {
+    return { type: 'testly-100-assessment' };
+  }
+  const reportMatch = path.match(/\/testly-100\/report(?:\/([a-zA-Z0-9_-]+))?/) || hash.match(/#(?:testly-100\/report|report)(?:\/([a-zA-Z0-9_-]+))?/);
+  if (reportMatch) {
+    return { type: 'testly-100-report', reportId: reportMatch[1] || null };
+  }
+
+  // Support /i/:token, /i, /invite/:token, /invite/testly-100, /testly100, /testly-100
+  const iMatch = path.match(/^\/i(?:\/([a-zA-Z0-9_-]+))?/) || hash.match(/#(?:i|invite)(?:\/([a-zA-Z0-9_-]+))?/);
+  const inviteMatch = path.match(/^\/invite(?:\/([a-zA-Z0-9_-]+))?/);
+  if (
+    iMatch ||
+    inviteMatch ||
+    path.startsWith('/invite') ||
+    path === '/testly-100' ||
+    path === '/testly100' ||
+    hash.includes('invite/testly-100') ||
+    hash.includes('testly-100')
+  ) {
+    const token = (iMatch && iMatch[1]) || (inviteMatch && inviteMatch[1]) || null;
+    return { type: 'testly-100-invite', inviteToken: token };
+  }
+
+  // Dedicated Testly GRE Product Vertical (Public Mocks & Diagnostics Preserved)
   const greMatch = path.match(/^\/(?:gre|assessment\/gre)(?:\/([a-z0-9-]+))?/) || hash.match(/#(?:gre|assessment\/gre)(?:\/([a-z0-9-]+))?/);
   if (greMatch || path === '/gre' || hash.includes('/gre') || hash === '#gre') {
     const subview = greMatch ? greMatch[1] : null;
@@ -75,6 +110,17 @@ function getActiveRoute() {
   if (path.includes('/assessment-intelligence') || hash.includes('assessment-intelligence') || path.includes('/assessment-engine') || hash.includes('assessment-engine')) {
     return { type: 'assessment-intelligence' };
   }
+  // Canonical SEO directories and scalable India geo routes
+  if (path === '/locations/hyderabad' || path === '/locations/hyderabad/') return { type: 'hyderabad' };
+  const cityExamMatch = path.match(/^\/locations\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/);
+  if (cityExamMatch) return { type: 'city-exam-seo', city: cityExamMatch[1], exam: cityExamMatch[2] };
+  const examMatch = path.match(/^\/exams\/([a-z0-9-]+)\/?$/);
+  if (examMatch) return { type: 'exam-seo', exam: examMatch[1] };
+  if (path === '/exams' || hash === '#exams') return { type: 'exam-directory' };
+  if (path === '/locations' || hash === '#locations') return { type: 'location-directory' };
+  const citySeoMatch = path.match(/^\/locations\/([a-z0-9-]+)\/?$/);
+  if (citySeoMatch) return { type: 'location-seo', city: citySeoMatch[1] };
+
   if (path.includes('/campus') || hash.includes('/campus') || hash.includes('campus')) {
     return { type: 'campus' };
   }
@@ -125,6 +171,37 @@ export default function App() {
     };
   }, []);
 
+  // Homepage SEO — inject on mount when on the root route
+  useEffect(() => {
+    if (currentRoute.type === 'home') {
+      updatePageMeta({
+        title: 'Testly — Official GRE, TOEFL, IELTS & PTE Registration in India | Zero Hidden Fees',
+        description: 'Register for GRE, TOEFL, IELTS, PTE, and GMAT in India at the official price. Testly eliminates forex markups, passport-name rejections, and voucher risks. INR billing. ₹199 concierge.',
+        canonicalUrl: 'https://www.testly.co.in/',
+        imageUrl: 'https://www.testly.co.in/assets/og-home.png'
+      });
+      injectOrganizationSchema();
+      injectFAQSchema([
+        {
+          question: 'What is Testly?',
+          answer: 'Testly is India\'s official exam registration concierge based in Hyderabad. We help students register for GRE, TOEFL, IELTS, PTE, GMAT, and Duolingo at the official price in INR — with zero forex markups, zero passport-name rejection risk, and real-time booking support.'
+        },
+        {
+          question: 'How much does Testly charge for exam registration?',
+          answer: 'Testly charges a ₹199 all-inclusive concierge fee per registration. This covers passport-name audit, INR payment execution, official slot booking, and post-booking support.'
+        },
+        {
+          question: 'Does Testly eliminate forex currency markups on GRE and TOEFL fees?',
+          answer: 'Yes. Testly uses institutional corporate billing agreements with ETS (GRE/TOEFL), Pearson (PTE), and IDP (IELTS) to allow direct INR payments — saving Indian students 3–5% in Visa/Mastercard forex conversion fees.'
+        },
+        {
+          question: 'Is Testly based in Hyderabad?',
+          answer: 'Yes. Testly\'s office is located at Plot 42, Cyber Hills Corridor, near Durgam Cheruvu Metro and Cyber Towers, Madhapur, Hyderabad — 500081. Walk-in support is available.'
+        }
+      ]);
+    }
+  }, [currentRoute.type]);
+
   const navigate = (path) => {
     window.history.pushState({}, '', path);
     setCurrentRoute(getActiveRoute());
@@ -171,6 +248,21 @@ export default function App() {
   // ── 2. Render Page Content According to Active Route ────────────────────────
   const renderContent = () => {
     switch (currentRoute.type) {
+      case 'exam-directory':
+        return <ExamDirectoryPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'exam-seo':
+        return <ExamSeoPage examSlug={currentRoute.exam} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'location-directory':
+        return <LocationDirectoryPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'location-seo':
+        return <LocationSeoPage citySlug={currentRoute.city} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
+      case 'city-exam-seo':
+        return <CityExamPage citySlug={currentRoute.city} examSlug={currentRoute.exam} onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
+
       case 'campus':
         return <CampusPage onOpenBooking={handleOpenFunnel} onNavigate={navigate} />;
 
@@ -206,6 +298,15 @@ export default function App() {
 
       case 'admin-assessment-engine':
         return <AssessmentEngineCommandCenter onNavigateHome={() => navigate('/')} />;
+
+      case 'testly-100-invite':
+        return <Testly100InvitePage inviteToken={currentRoute.inviteToken} onNavigate={navigate} />;
+
+      case 'testly-100-assessment':
+        return <Testly100AssessmentPage onNavigate={navigate} />;
+
+      case 'testly-100-report':
+        return <Testly100ReportPage reportId={currentRoute.reportId} onNavigate={navigate} />;
 
       case 'home':
       default:

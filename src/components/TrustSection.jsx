@@ -3,7 +3,7 @@ import { Users, Briefcase, Globe, BookOpen } from 'lucide-react';
 
 const STATS = [
   { icon: Users,    value: '5,000+', label: 'Students Guided' },
-  { icon: Briefcase,value: '2',      label: 'Dedicated Founders' },
+  { icon: Briefcase,value: '100%',   label: 'Verified Audits' },
   { icon: Globe,    value: '4,000+', label: 'Overseas Connections' },
   { icon: BookOpen, value: 'Major',  label: 'Exam Categories' },
 ];

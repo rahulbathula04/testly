@@ -1,200 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- ── 1. Core Platform & Hubs ── -->
-  <url>
-    <loc>https://www.testly.co.in/</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/exam-fees</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/campus</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/professionals</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/about</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- ── 2. Testly GRE Vertical & Assessment Platform ── -->
-  <url>
-    <loc>https://www.testly.co.in/gre</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/gre/diagnostic</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/gre/practice</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/gre/mock</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/assessment-intelligence</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- ── 3. Guides & Research Intelligence Library ── -->
-  <url>
-    <loc>https://www.testly.co.in/guides</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/gre-exam-fee-in-india-2026</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/how-to-fix-passport-name-mismatch-for-gre-toefl</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/ielts-vs-pte-for-indian-students</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/toefl-voucher-discount-india</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/gre-registration-in-hyderabad</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/pte-exam-centers-in-bengaluru</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/gre-prep-strategy-study-plan-india-2026</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/gre-quantitative-reasoning-tips-indian-engineers</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/guides/gre-verbal-vocabulary-mnemonics-guide</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- ── 4. Verified Regional Test Hubs ── -->
-  <url>
-    <loc>https://www.testly.co.in/locations/hyderabad</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/locations/madhapur</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/locations/bengaluru</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/locations/mumbai</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/locations/pune</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/locations/delhi-ncr</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.testly.co.in/locations/chennai</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.testly.co.in/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exam-fees</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/campus</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/professionals</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/about</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/gre/diagnostic</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/gre/practice</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/gre/mock</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/assessment-intelligence</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-exam-fee-in-india-2026</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/how-to-fix-passport-name-mismatch-for-gre-toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/ielts-vs-pte-for-indian-students</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/toefl-voucher-discount-india</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-registration-in-hyderabad</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/pte-exam-centers-in-bengaluru</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-prep-strategy-study-plan-india-2026</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-quantitative-reasoning-tips-indian-engineers</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-verbal-vocabulary-mnemonics-guide</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-at-home-vs-test-center-india-2026</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/gre-slot-booking-rescheduling-cancellation-rules-india</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/guides/toefl-ibt-vs-ielts-for-us-universities-indian-students</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/exams/duolingo</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/kolkata</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/ahmedabad</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/jaipur</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chandigarh</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/lucknow</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/kochi</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/indore</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/visakhapatnam</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/vijayawada</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/hyderabad/duolingo</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/bengaluru/duolingo</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/mumbai/duolingo</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/pune/duolingo</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/delhi-ncr/duolingo</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/gre</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/ielts</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/toefl</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/pte</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/gmat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/sat</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://www.testly.co.in/locations/chennai/duolingo</loc><lastmod>2026-10-01</lastmod></url>
 </urlset>
